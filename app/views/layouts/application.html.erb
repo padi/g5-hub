@@ -28,9 +28,9 @@
             <!-- Everything you want hidden at 940px or less, place within here -->
             <div class="nav-collapse">
               <ul class="nav">
-                <li><a href="<%= features_path %>">Features</a></li>
                 <li><a href="<%= customers_path %>">Customers</a></li>
                 <li><a href="<%= locations_path %>">Locations</a></li>
+                <li><a href="<%= features_path %>">Features</a></li>
                 <li><a href="<%= admins_path %>">Admins</a></li>
                 <li><a href="<%= logout_path %>">Logout</a></li>
               </ul>
@@ -44,7 +44,10 @@
         <%= flash_div name %>
       <% end %>
 
-      <%= content_tag :h1, yield(:title) if show_title? %>
+      <div class="row page-header">
+        <%= content_tag :h1, yield(:title), class: "span10" if show_title? %>
+        <%= content_tag :span, yield(:header_right), class: "span2" if show_header_right? %>
+      </div>
 
       <%= yield %>
 

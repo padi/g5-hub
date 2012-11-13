@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
   before_filter :login_required, except: [:show]
 
   def index
-    @customers = Customer.all
+    @customers = Customer.order("updated_at DESC").all
   end
 
   def show

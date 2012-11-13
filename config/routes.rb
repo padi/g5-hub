@@ -12,5 +12,5 @@ G5Hub::Application.routes.draw do
   resources :sessions
   resources :admins
 
-  root to: "feed#index"
+  root to: "customers#index"
 end

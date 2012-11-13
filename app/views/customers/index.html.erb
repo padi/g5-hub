@@ -1,4 +1,113 @@
 <% title "Customers" %>
-<p><%= link_to "New Customer", new_customer_path %></p>
+<% header_right link_to("New Customer", new_customer_path, class: "btn btn-success") %>
 
-<%= render @customers %>
+<section class="h-feed">
+  <% @customers.each do |customer| %>
+    <article class="h-entry well">
+      <h2 class="p-name"><%= customer.name %></h2>
+      <dl class="">
+        <dt>Bookmark/UID</dt>
+        <dd>
+          <a href="<%= customer_url(customer) %>" rel="bookmark" class="u-url u-uid">
+            <%= customer_url(customer) %>
+          </a>
+        </dd>
+        <dt>Summary</dt>
+        <dd>
+          <span class="p-summary">Signed up with <%= customer.locations.size %> locations</span>
+        </dd>
+        <dt>Published</dt>
+        <dd>
+          <time datetime="<%= customer.created_at_computer_readable %>" class="dt-published">
+            <%= customer.created_at_human_readable %>
+          </time>
+        </dd>
+        <dt>Category</dt>
+        <dd>
+          <a class="p-category" href="http://g5.com/tag/new-customer" rel="tag">
+            New Customer
+          </a>
+        </dd>
+        <dt>Author</dt>
+        <dd>
+          <dl class="p-author h-card dl-horizontal">
+            <dt>UID</dt>
+            <dd>
+              <a class="u-url u-uid" href="<%= admin_url(customer.admin) %>">
+                <%= admin_url(customer.admin) %>
+              </a>
+            </dd>
+            <dt>Name</dt>
+            <dd>
+              <span class="p-name"><%= customer.admin.username %></span>
+            </dd>
+            <dt>Email</dt>
+            <dd>
+              <a class="u-email" href="mailto:<%= customer.admin.email %>">
+                <%= customer.admin.email %>
+              </a>
+            </dd>
+          </dl>
+        </dd>
+        <dt>Content</dt>
+        <dd>
+          <dl class="e-content">
+            <dt>Customer</dt>
+            <dd class="h-card">
+              <dl class="dl-horizontal">
+                <dt>UID</dt>
+                <dd>
+                  <a class="u-url u-uid" href="<%= customer_url(customer) %>">
+                    <%= customer_url(customer) %>
+                  </a>
+                </dd>
+                <dt>Name</dt>
+                <dd>
+                  <span class="p-name"><%= customer.name %></span>
+                </dd>
+              </dl>
+            </dd>
+            <dt>Locations</dt>
+            <dd>
+              <% customer.locations.each do |location| %>
+                <dl class="h-card dl-horizontal">
+                  <dt>UID</dt>
+                  <dd>
+                    <a class="u-url u-uid" href="<%= location_url(location) %>">
+                      <%= location_url(location) %>
+                    </a>
+                  </dd>
+                  <dt>Name</dt>
+                  <dd>
+                    <span class="p-name"><%= location.name %></span>
+                  </dd>
+                  <dt>Corporate</dt>
+                  <dd>
+                    <span><%= location.corporate %></span>
+                  </dd>
+                </dl>
+              <% end %>
+            </dd>
+            <dt>Features</dt>
+            <dd>
+              <% customer.features.each do |feature| %>
+                <dl class="h-product dl-horizontal">
+                  <dt>UID</dt>
+                  <dd>
+                    <a class="u-url u-uid" href="<%= feature_url(feature) %>">
+                      <%= feature_url(feature) %>
+                    </a>
+                  </dd>
+                  <dt>Name</dt>
+                  <dd>
+                    <span class="p-name"><%= feature.name %></span>
+                  </dd>
+                </dl>
+              <% end %>
+            </dd>
+          </dl>
+        </dd>
+      </dl>
+    </article>
+  <% end %>
+</section>
