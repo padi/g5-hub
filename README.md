@@ -1,6 +1,7 @@
 # G5 Hub
 
-A Rails application that publishes a feed consisting of hEntries as defined by [Microformats 2](http://microformats.org/wiki/microformats-2#h-entry). See the demo at [g5-hub.herokuapp.com](http://g5-hub.herokuappcom).
+* Publishes a feed consumed by g5-configurator
+* Pings g5-configurator when feed is updated via webhook
 
 
 ## Setup
@@ -17,12 +18,16 @@ vi config/database.yml # edit username
 rake db:create db:schema:load db:seed
 ```
 
-1. Set ENV variables
-    * `CONFIGURATOR_WEBHOOK_URL`
+1. Export environment variables
+```bash
+export CONFIGURATOR_WEBHOOK_URL=http://foo.bar/
+```
+
 
 ## Authors
 
-  * Jessica Lynn Suttles / [@jlsuttles](https://github.com/jlsuttles)
+* Jessica Lynn Suttles / [@jlsuttles](https://github.com/jlsuttles)
+* Bookis Smuin / [@bookis](https://github.com/bookis)
 
 
 ## Contributing
@@ -36,9 +41,10 @@ rake db:create db:schema:load db:seed
 1. Create new Pull Request
 
 If you find bugs, have feature requests or questions, please
-[file an issue](https://github.com/G5/g5_hub/issues).
+[file an issue](https://github.com/g5search/g5-hub/issues).
 
+## Specs
 
-## License
-
-???
+```bash
+guard
+```
