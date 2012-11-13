@@ -1,9 +1,6 @@
 <% title "Feature" %>
+<% header_right link_to("All Features", features_path, class: "btn") %>
 
-<%= render @feature %>
-
-<% if logged_in? %>
-  <p>
-    <%= link_to "View All", features_path %>
-  </p>
-<% end %>
+<div class="well">
+  <%= render @feature %>
+</div>

@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_filter :login_required, except: [:show]
+  before_filter :login_required, only: :create
 
   def index
     @customers = Customer.order("updated_at DESC").all

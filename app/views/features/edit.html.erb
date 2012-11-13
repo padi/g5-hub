@@ -1,8 +1,4 @@
 <% title "Edit Feature" %>
+<% header_right link_to("Cancel", features_path, class: "btn") %>
 
-<%= render 'form' %>
-
-<p>
-  <%= link_to "Show", @feature %> |
-  <%= link_to "View All", features_path %>
-</p>
+<%= render "form" %>

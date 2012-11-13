@@ -1,16 +1,25 @@
-<%= form_for @location do |f| %>
+<%= form_for @location, html: { class: "form-horizontal" } do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :customer_id %><br />
-    <%= f.number_field :customer_id %>
-  </p>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :corporate %><br />
-    <%= f.check_box :corporate %>
-  </p>
-  <p><%= f.submit %></p>
+  <fieldset class="well">
+    <legend>Location</legend>
+    <div class="control-group">
+      <%= f.label :customer_id, class: "control-label" %>
+      <div class="controls">
+        <%= f.text_field :customer_id %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :name, class: "control-label" %>
+      <div class="controls">
+        <%= f.text_field :name %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :corporate, class: "control-label" %>
+      <div class="controls">
+        <%= f.check_box :corporate %>
+      </div>
+    </div>
+    <p><%= f.submit class: "btn btn-success" %></p>
+  </fieldset>
 <% end %>

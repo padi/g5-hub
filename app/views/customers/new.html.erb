@@ -1,5 +1,4 @@
 <% title "New Customer" %>
+<% header_right link_to("Cancel", customers_path, class: "btn") %>
 
-<%= render 'form' %>
-
-<p><%= link_to "Back to List", customers_path %></p>
+<%= render "form" %>

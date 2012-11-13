@@ -1,8 +1,4 @@
 <% title "Edit Location" %>
+<% header_right link_to("Cancel", locations_path, class: "btn") %>
 
-<%= render 'form' %>
-
-<p>
-  <%= link_to "Show", @location %> |
-  <%= link_to "View All", locations_path %>
-</p>
+<%= render "form" %>

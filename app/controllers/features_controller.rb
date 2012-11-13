@@ -1,8 +1,6 @@
 class FeaturesController < ApplicationController
-  before_filter :login_required, except: [:show]
-
   def index
-    @features = Feature.all
+    @features = Feature.order("updated_at DESC").all
   end
 
   def show

@@ -1,9 +1,6 @@
 <% title "Location" %>
+<% header_right link_to("All Locations", locations_path, class: "btn") %>
 
-<%= render @location %>
-
-<% if logged_in? %>
-  <p>
-    <%= link_to "View All", locations_path %>
-  </p>
-<% end %>
+<div class="well">
+  <%= render @location %>
+</div>

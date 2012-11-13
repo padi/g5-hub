@@ -1,4 +1,8 @@
 <% title "Locations" %>
-<p><%= link_to "New Location", new_location_path %></p>
+<% header_right link_to("New Location", new_location_path, class: "btn btn-success") %>
 
-<%= render @locations %>
+<% @locations.each do |location| %>
+  <div class="well">
+    <%= render location %>
+  </div>
+<% end %>

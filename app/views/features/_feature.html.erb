@@ -1,11 +1,29 @@
-<p>
-  <strong>Name:</strong>
-  <%= feature.name %>
-</p>
-
-<% if logged_in? %>
-  <p>
-    <%= link_to "Edit", edit_feature_path(feature) %> |
-    <%= link_to "Destroy", feature, :confirm => 'Are you sure?', :method => :delete %>
-  </p>
-<% end %>
+<dl class="h-product dl-horizontal">
+  <dt>UID</dt>
+  <dd>
+    <a class="u-url u-uid" href="<%= feature_url(feature) %>">
+      <%= feature_url(feature) %>
+    </a>
+  </dd>
+  <dt>Name</dt>
+  <dd>
+    <span class="p-name"><%= feature.name %></span>
+  </dd>
+  <dt>Actions</dt>
+  <dd>
+    <dl class="dl-horizontal">
+      <dt>All</dt>
+      <dd>
+        <%= link_to features_url, features_url %>
+      </dd>
+      <dt>Edit</dt>
+      <dd>
+        <%= link_to edit_feature_url(feature), edit_feature_url(feature) %>
+      </dd>
+      <dt>Destroy</dt>
+      <dd>
+        <%= link_to feature_url(feature), feature, :confirm => 'Are you sure?', :method => :delete %>
+      </dd>
+    </dl>
+  </dd>
+</dl>

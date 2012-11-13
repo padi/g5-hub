@@ -1,4 +1,8 @@
 <% title "Features" %>
-<p><%= link_to "New Feature", new_feature_path %></p>
+<% header_right link_to("New Feature", new_feature_path, class: "btn btn-success") %>
 
-<%= render @features %>
+<% @features.each do |feature| %>
+  <div class="well">
+    <%= render feature %>
+  </div>
+<% end %>

@@ -1,19 +1,33 @@
-<p>
-  <strong>Customer:</strong>
-  <%= location.customer_id %>
-</p>
-<p>
-  <strong>Name:</strong>
-  <%= location.name %>
-</p>
-<p>
-  <strong>Corporate:</strong>
-  <%= location.corporate %>
-</p>
-
-<% if logged_in? %>
-  <p>
-    <%= link_to "Edit", edit_location_path(location) %> |
-    <%= link_to "Destroy", location, :confirm => 'Are you sure?', :method => :delete %>
-  </p>
-<% end %>
+<dl class="h-card dl-horizontal">
+  <dt>UID</dt>
+  <dd>
+    <a class="u-url u-uid" href="<%= location_url(location) %>">
+      <%= location_url(location) %>
+    </a>
+  </dd>
+  <dt>Name</dt>
+  <dd>
+    <span class="p-name"><%= location.name %></span>
+  </dd>
+  <dt>Corporate</dt>
+  <dd>
+    <span><%= location.corporate %></span>
+  </dd>
+  <dt>Actions</dt>
+  <dd>
+    <dl class="dl-horizontal">
+      <dt>All</dt>
+      <dd>
+        <%= link_to locations_url, locations_url %>
+      </dd>
+      <dt>Edit</dt>
+      <dd>
+        <%= link_to edit_location_url(location), edit_location_url(location) %>
+      </dd>
+      <dt>Destroy</dt>
+      <dd>
+        <%= link_to location_url(location), location, :confirm => 'Are you sure?', :method => :delete %>
+      </dd>
+    </dl>
+  </dd>
+</dl>
