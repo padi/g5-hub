@@ -11,12 +11,11 @@ class Location < ActiveRecord::Base
   # TODO: use draper
 
   def created_at_computer_readable
-    # http://www.w3schools.com/html5/att_time_datetime.asp
-    created_at.utc.strftime("%Y-%m-%dT%H:%M:%SZ")
+    created_at.utc.to_s(:computer)
   end
 
   def created_at_human_readable
-    created_at.strftime("%I:%M%P on %B %e, %Y")
+    created_at.to_s(:human)
   end
 
   private
