@@ -1,7 +1,7 @@
 G5Hub::Application.routes.draw do
 
   resources :features
-  resources :locations
+  resources :locations, except: [:index]
   resources :customers
 
   match 'admin/edit' => 'admins#edit', :as => :edit_current_admin

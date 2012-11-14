@@ -1,0 +1,52 @@
+<dl class="h-entry">
+  <dt>Name</dt>
+  <dd>
+    <span class="p-name"><%= location.name %></span>
+  </dd>
+  <dt>Bookmark/UID</dt>
+  <dd>
+    <a href="<%= location_url(location) %>" rel="bookmark" class="u-url u-uid">
+      <%= location_url(location) %>
+    </a>
+  </dd>
+  <dt>Summary</dt>
+  <dd>
+    <span class="p-summary">Some summary</span>
+  </dd>
+  <dt>Published</dt>
+  <dd>
+    <time datetime="<%= location.created_at_computer_readable %>" class="dt-published">
+      <%= location.created_at_human_readable %>
+    </time>
+  </dd>
+  <dt>Category</dt>
+  <dd>
+    <a class="p-category" href="#" rel="tag">
+      Some Category
+    </a>
+  </dd>
+  <dt>Author</dt>
+  <dd>
+    <dl class="p-author h-card">
+      <dt>UID</dt>
+      <dd>
+        <a class="u-url u-uid" href="<%= root_url %>">
+          <%= root_url %>
+        </a>
+      </dd>
+      <dt>Name</dt>
+      <dd>
+        <span class="p-name">g5-hub</span>
+      </dd>
+    </dl>
+  </dd>
+  <dt>Content</dt>
+  <dd>
+    <dl class="e-content">
+      <dt>Location</dt>
+      <dd>
+        <%= render location %>
+      </dd>
+    </dl>
+  </dd>
+</dl>

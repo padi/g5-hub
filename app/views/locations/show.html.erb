@@ -1,6 +1,5 @@
 <% title "Location" %>
-<% header_right link_to("All Locations", locations_path, class: "btn") %>
 
-<div class="well">
-  <%= render @location %>
-</div>
+<article class="well">
+  <%= render partial: "hentry", locals: { location: @location } %>
+</article>

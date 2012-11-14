@@ -3,6 +3,8 @@
 
 <section class="h-feed">
   <% @customers.each do |customer| %>
-    <%= render customer %>
+    <article class="well">
+      <%= render customer %>
+    </article>
   <% end %>
 </section>
