@@ -1,5 +1,4 @@
 class CustomersController < ApplicationController
-  before_filter :login_required, only: :create
 
   def index
     @customers = Customer.order("updated_at DESC").all
@@ -15,11 +14,11 @@ class CustomersController < ApplicationController
   end
 
   def create
-    @customer = Customer.new(params[:customer].merge(admin_id: current_admin.id))
+    @customer = Customer.new(params[:customer])
     if @customer.save
       redirect_to @customer, :notice => "Successfully created customer."
     else
-    @customer.locations.build if @customer.locations.blank?
+      @customer.locations.build if @customer.locations.blank?
       render :action => 'new'
     end
   end
