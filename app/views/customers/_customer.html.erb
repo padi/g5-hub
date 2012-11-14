@@ -26,4 +26,16 @@
       </dd>
     </dl>
   </dd>
+  <dt>Locations</dt>
+  <% customer.locations.each do |location| %>
+    <dd>
+      <%= render location %>
+    </dd>
+  <% end %>
+  <dt>Features</dt>
+  <% customer.features.each do |feature| %>
+    <dd>
+      <%= render feature %>
+    </dd>
+  <% end %>
 </dl>

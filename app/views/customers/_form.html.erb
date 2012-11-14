@@ -10,41 +10,40 @@
     </div>
   </fieldset>
 
-    <div id="locations_container">
-      <%= f.fields_for :locations do |location| %>
-        <fieldset class="well">
-          <legend>Location</legend>
-          <div class="control-group">
-            <%= location.label :name, class: "control-label" %>
-            <div class="controls">
-              <%= location.text_field :name %>
-              <a href="#" class="btn">x remove location</a>
-            </div>
-          </div>
-          <div class="control-group">
-            <%= location.label :corporate, class: "control-label" %>
-            <div class="controls">
-              <%= location.check_box :corporate %>
-            </div>
-          </div>
-        </fieldset>
-      <% end %>
-    </div>
-    <a href="#" id="add_another" class="btn">+ add another location</a>
+  <fieldset class="well">
+    <legend>Features</legend>
+    <%= hidden_field_tag "customer[feature_ids][]", nil %>
+    <% Feature.all.each do |feature| %>
+      <div class="control-group">
+        <%= label_tag dom_id(feature), feature.name, class: "control-label" %>
+        <div class="controls">
+          <%= check_box_tag "customer[feature_ids][]", feature.id, @customer.feature_ids.include?(feature.id), id: dom_id(feature) %>
+        </div>
+      </div>
+    <% end %>
+  </fieldset>
 
-    <fieldset class="well">
-      <legend>Features</legend>
-      <%= hidden_field_tag "customer[feature_ids][]", nil %>
-      <% Feature.all.each do |feature| %>
+  <div id="locations_container">
+    <%= f.fields_for :locations do |location| %>
+      <fieldset class="well">
+        <legend>Location</legend>
         <div class="control-group">
-          <%= label_tag dom_id(feature), feature.name, class: "control-label" %>
+          <%= location.label :name, class: "control-label" %>
           <div class="controls">
-            <%= check_box_tag "customer[feature_ids][]", feature.id, @customer.feature_ids.include?(feature.id), id: dom_id(feature) %>
+            <%= location.text_field :name %>
+            <a href="#" class="btn">x Remove Location</a>
           </div>
         </div>
-      <% end %>
-    </fieldset>
+        <div class="control-group">
+          <%= location.label :corporate, class: "control-label" %>
+          <div class="controls">
+            <%= location.check_box :corporate %>
+          </div>
+        </div>
+      </fieldset>
+    <% end %>
+  </div>
+  <p><a href="#" id="add_another" class="btn">+ Add Another Location</a></p>
 
-    <p><%= f.submit class: "btn btn-success" %></p>
-  </fieldset>
+  <p><%= f.submit class: "btn btn-success" %></p>
 <% end %>
