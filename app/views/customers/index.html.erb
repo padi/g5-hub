@@ -4,7 +4,7 @@
 <section class="h-feed">
   <% @customers.each do |customer| %>
     <article class="well">
-      <%= render customer %>
+      <%= render partial: "hentry", locals: { customer: customer } %>
     </article>
   <% end %>
 </section>
