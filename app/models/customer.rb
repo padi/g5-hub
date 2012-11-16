@@ -23,9 +23,9 @@ class Customer < ActiveRecord::Base
   private
 
   def post_webhook
-    url = ENV["CONFIGURATOR_WEBHOOK_URL"]
-    if url
-      Webhook.post(url) 
-    end
+    # url = ENV["CONFIGURATOR_WEBHOOK_URL"]
+    # if url
+    #   Webhook.post(url) 
+    # end
   end
 end
