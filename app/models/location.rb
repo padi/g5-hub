@@ -1,7 +1,7 @@
 class Location < ActiveRecord::Base
-  attr_accessible :customer_id, :name, :corporate
+  attr_accessible :client_id, :name, :corporate
 
-  belongs_to :customer
+  belongs_to :client
 
   after_initialize :not_corporate_by_default
 

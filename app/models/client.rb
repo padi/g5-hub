@@ -1,4 +1,4 @@
-class Customer < ActiveRecord::Base
+class Client < ActiveRecord::Base
   attr_accessible :name, :locations_attributes, :feature_ids
 
   has_many :locations

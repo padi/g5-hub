@@ -1,0 +1,41 @@
+<dl class="e-g5-client h-card">
+  <dt>UID</dt>
+  <dd>
+    <a class="u-url u-uid" href="<%= client_url(client) %>">
+      <%= client_url(client) %>
+    </a>
+  </dd>
+  <dt>Name</dt>
+  <dd>
+    <span class="p-name"><%= client.name %></span>
+  </dd>
+  <dt>Actions</dt>
+  <dd>
+    <dl>
+      <dt>All</dt>
+      <dd>
+        <%= link_to clients_url, clients_url %>
+      </dd>
+      <dt>Edit</dt>
+      <dd>
+        <%= link_to edit_client_url(client), edit_client_url(client) %>
+      </dd>
+      <dt>Destroy</dt>
+      <dd>
+        <%= link_to client_url(client), client, :confirm => 'Are you sure?', :method => :delete %>
+      </dd>
+    </dl>
+  </dd>
+  <dt>Locations</dt>
+  <% client.locations.each do |location| %>
+    <dd>
+      <%= render location %>
+    </dd>
+  <% end %>
+  <dt>Features</dt>
+  <% client.features.each do |feature| %>
+    <dd>
+      <%= render feature %>
+    </dd>
+  <% end %>
+</dl>

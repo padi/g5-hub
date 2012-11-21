@@ -1,6 +1,6 @@
 G5Hub::Application.routes.draw do
-  resources :customers
+  resources :clients
   resources :features
   resources :locations, except: [:index]
-  root to: "customers#index"
+  root to: "clients#index"
 end

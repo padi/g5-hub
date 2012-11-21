@@ -1,7 +1,7 @@
-<%= form_for @customer, html: { class: "form-horizontal" } do |f| %>
+<%= form_for @client, html: { class: "form-horizontal" } do |f| %>
   <%= f.error_messages %>
   <fieldset class="well">
-    <legend>Customer</legend>
+    <legend>client</legend>
     <div class="control-group">
       <%= f.label :name, class: "control-label" %>
       <div class="controls">
@@ -12,12 +12,12 @@
 
   <fieldset class="well">
     <legend>Features</legend>
-    <%= hidden_field_tag "customer[feature_ids][]", nil %>
+    <%= hidden_field_tag "client[feature_ids][]", nil %>
     <% Feature.all.each do |feature| %>
       <div class="control-group">
         <%= label_tag dom_id(feature), feature.name, class: "control-label" %>
         <div class="controls">
-          <%= check_box_tag "customer[feature_ids][]", feature.id, @customer.feature_ids.include?(feature.id), id: dom_id(feature) %>
+          <%= check_box_tag "client[feature_ids][]", feature.id, @client.feature_ids.include?(feature.id), id: dom_id(feature) %>
         </div>
       </div>
     <% end %>
