@@ -23,9 +23,13 @@ class Client < ActiveRecord::Base
   private
 
   def post_webhook
-    # url = ENV["CONFIGURATOR_WEBHOOK_URL"]
-    # if url
-    #   Webhook.post(url) 
-    # end
+    url = ENV["CONFIGURATOR_WEBHOOK_URL"]
+    if url
+      begin
+        Webhook.post(url) 
+      rescue ArgumentError => e
+        logger.error e
+      end
+    end
   end
 end
