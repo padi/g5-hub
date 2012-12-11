@@ -3,7 +3,7 @@ class Client < ActiveRecord::Base
 
   has_many :locations
   has_and_belongs_to_many :features
-  validates :name, uniqueness: true
+  validates :name, uniqueness: true, presence: true
   accepts_nested_attributes_for :locations,
     allow_destroy: true,
     reject_if: lambda { |attrs| attrs[:name].blank? }
