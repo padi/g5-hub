@@ -1,7 +1,19 @@
 <dl class="e-g5-location h-card">
+  <dt>URN</dt>
+  <dd>
+    <span class="u-urn"><%= location.urn %></span>
+  </dd>
+  
+  <dt>URL</dt>
+  <dd>
+    <a href="<%= locations_url %>" rel="bookmark" class="u-url">
+      <%= locations_url %>
+    </a>
+  </dd>
+  
   <dt>UID</dt>
   <dd>
-    <a class="u-url u-uid" href="<%= location_url(location) %>">
+    <a class="u-uid" href="<%= location_url(location) %>">
       <%= location_url(location) %>
     </a>
   </dd>

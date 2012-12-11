@@ -1,7 +1,19 @@
 <dl class="e-g5-client h-card">
+  <dt>URN</dt>
+  <dd>
+    <span class="u-urn"><%= client.urn %></span>
+  </dd>
+  
+  <dt>URL</dt>
+  <dd>
+    <a href="<%= clients_url %>" rel="bookmark" class="u-url">
+      <%= clients_url %>
+    </a>
+  </dd>
+  
   <dt>UID</dt>
   <dd>
-    <a class="u-url u-uid" href="<%= client_url(client) %>">
+    <a class="u-uid" href="<%= client_url(client) %>">
       <%= client_url(client) %>
     </a>
   </dd>

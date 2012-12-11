@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   def show
-    @location = Location.find(params[:id])
+    @location = Location.find_by_urn(params[:id])
   end
 
   def new
@@ -17,11 +17,11 @@ class LocationsController < ApplicationController
   end
 
   def edit
-    @location = Location.find(params[:id])
+    @location = Location.find_by_urn(params[:id])
   end
 
   def update
-    @location = Location.find(params[:id])
+    @location = Location.find_by_urn(params[:id])
     if @location.update_attributes(params[:location])
       redirect_to @location, :notice  => "Successfully updated location."
     else
@@ -30,8 +30,8 @@ class LocationsController < ApplicationController
   end
 
   def destroy
-    @location = Location.find(params[:id])
+    @location = Location.find_by_urn(params[:id])
     @location.destroy
-    redirect_to locations_url, :notice => "Successfully destroyed location."
+    redirect_to clients_url, :notice => "Successfully destroyed location."
   end
 end

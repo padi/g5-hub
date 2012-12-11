@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(:version => 20121210195154) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "uid"
+    t.string   "urn"
   end
 
   create_table "clients_features", :id => false, :force => true do |t|
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20121210195154) do
     t.boolean  "corporate"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "urn"
   end
 
   create_table "pages", :force => true do |t|

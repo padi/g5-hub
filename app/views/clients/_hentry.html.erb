@@ -3,10 +3,22 @@
   <dd>
     <span class="p-name"><%= client.name %></span>
   </dd>
+  <dt>URN</dt>
+  <dd>
+    <span class="u-urn"><%= client.urn %></span>
+  </dd>
+  
+  <dt>URL</dt>
+  <dd>
+    <a href="<%= clients_url %>" rel="bookmark" class="u-url">
+      <%= clients_url %>
+    </a>
+  </dd>
+  
   <dt>Bookmark/UID</dt>
   <dd>
-    <a href="<%= client_url(client) %>" rel="bookmark" class="u-url u-uid">
-      <%= client_url(client) %>
+    <a href="<%= client_url(client.urn) %>" rel="bookmark" class="u-uid">
+      <%= client_url(client.urn) %>
     </a>
   </dd>
   <dt>Summary</dt>
