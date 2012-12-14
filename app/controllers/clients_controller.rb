@@ -1,7 +1,8 @@
 class ClientsController < ApplicationController
 
   def index
-    @clients = Client.order("updated_at DESC").all
+      @clients = Client.order("updated_at DESC")
+      fresh_when last_modified: @clients.maximum(:updated_at)
   end
 
   def show
