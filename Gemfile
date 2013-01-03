@@ -21,7 +21,7 @@ group :production do
 end
 
 group :development, :test do
-  gem "simplecov", "~> 0.7.1"
+  gem "simplecov", "~> 0.7.1", require: false
   gem "rspec-rails", "~> 2.11.4"
   gem "guard-rspec", "~> 2.1.0"
   gem "guard-spork"
