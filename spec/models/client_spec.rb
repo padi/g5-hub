@@ -16,6 +16,16 @@ describe Client do
     it { client.to_param.should eq client.urn }
   end
   
+  describe ".accepts_nested_attributes_for :locations" do
+    it "creates location if location has a name" do
+      attributes = { locations_attributes: [ { name: "foo" } ] }
+      expect { client.update_attributes(attributes) }.to change(Location, :count).by(1)
+    end
+    it "does not create location if location does not have a name" do
+      attributes = { locations_attributes: [ { } ] }
+      expect { client.update_attributes(attributes) }.to change(Location, :count).by(0)
+    end
+  end
   describe "#created_at_computer_readable" do
     it "is computer readable" do
       regex = /#{Time::DATE_FORMATS[:computer].gsub(/%./, "\\d+")}/
@@ -26,6 +36,22 @@ describe Client do
     it "is human readable" do
       regex = /#{Time::DATE_FORMATS[:human].gsub(/%./, ".+")}/
       client.created_at_human_readable.should match regex
+    end
+  end
+  describe "#post_webhook" do
+    it "returns nil if no url" do
+      ENV["CONFIGURATOR_WEBHOOK_URL"] = nil
+      client.send(:post_webhook).should eq nil
+    end
+    it "posts webhook if url" do
+      ENV["CONFIGURATOR_WEBHOOK_URL"] = "http://foo.bar"
+      Webhook.stub(:post).and_return("OK")
+      client.send(:post_webhook).should eq "OK"
+    end
+    it "swallows argument errors" do
+      ENV["CONFIGURATOR_WEBHOOK_URL"] = "http://foo.bar"
+      Webhook.stub(:post).and_raise(ArgumentError.new)
+      client.send(:post_webhook).should eq true
     end
   end
 end
