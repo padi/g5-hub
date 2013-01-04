@@ -10,7 +10,7 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(params[:location])
     if @location.save
-      redirect_to @location, :notice => "Successfully created location."
+      redirect_to clients_url, :notice => "Successfully created location."
     else
       render :action => 'new'
     end
@@ -23,7 +23,7 @@ class LocationsController < ApplicationController
   def update
     @location = Location.find_by_urn(params[:id])
     if @location.update_attributes(params[:location])
-      redirect_to @location, :notice  => "Successfully updated location."
+      redirect_to clients_url, :notice  => "Successfully updated location."
     else
       render :action => 'edit'
     end

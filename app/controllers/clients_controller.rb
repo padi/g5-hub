@@ -1,8 +1,8 @@
 class ClientsController < ApplicationController
 
   def index
-      @clients = Client.order("updated_at DESC")
-      fresh_when last_modified: @clients.maximum(:updated_at)
+    @clients = Client.order("updated_at DESC")
+    fresh_when last_modified: @clients.maximum(:updated_at)
   end
 
   def show
@@ -17,7 +17,7 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(params[:client])
     if @client.save
-      redirect_to @client, :notice => "Successfully created client."
+      redirect_to clients_url, :notice => "Successfully created client."
     else
       @client.locations.build if @client.locations.blank?
       render :action => 'new'
@@ -32,7 +32,7 @@ class ClientsController < ApplicationController
   def update
     @client = Client.find_by_urn(params[:id])
     if @client.update_attributes(params[:client])
-      redirect_to @client, :notice  => "Successfully updated client."
+      redirect_to clients_url, :notice  => "Successfully updated client."
     else
       @client.locations.build if @client.locations.blank?
       render :action => 'edit'

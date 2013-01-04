@@ -34,7 +34,7 @@
       </dd>
       <dt>Destroy</dt>
       <dd>
-        <%= link_to client_url(client), client, :confirm => 'Are you sure?', :method => :delete %>
+        <%= link_to client_url(client), client, :data => { :confirm => 'Are you sure?'}, :method => :delete %>
       </dd>
     </dl>
   </dd>
