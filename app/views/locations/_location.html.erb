@@ -38,7 +38,7 @@
       </dd>
       <dt>Destroy</dt>
       <dd>
-        <%= link_to location_url(location), location, :confirm => 'Are you sure?', :method => :delete %>
+        <%= link_to location_url(location), location, :data => { :confirm => 'Are you sure?' }, :method => :delete %>
       </dd>
     </dl>
   </dd>
