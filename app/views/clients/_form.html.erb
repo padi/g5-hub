@@ -10,19 +10,6 @@
     </div>
   </fieldset>
 
-  <fieldset class="well">
-    <legend>Features</legend>
-    <%= hidden_field_tag "client[feature_ids][]", nil %>
-    <% Feature.all.each do |feature| %>
-      <div class="control-group">
-        <%= label_tag dom_id(feature), feature.name, class: "control-label" %>
-        <div class="controls">
-          <%= check_box_tag "client[feature_ids][]", feature.id, @client.feature_ids.include?(feature.id), id: dom_id(feature) %>
-        </div>
-      </div>
-    <% end %>
-  </fieldset>
-
   <div id="locations_container">
     <%= f.fields_for :locations do |location| %>
       <fieldset class="well">

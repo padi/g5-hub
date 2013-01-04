@@ -1,8 +1,7 @@
 class Client < ActiveRecord::Base
-  attr_accessible :name, :locations_attributes, :feature_ids, :urn
+  attr_accessible :name, :locations_attributes, :urn
 
   has_many :locations
-  has_and_belongs_to_many :features
   validates :name, uniqueness: true, presence: true
   accepts_nested_attributes_for :locations,
     allow_destroy: true,
