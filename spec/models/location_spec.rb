@@ -15,4 +15,17 @@ describe Location do
     it { location.urn.should eq "g5-cl-gwvrsozf-#{location.name.parameterize}"}
     it { location.to_param.should eq location.urn }
   end
+
+  describe "#created_at_computer_readable" do
+    it "is computer readable" do
+      regex = /#{Time::DATE_FORMATS[:computer].gsub(/%./, "\\d+")}/
+      location.created_at_computer_readable.should match regex
+    end
+  end
+  describe "#created_at_human_readable" do
+    it "is human readable" do
+      regex = /#{Time::DATE_FORMATS[:human].gsub(/%./, ".+")}/
+      location.created_at_human_readable.should match regex
+    end
+  end
 end
