@@ -11,8 +11,8 @@
 bundle
 ```
 
-1. Set up your database. 
-[rails-default-database](https://github.com/tpope/rails-default-database) 
+1. Set up your database.
+[rails-default-database](https://github.com/tpope/rails-default-database)
 automatically uses sensible defaults for the primary ActiveRecord database.
 ```bash
 rake db:setup
@@ -43,8 +43,17 @@ export CONFIGURATOR_WEBHOOK_URL=http://foo.bar/
 If you find bugs, have feature requests or questions, please
 [file an issue](https://github.com/g5search/g5-hub/issues).
 
+
 ## Specs
 
 ```bash
 guard
+```
+
+
+## Coverage
+
+```bash
+rspec spec
+open coverage/index.html
 ```
