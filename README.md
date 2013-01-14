@@ -1,6 +1,6 @@
 # G5 Hub
 
-Client information is managed on the G5 Hub by G5 Staff.
+Client information is managed by G5.
 
 * Creates Clients
 * Creates Locations
