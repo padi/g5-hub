@@ -1,8 +1,11 @@
 # G5 Hub
 
-* Publishes a feed consumed by g5-configurator
-* Pings g5-configurator when feed is updated via webhook
+Client information is managed on the G5 Hub by G5 Staff.
 
+* Creates Clients
+* Creates Locations
+* Publishes Client Feed
+* Webhooks Client Feed Subscribers
 
 ## Setup
 
