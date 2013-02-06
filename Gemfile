@@ -6,6 +6,7 @@ gem "jquery-rails"
 
 gem "quiet_assets", "~> 1.0.1"
 gem "bootstrap-sass", "~> 2.1.0.1"
+gem "draper"
 
 gem "webhook", git: "git://github.com/G5/webhook.git", branch: "configuration"
 

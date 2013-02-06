@@ -1,12 +1,12 @@
 class ClientsController < ApplicationController
-
   def index
-    @clients = Client.order("updated_at DESC")
-    fresh_when last_modified: @clients.maximum(:updated_at)
+    client_scope = Client.order("updated_at DESC")
+    @clients = ClientDecorator.decorate_collection(client_scope)
+    fresh_when last_modified: client_scope.maximum(:updated_at)
   end
 
   def show
-    @client = Client.find_by_urn(params[:id])
+    @client = Client.find_by_urn(params[:id]).decorate
   end
 
   def new

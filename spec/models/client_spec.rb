@@ -26,18 +26,6 @@ describe Client do
       expect { client.update_attributes(attributes) }.to change(Location, :count).by(0)
     end
   end
-  describe "#created_at_computer_readable" do
-    it "is computer readable" do
-      regex = /#{Time::DATE_FORMATS[:computer].gsub(/%./, "\\d+")}/
-      client.created_at_computer_readable.should match regex
-    end
-  end
-  describe "#created_at_human_readable" do
-    it "is human readable" do
-      regex = /#{Time::DATE_FORMATS[:human].gsub(/%./, ".+")}/
-      client.created_at_human_readable.should match regex
-    end
-  end
   describe "#post_webhook" do
     it "returns nil if no url" do
       ENV["CONFIGURATOR_WEBHOOK_URL"] = nil
