@@ -29,20 +29,4 @@ ActiveRecord::Schema.define(:version => 20130104001208) do
     t.string   "urn"
   end
 
-  create_table "pages", :force => true do |t|
-    t.string   "layout_name"
-    t.string   "theme_name"
-    t.integer  "location_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  create_table "widgets", :force => true do |t|
-    t.string   "widget_name"
-    t.integer  "page_id"
-    t.integer  "position"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
 end
