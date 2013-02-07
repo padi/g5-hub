@@ -24,6 +24,12 @@ describe ClientsController do
       get :new
       response.should render_template(:new)
     end
+
+    context "with an associated location" do
+      it "renders properly" do
+        expect { get :index }.to_not raise_error
+      end
+    end
   end
 
   describe "#create" do
@@ -56,7 +62,7 @@ describe ClientsController do
     it "redirects when model is valid" do
       Client.any_instance.stub(:valid?).and_return(true)
       Client.any_instance.stub(:name).and_return("name")
-      put :update, id: 1 
+      put :update, id: 1
       response.should redirect_to(clients_path)
     end
   end

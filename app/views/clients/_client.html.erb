@@ -41,7 +41,7 @@
   <dt>Locations</dt>
   <% client.locations.each do |location| %>
     <dd>
-      <%= render location %>
+      <%= render "locations/location", location: location %>
     </dd>
   <% end %>
 </dl>
