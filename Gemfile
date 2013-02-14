@@ -20,6 +20,10 @@ group :production do
   gem "thin", "~> 1.5.0"
 end
 
+group :test do
+  gem 'capybara'
+end
+
 group :development, :test do
   gem "rails-default-database", "~> 1.0.6"
   gem "simplecov", "~> 0.7.1", require: false

@@ -28,6 +28,23 @@ describe ClientsController do
     context "with an associated location" do
       it "renders properly" do
         expect { get :index }.to_not raise_error
+  context "when a client exists" do
+    describe "#index" do
+      let(:response_node) { Capybara.string(response.body) }
+
+      it "renders index template" do
+        get :index
+        response.should render_template(:index)
+      end
+
+      it "links correctly to the client" do
+        get :index
+        response_node.find(".e-g5-client a.u-uid")["href"].should eq("http://test.host/clients/g5-c-1-older")
+      end
+
+      it "includes the expected Last-Modified header" do
+        get :index
+        response.headers["Last-Modified"].should eq("Tue, 01 Jan 2013 00:00:00 GMT")
       end
     end
   end
@@ -58,6 +75,23 @@ describe ClientsController do
       Client.any_instance.stub(:valid?).and_return(false)
       put :update, id: 1
       response.should render_template(:edit)
+      context "when there are multiple clients" do
+        it "orders the clients correctly" do
+          get :index
+          assigns(:clients).map(&:name).should eq([ "Newer", "Older" ])
+        end
+      end
+
+      context "with an associated location" do
+        it "renders properly" do
+          expect { get :index }.to_not raise_error
+        end
+
+        it "links correctly to the location" do
+          get :index
+          response_node.find(".e-g5-location a.u-uid")["href"].should eq("http://test.host/locations/g5-cl-1-test-location")
+        end
+      end
     end
     it "redirects when model is valid" do
       Client.any_instance.stub(:valid?).and_return(true)
