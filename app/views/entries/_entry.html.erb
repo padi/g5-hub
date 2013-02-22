@@ -1,7 +1,7 @@
 <div class="h-entry">
   <h2 class="p-name">
     <%# TODO: make name dynamical, e.g. New Client, Updated Client, Lost Client (or something) %>
-    <%= link_to "New Client: #{client.name}", entry_url(client), class: "u-url u-uid", rel: "bookmark" %>
+    <%= link_to "New Client: #{client.name}", entry_url(client), class: "u-uid u-url", rel: "bookmark" %>
   </h2>
 
   <%# TODO: make summary dynamical, e.g. signed up, updated, left, (or something) %>
@@ -9,7 +9,7 @@
 
   <%# TODO: make category dynamical, e.g. created, updated, destroyed (or something) %>
   <p>
-    #<%= link_to "created", tag_path(:created), class: "p-category", rel: "tag" %>
+    #<%= link_to "created", tag_url(:created), class: "p-category", rel: "tag" %>
     at
     <time datetime="<%= client.updated_at_computer_readable %>" class="dt-updated">
       <%= client.updated_at_human_readable %>
@@ -27,7 +27,7 @@
   <%# TODO: author should ideally be the person that performed the action %>
   <p>by
     <span class="p-author h-card">
-      <%= link_to "g5-hub", root_url, class: "u-uid" %>
+      <%= link_to "g5-hub", root_url, class: "u-uid u-url" %>
     </span>
   </p>
 
@@ -38,13 +38,13 @@
     <div class="h-card">
       <h3>Client</h3>
       <p class="p-name">
-        <%= link_to client.name, client_url(client), class: "u-url u-uid" %>
+        <%= link_to client.name, client_url(client), class: "u-uid u-url" %>
       </p>
       <h4>Locations</h4>
       <ul>
         <% client.locations.each do |location| %>
-          <li>
-            <%= link_to location.name, client_location_url(client, location), class: "p-org h-card" %>
+          <li class="p-org h-card">
+            <%= link_to location.name, client_location_url(client, location), class: "p-name u-uid u-url" %>
           </li>
         <% end %>
       </ul>

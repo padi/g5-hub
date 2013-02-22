@@ -87,7 +87,7 @@ describe EntriesController do
 
         it "links correctly to the location" do
           get :index
-          actual = response_node.find(".h-entry .e-content div.h-card a.p-org.h-card")["href"]
+          actual = response_node.find(".h-entry .e-content div.h-card .p-org.h-card a.u-uid")["href"]
           expected = "http://test.host/clients/g5-c-1-older/locations/g5-cl-1-test-location"
           actual.should eq expected
         end
