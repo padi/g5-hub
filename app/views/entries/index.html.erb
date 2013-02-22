@@ -1,0 +1,8 @@
+<% title "Entries" %>
+<% header_right link_to("Clients", clients_path, class: "btn") %>
+
+<% @clients.each do |client| %>
+  <article class="well">
+    <%= render "entry", client: client %>
+  </article>
+<% end %>

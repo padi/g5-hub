@@ -7,6 +7,14 @@ module HentryableDates
     model.created_at.to_s(:human)
   end
 
+  def updated_at_computer_readable
+    model.updated_at.utc.to_s(:computer)
+  end
+
+  def updated_at_human_readable
+    model.updated_at.to_s(:human)
+  end
+
   def urn
     "#{record_type}-#{model.id}-#{model.name.parameterize}"
   end
