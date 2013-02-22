@@ -1,0 +1,10 @@
+<% title "Location" %>
+<% header_right link_to("Client", client_path(@client), class: "btn") %>
+
+<section class="well">
+  <h2>
+    <%= link_to @location.name, client_location_url(@client, @location), class: "h-card" %>
+  </h2>
+  <h3>Client</h3>
+  <%= link_to @client.name, client_path(@client) %>
+</section>
