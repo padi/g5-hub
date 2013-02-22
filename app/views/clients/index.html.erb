@@ -1,10 +1,9 @@
 <% title "Clients" %>
 <% header_right link_to("New Client", new_client_path, class: "btn btn-success") %>
+<% header_right link_to("Entries", entries_path, class: "btn") %>
 
-<section class="h-feed">
-  <% @clients.each do |client| %>
-    <article class="well">
-      <%= render partial: "hentry", locals: { client: client } %>
-    </article>
-  <% end %>
-</section>
+<% @clients.each do |client| %>
+  <article class="well">
+    <%= render "client", client: client %>
+  </article>
+<% end %>
