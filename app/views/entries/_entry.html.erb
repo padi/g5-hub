@@ -7,10 +7,7 @@
   <%# TODO: make summary dynamical, e.g. signed up, updated, left, (or something) %>
   <p class="p-summary"><%= "#{client.name} signed up with #{client.locations.size} locations!" %></p>
 
-  <%# TODO: make category dynamical, e.g. created, updated, destroyed (or something) %>
-  <p>
-    #<%= link_to "created", tag_url(:created), class: "p-category", rel: "tag" %>
-    at
+  <p>Updated at
     <time datetime="<%= client.updated_at_computer_readable %>" class="dt-updated">
       <%= client.updated_at_human_readable %>
     </time>
@@ -29,6 +26,11 @@
     <span class="p-author h-card">
       <%= link_to "g5-hub", root_url, class: "u-uid u-url" %>
     </span>
+  </p>
+
+  <%# TODO: make category dynamical, e.g. created, updated, destroyed (or something) %>
+  <p>
+    <%= link_to "create-client", tag_url("create-client"), class: "p-category", rel: "tag" %>
   </p>
 
   <hr/>
