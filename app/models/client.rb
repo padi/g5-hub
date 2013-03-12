@@ -17,7 +17,7 @@ class Client < ActiveRecord::Base
   def hashed_id
     "#{self.created_at.to_i}#{self.id}".to_i.to_s(36)
   end
-  
+
   def to_param
     self.urn
   end
@@ -29,7 +29,7 @@ class Client < ActiveRecord::Base
   end
 
   def post_webhook
-    url = ENV["CONFIGURATOR_WEBHOOK_URL"]
+    url = ENV["G5_CONFIGURATOR_WEBHOOK_URL"]
     if url
       begin
         Webhook.post(url)
