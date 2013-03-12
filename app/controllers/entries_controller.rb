@@ -1,15 +1,11 @@
 class EntriesController < ApplicationController
   def index
-    clients = FoundationClient::Client.all.sort_by(&:updated_at).reverse
-    @clients = ClientDecorator.decorate_collection(clients)
-
-    if clients.present?
-      fresh_when last_modified: clients.max_by(&:updated_at).updated_at
-    end
+    client_scope = Client.order("updated_at DESC")
+    @clients = ClientDecorator.decorate_collection(client_scope)
+    fresh_when last_modified: client_scope.maximum(:updated_at)
   end
 
   def show
-    client = FoundationClient::Client.find(extract_id_from_urn)
-    @client = ClientDecorator.decorate(client)
+    @client = Client.find_by_urn(params[:id]).decorate
   end
 end
