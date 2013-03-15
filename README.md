@@ -31,6 +31,8 @@ Defaults are set in `config/initializers/env.rb`.
 
 * Jessica Lynn Suttles / [@jlsuttles](https://github.com/jlsuttles)
 * Bookis Smuin / [@bookis](https://github.com/bookis)
+* Don Petersen / [@dpetersen](https://github.com/dpetersen)
+* Michael Mitchell / [@variousred](https://github.com/variousred)
 
 
 ## Contributing
