@@ -1,47 +1,13 @@
-<dl class="e-g5-client h-card">
-  <dt>URN</dt>
-  <dd>
-    <span class="u-urn"><%= client.urn %></span>
-  </dd>
-  
-  <dt>URL</dt>
-  <dd>
-    <a href="<%= clients_url %>" rel="bookmark" class="u-url">
-      <%= clients_url %>
-    </a>
-  </dd>
-  
-  <dt>UID</dt>
-  <dd>
-    <a class="u-uid" href="<%= client_url(client) %>">
-      <%= client_url(client) %>
-    </a>
-  </dd>
-  <dt>Name</dt>
-  <dd>
-    <span class="p-name"><%= client.name %></span>
-  </dd>
-  <dt>Actions</dt>
-  <dd>
-    <dl>
-      <dt>All</dt>
-      <dd>
-        <%= link_to clients_url, clients_url %>
-      </dd>
-      <dt>Edit</dt>
-      <dd>
-        <%= link_to edit_client_url(client), edit_client_url(client) %>
-      </dd>
-      <dt>Destroy</dt>
-      <dd>
-        <%= link_to client_url(client), client, :data => { :confirm => 'Are you sure?'}, :method => :delete %>
-      </dd>
-    </dl>
-  </dd>
-  <dt>Locations</dt>
-  <% client.locations.each do |location| %>
-    <dd>
-      <%= render location %>
-    </dd>
-  <% end %>
-</dl>
+<div class="h-card">
+  <h2 class="p-name">
+    <%= link_to client.name, client_url(client), class: "u-uid u-url" %>
+  </h2>
+  <h3>Locations</h3>
+  <ul>
+    <% client.locations.each do |location| %>
+      <li class="p-org h-card">
+        <%= link_to location.name, client_location_url(client, location), class: "p-name u-uid u-url" %>
+      </li>
+    <% end %>
+  </ul>
+</div>

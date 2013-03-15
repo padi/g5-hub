@@ -1,0 +1,56 @@
+<div class="h-entry">
+  <h2 class="p-name">
+    <%# TODO: make name dynamical, e.g. New Client, Updated Client, Lost Client (or something) %>
+    <%= link_to "New Client: #{client.name}", entry_url(client), class: "u-uid u-url", rel: "bookmark" %>
+  </h2>
+
+  <%# TODO: make summary dynamical, e.g. signed up, updated, left, (or something) %>
+  <p class="p-summary"><%= "#{client.name} signed up with #{client.locations.size} locations!" %></p>
+
+  <p>Updated at
+    <time datetime="<%= client.updated_at_computer_readable %>" class="dt-updated">
+      <%= client.updated_at_human_readable %>
+    </time>
+  </p>
+
+  <% unless client.updated_at_computer_readable == client.updated_at_computer_readable %>
+    <p>Published at
+      <time datetime="<%= client.created_at_computer_readable %>" class="dt-published">
+        <%= client.created_at_human_readable %>
+      </time>
+    </p>
+  <% end %>
+
+  <%# TODO: author should ideally be the person that performed the action %>
+  <p>by
+    <span class="p-author h-card">
+      <%= link_to "g5-hub", root_url, class: "u-uid u-url" %>
+    </span>
+  </p>
+
+  <%# TODO: make category dynamical, e.g. created, updated, destroyed (or something) %>
+  <p>
+    <%= link_to "create-client", tag_url("create-client"), class: "p-category", rel: "tag" %>
+  </p>
+
+  <hr/>
+
+  <div class="e-content">
+
+    <div class="h-card">
+      <h3>Client</h3>
+      <p class="p-name">
+        <%= link_to client.name, client_url(client), class: "u-uid u-url" %>
+      </p>
+      <h4>Locations</h4>
+      <ul>
+        <% client.locations.each do |location| %>
+          <li class="p-org h-card">
+            <%= link_to location.name, client_location_url(client, location), class: "p-name u-uid u-url" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+  </div>
+</div>

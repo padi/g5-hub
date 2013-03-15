@@ -9,8 +9,6 @@ class Location < ActiveRecord::Base
   scope :corporate, where(corporate: true)
   scope :not_corporate, where(corporate: false)
 
-  # TODO: use draper
-
   def record_type
     "g5-cl"
   end
@@ -21,14 +19,6 @@ class Location < ActiveRecord::Base
   
   def to_param
     self.urn
-  end
-
-  def created_at_computer_readable
-    created_at.utc.to_s(:computer)
-  end
-
-  def created_at_human_readable
-    created_at.to_s(:human)
   end
 
   private

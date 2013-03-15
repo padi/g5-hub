@@ -23,12 +23,13 @@
             </a>
 
             <!-- Be sure to leave the brand out there if you want it shown -->
-            <a class="brand" href="<%= root_path %>">G5 Hub</a>
+            <%= link_to "G5 Hub", root_path, class: "brand" %>
 
             <!-- Everything you want hidden at 940px or less, place within here -->
             <div class="nav-collapse">
               <ul class="nav">
-                <li><a href="<%= clients_path %>">Clients</a></li>
+                <%= content_tag :li, link_to("Entries", entries_path), class: active_if(:root) + active_if(:entries) %>
+                <%= content_tag :li, link_to("Clients", clients_path), class: active_if(:clients) %>
               </ul>
             </div>
 

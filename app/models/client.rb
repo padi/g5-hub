@@ -10,16 +10,6 @@ class Client < ActiveRecord::Base
   after_save :post_webhook
   after_create :set_urn
 
-  # TODO: use draper
-
-  def created_at_computer_readable
-    created_at.utc.to_s(:computer)
-  end
-
-  def created_at_human_readable
-    created_at.to_s(:human)
-  end
-
   def record_type
     "g5-c"
   end
@@ -27,7 +17,7 @@ class Client < ActiveRecord::Base
   def hashed_id
     "#{self.created_at.to_i}#{self.id}".to_i.to_s(36)
   end
-  
+
   def to_param
     self.urn
   end
@@ -39,7 +29,7 @@ class Client < ActiveRecord::Base
   end
 
   def post_webhook
-    url = ENV["CONFIGURATOR_WEBHOOK_URL"]
+    url = ENV["G5_CONFIGURATOR_WEBHOOK_URL"]
     if url
       begin
         Webhook.post(url)

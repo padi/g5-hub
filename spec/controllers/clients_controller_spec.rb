@@ -5,10 +5,20 @@ describe ClientsController do
   let(:client) { Client.create(name: "Mock Client #{SecureRandom.hex}") }
   before { Client.stub!(:find_by_urn) { client } }
 
+
   describe "#index" do
-    it "renders index template" do
-      get :index
-      response.should render_template(:index)
+      let(:response_node) { Capybara.string(response.body) }
+    context "when a client exists" do
+      it "renders index template" do
+        get :index
+        response.should render_template(:index)
+      end
+    end
+
+    context "with an associated location" do
+      it "renders properly" do
+        expect { get :index }.to_not raise_error
+      end
     end
   end
 
@@ -56,7 +66,7 @@ describe ClientsController do
     it "redirects when model is valid" do
       Client.any_instance.stub(:valid?).and_return(true)
       Client.any_instance.stub(:name).and_return("name")
-      put :update, id: 1 
+      put :update, id: 1
       response.should redirect_to(clients_path)
     end
   end
