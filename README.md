@@ -21,11 +21,6 @@ automatically uses sensible defaults for the primary ActiveRecord database.
 rake db:setup
 ```
 
-1. Export environment variables.
-```bash
-export CONFIGURATOR_WEBHOOK_URL=http://foo.bar/
-```
-
 
 ## Authors
 
