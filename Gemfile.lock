@@ -47,6 +47,8 @@ GEM
       xpath (~> 1.0.0)
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
+    codeclimate-test-reporter (0.0.10)
+      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.0.8)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -202,6 +204,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass (~> 2.1.0.1)
   capybara
+  codeclimate-test-reporter
   coffee-rails (~> 3.2.1)
   debugger
   draper

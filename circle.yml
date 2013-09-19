@@ -1,0 +1,4 @@
+## Customize test commands
+test:
+  override:
+    - CODECLIMATE_REPO_TOKEN=e4c2385ae7c87044dcfc1cbc7d54173ce15ba53826926ef73e9dcd56636d284e bundle exec rake
