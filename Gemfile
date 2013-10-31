@@ -26,6 +26,7 @@ group :test do
 end
 
 group :development, :test do
+  gem "dotenv-rails", "~> 0.9.0"
   gem "rails-default-database", "~> 1.0.6"
   gem "sqlite3"
   gem "simplecov", "~> 0.7.1", require: false
