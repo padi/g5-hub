@@ -1,4 +1,4 @@
 Fabricator(:client) do
   name { Faker::Name.name }
-  vertical 'Apartments'
+  vertical { Client::VERTICALS.sample }
 end
