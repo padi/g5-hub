@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe LocationsController do
   render_views
-  let(:client) { Client.create(name: "Mock Client #{SecureRandom.hex}", vertical: "Apartments" }
+  let(:client) { Client.create(name: "Mock Client #{SecureRandom.hex}", vertical: "Apartments") }
   before { Client.stub!(:find_by_urn) { client } }
   let(:location) { Location.create(name: "Mock Location #{SecureRandom.hex}") }
   before { Location.stub!(:find_by_urn) { location } }
