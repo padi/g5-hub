@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe ClientsController do
   render_views
-  let(:client) { Client.create(name: "Mock Client #{SecureRandom.hex}") }
+  let(:client) { Client.create(name: "Mock Client #{SecureRandom.hex}", vertical: "Apartments") }
   before { Client.stub!(:find_by_urn) { client } }
 
 
