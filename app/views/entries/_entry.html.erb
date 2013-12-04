@@ -1,7 +1,9 @@
-<div class="h-entry">
+<div class="h-card">
   <h2 class="p-name">
     <%# TODO: make name dynamical, e.g. New Client, Updated Client, Lost Client (or something) %>
-    <%= link_to "New Client: #{client.name}", entry_url(client), class: "u-uid u-url", rel: "bookmark" %>
+    <%= link_to entry_url(client), class: "u-uid u-url", rel: "bookmark" do %>
+      New Client: <strong><%= client.name %></strong>
+    <% end %>
   </h2>
 
   <%# TODO: make summary dynamical, e.g. signed up, updated, left, (or something) %>

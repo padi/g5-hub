@@ -1,36 +1,51 @@
-<%= form_for @client, html: { class: "form-horizontal" } do |f| %>
+<%= form_for @client, html: { role: "form" } do |f| %>
   <%= f.error_messages %>
-  <fieldset class="well">
-    <legend>Client</legend>
-    <div class="control-group">
-      <%= f.label :name, class: "control-label" %>
-      <div class="controls">
-        <%= f.text_field :name %>
+  
+  <fieldset class="panel panel-primary">
+    <div class="panel-heading">
+      <h2 class="panel-title">Client</h2>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
       </div>
     </div>
   </fieldset>
 
-  <div id="locations_container">
+  <div>
     <%= f.fields_for :locations do |location| %>
-      <fieldset class="well">
-        <legend>Location</legend>
-        <div class="control-group">
-          <%= location.label :name, class: "control-label" %>
-          <div class="controls">
-            <%= location.text_field :name %>
-            <a href="#" class="btn">x Remove Location</a>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h2 class="panel-title">Location</h2>
+        </div>
+        <div class="panel-body">
+          <div id="locations_container">
+            <fieldset>
+              <div class="form-group">
+                <%= location.label :name %>
+                <div class="input-group">
+                  <%= location.text_field :name, class: "form-control" %>
+                  <span class="input-group-btn">
+                    <a href="#" class="btn btn-danger">X Remove Location</a>
+                  </span>
+                </div>
+              </div>
+              <div class="checkbox">
+                <%= location.label :corporate do %>
+                  Corporate
+                  <%= location.check_box :corporate %>
+                <% end %>
+              </div>
+            </fieldset>
           </div>
         </div>
-        <div class="control-group">
-          <%= location.label :corporate, class: "control-label" %>
-          <div class="controls">
-            <%= location.check_box :corporate %>
-          </div>
-        </div>
-      </fieldset>
+      </div>
     <% end %>
   </div>
-  <p><a href="#" id="add_another" class="btn">+ Add Another Location</a></p>
-
-  <p><%= f.submit class: "btn btn-success" %></p>
+  
+  <div class="clearfix">
+    <a href="#" id="add_another" class="btn btn-primary pull-left">+ Add Another Location</a>
+    <%= f.submit class: "btn btn-success pull-right" %>
+  </div>
 <% end %>
