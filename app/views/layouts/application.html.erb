@@ -2,48 +2,50 @@
 <html>
   <head>
     <title>G5 Hub - <%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <meta charset="utf8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
-    <meta charset="utf8" />
     <%= yield(:head) %>
   </head>
   <body>
-    <div class="container-fluid">
 
-      <div class="navbar">
-        <div class="navbar-inner">
-          <div class="container">
-
-            <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+    <header role="banner">
+      <div class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target="#main-nav-collapse">
+              <span class="sr-only">Toggle Navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
-            </a>
-
-            <!-- Be sure to leave the brand out there if you want it shown -->
-            <%= link_to "G5 Hub", root_path, class: "brand" %>
-
-            <!-- Everything you want hidden at 940px or less, place within here -->
-            <div class="nav-collapse">
-              <ul class="nav">
-                <%= content_tag :li, link_to("Entries", entries_path), class: active_if(:root) + active_if(:entries) %>
-                <%= content_tag :li, link_to("Clients", clients_path), class: active_if(:clients) %>
-              </ul>
-            </div>
-
+            </button>
+            <%= link_to "G5 Hub", root_path, class: "navbar-brand" %>
           </div>
+        
+          <!-- Everything you want hidden at 940px or less, place within here -->
+          <nav id="main-nav-collapse" class="collapse navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav">
+              <%= content_tag :li, link_to("Entries", entries_path), class: active_if(:root) + active_if(:entries) %>
+              <%= content_tag :li, link_to("Clients", clients_path), class: active_if(:clients) %>
+            </ul>
+          </nav>
         </div>
       </div>
+    </header>
+    
+    <div class="container">
 
       <% flash.each do |name, msg| %>
         <%= flash_div name %>
       <% end %>
 
-      <div class="row-fluid page-header">
-        <%= content_tag :h1, yield(:title), class: "span10" if show_title? %>
-        <%= content_tag :span, yield(:header_right), class: "span2" if show_header_right? %>
+      <div class="page-header clearfix">
+        <%= content_tag :h1 do %>
+          <%= yield(:title) if show_title? %>
+          <%= content_tag :small, yield(:header_right) if show_header_right? %>
+        <% end %>
       </div>
 
       <%= yield %>

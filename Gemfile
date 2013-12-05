@@ -5,13 +5,13 @@ gem "rails", "3.2.12"
 gem "jquery-rails"
 
 gem "quiet_assets", "~> 1.0.1"
-gem "bootstrap-sass", "~> 2.1.0.1"
+gem "bootstrap-sass", "~> 3.0.2.1"
 gem "draper"
 
 gem "webhook", git: "git://github.com/G5/webhook.git", branch: "configuration"
 
 group :assets do
-  gem "sass-rails", "~> 3.2.3"
+  gem "sass-rails", "~> 3.2.5"
   gem "coffee-rails", "~> 3.2.1"
   gem "uglifier", ">= 1.0.3"
 end

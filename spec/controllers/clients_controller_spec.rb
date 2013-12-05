@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe ClientsController do
   render_views
-  let(:client) { Client.create(name: "Mock Client #{SecureRandom.hex}") }
+  let(:client) { Fabricate(:client) }
   before { Client.stub!(:find_by_urn) { client } }
 
 
@@ -59,13 +59,13 @@ describe ClientsController do
 
   describe "#update" do
     it "renders edit template when model is invalid" do
-      Client.any_instance.stub(:valid?).and_return(false)
+      client.stub(:valid?).and_return(false)
       put :update, id: 1
       response.should render_template(:edit)
     end
     it "redirects when model is valid" do
-      Client.any_instance.stub(:valid?).and_return(true)
-      Client.any_instance.stub(:name).and_return("name")
+      client.stub(:valid?).and_return(true)
+      client.stub(:name).and_return("name")
       put :update, id: 1
       response.should redirect_to(clients_path)
     end

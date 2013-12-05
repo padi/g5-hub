@@ -1,12 +1,13 @@
 <div class="h-entry">
   <h2 class="p-name">
     <%# TODO: make name dynamical, e.g. New Client, Updated Client, Lost Client (or something) %>
-    <%= link_to "New Client: #{client.name}", entry_url(client), class: "u-uid u-url", rel: "bookmark" %>
+    New Client:
+    <strong><%= link_to client.name, entry_url(client), class: "u-uid u-url", rel: "bookmark" %></strong>
   </h2>
 
   <%# TODO: make summary dynamical, e.g. signed up, updated, left, (or something) %>
   <p class="p-summary"><%= "#{client.name} signed up with #{client.locations.size} locations!" %></p>
-
+  
   <p>Updated at
     <time datetime="<%= client.updated_at_computer_readable %>" class="dt-updated">
       <%= client.updated_at_human_readable %>
@@ -42,6 +43,7 @@
       <p class="p-name">
         <%= link_to client.name, client_url(client), class: "u-uid u-url" %>
       </p>
+      <p class="p-g5-vertical"><%= client.vertical %></p>
       <h4>Locations</h4>
       <ul>
         <% client.locations.each do |location| %>

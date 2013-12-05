@@ -1,8 +1,11 @@
 class Client < ActiveRecord::Base
-  attr_accessible :name, :locations_attributes, :urn
+  VERTICALS = %w(Self-Storage Apartments Assisted-Living)
+  attr_accessible :name, :vertical, :locations_attributes, :urn
 
   has_many :locations
   validates :name, uniqueness: true, presence: true
+  validates :vertical, inclusion: { in: VERTICALS,
+     message: "%{value} is not a valid vertical" }
   accepts_nested_attributes_for :locations,
     allow_destroy: true,
     reject_if: lambda { |attrs| attrs[:name].blank? }

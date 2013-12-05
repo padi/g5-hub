@@ -1,17 +1,10 @@
-/*
- *= require_self
- *= require_tree .
-*/
-
-/* Import "bootstrap" in your SCSS file of choice to get all of Bootstrap's 
- * styles, mixins and variables! We recommend against using //= require 
- * directives, since none of your other stylesheets will be able to use the 
- * awesome mixins that Bootstrap has defined. */
 @import "bootstrap";
-@import "bootstrap-responsive";
+@import "bootstrap/theme";
 
-.page-header span .btn {
-  float: right;
+.well h2 {
+  margin-top: 0;
 }
 
-.p-category:before { content: "#" }
+.p-category:before { 
+  content: "#" 
+}

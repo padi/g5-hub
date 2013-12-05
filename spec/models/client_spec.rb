@@ -15,6 +15,17 @@ describe Client do
     it { client.urn.should eq "g5-c-gwvrsozf-#{client.name.parameterize}"}
     it { client.to_param.should eq client.urn }
   end
+  
+  describe "Validates Name and Vertical" do
+    it "is not valid without name" do
+      client.name = ""
+      client.should_not be_valid
+    end
+    it "needs a vertical from the preset list" do
+      client.vertical = "lol not a real vertical"
+      client.should_not be_valid
+    end
+  end
 
   describe ".accepts_nested_attributes_for :locations" do
     it "creates location if location has a name" do

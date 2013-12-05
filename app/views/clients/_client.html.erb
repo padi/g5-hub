@@ -1,13 +1,16 @@
 <div class="h-card">
-  <h2 class="p-name">
-    <%= link_to client.name, client_url(client), class: "u-uid u-url" %>
+  <h2>
+    <%= link_to client.name, client_url(client), class: "p-name u-uid u-url" %>
+    <small class="p-g5-vertical"><%= client.vertical %></small>
   </h2>
-  <h3>Locations</h3>
-  <ul>
-    <% client.locations.each do |location| %>
-      <li class="p-org h-card">
-        <%= link_to location.name, client_location_url(client, location), class: "p-name u-uid u-url" %>
-      </li>
-    <% end %>
-  </ul>
+  <div>
+    <h4>Locations</h4>
+    <ul class="list-unstyled">
+      <% client.locations.each do |location| %>
+        <li class="p-org h-card">
+          <%= link_to location.name, client_location_url(client, location), class: "p-name u-uid u-url" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>

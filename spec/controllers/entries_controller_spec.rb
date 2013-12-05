@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe EntriesController do
   render_views
-  let(:client) { Client.create(name: "Mock Client #{SecureRandom.hex}") }
+  let(:client) { Fabricate(:client) }
   before { Client.stub!(:find_by_urn) { client } }
 
 
