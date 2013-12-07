@@ -8,3 +8,9 @@
 .p-category:before { 
   content: "#" 
 }
+
+.h-adr {
+  > span {
+    display: block;
+  }
+}

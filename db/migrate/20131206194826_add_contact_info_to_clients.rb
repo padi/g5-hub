@@ -6,7 +6,6 @@ class AddContactInfoToClients < ActiveRecord::Migration
     add_column :clients, :state, :string
     add_column :clients, :postal_code, :string
     add_column :clients, :country, :string
-    add_column :clients, :phone, :string
     add_column :clients, :fax, :string
     add_column :clients, :email, :string
   end

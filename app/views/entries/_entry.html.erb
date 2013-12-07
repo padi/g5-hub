@@ -43,6 +43,19 @@
       <p class="p-name">
         <%= link_to client.name, client_url(client), class: "u-uid u-url" %>
       </p>
+      <p class="p-adr h-adr">
+        <span class="p-street-address">
+          <%= client.street_address_1 %>
+          <% if client.street_address_2 %><%= client.street_address_2 %><% end %>
+        </span>
+        <span>
+          <span class="p-locality"><%= client.city %></span>, 
+          <span class="p-region"><%= client.state %></span> 
+          <span class="p-postal-code"><%= client.postal_code %></span>
+        </span>
+        <span class="p-tel p-fax"><%= client.fax %></span>
+        <span class="u-email"><%= client.email %></span>
+      </p>
       <p class="p-g5-vertical"><%= client.vertical %></p>
       <h4>Locations</h4>
       <ul>
