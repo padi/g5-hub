@@ -6,14 +6,48 @@
       <h2 class="panel-title">Client</h2>
     </div>
     <div class="panel-body">
-      <div class="form-group">
-        <%= f.label :name %>
-        <%= f.text_field :name, class: "form-control" %>
-      </div>
       <div class="row">
-        <div class="form-group col-sm-6">
-          <%= f.label :vertical %>
-          <%= f.select :vertical, Client::VERTICALS, {prompt: "Select Vertical"}, class: "form-control" %>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :street_address_1 %>
+            <%= f.text_field :street_address_1, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :street_address_2 %>
+            <%= f.text_field :street_address_2, class: "form-control" %>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-4">
+              <%= f.label :city %>
+              <%= f.text_field :city, class: "form-control" %>
+            </div>
+            <div class="form-group col-md-4">
+              <%= f.label :state %>
+              <%= f.select :state, us_states, {prompt: "Select a State"}, class: "form-control" %>
+            </div>
+            <div class="form-group col-md-4">
+              <%= f.label :postal_code %>
+              <%= f.text_field :postal_code, class: "form-control" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <%= f.label :vertical %>
+            <%= f.select :vertical, Client::VERTICALS, {prompt: "Select Vertical"}, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :fax %>
+            <%= f.text_field :fax, type: "tel", class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.text_field :email, type: "email", class: "form-control" %>
+          </div>
         </div>
       </div>
     </div>
@@ -28,21 +62,54 @@
         <div class="panel-body">
           <div id="locations_container">
             <fieldset>
-              <div class="form-group">
-                <%= location.label :name %>
-                <div class="input-group">
-                  <%= location.text_field :name, class: "form-control" %>
-                  <span class="input-group-btn">
-                    <a href="#" class="btn btn-danger">X Remove Location</a>
-                  </span>
+              <hr />
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <%= location.label :name %>
+                    <%= location.text_field :name, class: "form-control" %>
+                  </div>
+                  <div class="form-group">
+                    <%= location.label :street_address_1 %>
+                    <%= location.text_field :street_address_1, class: "form-control" %>
+                  </div>
+                  <div class="form-group">
+                    <%= location.label :street_address_2 %>
+                    <%= location.text_field :street_address_2, class: "form-control" %>
+                  </div>
+                  <div class="row">
+                    <div class="form-group col-md-4">
+                      <%= location.label :city %>
+                      <%= location.text_field :city, class: "form-control" %>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <%= location.label :state %>
+                      <%= location.select :state, us_states, {prompt: "Select a State"}, class: "form-control" %>
+                    </div>
+                    <div class="form-group col-md-4">
+                      <%= location.label :postal_code %>
+                      <%= location.text_field :postal_code, class: "form-control" %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <%= location.label :fax %>
+                    <%= location.text_field :fax, type: "tel", class: "form-control" %>
+                  </div>
+                  <div class="form-group">
+                    <%= location.label :email %>
+                    <%= location.text_field :email, type: "email", class: "form-control" %>
+                  </div>
+                  <div class="form-group checkbox">
+                    <%= location.label :corporate do %>
+                      Corporate
+                      <%= location.check_box :corporate %>
+                    <% end %>
+                  </div>
                 </div>
               </div>
-              <div class="checkbox">
-                <%= location.label :corporate do %>
-                  Corporate
-                  <%= location.check_box :corporate %>
-                <% end %>
-              </div>
+              <a href="#" class="btn btn-link abs-br">X Remove Location</a>
             </fieldset>
           </div>
         </div>

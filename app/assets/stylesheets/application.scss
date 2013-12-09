@@ -1,10 +1,35 @@
 @import "bootstrap";
 @import "bootstrap/theme";
 
+body {
+  padding-bottom: 2em;
+}
+
+fieldset {
+  position: relative;
+}
+
+#locations_container fieldset:first-child hr {
+  display: none;
+}
+
 .well h2 {
   margin-top: 0;
 }
 
 .p-category:before { 
   content: "#" 
+}
+
+.h-adr {
+  > span {
+    display: block;
+  }
+}
+
+//absolute positioned bottom right
+.abs-br {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
