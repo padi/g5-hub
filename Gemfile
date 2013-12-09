@@ -21,10 +21,6 @@ group :production do
   gem "pg"
 end
 
-group :test do
-  gem 'capybara'
-end
-
 group :development, :test do
   gem "dotenv-rails", "~> 0.9.0"
   gem "rails-default-database", "~> 1.0.6"
@@ -37,6 +33,11 @@ group :development, :test do
   gem "debugger"
   gem "fabrication", "~> 2.5.0"
   gem "faker", "~> 1.1.2"
+  # ruby request specs
+  gem "capybara", "~> 2.1.0"
+  gem "launchy"
+  gem "selenium-webdriver", "~> 2.35.1"
+  gem "database_cleaner", "~> 0.9.1"
 end
 
 gem "codeclimate-test-reporter", group: :test, require: nil
