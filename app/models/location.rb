@@ -1,5 +1,5 @@
 class Location < ActiveRecord::Base
-  attr_accessible :client_id, :name, :street_address_1, :street_address_2, :city, :state, :postal_code, :fax, :email, :corporate, :urn
+  attr_accessible :client_id, :name, :street_address_1, :street_address_2, :city, :state, :postal_code, :fax, :email, :corporate, :urn, :hours
 
   belongs_to :client
   validates :name, presence: true

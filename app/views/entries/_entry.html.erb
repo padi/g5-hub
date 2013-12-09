@@ -49,7 +49,7 @@
           <% if client.street_address_2 %><%= client.street_address_2 %><% end %>
         </span>
         <span>
-          <span class="p-locality"><%= client.city %></span>, 
+          <span class="p-locality"><%= client.city %></span>
           <span class="p-region"><%= client.state %></span> 
           <span class="p-postal-code"><%= client.postal_code %></span>
         </span>
@@ -68,13 +68,15 @@
                 <% if location.street_address_2 %><%= location.street_address_2 %><% end %>
               </span>
               <span>
-                <span class="p-locality"><%= location.city %></span>, 
+                <span class="p-locality"><%= location.city %></span>
                 <span class="p-region"><%= location.state %></span> 
                 <span class="p-postal-code"><%= location.postal_code %></span>
               </span>
               <span class="p-tel p-fax"><%= location.fax %></span>
               <span class="u-email"><%= location.email %></span>
             </p>
+            <p><strong>Hours:</strong></p>
+            <pre class="p-hours"><%= location.hours %></pre>
           </li>
         <% end %>
       </ul>
