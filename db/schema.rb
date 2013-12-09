@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131209204147) do
+ActiveRecord::Schema.define(:version => 20131209214244) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(:version => 20131209204147) do
     t.integer  "client_id"
     t.string   "name"
     t.boolean  "corporate"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.string   "urn"
     t.string   "street_address_1"
     t.string   "street_address_2"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(:version => 20131209204147) do
     t.string   "fax"
     t.string   "email"
     t.string   "hours"
+    t.string   "twitter_username"
+    t.string   "facebook_username"
+    t.string   "yelp_username"
+    t.string   "pinterest_username"
+    t.string   "foursquare_username"
+    t.string   "tumblr_username"
+    t.string   "instagram_username"
+    t.string   "vimeo_username"
+    t.string   "youtube_username"
   end
 
 end
