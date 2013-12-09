@@ -10,13 +10,15 @@
       <% if @location.street_address_2 %><%= @location.street_address_2 %><% end %>
     </span>
     <span>
-      <span class="p-locality"><%= @location.city %></span>, 
+      <span class="p-locality"><%= @location.city %></span>
       <span class="p-region"><%= @location.state %></span> 
       <span class="p-postal-code"><%= @location.postal_code %></span>
     </span>
     <span class="p-tel p-fax"><%= @location.fax %></span>
     <span class="u-email"><%= @location.email %></span>
   </p>
+  <p><strong>Hours:</strong></p>
+  <pre class="p-hours"><%= @location.hours %></pre>
   <h4>Client</h4>
   <p class="p-org h-card">
     <%= link_to @client.name, client_url(@client), class: "p-name, u-uid, u-url" %>
