@@ -1,7 +1,7 @@
 class Client < ActiveRecord::Base
   VERTICALS = %w(Self-Storage Apartments Assisted-Living)
   
-  attr_accessible :name, :street_address_1, :street_address_2, :city, :state, :postal_code, :country, :fax, :email, :vertical, :locations_attributes, :urn
+  attr_accessible :name, :street_address_1, :street_address_2, :city, :state, :postal_code, :fax, :email, :vertical, :locations_attributes, :urn
 
   has_many :locations
   

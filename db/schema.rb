@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(:version => 20131207231145) do
     t.string   "city"
     t.string   "state"
     t.string   "postal_code"
-    t.string   "country"
     t.string   "fax"
     t.string   "email"
   end
