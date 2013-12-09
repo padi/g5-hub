@@ -1,14 +1,15 @@
 require 'spec_helper'
 
-def create_client
-  fill_in "client_name", with: "Housing Corp"
-  select "Apartments", from: "client_vertical"
-  fill_in "client_street_address_1", with: "123 Sesame St"
-  fill_in "client_email", with: "bigbird@gmail.com"
-  click_button "Create Client"
-end
-
 describe "Clients" do
+  
+  def create_client
+    fill_in "client_name", with: "Housing Corp"
+    select "Apartments", from: "client_vertical"
+    fill_in "client_street_address_1", with: "123 Sesame St"
+    fill_in "client_email", with: "bigbird@gmail.com"
+    click_button "Create Client"
+  end
+  
   
   describe "#index" do
     before do
