@@ -5,7 +5,14 @@ body {
   padding-bottom: 2em;
 }
 
-fieldset {
+label .note {
+  color: #888;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+#locations_container {
+  padding-bottom: 2em;
   position: relative;
 }
 

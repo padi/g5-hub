@@ -19,6 +19,26 @@
   </p>
   <p><strong>Hours:</strong></p>
   <pre class="p-hours"><%= @location.hours %></pre>
+  <dl>
+    <dt>Twitter Username</dt>
+    <dd class="twitter_username"><%= @location.twitter_username %></dd>
+    <dt>Facebook Username</dt>
+    <dd class="facebook_username"><%= @location.facebook_username %></dd>
+    <dt>Yelp Username</dt>
+    <dd class="yelp_username"><%= @location.yelp_username %></dd>
+    <dt>Pinterest Username</dt>
+    <dd class="pinterest_username"><%= @location.pinterest_username %></dd>
+    <dt>Foursquare Username</dt>
+    <dd class="foursquare_username"><%= @location.foursquare_username %></dd>
+    <dt>Tumblr Username</dt>
+    <dd class="tumblr_username"><%= @location.tumblr_username %></dd>
+    <dt>Instagram Username</dt>
+    <dd class="instagram_username"><%= @location.instagram_username %></dd>
+    <dt>Vimeo Username</dt>
+    <dd class="vimeo_username"><%= @location.vimeo_username %></dd>
+    <dt>YouTube Username</dt>
+    <dd class="youtube_username"><%= @location.youtube_username %></dd>
+  </dl>
   <h4>Client</h4>
   <p class="p-org h-card">
     <%= link_to @client.name, client_url(@client), class: "p-name, u-uid, u-url" %>
