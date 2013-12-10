@@ -5,6 +5,8 @@ describe "Entries" do
   def create_client
     fill_in "client_name", with: "Housing Corp"
     select "Apartments", from: "client_vertical"
+    fill_in "client_city", with: "Los Angeles"
+    select "California", from: "client_state"
     fill_in "client_locations_attributes_0_name", with: "Oscar's Trash Can"
     click_button "Create Client"
   end

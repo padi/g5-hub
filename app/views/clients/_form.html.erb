@@ -12,7 +12,7 @@
             <%= f.label :name do %>
             Name <span class="note">(Required)</span>
             <% end %>
-            <%= f.text_field :name, class: "form-control" %>
+            <%= f.text_field :name, class: "form-control", required: true %>
           </div>
           <div class="form-group">
             <%= f.label :street_address_1 %>
@@ -24,12 +24,16 @@
           </div>
           <div class="row">
             <div class="form-group col-md-4">
-              <%= f.label :city %>
-              <%= f.text_field :city, class: "form-control" %>
+              <%= f.label :city do %>
+                City <span class="note">(Required)</span>
+              <% end %>
+              <%= f.text_field :city, class: "form-control", required: true %>
             </div>
             <div class="form-group col-md-4">
-              <%= f.label :state %>
-              <%= f.select :state, us_states, {prompt: "Select a State"}, class: "form-control" %>
+              <%= f.label :state do %>
+                State <span class="note">(Required)</span>
+              <% end %>
+              <%= f.select :state, us_states, {prompt: "Select a State"}, class: "form-control", required: true %>
             </div>
             <div class="form-group col-md-4">
               <%= f.label :postal_code %>
@@ -42,7 +46,7 @@
             <%= f.label :vertical do %>
               Vertical <span class="note">(Required)</span>
             <% end %>
-            <%= f.select :vertical, Client::VERTICALS, {prompt: "Select Vertical"}, class: "form-control" %>
+            <%= f.select :vertical, Client::VERTICALS, {prompt: "Select Vertical"}, class: "form-control", required: true %>
           </div>
           <div class="form-group">
             <%= f.label :fax %>
