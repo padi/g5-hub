@@ -5,6 +5,8 @@ describe "Clients" do
   def create_client
     fill_in "client_name", with: "Housing Corp"
     select "Apartments", from: "client_vertical"
+    fill_in "client_city", with: "Los Angeles"
+    select "California", from: "client_state"
     fill_in "client_street_address_1", with: "123 Sesame St"
     fill_in "client_email", with: "bigbird@gmail.com"
     click_button "Create Client"
@@ -63,6 +65,8 @@ describe "Clients" do
     it "can add a location" do
       fill_in "client_name", with: "Housing Corp"
       select "Apartments", from: "client_vertical"
+      fill_in "client_city", with: "Los Angeles"
+      select "California", from: "client_state"
       fill_in "client_locations_attributes_0_name", with: "Oscar's Trash Can"
       click_button "Create Client"
       expect(page).to have_content "Oscar's Trash Can"

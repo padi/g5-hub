@@ -7,6 +7,8 @@ class Client < ActiveRecord::Base
   
   validates :name, uniqueness: true, presence: true
   validates :vertical, inclusion: { in: VERTICALS, message: "%{value} is not a valid vertical" }
+  validates :city, presence: true
+  validates :state, presence: true
   accepts_nested_attributes_for :locations,
     allow_destroy: true,
     reject_if: lambda { |attrs| attrs[:name].blank? }
