@@ -10,7 +10,7 @@
     </span>
     <span>
       <span class="p-locality"><%= client.city %></span>
-      <span class="p-region"><%= client.state %></span> 
+      <span class="p-region"><%= client.state %></span>
       <span class="p-postal-code"><%= client.postal_code %></span>
     </span>
     <span class="p-tel p-fax"><%= client.fax %></span>
@@ -22,6 +22,19 @@
       <% client.locations.each do |location| %>
         <li class="p-org h-card">
           <%= link_to location.name, client_location_url(client, location), class: "p-name u-uid u-url" %>
+          <p class="p-adr h-adr">
+            <span class="p-street-address">
+              <%= location.street_address_1 %>
+              <% if location.street_address_2 %><%= location.street_address_2 %><% end %>
+            </span>
+            <span>
+              <span class="p-locality"><%= location.city %></span>
+              <span class="p-region"><%= location.state %></span>
+              <span class="p-postal-code"><%= location.postal_code %></span>
+            </span>
+            <span class="p-tel p-fax"><%= location.fax %></span>
+            <span class="u-email"><%= location.email %></span>
+          </p>
         </li>
       <% end %>
     </ul>
