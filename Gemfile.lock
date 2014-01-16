@@ -115,6 +115,7 @@ GEM
     mime-types (1.21)
     mini_portile (0.5.2)
     multi_json (1.6.0)
+    newrelic_rpm (3.6.4.122)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     pg (0.14.1)
@@ -225,6 +226,7 @@ DEPENDENCIES
   guard-spork
   jquery-rails
   launchy
+  newrelic_rpm
   pg
   quiet_assets (~> 1.0.1)
   rails (= 3.2.12)
