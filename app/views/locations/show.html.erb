@@ -4,6 +4,9 @@
   <h2>
     <%= link_to @location.name, client_location_url(@client, @location), class: "p-name u-uid u-url" %>
   </h2>
+  <h4>Domain</h4>
+  <p class="u-url u-g5-domain"><%= @location.domain %></p>
+  <h4>Address</h4>
   <p class="p-adr h-adr">
     <span class="p-street-address">
       <%= @location.street_address_1 %>
@@ -11,13 +14,13 @@
     </span>
     <span>
       <span class="p-locality"><%= @location.city %></span>
-      <span class="p-region"><%= @location.state %></span> 
+      <span class="p-region"><%= @location.state %></span>
       <span class="p-postal-code"><%= @location.postal_code %></span>
     </span>
     <span class="p-tel p-fax"><%= @location.fax %></span>
     <span class="u-email"><%= @location.email %></span>
   </p>
-  <p><strong>Hours:</strong></p>
+  <h4>Hours:</h4>
   <pre class="p-hours"><%= @location.hours %></pre>
   <dl>
     <dt>Twitter Username</dt>

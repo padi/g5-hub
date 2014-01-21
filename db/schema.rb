@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131209214244) do
+ActiveRecord::Schema.define(:version => 20140121193652) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20131209214244) do
     t.string   "instagram_username"
     t.string   "vimeo_username"
     t.string   "youtube_username"
+    t.string   "domain"
   end
 
 end

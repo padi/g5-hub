@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Locations" do
-  
+
   def new_client
     visit clients_path
     click_link "New Client"
@@ -11,7 +11,7 @@ describe "Locations" do
     select "California", from: "client_state"
     fill_in "client_locations_attributes_0_name", with: "Oscar's Trash Can"
   end
-  
+
   describe "new" do
     it "can create a location with hours" do
       new_client
@@ -21,13 +21,21 @@ describe "Locations" do
       click_link "Oscar's Trash Can"
       expect(page).to have_content "Mon-Fri: 5-8"
     end
-    
+
     it "can create a location with social site usernames" do
       new_client
       fill_in "client_locations_attributes_0_twitter_username", with: "BigBird"
       click_button "Create Client"
       click_link "Oscar's Trash Can"
       expect(page).to have_content "BigBird"
+    end
+
+    it "can create a location with a domain" do
+      new_client
+      fill_in "client_locations_attributes_0_domain", with: "http://www.oscarstrashcan.com/"
+      click_button "Create Client"
+      click_link "Oscar's Trash Can"
+      expect(page).to have_content "http://www.oscarstrashcan.com/"
     end
   end
 end
