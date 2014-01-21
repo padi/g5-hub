@@ -1,6 +1,6 @@
 <%= form_for @client, html: { role: "form" } do |f| %>
   <%= f.error_messages %>
-  
+
   <fieldset class="panel panel-primary">
     <div class="panel-heading">
       <h2 class="panel-title">Client</h2>
@@ -76,6 +76,10 @@
                   <div class="form-group">
                     <%= location.label :name %>
                     <%= location.text_field :name, class: "form-control" %>
+                  </div>
+                  <div class="form-group">
+                    <%= location.label :domain %>
+                    <%= location.text_field :domain, placeholder: "ex: http://www.yourdomainhere.com/", class: "form-control" %>
                   </div>
                   <div class="form-group">
                     <%= location.label :street_address_1 %>
@@ -164,7 +168,7 @@
       </div>
     <% end %>
   </div>
-  
+
   <div class="clearfix">
     <a href="#" id="add_another" class="btn btn-primary pull-left">+ Add Another Location</a>
     <%= f.submit class: "btn btn-success pull-right" %>
