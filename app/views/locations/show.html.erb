@@ -4,44 +4,42 @@
   <h2>
     <%= link_to @location.name, client_location_url(@client, @location), class: "p-name u-uid u-url" %>
   </h2>
-  <h4>Domain</h4>
-  <%= link_to @location.domain, @location.domain, class: "u-url u-g5-domain" %>
+
+  <% if @location.domain %>
+    <h4>Domain</h4>
+    <%= link_to @location.domain, @location.domain, class: "u-url u-g5-domain" %>
+  <% end %>
+
   <h4>Address</h4>
   <p class="p-adr h-adr">
     <span class="p-street-address">
       <%= @location.street_address_1 %>
-      <% if @location.street_address_2 %><%= @location.street_address_2 %><% end %>
+      <%= @location.street_address_2 if @location.street_address_2 %>
     </span>
     <span>
       <span class="p-locality"><%= @location.city %></span>
       <span class="p-region"><%= @location.state %></span>
       <span class="p-postal-code"><%= @location.postal_code %></span>
     </span>
+    <span class="p-tel"><%= @location.phone_number %></span>
     <span class="p-tel p-fax"><%= @location.fax %></span>
     <span class="u-email"><%= @location.email %></span>
   </p>
-  <h4>Hours:</h4>
-  <pre class="p-hours"><%= @location.hours %></pre>
+
+  <% if @location.hours %>
+    <h4>Hours:</h4>
+    <pre class="p-hours"><%= @location.hours %></pre>
+  <% end %>
+
   <dl>
-    <dt>Twitter Username</dt>
-    <dd class="p-nickname p-g5-nickname-twitter twitter_username"><%= @location.twitter_username %></dd>
-    <dt>Facebook Username</dt>
-    <dd class="p-nickname p-g5-nickname-facebook facebook_username"><%= @location.facebook_username %></dd>
-    <dt>Yelp Username</dt>
-    <dd class="p-nickname p-g5-nickname-yelp yelp_username"><%= @location.yelp_username %></dd>
-    <dt>Pinterest Username</dt>
-    <dd class="p-nickname p-g5-nickname-pinterest pinterest_username"><%= @location.pinterest_username %></dd>
-    <dt>Foursquare Username</dt>
-    <dd class="p-nickname p-g5-nickname-foursquare foursquare_username"><%= @location.foursquare_username %></dd>
-    <dt>Tumblr Username</dt>
-    <dd class="p-nickname p-g5-nickname-tumblr tumblr_username"><%= @location.tumblr_username %></dd>
-    <dt>Instagram Username</dt>
-    <dd class="p-nickname p-g5-nickname-instagram instagram_username"><%= @location.instagram_username %></dd>
-    <dt>Vimeo Username</dt>
-    <dd class="p-nickname p-g5-nickname-vimeo vimeo_username"><%= @location.vimeo_username %></dd>
-    <dt>YouTube Username</dt>
-    <dd class="p-nickname p-g5-nickname-youtube youtube_username"><%= @location.youtube_username %></dd>
+    <% Location::SOCIAL_NETWORKS.each do |network_name| %>
+      <% if (username = @location.send("#{network_name.to_s.downcase}_username")).present? %>
+        <%= content_tag :dt, network_name %>
+        <%= content_tag :dd, username, class: "p-nickname p-g5-nickname-#{network_name.to_s.downcase}" %>
+      <% end %>
+    <% end %>
   </dl>
+
   <h4>Client</h4>
   <p class="p-org h-card">
     <%= link_to @client.name, client_url(@client), class: "p-name, u-uid, u-url" %>

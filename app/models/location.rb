@@ -1,8 +1,22 @@
 class Location < ActiveRecord::Base
-  attr_accessible :client_id, :name, :street_address_1, :street_address_2, :city, :state, :postal_code, :fax, :email, :corporate, :urn, :hours, :twitter_username, :facebook_username, :yelp_username, :pinterest_username, :foursquare_username, :tumblr_username, :instagram_username, :vimeo_username, :youtube_username, :domain
+  SOCIAL_NETWORKS = %w(Twitter Facebook Yelp Pinterest Foursquare Tumblr Instagram Vimeo YouTube)
+
+  attr_accessible :client_id, :name, :street_address_1, :street_address_2,
+  :city, :state, :postal_code, :fax, :email, :corporate, :urn, :hours,
+  :twitter_username, :facebook_username, :yelp_username, :pinterest_username,
+  :foursquare_username, :tumblr_username, :instagram_username, :vimeo_username,
+  :youtube_username, :domain, :phone_number
 
   belongs_to :client
+
   validates :name, presence: true
+  validates :domain, presence: true
+  validates :street_address_1, presence: true
+  validates :city, presence: true
+  validates :state, presence: true
+  validates :postal_code, presence: true
+  validates :phone_number, presence: true
+
   after_initialize :not_corporate_by_default
   after_create :set_urn
 
