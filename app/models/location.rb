@@ -8,7 +8,15 @@ class Location < ActiveRecord::Base
   :youtube_username, :domain, :phone_number
 
   belongs_to :client
+
   validates :name, presence: true
+  validates :domain, presence: true
+  validates :street_address_1, presence: true
+  validates :city, presence: true
+  validates :state, presence: true
+  validates :postal_code, presence: true
+  validates :phone_number, presence: true
+
   after_initialize :not_corporate_by_default
   after_create :set_urn
 
