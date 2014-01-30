@@ -7,7 +7,7 @@
 
   <%# TODO: make summary dynamical, e.g. signed up, updated, left, (or something) %>
   <p class="p-summary"><%= "#{client.name} signed up with #{client.locations.size} locations!" %></p>
-  
+
   <p>Updated at
     <time datetime="<%= client.updated_at_computer_readable %>" class="dt-updated">
       <%= client.updated_at_human_readable %>
@@ -50,7 +50,7 @@
         </span>
         <span>
           <span class="p-locality"><%= client.city %></span>
-          <span class="p-region"><%= client.state %></span> 
+          <span class="p-region"><%= client.state %></span>
           <span class="p-postal-code"><%= client.postal_code %></span>
         </span>
         <span class="p-tel p-fax"><%= client.fax %></span>
@@ -69,14 +69,16 @@
               </span>
               <span>
                 <span class="p-locality"><%= location.city %></span>
-                <span class="p-region"><%= location.state %></span> 
+                <span class="p-region"><%= location.state %></span>
                 <span class="p-postal-code"><%= location.postal_code %></span>
               </span>
               <span class="p-tel p-fax"><%= location.fax %></span>
               <span class="u-email"><%= location.email %></span>
             </p>
-            <p><strong>Hours:</strong></p>
-            <pre class="p-hours"><%= location.hours %></pre>
+            <% if location.hours.present? %>
+              <p><strong>Hours:</strong></p>
+              <pre class="p-hours"><%= location.hours %></pre>
+            <% end %>
           </li>
         <% end %>
       </ul>
