@@ -8,7 +8,7 @@ gem "quiet_assets", "~> 1.0.1"
 gem "bootstrap-sass", "~> 3.0.2.1"
 gem "draper"
 
-gem "webhook", git: "git://github.com/G5/webhook.git", branch: "configuration"
+gem "webhook"
 
 group :assets do
   gem "sass-rails", "~> 3.2.5"
