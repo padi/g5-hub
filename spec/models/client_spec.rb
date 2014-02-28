@@ -15,7 +15,7 @@ describe Client do
     it { client.urn.should eq "g5-c-gwvrsozf-#{client.name.parameterize}"}
     it { client.to_param.should eq client.urn }
   end
-  
+
   describe "Validates Required Fields" do
     it "is not valid without name" do
       client.name = ""
@@ -37,7 +37,7 @@ describe Client do
 
   describe ".accepts_nested_attributes_for :locations" do
     it "creates location if location has a name" do
-      attributes = { locations_attributes: [ { name: "foo" } ] }
+      attributes = { locations_attributes: [ Fabricate.attributes_for(:location) ] }
       expect { client.update_attributes(attributes) }.to change(Location, :count).by(1)
     end
     it "does not create location if location does not have a name" do
