@@ -1,5 +1,8 @@
 # G5 Hub
 
+[![Build Status](https://travis-ci.org/G5/g5-hub.png?branch=master)](https://travis-ci.org/G5/g5-hub)
+[![Code Climate](https://codeclimate.com/repos/5310f787695680105d0004fd/badges/81beec1c8fb005c9521c/gpa.png)](https://codeclimate.com/repos/5310f787695680105d0004fd/feed)
+
 Client information is managed by G5.
 
 * Creates Clients
