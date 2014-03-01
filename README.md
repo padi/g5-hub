@@ -50,7 +50,7 @@ Defaults are set in `config/initializers/env.rb`.
 1. Create new Pull Request
 
 If you find bugs, have feature requests or questions, please
-[file an issue](https://github.com/g5search/g5-hub/issues).
+[file an issue](https://github.com/G5/g5-hub/issues).
 
 
 ## Specs
