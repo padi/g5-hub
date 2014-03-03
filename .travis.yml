@@ -1,7 +1,10 @@
 language: ruby
 rvm:
   - 1.9.3
-script: bundle exec rspec
+script:
+  - bundle exec rspec
+before_script:
+  - cp config/database.travis.yml config/database.yml
 notifications:
   campfire:
     rooms:
