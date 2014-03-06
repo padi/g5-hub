@@ -1,4 +1,4 @@
 test:
   adapter: postgresql
-  database: g5-hub_test
+  database: g5_hub_test
   username: postgres
