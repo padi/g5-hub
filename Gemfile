@@ -1,20 +1,20 @@
 source 'https://rubygems.org'
-ruby "1.9.3"
+ruby "2.1.1"
 
-gem "rails", "3.2.12"
+gem "rails", "~> 4.0.3"
 gem "jquery-rails"
 
+gem "protected_attributes", "~> 1.0.5"
+
 gem "quiet_assets", "~> 1.0.1"
-gem "bootstrap-sass", "~> 3.0.2.1"
+gem "bootstrap-sass", "~> 3.1.1.0"
 gem "draper"
 
 gem "webhook"
 
-group :assets do
-  gem "sass-rails", "~> 3.2.5"
-  gem "coffee-rails", "~> 3.2.1"
-  gem "uglifier", ">= 1.0.3"
-end
+gem "sass-rails", "~> 4.0.1"
+gem "coffee-rails", "~> 4.0.1"
+gem "uglifier", ">= 2.4.0"
 
 group :production do
   gem "thin", "~> 1.5.0"
@@ -26,21 +26,21 @@ group :production do
 end
 
 group :development, :test do
-  gem "dotenv-rails", "~> 0.9.0"
+  gem "dotenv-rails", "~> 0.10.0"
   gem "rails-default-database", "~> 1.0.6"
   gem "sqlite3"
   gem "simplecov", "~> 0.7.1", require: false
-  gem "rspec-rails", "~> 2.11.4"
-  gem "guard-rspec", "~> 2.1.0"
+  gem "rspec-rails", "~> 2.14.1"
+  gem "guard-rspec", "~> 4.2.8"
   gem "guard-spork"
   gem "rb-fsevent", "~> 0.9.2"
-  gem "fabrication", "~> 2.5.0"
-  gem "faker", "~> 1.1.2"
+  gem "fabrication", "~> 2.9.8"
+  gem "faker", "~> 1.2.0"
   # ruby request specs
-  gem "capybara", "~> 2.1.0"
+  gem "capybara", "~> 2.2.0"
   gem "launchy"
-  gem "selenium-webdriver", "~> 2.35.1"
-  gem "database_cleaner", "~> 0.9.1"
+  gem "selenium-webdriver", "~> 2.40.0"
+  gem "database_cleaner", "~> 1.2.0"
 end
 
 gem "codeclimate-test-reporter", group: :test, require: nil

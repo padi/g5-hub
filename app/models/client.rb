@@ -1,10 +1,10 @@
 class Client < ActiveRecord::Base
   VERTICALS = %w(Self-Storage Apartments Assisted-Living)
-  
+
   attr_accessible :name, :street_address_1, :street_address_2, :city, :state, :postal_code, :fax, :email, :vertical, :locations_attributes, :urn
 
   has_many :locations
-  
+
   validates :name, uniqueness: true, presence: true
   validates :vertical, inclusion: { in: VERTICALS, message: "%{value} is not a valid vertical" }
   validates :city, presence: true

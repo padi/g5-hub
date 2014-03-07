@@ -3,9 +3,9 @@ require "spec_helper"
 describe LocationsController do
   render_views
   let(:client) { Fabricate(:client) }
-  before { Client.stub!(:find_by_urn) { client } }
+  before { Client.stub(:find_by_urn) { client } }
   let(:location) { Fabricate(:location) }
-  before { Location.stub!(:find_by_urn) { location } }
+  before { Location.stub(:find_by_urn) { location } }
 
   describe "#show" do
     it "renders show template" do
