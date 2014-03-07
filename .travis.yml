@@ -1,10 +1,17 @@
 language: ruby
 rvm:
   - 1.9.3
-script: bundle exec rspec
+script:
+  - RAILS_ENV=test bundle exec rake db:schema:load --trace
+  - bundle exec rspec
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - psql -c 'create database g5_hub_test;' -U postgres
 notifications:
   campfire:
     rooms:
-      secure: UwsCEilVpBakyB+/A84lOS0Gp7KsNEZOGOXdWuS4M0L2BtmHYEYzO5DM3KrQuBmeCPoBQKfZRGGmAAXoHIinD+ziRczfknzL8lesAFcEVLs9ZMwtTdkk3FyCyOWcNu+Q6Iw5s9bz8Jpuz9u2iIC1knyAePhWSH76zg9R0DZrYmI=
+      secure: ZajSlUQKuUK6LnLIaPFEfITUS+w6UCAUqnaZnWQBq+976lR0ajhkxOx4Azr9DYTSC4EVpqV948xLTbnpBXCKhNGU70L1/C6cH71oreGW+u+9yCtGC8OskZtYUZrli6bDn2skIjNeFsO0Z7w4SC3uAHL6KnhPBiAKJGFYzNDCV8A=
+    template:
+      - "%{repository}#%{build_number} %{message} (%{branch} - %{commit} : %{author}) Change view : %{compare_url} Build details : %{build_url}"
     on_success: change
     on_failure: always
