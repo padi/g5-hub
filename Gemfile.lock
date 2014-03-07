@@ -251,7 +251,7 @@ DEPENDENCIES
   pg
   protected_attributes (~> 1.0.5)
   quiet_assets (~> 1.0.1)
-  rails (= 4.0.3)
+  rails (~> 4.0.3)
   rails-default-database (~> 1.0.6)
   rails-observers (~> 0.1.2)
   rails_12factor
