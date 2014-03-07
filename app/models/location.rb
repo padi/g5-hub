@@ -20,8 +20,8 @@ class Location < ActiveRecord::Base
   after_initialize :not_corporate_by_default
   after_create :set_urn
 
-  scope :corporate, where(corporate: true)
-  scope :not_corporate, where(corporate: false)
+  scope :corporate, -> { where(corporate: true) }
+  scope :not_corporate, -> { where(corporate: false) }
 
   def record_type
     "g5-cl"
