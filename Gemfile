@@ -5,7 +5,6 @@ gem "rails", "~> 4.0.3"
 gem "jquery-rails"
 
 gem "protected_attributes", "~> 1.0.5"
-gem "rails-observers", "~> 0.1.2"
 gem "actionpack-page_caching", "~> 1.0.2"
 gem "actionpack-action_caching", "~> 1.1.1"
 
