@@ -5,4 +5,3 @@
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you"ll be exposed to dictionary attacks.
 G5Hub::Application.config.secret_token = ENV["SECRET_TOKEN"]
-G5Hub::Application.config.secret_key_base = 'xxx' + ENV["SECRET_TOKEN"]
