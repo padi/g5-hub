@@ -5,8 +5,6 @@ gem "rails", "~> 4.0.3"
 gem "jquery-rails"
 
 gem "protected_attributes", "~> 1.0.5"
-gem "actionpack-page_caching", "~> 1.0.2"
-gem "actionpack-action_caching", "~> 1.1.1"
 
 gem "quiet_assets", "~> 1.0.1"
 gem "bootstrap-sass", "~> 3.1.1.0"
