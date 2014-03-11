@@ -77,9 +77,10 @@ describe ClientsController do
         expect(client.reload.name).to eq "Springfield"
       end
       it "rejects id param" do
-        put :update, id: 1, client: { id: 5 }
+        original_id = client.id
+        put :update, id: 1, client: { id: original_id+1 }
         expect(response.status).to eq 302
-        expect(client.reload.id).to eq 1
+        expect(client.reload.id).to eq original_id
       end
     end
   end
