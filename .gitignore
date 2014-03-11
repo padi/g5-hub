@@ -22,3 +22,6 @@
 
 # Ignore environment specific env
 .env.*
+
+# Ignore ruby versioning
+.ruby-version

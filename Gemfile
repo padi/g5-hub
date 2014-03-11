@@ -17,7 +17,7 @@ gem "coffee-rails", "~> 4.0.1"
 gem "uglifier", ">= 2.4.0"
 
 group :production do
-  gem "thin", "~> 1.5.0"
+  gem "unicorn"
   gem "pg"
   gem "rails_12factor"
   gem "newrelic_rpm"
