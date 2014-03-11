@@ -46,7 +46,8 @@ describe ClientsController do
       Client.any_instance.stub(:valid?).and_return(true)
       Client.any_instance.stub(:name).and_return("name")
       post :create
-      response.should redirect_to(clients_path)
+      expect(response.status).to eq 302
+      expect(response).to redirect_to(clients_path)
     end
   end
 
@@ -68,6 +69,18 @@ describe ClientsController do
       client.stub(:name).and_return("name")
       put :update, id: 1
       response.should redirect_to(clients_path)
+    end
+    context "allowed attributes" do
+      it "accepts city param" do
+        put :update, id: 1, client: { name: "Springfield" }
+        expect(response.status).to eq 302
+        expect(client.reload.name).to eq "Springfield"
+      end
+      it "rejects id param" do
+        put :update, id: 1, client: { id: 5 }
+        expect(response.status).to eq 302
+        expect(client.reload.id).to eq 1
+      end
     end
   end
 
