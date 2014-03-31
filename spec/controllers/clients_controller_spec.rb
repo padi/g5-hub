@@ -7,10 +7,13 @@ describe ClientsController do
 
   describe "#index" do
     context "when a client exists" do
+      before { get :index }
+
       it "renders index template" do
-        get :index
         response.should render_template(:index)
       end
+
+      it_should_behave_like "a valid Microformats2 document"
     end
 
     context "with an associated location" do
@@ -22,10 +25,13 @@ describe ClientsController do
 
   describe "#show" do
     context "when the client exists" do
+      before { get :show, id: client.urn }
+
       it "renders show template" do
-        get :show, id: client.urn
         response.should render_template(:show)
       end
+
+      it_should_behave_like "a valid Microformats2 document"
     end
 
     context "when no client exists" do

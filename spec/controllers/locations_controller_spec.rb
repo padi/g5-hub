@@ -12,10 +12,13 @@ describe LocationsController do
     let(:request) { get :show, client_id: client_urn, id: location_urn }
 
     context "when the client and location exist" do
+      before { request }
+
       it "renders show template" do
-        request
         response.should render_template(:show)
       end
+
+      it_should_behave_like "a valid Microformats2 document"
     end
 
     context "when requesting a bad Client URN" do
