@@ -5,9 +5,7 @@ describe ClientsController do
   let(:client) { Fabricate(:client) }
   before { Client.stub(:find_by_urn) { client } }
 
-
   describe "#index" do
-      let(:response_node) { Capybara.string(response.body) }
     context "when a client exists" do
       it "renders index template" do
         get :index
@@ -23,9 +21,19 @@ describe ClientsController do
   end
 
   describe "#show" do
-    it "renders show template" do
-      get :show, id: 1
-      response.should render_template(:show)
+    context "when the client exists" do
+      it "renders show template" do
+        get :show, id: client.urn
+        response.should render_template(:show)
+      end
+    end
+
+    context "when no client exists" do
+      it "explodes helpfully" do
+        expect {
+          get :show, id: "nonexistant"
+        }.to raise_error(ActiveRecord::RecordNotFound)
+      end
     end
   end
 
