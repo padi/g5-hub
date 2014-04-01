@@ -5,7 +5,7 @@ class ClientsController < ApplicationController
   end
 
   def show
-    @client = Client.find_by_urn(params[:id]).decorate
+    @client = Client.find_by_urn!(params[:id]).decorate
   end
 
   def new
