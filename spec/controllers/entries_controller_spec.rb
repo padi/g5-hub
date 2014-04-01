@@ -7,25 +7,26 @@ describe EntriesController do
 
 
   describe "#index" do
-      let(:response_node) { Capybara.string(response.body) }
+    let(:request) { get :index }
+
     context "when a client exists" do
+      before { request }
+
       it "renders index template" do
-        get :index
         response.should render_template(:index)
       end
-    end
 
-    context "with an associated location" do
-      it "renders properly" do
-        expect { get :index }.to_not raise_error
-      end
+      it_should_behave_like "a valid Microformats2 document"
     end
   end
 
   describe "#show" do
+    before { get :show, id: 1 }
+
     it "renders show template" do
-      get :show, id: 1
       response.should render_template(:show)
     end
+
+    it_should_behave_like "a valid Microformats2 document"
   end
 end

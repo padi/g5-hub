@@ -109,6 +109,10 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     method_source (0.8.2)
+    microformats2 (2.0.1)
+      activesupport
+      json
+      nokogiri
     mime-types (1.25.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
@@ -237,6 +241,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   lograge
+  microformats2
   newrelic_rpm
   pg
   quiet_assets (~> 1.0.1)
