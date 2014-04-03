@@ -26,7 +26,7 @@
     <span class="u-email"><%= @location.email %></span>
   </p>
 
-  <% if @location.hours %>
+  <% if @location.hours.present? %>
     <h4>Hours:</h4>
     <pre class="p-hours"><%= @location.hours %></pre>
   <% end %>

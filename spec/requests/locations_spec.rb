@@ -45,4 +45,24 @@ describe "Locations" do
       expect(page).to have_content "http://www.oscarstrashcan.com/"
     end
   end
+
+  describe "show" do
+    let(:client) { Fabricate(:client) }
+    let(:location) { Fabricate(:location, client: client) }
+    let(:document) { Microformats2.parse(page.source) }
+
+    it "generates a valid Microformats2 document" do
+      visit client_location_path(client, location)
+      expect(document.cards.length).to eq(1)
+    end
+
+    context "when the location has blank hours" do
+      before { location.update_attributes!(hours: "") }
+
+      it "does not explode" do
+        visit client_location_path(client, location)
+        expect { document }.to_not raise_error
+      end
+    end
+  end
 end
