@@ -62,7 +62,18 @@
   </fieldset>
 
   <div>
-    <%= render partial: "location_fields", locals: {f: f} %>
+    <%= f.fields_for :locations, class: "new-location" do |location| %>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h2 class="panel-title">Locations</h2>
+        </div>
+        <div class="panel-body">
+          <div id="locations_container">
+            <% render partial: "primary_location_fields", locals: {location: location} %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <div class="clearfix">

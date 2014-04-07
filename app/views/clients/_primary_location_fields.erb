@@ -1,0 +1,111 @@
+<fieldset>
+  <hr />
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= location.label :name do %>
+          Name <span class="note">(Required)</span>
+        <% end %>
+        <%= location.text_field :name, class: "form-control", required: true %>
+      </div>
+      <div class="form-group">
+        <%= location.label :domain do %>
+          Domain <span class="note">(Required)</span>
+        <% end %>
+        <%= location.text_field :domain, placeholder: "ex: http://www.yourdomainhere.com/", class: "form-control", required: true %>
+      </div>
+      <div class="form-group">
+        <%= location.label :street_address_1 do %>
+          Street Address 1 <span class="note">(Required)</span>
+        <% end %>
+        <%= location.text_field :street_address_1, class: "form-control", required: true %>
+      </div>
+      <div class="form-group">
+        <%= location.label :street_address_2 %>
+        <%= location.text_field :street_address_2, class: "form-control" %>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-4">
+          <%= location.label :city do %>
+            City <span class="note">(Required)</span>
+          <% end %>
+          <%= location.text_field :city, class: "form-control", required: true %>
+        </div>
+        <div class="form-group col-md-4">
+          <%= location.label :state do %>
+            State <span class="note">(Required)</span>
+          <% end %>
+          <%= location.text_field :state, class: "form-control", required: true %>
+        </div>
+        <div class="form-group col-md-4">
+          <%= location.label :postal_code do %>
+            Postal Code <span class="note">(Required)</span>
+          <% end %>
+          <%= location.text_field :postal_code, class: "form-control", required: true %>
+        </div>
+      </div>
+      <div class="form-group">
+          <%= location.label :phone_number do %>
+            Phone Number <span class="note">(Required)</span>
+          <% end %>
+        <%= location.text_field :phone_number, type: "tel", class: "form-control", required: true %>
+      </div>
+      <div class="form-group">
+        <%= location.label :fax %>
+        <%= location.text_field :fax, type: "tel", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= location.label :email %>
+        <%= location.text_field :email, type: "email", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= location.label :hours %>
+        <%= location.text_area :hours, rows: "5", class: "form-control" %>
+      </div>
+      <div class="form-group checkbox">
+        <%= location.label :corporate do %>
+          Corporate
+          <%= location.check_box :corporate %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= location.label :twitter_username %>
+        <%= location.text_field :twitter_username, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= location.label :facebook_username %>
+        <%= location.text_field :facebook_username, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= location.label :yelp_username %>
+        <%= location.text_field :yelp_username, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= location.label :pinterest_username %>
+        <%= location.text_field :pinterest_username, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= location.label :foursquare_username %>
+        <%= location.text_field :foursquare_username, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= location.label :tumblr_username %>
+        <%= location.text_field :tumblr_username, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= location.label :instagram_username %>
+        <%= location.text_field :instagram_username, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= location.label :vimeo_username %>
+        <%= location.text_field :vimeo_username, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= location.label :youtube_username %>
+        <%= location.text_field :youtube_username, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+</fieldset>
