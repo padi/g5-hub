@@ -19,11 +19,11 @@
       <%= location.check_box :business_storage %>
     <% end %>
   </div>
-  <div class="form-group checkbox">
-    <%= location.label :other_storage do %>
-      Other Storage
-      <%= location.check_box :other_storage %>
-    <% end %>
+  <div class="row">
+    <div class="form-group col-sm-6">
+      <%= location.label :other_storage %>
+      <%= location.text_field :other_storage, class: "form-control" %>
+    </div>
   </div>
 
   <h5>Choose only the top 10 facility features for each location. Either check the box or re-word the feature to your liking.</h5>

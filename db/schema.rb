@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140407222027) do
+ActiveRecord::Schema.define(version: 20140407223038) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -57,7 +57,6 @@ ActiveRecord::Schema.define(version: 20140407222027) do
     t.string   "neighborhood"
     t.boolean  "boat_storage",             default: false
     t.boolean  "business_storage",         default: false
-    t.boolean  "other_storage",            default: false
     t.boolean  "gate_access",              default: false
     t.boolean  "security_monitoring",      default: false
     t.boolean  "business_center",          default: false
@@ -100,6 +99,7 @@ ActiveRecord::Schema.define(version: 20140407222027) do
     t.string   "other_features"
     t.boolean  "rv_storage",               default: false
     t.boolean  "seven_day_access",         default: false
+    t.string   "other_storage"
   end
 
 end
