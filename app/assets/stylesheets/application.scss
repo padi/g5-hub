@@ -5,6 +5,13 @@ body {
   padding-bottom: 2em;
 }
 
+fieldset {
+  margin-top: 2em;
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
 label .note {
   color: #888;
   font-size: 12px;
@@ -24,8 +31,8 @@ label .note {
   margin-top: 0;
 }
 
-.p-category:before { 
-  content: "#" 
+.p-category:before {
+  content: "#"
 }
 
 .h-adr {

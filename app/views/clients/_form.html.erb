@@ -69,7 +69,8 @@
         </div>
         <div class="panel-body">
           <div id="locations_container">
-            <% render partial: "primary_location_fields", locals: {location: location} %>
+            <%= render partial: "primary_location_fields", locals: {location: location} %>
+            <%= render partial: "self_storage_location_fields", locals: {location: location} %>
           </div>
         </div>
       </div>
