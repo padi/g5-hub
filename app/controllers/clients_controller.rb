@@ -54,5 +54,15 @@ private
     :city, :state, :postal_code, :fax, :email, :corporate,
     :urn, :hours, :twitter_username, :facebook_username, :yelp_username,
     :pinterest_username, :foursquare_username, :tumblr_username,
-    :instagram_username, :vimeo_username, :youtube_username, :domain, :phone_number])
+    :instagram_username, :vimeo_username, :youtube_username, :domain, :phone_number,
+    :neighborhood, :boat_storage, :business_storage, :other_storage, :gate_access,
+    :security_monitoring, :business_center, :climate_controlled, :heated_cooled,
+    :friendly_staff, :covered_drivethru, :covered_loading, :rv_boat_storage,
+    :outside_parking, :deliveries, :dollies_carts, :digital_surveillance,
+    :drive_up_access, :electronic_gate, :uhaul_trucks, :budget_trucks,
+    :moving_trucks, :free_truck, :fenced_lighted, :ground_level_units, :high_ceilings,
+    :individual_alarmed_units, :mail_boxes, :major_credit_cards, :military_discounts,
+    :student_discount, :senior_discount, :month_to_month, :no_admin_fee, :no_deposits,
+    :no_late_fees, :online_bill_pay, :packing_moving_supplies, :boxes_locks,
+    :tenant_insurance, :truck_rentals, :wide_driveways, :wine_storage, :other_features])
   end
