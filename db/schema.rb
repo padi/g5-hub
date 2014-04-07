@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140407213924) do
+ActiveRecord::Schema.define(version: 20140407222027) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -98,6 +98,8 @@ ActiveRecord::Schema.define(version: 20140407213924) do
     t.boolean  "wide_driveways",           default: false
     t.boolean  "wine_storage",             default: false
     t.string   "other_features"
+    t.boolean  "rv_storage",               default: false
+    t.boolean  "seven_day_access",         default: false
   end
 
 end

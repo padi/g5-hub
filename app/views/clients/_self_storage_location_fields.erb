@@ -2,6 +2,12 @@
   <legend>Self-Storage Information</legend>
   <h5>What services does your location offer?</h5>
   <div class="form-group checkbox">
+    <%= location.label :rv_storage do %>
+      RV Storage
+      <%= location.check_box :rv_storage %>
+    <% end %>
+  </div>
+  <div class="form-group checkbox">
     <%= location.label :boat_storage do %>
       Boat Storage
       <%= location.check_box :boat_storage %>
@@ -83,6 +89,12 @@
           <%= location.check_box :outside_parking %>
         <% end %>
       </div>
+      <div class="form-group checkbox">
+        <%= location.label :seven_day_access do %>
+          Access 7 Days a Week
+          <%= location.check_box :seven_day_access %>
+        <% end %>
+      </div>
     </div>
 
     <div class="col-sm-6 col-md-3">
@@ -146,15 +158,15 @@
           <%= location.check_box :fenced_lighted %>
         <% end %>
       </div>
-    </div>
-
-    <div class="col-sm-6 col-md-3">
       <div class="form-group checkbox">
         <%= location.label :ground_level_units do %>
           Ground Level Units
           <%= location.check_box :ground_level_units %>
         <% end %>
       </div>
+    </div>
+
+    <div class="col-sm-6 col-md-3">
       <div class="form-group checkbox">
         <%= location.label :high_ceilings do %>
           High Ceilings
@@ -209,9 +221,6 @@
           <%= location.check_box :no_admin_fee %>
         <% end %>
       </div>
-    </div>
-
-    <div class="col-sm-6 col-md-3">
       <div class="form-group checkbox">
         <%= location.label :no_deposits do %>
           No Deposits
@@ -224,6 +233,9 @@
           <%= location.check_box :no_late_fees %>
         <% end %>
       </div>
+    </div>
+
+    <div class="col-sm-6 col-md-3">
       <div class="form-group checkbox">
         <%= location.label :online_bill_pay do %>
           Online Bill Payment
