@@ -1,4 +1,6 @@
 class ClientsController < ApplicationController
+  DEMOGRAPHIC_OPTIONS = ['Senior Apartments', 'Student Housing']
+
   def index
     client_scope = Client.order("updated_at DESC")
     @clients = ClientDecorator.decorate_collection(client_scope)
@@ -53,7 +55,7 @@ private
     locations_attributes: [LOCATION_PARAMS])
   end
 
-  :id, :name, :street_address_1, :street_address_2,
+  LOCATION_PARAMS = :id, :name, :street_address_1, :street_address_2,
   :city, :state, :postal_code, :fax, :email, :corporate,
   :urn, :hours, :twitter_username, :facebook_username, :yelp_username,
   :pinterest_username, :foursquare_username, :tumblr_username,

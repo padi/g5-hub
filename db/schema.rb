@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408164207) do
+ActiveRecord::Schema.define(version: 20140408191346) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -168,6 +168,7 @@ ActiveRecord::Schema.define(version: 20140408164207) do
     t.boolean  "tennis_court",              default: false
     t.boolean  "wifi_available",            default: false
     t.string   "other_community_amenities"
+    t.string   "primary_offering_other"
   end
 
 end
