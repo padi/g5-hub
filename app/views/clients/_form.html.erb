@@ -65,13 +65,17 @@
     <%= f.fields_for :locations, class: "new-location" do |location| %>
       <div class="panel panel-info">
         <div class="panel-heading">
-          <h2 class="panel-title">Locations</h2>
+          <h2 class="panel-title">Location</h2>
         </div>
         <div class="panel-body">
           <div id="locations_container">
-            <!-- <%= render partial: "primary_location_fields", locals: {location: location} %> -->
-            <%= render partial: "apartment_location_fields", locals: {location: location} %>
-            <!-- <%= render partial: "self_storage_location_fields", locals: {location: location} %> -->
+            <%= render partial: "primary_location_fields", locals: {location: location} %>
+            <% if @client.vertical == 'Apartments' %>
+              <%= render partial: "apartment_location_fields", locals: {location: location} %>
+            <% end %>
+            <% if @client.vertical == 'Self-Storage' %>
+              <%= render partial: "self_storage_location_fields", locals: {location: location} %>
+            <% end %>
           </div>
         </div>
       </div>
