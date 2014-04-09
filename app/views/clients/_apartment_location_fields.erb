@@ -61,67 +61,71 @@
 
     <div class="col-sm-6">
       <h5>What are two landmarks near your location?</h5>
-      <div class="form-group checkbox">
-        <%= location.label :hospital_landmark do %>
-          Hospital
-          <%= location.check_box :hospital_landmark %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :lake_landmark do %>
-          Lake
-          <%= location.check_box :lake_landmark %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :recreation_landmark do %>
-          Recreation Area
-          <%= location.check_box :recreation_landmark %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :military_landmark do %>
-          Military Base
-          <%= location.check_box :military_landmark %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :employer_landmark do %>
-          Employer
-          <%= location.check_box :employer_landmark %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :university_landmark do %>
-          University
-          <%= location.check_box :university_landmark %>
-        <% end %>
+      <div class="max-checkboxes" data-max-checks="2">
+        <div class="form-group checkbox">
+          <%= location.label :hospital_landmark do %>
+            Hospital
+            <%= location.check_box :hospital_landmark %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :lake_landmark do %>
+            Lake
+            <%= location.check_box :lake_landmark %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :recreation_landmark do %>
+            Recreation Area
+            <%= location.check_box :recreation_landmark %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :military_landmark do %>
+            Military Base
+            <%= location.check_box :military_landmark %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :employer_landmark do %>
+            Employer
+            <%= location.check_box :employer_landmark %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :university_landmark do %>
+            University
+            <%= location.check_box :university_landmark %>
+          <% end %>
+        </div>
       </div>
 
       <h5>Choose three terms that best describe your property</h5>
-      <div class="form-group checkbox">
-        <%= location.label :luxury_property do %>
-          Luxury
-          <%= location.check_box :luxury_property %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :affordable_property do %>
-          Affordable
-          <%= location.check_box :affordable_property %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :gated_property do %>
-          Gated
-          <%= location.check_box :gated_property %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :furnished_property do %>
-          Furnished
-          <%= location.check_box :furnished_property %>
-        <% end %>
+      <div class="max-checkboxes" data-max-checks="3">
+        <div class="form-group checkbox">
+          <%= location.label :luxury_property do %>
+            Luxury
+            <%= location.check_box :luxury_property %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :affordable_property do %>
+            Affordable
+            <%= location.check_box :affordable_property %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :gated_property do %>
+            Gated
+            <%= location.check_box :gated_property %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :furnished_property do %>
+            Furnished
+            <%= location.check_box :furnished_property %>
+          <% end %>
+        </div>
       </div>
 
       <h5>What is the architectural style of the building, if any?</h5>

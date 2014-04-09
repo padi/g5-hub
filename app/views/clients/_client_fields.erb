@@ -46,6 +46,10 @@
           <%= f.select :vertical, Client::VERTICALS, {prompt: "Select Vertical"}, class: "form-control", required: true %>
         </div>
         <div class="form-group">
+          <%= f.label :tel %>
+          <%= f.text_field :tel, type: "tel", class: "form-control" %>
+        </div>
+        <div class="form-group">
           <%= f.label :fax %>
           <%= f.text_field :fax, type: "tel", class: "form-control" %>
         </div>
