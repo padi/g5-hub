@@ -11,7 +11,7 @@
         <%= location.label :domain do %>
           Domain <span class="note">(Required)</span>
         <% end %>
-        <%= location.text_field :domain, placeholder: "ex: http://www.yourdomainhere.com/", class: "form-control", required: true %>
+        <%= location.url_field :domain, placeholder: "ex: http://www.yourdomainhere.com/", class: "form-control", required: true %>
       </div>
       <div class="form-group">
         <%= location.label :street_address_1 do %>
@@ -59,7 +59,7 @@
       </div>
       <div class="form-group">
         <%= location.label :email %>
-        <%= location.text_field :email, type: "email", class: "form-control" %>
+        <%= location.email_field :email, class: "form-control" %>
       </div>
       <div class="form-group">
         <%= location.label :hours %>

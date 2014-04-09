@@ -1,0 +1,60 @@
+<fieldset class="panel panel-primary">
+  <div class="panel-heading">
+    <h2 class="panel-title">Client</h2>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <%= f.label :name do %>
+          Name <span class="note">(Required)</span>
+          <% end %>
+          <%= f.text_field :name, class: "form-control", required: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :street_address_1 %>
+          <%= f.text_field :street_address_1, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :street_address_2 %>
+          <%= f.text_field :street_address_2, class: "form-control" %>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-4">
+            <%= f.label :city do %>
+              City <span class="note">(Required)</span>
+            <% end %>
+            <%= f.text_field :city, class: "form-control", required: true %>
+          </div>
+          <div class="form-group col-md-4">
+            <%= f.label :state do %>
+              State <span class="note">(Required)</span>
+            <% end %>
+            <%= f.select :state, us_states, {prompt: "Select a State"}, class: "form-control", required: true %>
+          </div>
+          <div class="form-group col-md-4">
+            <%= f.label :postal_code %>
+            <%= f.text_field :postal_code, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <%= f.label :vertical do %>
+            Vertical <span class="note">(Required)</span>
+          <% end %>
+          <%= f.select :vertical, Client::VERTICALS, {prompt: "Select Vertical"}, class: "form-control", required: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :fax %>
+          <%= f.text_field :fax, type: "tel", class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, pattern: "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@
+(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", class: "form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</fieldset>
