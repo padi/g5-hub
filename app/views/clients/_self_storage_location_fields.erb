@@ -1,286 +1,293 @@
-<fieldset id="self-storage-fields">
-  <legend>Features and Amenities</legend>
-  <h5>What services does your location offer?</h5>
-  <div class="form-group checkbox">
-    <%= location.label :rv_storage do %>
-      RV Storage
-      <%= location.check_box :rv_storage %>
-    <% end %>
-  </div>
-  <div class="form-group checkbox">
-    <%= location.label :boat_storage do %>
-      Boat Storage
-      <%= location.check_box :boat_storage %>
-    <% end %>
-  </div>
-  <div class="form-group checkbox">
-    <%= location.label :business_storage do %>
-      Business Storage
-      <%= location.check_box :business_storage %>
-    <% end %>
-  </div>
-  <div class="row">
-      <div class="form-group col-sm-6">
-      <%= location.label :other_storage %>
-      <%= location.text_field :other_storage, class: "form-control" %>
+<fieldset id="self-storage-fields" class="has-checkboxes">
+  <hr />
+  <h3>
+    Services and Features
+    <button class="check-all btn btn-link">Check All</button>
+    <button class="uncheck-all btn btn-link">Uncheck All</button>
+  </h3>
+  <div class="has-checkboxes">
+    <h5>What services does your location offer?</h5>
+    <div class="form-group checkbox">
+      <%= location.label :rv_storage do %>
+        RV Storage
+        <%= location.check_box :rv_storage %>
+      <% end %>
     </div>
-  </div>
-
-  <h5>Choose only the top 10 facility features for each location. Either check the box or re-word the feature to your liking.</h5>
-  <div class="row">
-    <div class="col-sm-6 col-md-3">
-      <div class="form-group checkbox">
-        <%= location.label :gate_access do %>
-          24 Hour Gate Access
-          <%= location.check_box :gate_access %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :security_monitoring do %>
-          24 Hour Security Monitoring
-          <%= location.check_box :security_monitoring %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :business_center do %>
-          Business Center
-          <%= location.check_box :business_center %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :climate_controlled do %>
-          Climate Controlled Units
-          <%= location.check_box :climate_controlled %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :heated_cooled do %>
-          Heated &amp; Cooled Spaces
-          <%= location.check_box :heated_cooled %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :friendly_staff do %>
-          Friendly, professional staff
-          <%= location.check_box :friendly_staff %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :covered_drivethru do %>
-          Covered, Drive-Thru Access
-          <%= location.check_box :covered_drivethru %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :covered_loading do %>
-          Covered Loading / Unloading
-          <%= location.check_box :covered_loading %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :rv_boat_storage do %>
-          RV, Trailer, &amp; Boat Storage
-          <%= location.check_box :rv_boat_storage %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :outside_parking do %>
-          Outside Parking — Auto &amp; RV
-          <%= location.check_box :outside_parking %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :seven_day_access do %>
-          Access 7 Days a Week
-          <%= location.check_box :seven_day_access %>
-        <% end %>
+    <div class="form-group checkbox">
+      <%= location.label :boat_storage do %>
+        Boat Storage
+        <%= location.check_box :boat_storage %>
+      <% end %>
+    </div>
+    <div class="form-group checkbox">
+      <%= location.label :business_storage do %>
+        Business Storage
+        <%= location.check_box :business_storage %>
+      <% end %>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+        <%= location.label :other_storage %>
+        <%= location.text_field :other_storage, class: "form-control" %>
       </div>
     </div>
 
-    <div class="col-sm-6 col-md-3">
-      <div class="form-group checkbox">
-        <%= location.label :deliveries do %>
-          Deliveries Accepted
-          <%= location.check_box :deliveries %>
-        <% end %>
+    <h5>Choose only the top 10 facility features for each location. Either check the box or re-word the feature to your liking.</h5>
+    <div class="row">
+      <div class="col-sm-6 col-md-3">
+        <div class="form-group checkbox">
+          <%= location.label :gate_access do %>
+            24 Hour Gate Access
+            <%= location.check_box :gate_access %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :security_monitoring do %>
+            24 Hour Security Monitoring
+            <%= location.check_box :security_monitoring %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :business_center do %>
+            Business Center
+            <%= location.check_box :business_center %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :climate_controlled do %>
+            Climate Controlled Units
+            <%= location.check_box :climate_controlled %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :heated_cooled do %>
+            Heated &amp; Cooled Spaces
+            <%= location.check_box :heated_cooled %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :friendly_staff do %>
+            Friendly, professional staff
+            <%= location.check_box :friendly_staff %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :covered_drivethru do %>
+            Covered, Drive-Thru Access
+            <%= location.check_box :covered_drivethru %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :covered_loading do %>
+            Covered Loading / Unloading
+            <%= location.check_box :covered_loading %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :rv_boat_storage do %>
+            RV, Trailer, &amp; Boat Storage
+            <%= location.check_box :rv_boat_storage %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :outside_parking do %>
+            Outside Parking — Auto &amp; RV
+            <%= location.check_box :outside_parking %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :seven_day_access do %>
+            Access 7 Days a Week
+            <%= location.check_box :seven_day_access %>
+          <% end %>
+        </div>
       </div>
-      <div class="form-group checkbox">
-        <%= location.label :dollies_carts do %>
-          Dollies &amp; Carts Available
-          <%= location.check_box :dollies_carts %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :digital_surveillance do %>
-          Digital Surveillance System
-          <%= location.check_box :digital_surveillance %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :drive_up_access do %>
-          Drive Up Access
-          <%= location.check_box :drive_up_access %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :electronic_gate do %>
-          Electronic Gate Access
-          <%= location.check_box :electronic_gate %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :uhaul_trucks do %>
-          U-Haul Trucks
-          <%= location.check_box :uhaul_trucks %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :budget_trucks do %>
-          Budget Trucks
-          <%= location.check_box :budget_trucks %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :moving_trucks do %>
-          Moving Trucks
-          <%= location.check_box :moving_trucks %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :free_truck do %>
-          Free Truck
-          <%= location.check_box :free_truck %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :fenced_lighted do %>
-          Fenced &amp; Lighted
-          <%= location.check_box :fenced_lighted %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :ground_level_units do %>
-          Ground Level Units
-          <%= location.check_box :ground_level_units %>
-        <% end %>
-      </div>
-    </div>
 
-    <div class="col-sm-6 col-md-3">
-      <div class="form-group checkbox">
-        <%= location.label :high_ceilings do %>
-          High Ceilings
-          <%= location.check_box :high_ceilings %>
-        <% end %>
+      <div class="col-sm-6 col-md-3">
+        <div class="form-group checkbox">
+          <%= location.label :deliveries do %>
+            Deliveries Accepted
+            <%= location.check_box :deliveries %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :dollies_carts do %>
+            Dollies &amp; Carts Available
+            <%= location.check_box :dollies_carts %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :digital_surveillance do %>
+            Digital Surveillance System
+            <%= location.check_box :digital_surveillance %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :drive_up_access do %>
+            Drive Up Access
+            <%= location.check_box :drive_up_access %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :electronic_gate do %>
+            Electronic Gate Access
+            <%= location.check_box :electronic_gate %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :uhaul_trucks do %>
+            U-Haul Trucks
+            <%= location.check_box :uhaul_trucks %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :budget_trucks do %>
+            Budget Trucks
+            <%= location.check_box :budget_trucks %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :moving_trucks do %>
+            Moving Trucks
+            <%= location.check_box :moving_trucks %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :free_truck do %>
+            Free Truck
+            <%= location.check_box :free_truck %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :fenced_lighted do %>
+            Fenced &amp; Lighted
+            <%= location.check_box :fenced_lighted %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :ground_level_units do %>
+            Ground Level Units
+            <%= location.check_box :ground_level_units %>
+          <% end %>
+        </div>
       </div>
-      <div class="form-group checkbox">
-        <%= location.label :individual_alarmed_units do %>
-          Individually Alarmed Units
-          <%= location.check_box :individual_alarmed_units %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :mail_boxes do %>
-          Mail Boxes for Rent
-          <%= location.check_box :mail_boxes %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :major_credit_cards do %>
-          Major Credit Cards Accepted
-          <%= location.check_box :major_credit_cards %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :military_discounts do %>
-          Military Discounts
-          <%= location.check_box :military_discounts %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :student_discount do %>
-          Student Discounts
-          <%= location.check_box :student_discount %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :senior_discount do %>
-          Senior Discounts
-          <%= location.check_box :senior_discount %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :month_to_month do %>
-          Month-to-Month Rentals
-          <%= location.check_box :month_to_month %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :no_admin_fee do %>
-          No Administration Fee
-          <%= location.check_box :no_admin_fee %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :no_deposits do %>
-          No Deposits
-          <%= location.check_box :no_deposits %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :no_late_fees do %>
-          No Late Fees
-          <%= location.check_box :no_late_fees %>
-        <% end %>
-      </div>
-    </div>
 
-    <div class="col-sm-6 col-md-3">
-      <div class="form-group checkbox">
-        <%= location.label :online_bill_pay do %>
-          Online Bill Payment
-          <%= location.check_box :online_bill_pay %>
-        <% end %>
+      <div class="col-sm-6 col-md-3">
+        <div class="form-group checkbox">
+          <%= location.label :high_ceilings do %>
+            High Ceilings
+            <%= location.check_box :high_ceilings %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :individual_alarmed_units do %>
+            Individually Alarmed Units
+            <%= location.check_box :individual_alarmed_units %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :mail_boxes do %>
+            Mail Boxes for Rent
+            <%= location.check_box :mail_boxes %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :major_credit_cards do %>
+            Major Credit Cards Accepted
+            <%= location.check_box :major_credit_cards %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :military_discounts do %>
+            Military Discounts
+            <%= location.check_box :military_discounts %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :student_discount do %>
+            Student Discounts
+            <%= location.check_box :student_discount %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :senior_discount do %>
+            Senior Discounts
+            <%= location.check_box :senior_discount %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :month_to_month do %>
+            Month-to-Month Rentals
+            <%= location.check_box :month_to_month %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :no_admin_fee do %>
+            No Administration Fee
+            <%= location.check_box :no_admin_fee %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :no_deposits do %>
+            No Deposits
+            <%= location.check_box :no_deposits %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :no_late_fees do %>
+            No Late Fees
+            <%= location.check_box :no_late_fees %>
+          <% end %>
+        </div>
       </div>
-      <div class="form-group checkbox">
-        <%= location.label :packing_moving_supplies do %>
-          Packing &amp; Moving Supplies
-          <%= location.check_box :packing_moving_supplies %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :boxes_locks do %>
-          We Sell Boxes, Locks, &amp; Moving Supplies
-          <%= location.check_box :boxes_locks %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :tenant_insurance do %>
-          Tenant Insurance Available
-          <%= location.check_box :tenant_insurance %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :truck_rentals do %>
-          Truck Rentals
-          <%= location.check_box :truck_rentals %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :wide_driveways do %>
-          Wide Driveways
-          <%= location.check_box :wide_driveways %>
-        <% end %>
-      </div>
-      <div class="form-group checkbox">
-        <%= location.label :wine_storage do %>
-          Wine Storage
-          <%= location.check_box :wine_storage %>
-        <% end %>
-      </div>
-      <div class="form-group">
-        <%= location.label :other_features %>
-        <%= location.text_field :other_features, class: "form-control" %>
+
+      <div class="col-sm-6 col-md-3">
+        <div class="form-group checkbox">
+          <%= location.label :online_bill_pay do %>
+            Online Bill Payment
+            <%= location.check_box :online_bill_pay %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :packing_moving_supplies do %>
+            Packing &amp; Moving Supplies
+            <%= location.check_box :packing_moving_supplies %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :boxes_locks do %>
+            We Sell Boxes, Locks, &amp; Moving Supplies
+            <%= location.check_box :boxes_locks %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :tenant_insurance do %>
+            Tenant Insurance Available
+            <%= location.check_box :tenant_insurance %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :truck_rentals do %>
+            Truck Rentals
+            <%= location.check_box :truck_rentals %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :wide_driveways do %>
+            Wide Driveways
+            <%= location.check_box :wide_driveways %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :wine_storage do %>
+            Wine Storage
+            <%= location.check_box :wine_storage %>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%= location.label :other_features %>
+          <%= location.text_field :other_features, class: "form-control" %>
+        </div>
       </div>
     </div>
   </div>

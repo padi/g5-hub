@@ -1,6 +1,11 @@
-<fieldset>
-  <legend>Features and Amenities</legend>
-  <div class="row">
+<fieldset id="apartment-fields">
+  <hr />
+  <h3>
+    Features
+    <button class="check-all btn btn-link">Check All</button>
+    <button class="uncheck-all btn btn-link">Uncheck All</button>
+  </h3>
+  <div class="has-checkboxes row">
     <div class="col-sm-6">
       <div class="form-group">
         <%= location.label :specific_demographic, 'Is your location speciafically designed for a certain demographic?' %>
@@ -148,7 +153,13 @@
     </div> <!-- end .col-sm-6 -->
   </div> <!-- end .row -->
 
-  <div class="row">
+  <hr />
+  <h3>
+    Ameneties
+    <button class="check-all btn btn-link">Check All</button>
+    <button class="uncheck-all btn btn-link">Uncheck All</button>
+  </h3>
+  <div class="has-checkboxes row">
     <div class="col-sm-6">
       <h5>Apartment Amenities</h5>
       <div class="row">

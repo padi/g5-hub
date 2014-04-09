@@ -33,7 +33,7 @@ class ClientsController < ApplicationController
   def update
     @client = Client.find_by_urn(params[:id])
     if @client.update_attributes(client_params)
-      redirect_to clients_url, :notice  => "Successfully updated client."
+      redirect_to client_url, :notice  => "Successfully updated client."
     else
       @client.locations.build if @client.locations.blank?
       render :action => 'edit'
