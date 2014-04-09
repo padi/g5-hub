@@ -18,7 +18,7 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     if @client.save
-      redirect_to clients_url, :notice => "Successfully created client."
+      redirect_to client_url(@client), :notice => "Successfully created client."
     else
       @client.locations.build if @client.locations.blank?
       render :action => 'new'

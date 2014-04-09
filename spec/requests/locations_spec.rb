@@ -45,15 +45,6 @@ describe "Locations" do
       expect(page).to have_content "http://www.oscarstrashcan.com/"
     end
 
-    it "shows correct fields for client with Apartments vertical" do
-      new_client
-      expect(page).to have_content "Amenities"
-    end
-
-    it "shows correct fields for client with Self-Storage vertical" do
-      new_client
-      expect(page).to have_content "Services and Features"
-    end
   end
 
   describe "show" do
