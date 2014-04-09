@@ -1,4 +1,10 @@
 $ ->
+  $('#client_vertical').on 'change', ->
+    vertical = $(this).val().toLowerCase()
+    $('#apartments-fields, #self-storage-fields, #assisted-living-fields').addClass('hidden')
+    $('#'+vertical+'-fields').removeClass('hidden')
+
+
   $('.check-all').on 'click', ->
     $(this).parent().next().find('input:checkbox').prop 'checked', true
     return false

@@ -44,6 +44,11 @@ describe "Locations" do
       click_link "Oscar's Trash Can"
       expect(page).to have_content "http://www.oscarstrashcan.com/"
     end
+
+    it "shows correct fields for client with Apartments vertical" do
+      new_client
+      expect(page).to have_content "Amenities"
+    end
   end
 
   describe "show" do

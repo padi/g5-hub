@@ -13,14 +13,8 @@
           <div id="locations_container">
 
             <%= render partial: "primary_location_fields", locals: {location: location} %>
-
-            <% if @client.vertical == 'Apartments' %>
-              <%= render partial: "apartment_location_fields", locals: {location: location} %>
-            <% end %>
-
-            <% if @client.vertical == 'Self-Storage' %>
-              <%= render partial: "self_storage_location_fields", locals: {location: location} %>
-            <% end %>
+            <%= render partial: "apartment_location_fields", locals: {location: location} %>
+            <%= render partial: "self_storage_location_fields", locals: {location: location} %>
 
           </div>
         </div>
