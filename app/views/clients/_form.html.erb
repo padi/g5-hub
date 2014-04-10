@@ -177,6 +177,14 @@
                     <%= location.label :youtube_username %>
                     <%= location.text_field :youtube_username, class: "form-control" %>
                   </div>
+                  <div class="form-group">
+                    <%= location.label :ga_tracking_id, "Google Analytics Tracking ID" %>
+                    <%= location.text_field :ga_tracking_id, class: "form-control", placeholder: "UA-12345678-9" %>
+                  </div>
+                  <div class="form-group">
+                    <%= location.label :ga_profile_id, "Google Analytics Profile ID" %>
+                    <%= location.text_field :ga_profile_id, class: "form-control", placeholder: "ga:12345678" %>
+                  </div>
                 </div>
               </div>
             </fieldset>
