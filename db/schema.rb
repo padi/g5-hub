@@ -9,14 +9,14 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140130190056) do
+ActiveRecord::Schema.define(version: 20140410183948) do
 
-  create_table "clients", :force => true do |t|
+  create_table "clients", force: true do |t|
     t.string   "name"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "urn"
     t.string   "vertical"
     t.string   "street_address_1"
@@ -28,12 +28,12 @@ ActiveRecord::Schema.define(:version => 20140130190056) do
     t.string   "email"
   end
 
-  create_table "locations", :force => true do |t|
+  create_table "locations", force: true do |t|
     t.integer  "client_id"
     t.string   "name"
     t.boolean  "corporate"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "urn"
     t.string   "street_address_1"
     t.string   "street_address_2"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(:version => 20140130190056) do
     t.string   "youtube_username"
     t.string   "domain"
     t.string   "phone_number"
+    t.string   "ga_tracking_id"
+    t.string   "ga_profile_id"
   end
 
 end
