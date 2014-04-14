@@ -44,7 +44,22 @@ describe "Locations" do
       click_link "Oscar's Trash Can"
       expect(page).to have_content "http://www.oscarstrashcan.com/"
     end
-
+    it "can create an Apartment location with a specific demographic" do
+      new_client
+      select "Senior Apartments", from: "client_locations_attributes_0_specific_demographic"
+      click_button "Create Client"
+      click_link "Edit Client"
+      expect(find(:css, '#client_locations_attributes_0_specific_demographic').value).to eq("Senior Apartments")
+    end
+    it "can create a Self-Storage location with a specific service" do
+      new_client
+      select "Self-Storage", from: "client_vertical"
+      check('client_locations_attributes_0_rv_storage')
+      click_button "Create Client"
+      click_link "Edit Client"
+      expect(find(:css, '#client_vertical').value).to eq("Self-Storage")
+      expect(find(:css, '#client_locations_attributes_0_rv_storage')).to be_checked
+    end
     it "can create a location with an analytics tracking ID" do
       new_client
       fill_in "client_locations_attributes_0_ga_tracking_id", with: "UA-1234-56"
@@ -53,6 +68,27 @@ describe "Locations" do
       click_link "Oscar's Trash Can"
       expect(page).to have_content "UA-1234-56"
       expect(page).to have_content "ga:12345678"
+    end
+    describe "the correct fields show when a client vertical is chosen", js: true do
+      it "cannot see extra fields on first page load" do
+        visit clients_path
+        click_link "New Client"
+        within('#locations_container') do
+          expect(page).to_not have_content('Services and Features')
+          expect(page).to_not have_content('Amenities')
+        end
+      end
+      it "can see apartments fields when apartment vertical is chosen" do
+        visit clients_path
+        click_link "New Client"
+        select "Apartments", from: "client_vertical"
+        expect(page).to have_content('Amenities')
+        expect(page).to_not have_content('Services and Features')
+
+        select "Self-Storage", from: "client_vertical"
+        expect(page).to_not have_content('Amenities')
+        expect(page).to have_content('Services and Features')
+      end
     end
   end
 

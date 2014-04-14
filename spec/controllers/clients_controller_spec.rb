@@ -61,7 +61,7 @@ describe ClientsController do
       Client.any_instance.stub(:name).and_return("name")
       post :create
       expect(response.status).to eq 302
-      expect(response).to redirect_to(clients_path)
+      expect(response).to redirect_to(client_path(Client.last))
     end
   end
 
@@ -82,7 +82,7 @@ describe ClientsController do
       client.stub(:valid?).and_return(true)
       client.stub(:name).and_return("name")
       put :update, id: 1
-      response.should redirect_to(clients_path)
+      response.should redirect_to(client_path)
     end
     context "allowed attributes" do
       it "accepts city param" do

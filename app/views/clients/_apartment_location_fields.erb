@@ -1,0 +1,471 @@
+<fieldset id="apartments-fields" <% unless @client.vertical == 'Apartments' %>class="hidden"<% end %>>
+  <hr />
+  <h3>
+    Features
+    <button class="uncheck-all btn btn-link">Uncheck All</button>
+  </h3>
+  <div class="has-checkboxes row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= location.label :specific_demographic, 'Is your location speciafically designed for a certain demographic?' %>
+        <%= location.select :specific_demographic, Client::DEMOGRAPHIC_OPTIONS, {include_blank: true}, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= location.label :primary_offering, 'What the main offering of this location?' %>
+        <%= location.select :primary_offering, ['Apartments', 'Townhomes', 'Condos', 'Other'], {include_blank: true}, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= location.label :primary_offering_other, 'If Other, what is the primary offering?' %>
+        <%= location.text_field :primary_offering, class: 'form-control' %>
+      </div>
+      <h5>What, if any, are the secondary offerings?</h5>
+      <div class="form-group checkbox">
+        <%= location.label :secondary_apartments do %>
+          Apartments
+          <%= location.check_box :secondary_apartments %>
+        <% end %>
+      </div>
+      <div class="form-group checkbox">
+        <%= location.label :secondary_townhomes do %>
+          Townhomes
+          <%= location.check_box :secondary_townhomes %>
+        <% end %>
+      </div>
+      <div class="form-group checkbox">
+        <%= location.label :secondary_condo do %>
+          Condos
+          <%= location.check_box :secondary_condo %>
+        <% end %>
+      </div>
+      <div class="form-group">
+        <%= location.label :secondary_other, 'List any other secondary offerings' %>
+        <%= location.text_field :secondary_other, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= location.label :floor_plans, 'Please describe your floor plans' %>
+        <%= location.text_field :floor_plans, class: 'form-control', placeholder: 'Ex. 1, 2, & 3 Bedroom, Studio, Etc.' %>
+      </div>
+
+      <div class="form-group">
+        <%= location.label :nearby_employers, 'Please list any nearby large employers' %>
+        <%= location.text_field :nearby_employers, class: 'form-control', placeholder: 'Ex. military base' %>
+      </div>
+
+      <div class="form-group">
+        <%= location.label :nearby_schools, 'Please list any nearby schools or colleges' %>
+        <%= location.text_field :nearby_schools, class: 'form-control' %>
+      </div>
+    </div> <!-- end .col-sm-6 -->
+
+    <div class="col-sm-6">
+      <h5>What are two landmarks near your location?</h5>
+      <div class="max-checkboxes" data-max-checks="2">
+        <div class="form-group checkbox">
+          <%= location.label :hospital_landmark do %>
+            Hospital
+            <%= location.check_box :hospital_landmark %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :lake_landmark do %>
+            Lake
+            <%= location.check_box :lake_landmark %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :recreation_landmark do %>
+            Recreation Area
+            <%= location.check_box :recreation_landmark %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :military_landmark do %>
+            Military Base
+            <%= location.check_box :military_landmark %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :employer_landmark do %>
+            Employer
+            <%= location.check_box :employer_landmark %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :university_landmark do %>
+            University
+            <%= location.check_box :university_landmark %>
+          <% end %>
+        </div>
+      </div>
+
+      <h5>Choose three terms that best describe your property</h5>
+      <div class="max-checkboxes" data-max-checks="3">
+        <div class="form-group checkbox">
+          <%= location.label :luxury_property do %>
+            Luxury
+            <%= location.check_box :luxury_property %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :affordable_property do %>
+            Affordable
+            <%= location.check_box :affordable_property %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :gated_property do %>
+            Gated
+            <%= location.check_box :gated_property %>
+          <% end %>
+        </div>
+        <div class="form-group checkbox">
+          <%= location.label :furnished_property do %>
+            Furnished
+            <%= location.check_box :furnished_property %>
+          <% end %>
+        </div>
+      </div>
+
+      <h5>What is the architectural style of the building, if any?</h5>
+      <div class="form-group checkbox">
+        <%= location.label :modern_structure do %>
+          Modern
+          <%= location.check_box :modern_structure %>
+        <% end %>
+      </div>
+      <div class="form-group checkbox">
+        <%= location.label :townhome_structure do %>
+          Townhome
+          <%= location.check_box :townhome_structure %>
+        <% end %>
+      </div>
+      <div class="form-group checkbox">
+        <%= location.label :garden_structure do %>
+          Garden Style
+          <%= location.check_box :garden_structure %>
+        <% end %>
+      </div>
+      <div class="form-group checkbox">
+        <%= location.label :highrise_structure do %>
+          High Rise
+          <%= location.check_box :highrise_structure %>
+        <% end %>
+      </div>
+
+    </div> <!-- end .col-sm-6 -->
+  </div> <!-- end .row -->
+
+  <hr />
+  <h3>
+    Ameneties
+    <button class="check-all btn btn-link">Check All</button>
+    <button class="uncheck-all btn btn-link">Uncheck All</button>
+  </h3>
+  <div class="has-checkboxes row">
+    <div class="col-sm-6">
+      <h5>Apartment Amenities</h5>
+      <div class="row">
+        <div class="col-sm-6">
+
+          <div class="form-group checkbox">
+            <%= location.label :accessibility do %>
+              Accessibility (Elevators, Handicapped Accessible Units)
+              <%= location.check_box :accessibility %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :air_conditioned do %>
+              Air Conditioning
+              <%= location.check_box :air_conditioned %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :cable_included do %>
+              Cable Included
+              <%= location.check_box :cable_included %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :ceiling_fans do %>
+              Ceiling Fans
+              <%= location.check_box :ceiling_fans %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :custom_cabinetry do %>
+              Custom Cabinetry
+              <%= location.check_box :custom_cabinetry %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :dishwasher do %>
+              Dishwasher
+              <%= location.check_box :dishwasher %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :energy_efficient do %>
+              Energy Efficient Appliances
+              <%= location.check_box :energy_efficient %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :fireplace do %>
+              Fireplace
+              <%= location.check_box :fireplace %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :granite_counters do %>
+              Granite Counters
+              <%= location.check_box :granite_counters %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :hardwood_floors do %>
+              Hardwood Floors
+              <%= location.check_box :hardwood_floors %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :high_ceilings do %>
+              High/Vaulted/Cathedral Ceilings
+              <%= location.check_box :high_ceilings %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :private_balcony do %>
+              Private Balcony
+              <%= location.check_box :private_balcony %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :private_patio do %>
+              Private Patio
+              <%= location.check_box :private_patio %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :refrigerator do %>
+              Refrigerator
+              <%= location.check_box :refrigerator %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :stainless_appliances do %>
+              Stainless Steel Appliances
+              <%= location.check_box :stainless_appliances %>
+            <% end %>
+          </div>
+
+        </div> <!-- end .col-sm-6 -->
+
+        <div class="col-sm-6">
+
+          <div class="form-group checkbox">
+            <%= location.label :smoke_free do %>
+              Smoke Free
+              <%= location.check_box :smoke_free %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :walkin_closet do %>
+              Walk-in Closets
+              <%= location.check_box :walkin_closet %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :washer_dryer do %>
+              Washer/Dryer Hookup
+              <%= location.check_box :washer_dryer %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :has_view do %>
+              Has a View
+              <%= location.check_box :has_view %>
+            <% end %>
+          </div>
+          <div class="form-group">
+            <%= location.label :style_design, 'What is the style/design of the building?' %>
+            <%= location.select :style_design, ['High Rise', 'Modern', 'Victorian', 'Contemporary', 'Ranch', 'Garden', 'Resort'], {include_blank: true}, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= location.label :style_cost, 'How would you describe the cost of living here?' %>
+            <%= location.select :style_cost, ['Luxury', 'Affordable', 'Low Income'], {include_blank: true}, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= location.label :other_amenities %>
+            <%= location.text_field :other_amenities, class: 'form-control' %>
+          </div>
+
+        </div> <!-- end .col-sm-6 -->
+      </div> <!-- end .row -->
+    </div> <!-- end outer .col-sm-6 -->
+
+    <div class="col-sm-6">
+      <h5>Community Amenities</h5>
+      <div class="row">
+        <div class="col-sm-6">
+
+          <div class="form-group checkbox">
+            <%= location.label :carport_parking do %>
+              Carport Parking
+              <%= location.check_box :carport_parking %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :club_house do %>
+              Club House
+              <%= location.check_box :club_house %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :dog_park do %>
+              Close to Dog Park
+              <%= location.check_box :dog_park %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :corporate_suites do %>
+              Corporate Suites Available
+              <%= location.check_box :corporate_suites %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :family_friendly do %>
+              Family Friendly
+              <%= location.check_box :family_friendly %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :fitness_center do %>
+              Fitness Center
+              <%= location.check_box :fitness_center %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :furnished_apartments do %>
+              Furnished Apartments Available
+              <%= location.check_box :furnished_apartments %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :garages do %>
+              Garages Available
+              <%= location.check_box :garages %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :gated_entrance do %>
+              Gated Electronic Entrance
+              <%= location.check_box :gated_entrance %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :laundry_facilities do %>
+              Laundry Facilities on Site
+              <%= location.check_box :laundry_facilities %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :online_rental_payments do %>
+              Online Rental Payments
+              <%= location.check_box :online_rental_payments %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :onsite_management do %>
+              On-Site Management
+              <%= location.check_box :onsite_management %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :close_park do %>
+              Close to Park
+              <%= location.check_box :close_park %>
+            <% end %>
+          </div>
+
+
+        </div> <!-- end .col-sm-6 -->
+
+        <div class="col-sm-6">
+          <div class="form-group checkbox">
+            <%= location.label :pet_friendly do %>
+              Pet friendly
+              <%= location.check_box :pet_friendly %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :cats_allowed do %>
+              Cat friendly
+              <%= location.check_box :cats_allowed %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :dogs_allowed do %>
+              Dog friendly
+              <%= location.check_box :dogs_allowed %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :playground do %>
+              Playground
+              <%= location.check_box :playground %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :recycling_center do %>
+              Recycling Center
+              <%= location.check_box :recycling_center %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :swimming_pool do %>
+              Swimming Pool
+              <%= location.check_box :swimming_pool %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :hot_tub do %>
+              Spa/Hot Tub
+              <%= location.check_box :hot_tub %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :storage_available do %>
+              Storage Available
+              <%= location.check_box :storage_available %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :tennis_court do %>
+              Tennis Court
+              <%= location.check_box :tennis_court %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :wifi_available do %>
+              WiFi Available
+              <%= location.check_box :wifi_available %>
+            <% end %>
+          </div>
+          <div class="form-group checkbox">
+            <%= location.label :business_center do %>
+              Business Center
+              <%= location.check_box :business_center %>
+            <% end %>
+          </div>
+          <div class="form-group">
+            <%= location.label :other_community_amenities %>
+            <%= location.text_field :other_community_amenities, class: 'form-control' %>
+          </div>
+        </div> <!-- end .col-sm-6 -->
+      </div> <!-- end .row -->
+    </div> <!-- end outer .col-sm-6 -->
+
+  </div> <!-- end outer .row -->
+
+</fieldset>

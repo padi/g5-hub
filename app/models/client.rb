@@ -1,5 +1,6 @@
 class Client < ActiveRecord::Base
   VERTICALS = %w(Self-Storage Apartments Assisted-Living)
+  DEMOGRAPHIC_OPTIONS = ['Senior Apartments', 'Student Housing']
 
   has_many :locations
 
