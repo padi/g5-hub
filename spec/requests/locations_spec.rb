@@ -44,6 +44,27 @@ describe "Locations" do
       click_link "Oscar's Trash Can"
       expect(page).to have_content "http://www.oscarstrashcan.com/"
     end
+    it "can create an Apartment location with a specific demographic" do
+      new_client
+      select "Senior Apartments", from: "client_locations_attributes_0_specific_demographic"
+      click_button "Create Client"
+      click_link "Edit Client"
+      expect(find(:css, '#client_locations_attributes_0_specific_demographic').value).to eq("Senior Apartments")
+    end
+    it "cannot see self-storage fields if client is Apartments" do
+      visit clients_path
+      click_link "New Client"
+      expect(page).to_not have_content('Services and Features', visible: true)
+    end
+    it "can create a Self-Storage location with a specific service" do
+      new_client
+      select "Self-Storage", from: "client_vertical"
+      check('client_locations_attributes_0_rv_storage')
+      click_button "Create Client"
+      click_link "Edit Client"
+      expect(find(:css, '#client_vertical').value).to eq("Self-Storage")
+      expect(find(:css, '#client_locations_attributes_0_rv_storage')).to be_checked
+    end
 
   end
 
