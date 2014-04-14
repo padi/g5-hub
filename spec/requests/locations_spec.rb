@@ -51,11 +51,6 @@ describe "Locations" do
       click_link "Edit Client"
       expect(find(:css, '#client_locations_attributes_0_specific_demographic').value).to eq("Senior Apartments")
     end
-    it "cannot see self-storage fields if client is Apartments" do
-      visit clients_path
-      click_link "New Client"
-      expect(page).to_not have_content('Services and Features', visible: true)
-    end
     it "can create a Self-Storage location with a specific service" do
       new_client
       select "Self-Storage", from: "client_vertical"
@@ -73,6 +68,27 @@ describe "Locations" do
       click_link "Oscar's Trash Can"
       expect(page).to have_content "UA-1234-56"
       expect(page).to have_content "ga:12345678"
+    end
+    describe "the correct fields show when a client vertical is chosen", js: true do
+      it "cannot see extra fields on first page load" do
+        visit clients_path
+        click_link "New Client"
+        within('#locations_container') do
+          expect(page).to_not have_content('Services and Features')
+          expect(page).to_not have_content('Amenities')
+        end
+      end
+      it "can see apartments fields when apartment vertical is chosen" do
+        visit clients_path
+        click_link "New Client"
+        select "Apartments", from: "client_vertical"
+        expect(page).to have_content('Amenities')
+        expect(page).to_not have_content('Services and Features')
+
+        select "Self-Storage", from: "client_vertical"
+        expect(page).to_not have_content('Amenities')
+        expect(page).to have_content('Services and Features')
+      end
     end
   end
 
