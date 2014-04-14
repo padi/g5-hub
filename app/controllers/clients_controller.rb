@@ -86,4 +86,4 @@ private
   :garages, :gated_entrance, :laundry_facilities, :online_rental_payments,
   :onsite_management, :close_park, :pet_friendly, :playground, :recycling_center,
   :swimming_pool, :hot_tub, :storage_available, :tennis_court, :wifi_available,
-  :other_community_amenities
+  :other_community_amenities, :ga_tracking_id, :ga_profile_id

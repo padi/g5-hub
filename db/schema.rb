@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140409170610) do
+ActiveRecord::Schema.define(version: 20140410183948) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "urn"
     t.string   "vertical"
     t.string   "street_address_1"
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(version: 20140409170610) do
     t.integer  "client_id"
     t.string   "name"
     t.boolean  "corporate"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "urn"
     t.string   "street_address_1"
     t.string   "street_address_2"
@@ -170,6 +170,8 @@ ActiveRecord::Schema.define(version: 20140409170610) do
     t.boolean  "wifi_available",            default: false
     t.string   "other_community_amenities"
     t.string   "primary_offering_other"
+    t.string   "ga_tracking_id"
+    t.string   "ga_profile_id"
   end
 
 end

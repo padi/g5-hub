@@ -31,6 +31,15 @@
     <pre class="p-hours"><%= @location.hours %></pre>
   <% end %>
 
+  <h4>Google Analytics</h4>
+  <dl class="dl-horizontal">
+    <dt>Tracking ID</dt>
+    <dd class="p-ga-tracking-id"><%= @location.ga_tracking_id %></dd>
+
+    <dt>View Profile ID</dt>
+    <dd class="p-ga-profile-id"><%= @location.ga_profile_id %></dd>
+  </dl>
+
   <dl>
     <% Location::SOCIAL_NETWORKS.each do |network_name| %>
       <% if (username = @location.send("#{network_name.to_s.downcase}_username")).present? %>

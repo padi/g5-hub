@@ -65,12 +65,27 @@ describe "Locations" do
       expect(find(:css, '#client_vertical').value).to eq("Self-Storage")
       expect(find(:css, '#client_locations_attributes_0_rv_storage')).to be_checked
     end
-
+    it "can create a location with an analytics tracking ID" do
+      new_client
+      fill_in "client_locations_attributes_0_ga_tracking_id", with: "UA-1234-56"
+      fill_in "client_locations_attributes_0_ga_profile_id", with: "ga:12345678"
+      click_button "Create Client"
+      click_link "Oscar's Trash Can"
+      expect(page).to have_content "UA-1234-56"
+      expect(page).to have_content "ga:12345678"
+    end
   end
 
   describe "show" do
     let(:client) { Fabricate(:client) }
-    let(:location) { Fabricate(:location, client: client) }
+    let(:location) do
+      Fabricate(
+        :location,
+        client: client,
+        ga_profile_id: "profile",
+        ga_tracking_id: "tracking"
+      )
+    end
     let(:document) { Microformats2.parse(page.source) }
 
     it "generates a valid Microformats2 document with attributes" do
@@ -79,6 +94,8 @@ describe "Locations" do
       expect(document.card.uid.to_s).to eq(client_location_url(client, location))
       expect(document.card.name.to_s).to eq(location.name)
       expect(document.card.adr.format.tel.to_s).to eq(location.phone_number)
+      expect(document.card.ga_tracking_id.to_s).to eq(location.ga_tracking_id)
+      expect(document.card.ga_profile_id.to_s).to eq(location.ga_profile_id)
     end
 
     context "when the location has blank hours" do
