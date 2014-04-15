@@ -40,6 +40,7 @@ group :development, :test do
   gem "selenium-webdriver", "~> 2.40.0"
   gem "database_cleaner", "~> 1.2.0"
   gem "microformats2"
+  gem "foreman"
 end
 
 gem "codeclimate-test-reporter", group: :test, require: nil

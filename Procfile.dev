@@ -1,0 +1,1 @@
+web: bundle exec rails s -p $G5_HUB_PORT
