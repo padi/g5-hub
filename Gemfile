@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby "2.1.1"
 
-gem "rails", "~> 4.0.3"
+gem "rails", "~> 4.1.0"
 gem "jquery-rails"
 
 gem "quiet_assets", "~> 1.0.1"
@@ -25,7 +25,6 @@ end
 
 group :development, :test do
   gem "dotenv-rails", "~> 0.10.0"
-  gem "rails-default-database", "~> 1.0.6"
   gem "sqlite3"
   gem "simplecov", "~> 0.7.1", require: false
   gem "rspec-rails", "~> 2.14.1"
