@@ -18,9 +18,9 @@ $ bundle
 ```
 
 1. Set up your database.
-[rails-default-database](https://github.com/tpope/rails-default-database)
-automatically uses sensible defaults for the primary ActiveRecord database.
+Copy the example database to database.yml and run setup
 ```bash
+$ cp config/database.yml.example config/database.yml
 $ rake db:setup
 ```
 
