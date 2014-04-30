@@ -7,6 +7,7 @@ describe "Entries" do
     fill_in "client_city", with: "Los Angeles"
     select "California", from: "client_state"
     select "Apartments", from: "client_vertical"
+    select "MultiDomainClient", from: "client_domain_type"
 
     fill_in "client_locations_attributes_0_name", with: "Oscar's Trash Can"
     fill_in "client_locations_attributes_0_domain", with: Faker::Internet.domain_name
@@ -32,6 +33,7 @@ describe "Entries" do
       click_link "Entries"
       expect(page).to have_content "Housing Corp"
       expect(page).to have_content "Apartments"
+      expect(page).to have_content "MultiDomainClient"
       expect(page).to have_content "Oscar's Trash Can"
     end
   end

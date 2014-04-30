@@ -33,6 +33,16 @@ describe Client do
       client.state = ""
       client.should_not be_valid
     end
+
+    it "validates presence of domain type" do
+      client.domain_type = ""
+      client.should_not be_valid
+    end
+
+    it "validates domain type is included in DOMAIN_TYPES" do
+      client.domain_type = "SomeOtherClient"
+      client.should_not be_valid
+    end
   end
 
   describe ".accepts_nested_attributes_for :locations" do

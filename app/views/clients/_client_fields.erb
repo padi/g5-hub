@@ -37,6 +37,12 @@
             <%= f.text_field :postal_code, class: "form-control" %>
           </div>
         </div>
+        <div class="form-group">
+          <%= f.label :domain_type do %>
+            Domain Type <span class="note">(Required)</span>
+          <% end %>
+          <%= f.select :domain_type, Client::DOMAIN_TYPES, { prompt: "Select Domain Type" }, class: "form-control", required: true %>
+        </div>
       </div>
       <div class="col-sm-6">
         <div class="form-group">
