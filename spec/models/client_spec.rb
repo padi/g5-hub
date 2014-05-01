@@ -21,14 +21,23 @@ describe Client do
       client.name = ""
       client.should_not be_valid
     end
+
+    it "needs a vertical" do
+      client.vertical = ""
+      client.should_not be_valid
+    end
+
     it "needs a vertical from the preset list" do
       client.vertical = "lol not a real vertical"
       client.should_not be_valid
     end
+
     it "must have a city" do
       client.city = ""
       client.should_not be_valid
+
     end
+
     it "must have a state" do
       client.state = ""
       client.should_not be_valid
