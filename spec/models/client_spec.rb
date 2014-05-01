@@ -35,7 +35,6 @@ describe Client do
     it "must have a city" do
       client.city = ""
       client.should_not be_valid
-
     end
 
     it "must have a state" do
