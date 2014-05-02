@@ -38,7 +38,7 @@ class Client < ActiveRecord::Base
     if url
       begin
         Webhook.post(url)
-      rescue ArgumentError => e
+      rescue RuntimeError, ArgumentError => e
         logger.error e
       end
     end

@@ -60,5 +60,10 @@ describe Client do
       Webhook.stub(:post).and_raise(ArgumentError.new)
       client.send(:post_webhook).should eq true
     end
+    it "swallows runtime errors" do
+      ENV["G5_CONFIGURATOR_WEBHOOK_URL"] = "http://foo.bar"
+      Webhook.stub(:post).and_raise(RuntimeError.new)
+      client.send(:post_webhook).should eq true
+    end
   end
 end
