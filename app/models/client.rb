@@ -5,7 +5,8 @@ class Client < ActiveRecord::Base
   has_many :locations
 
   validates :name, uniqueness: true, presence: true
-  validates :vertical, inclusion: { in: VERTICALS, message: "%{value} is not a valid vertical" }
+  validates :vertical, presence: true,
+                       inclusion: { in: VERTICALS, message: "%{value} is not a valid vertical" }
   validates :city, presence: true
   validates :state, presence: true
   accepts_nested_attributes_for :locations,
