@@ -45,7 +45,6 @@ class ClientsController < ApplicationController
     @client.destroy
     redirect_to clients_url, :notice => "Successfully destroyed client."
   end
-end
 
 private
 
@@ -87,3 +86,4 @@ private
   :onsite_management, :close_park, :pet_friendly, :playground, :recycling_center,
   :swimming_pool, :hot_tub, :storage_available, :tennis_court, :wifi_available,
   :other_community_amenities, :ga_tracking_id, :ga_profile_id
+end
