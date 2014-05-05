@@ -50,7 +50,7 @@ end
 private
 
   def client_params
-    params.require(:client).permit(:name, :street_address_1, :street_address_2,
+    params.fetch(:client, {}).permit(:name, :street_address_1, :street_address_2,
     :city, :state, :postal_code, :tel, :fax, :email, :vertical, :urn,
     locations_attributes: [LOCATION_PARAMS])
   end
