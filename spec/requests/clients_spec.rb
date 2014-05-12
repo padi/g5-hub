@@ -19,6 +19,7 @@ describe "Clients" do
     fill_in "client_locations_attributes_0_state", with: Faker::Address.state
     fill_in "client_locations_attributes_0_postal_code", with: Faker::Address.zip_code
     fill_in "client_locations_attributes_0_phone_number", with: Faker::PhoneNumber.phone_number
+    fill_in "client_domain", with: "http://farmhouseapartments.com"
     click_button "Create Client"
   end
 
@@ -40,6 +41,7 @@ describe "Clients" do
       expect(page).to have_content "MultiDomainClient"
       expect(page).to have_content "123 Sesame St"
       expect(page).to have_content "bigbird@gmail.com"
+      expect(page).to have_content "http://farmhouseapartments.com"
     end
   end
 
@@ -61,6 +63,7 @@ describe "Clients" do
       expect(page).to have_content "MultiDomainClient"
       expect(page).to have_content "123 Sesame St"
       expect(page).to have_content "bigbird@gmail.com"
+      expect(page).to have_content "http://farmhouseapartments.com"
     end
   end
 
