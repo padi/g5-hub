@@ -5,5 +5,6 @@ class LocationDecorator < Draper::Decorator
   :postal_code, :fax, :email, :urn, :corporate, :hours, :twitter_username,
   :facebook_username, :yelp_username, :pinterest_username,
   :foursquare_username, :tumblr_username, :instagram_username, :vimeo_username,
-  :youtube_username, :domain, :phone_number, :ga_tracking_id, :ga_profile_id
+  :youtube_username, :domain, :phone_number, :ga_tracking_id, :ga_profile_id,
+  :neighborhood
 end
