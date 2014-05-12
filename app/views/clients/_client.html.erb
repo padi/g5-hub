@@ -2,7 +2,7 @@
   <h2>
     <%= link_to client.name, client_url(client), class: "p-name u-uid u-url" %>
     <small class="p-g5-vertical"><%= client.vertical %></small> |
-    <small class="p-type"><%= client.domain_type %></small>
+    <small class="p-g5-type"><%= client.domain_type %></small>
   </h2>
   <p class="p-adr h-adr">
     <span class="p-street-address">
@@ -39,6 +39,9 @@
             <span class="u-email"><%= location.email %></span>
           </p>
         </li>
+        <p>
+          <span class="p-g5-corporate"><%= location.corporate %></span>
+        </p>
       <% end %>
     </ul>
   </div>
