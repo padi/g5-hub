@@ -9,6 +9,7 @@ describe "Locations" do
     fill_in "client_city", with: "Los Angeles"
     select "California", from: "client_state"
     select "Apartments", from: "client_vertical"
+    select "MultiDomainClient", from: "client_domain_type"
 
     fill_in "client_locations_attributes_0_name", with: "Oscar's Trash Can"
     fill_in "client_locations_attributes_0_domain", with: Faker::Internet.domain_name
