@@ -4,4 +4,5 @@ Fabricator(:client) do
   city { "Los Angeles" }
   state { "CA" }
   domain_type { Client::DOMAIN_TYPES.sample }
+  domain { Faker::Internet.url }
 end

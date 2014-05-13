@@ -6,7 +6,10 @@ class Client < ActiveRecord::Base
   has_many :locations
 
   validates :name, uniqueness: true, presence: true
-  validates :vertical, inclusion: { in: VERTICALS, message: "%{value} is not a valid vertical" }
+
+  validates :vertical, presence: true,
+                       inclusion: { in: VERTICALS, message: "%{value} is not a valid vertical" }
+
   validates :domain_type, presence: true,
                           inclusion: { in: DOMAIN_TYPES, message: "%{value} is not a valid domain type" }
   validates :city, presence: true

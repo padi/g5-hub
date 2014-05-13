@@ -57,7 +57,8 @@
         <span class="u-email"><%= client.email %></span>
       </p>
       <p class="p-g5-vertical"><%= client.vertical %></p>
-      <p class="p-type"><%= client.domain_type %></p>
+      <p class="u-g5-domain"><%= client.domain %></p>
+      <p class="p-g5-domain-type"><%= client.domain_type %></p>
       <h4>Locations</h4>
       <ul>
         <% client.locations.each do |location| %>
