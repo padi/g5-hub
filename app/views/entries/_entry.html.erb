@@ -82,6 +82,9 @@
               <p><strong>Hours:</strong></p>
               <pre class="p-hours"><%= location.hours %></pre>
             <% end %>
+            <% if location.floor_plans.present? %>
+              <p class="p-g5-floorplans"><%= location.floor_plans %> Apartments</p>
+            <% end %>
           </li>
         <% end %>
       </ul>

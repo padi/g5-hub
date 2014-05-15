@@ -32,6 +32,10 @@
     <pre class="p-hours"><%= @location.hours %></pre>
   <% end %>
 
+  <% if location.floor_plans.present? %>
+    <p class="p-g5-floorplans"><%= location.floor_plans %> Apartments</p>
+  <% end %>
+
   <h4>Google Analytics</h4>
   <dl class="dl-horizontal">
     <dt>Tracking ID</dt>

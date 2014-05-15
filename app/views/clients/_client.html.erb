@@ -40,6 +40,9 @@
             <span class="p-tel p-fax"><%= location.fax %></span>
             <span class="u-email"><%= location.email %></span>
           </p>
+          <% if location.floor_plans.present? %>
+            <p class="p-g5-floorplans"><%= location.floor_plans %> Apartments</p>
+          <% end %>
           <p>
             <span class="p-g5-corporate"><%= location.corporate %></span>
           </p>
