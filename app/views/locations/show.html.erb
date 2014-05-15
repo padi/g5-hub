@@ -27,14 +27,27 @@
     <span class="u-email"><%= @location.email %></span>
   </p>
 
-  <% if @location.hours.present? %>
-    <h4>Hours:</h4>
-    <pre class="p-hours"><%= @location.hours %></pre>
-  <% end %>
+  <p>
+    <strong>Corporate:</strong>
+    <span class="p-g5-corporate"><%= @location.corporate %></span>
+  </p>
 
-  <% if location.floor_plans.present? %>
-    <p class="p-g5-floorplans"><%= location.floor_plans %> Apartments</p>
-  <% end %>
+  <h4>Hours:</h4>
+  <pre class="p-hours"><%= @location.hours %></pre>
+
+  <p>
+    <strong>Floor Plans:</strong>
+    <span class="p-g5-floorplans"><%= @location.floor_plans %> Apartments</span>
+  </p>
+
+  <p>
+    <strong>Landmark 1:</strong>
+    <span class="p-g5-landmark-1"><%= @location.landmark_1_name %></span>
+  </p>
+  <p>
+    <strong>Landmark 2:</strong>
+    <span class="p-g5-landmark-2"><%= @location.landmark_2_name %></span>
+  </p>
 
   <h4>Google Analytics</h4>
   <dl class="dl-horizontal">

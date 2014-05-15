@@ -6,5 +6,6 @@ class LocationDecorator < Draper::Decorator
   :facebook_username, :yelp_username, :pinterest_username,
   :foursquare_username, :tumblr_username, :instagram_username, :vimeo_username,
   :youtube_username, :domain, :phone_number, :ga_tracking_id, :ga_profile_id,
-  :neighborhood
+  :neighborhood, :floor_plans, :landmark_1_type, :landmark_1_name, :landmark_2_type,
+  :landmark_2_name
 end

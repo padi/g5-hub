@@ -60,44 +60,24 @@
 
     <div class="col-sm-6">
       <h5>What are two landmarks near your location?</h5>
-      <div class="max-checkboxes" data-max-checks="2">
-        <div class="form-group checkbox">
-          <%= location.label :hospital_landmark do %>
-            <%= location.check_box :hospital_landmark %>
-            Hospital
-          <% end %>
-        </div>
-        <div class="form-group checkbox">
-          <%= location.label :lake_landmark do %>
-            <%= location.check_box :lake_landmark %>
-            Lake
-          <% end %>
-        </div>
-        <div class="form-group checkbox">
-          <%= location.label :recreation_landmark do %>
-            <%= location.check_box :recreation_landmark %>
-            Recreation Area
-          <% end %>
-        </div>
-        <div class="form-group checkbox">
-          <%= location.label :military_landmark do %>
-            <%= location.check_box :military_landmark %>
-            Military Base
-          <% end %>
-        </div>
-        <div class="form-group checkbox">
-          <%= location.label :employer_landmark do %>
-            <%= location.check_box :employer_landmark %>
-            Employer
-          <% end %>
-        </div>
-        <div class="form-group checkbox">
-          <%= location.label :university_landmark do %>
-            <%= location.check_box :university_landmark %>
-            University
-          <% end %>
-        </div>
+      <div class="form-group">
+        <%= location.label :landmark_1_type, 'First landmark type' %>
+        <%= location.select :landmark_1_type, ['Hospital', 'Lake', 'Recreation Area', 'Military Base', 'Employer', 'University'], {include_blank: true}, class: 'form-control' %>
       </div>
+      <div class="form-group">
+        <%= location.label :landmark_1_name, 'Name of first landmark' %>
+        <%= location.text_field :landmark_1_name, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= location.label :landmark_2_type, 'Second landmark type' %>
+        <%= location.select :landmark_2_type, ['Hospital', 'Lake', 'Recreation Area', 'Military Base', 'Employer', 'University'], {include_blank: true}, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= location.label :landmark_2_name, 'Name of second landmark' %>
+        <%= location.text_field :landmark_2_name, class: 'form-control' %>
+      </div>
+
 
       <h5>Choose three terms that best describe your property</h5>
       <div class="max-checkboxes" data-max-checks="3">

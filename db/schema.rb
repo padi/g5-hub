@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140512194456) do
+ActiveRecord::Schema.define(version: 20140515164224) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -110,12 +110,6 @@ ActiveRecord::Schema.define(version: 20140512194456) do
     t.boolean  "secondary_townhomes",       default: false
     t.boolean  "secondary_apartments",      default: false
     t.string   "floor_plans"
-    t.boolean  "university_landmark",       default: false
-    t.boolean  "employer_landmark",         default: false
-    t.boolean  "military_landmark",         default: false
-    t.boolean  "recreation_landmark",       default: false
-    t.boolean  "lake_landmark",             default: false
-    t.boolean  "hospital_landmark",         default: false
     t.boolean  "furnished_property",        default: false
     t.boolean  "gated_property",            default: false
     t.boolean  "affordable_property",       default: false
@@ -174,6 +168,10 @@ ActiveRecord::Schema.define(version: 20140512194456) do
     t.string   "primary_offering_other"
     t.string   "ga_tracking_id"
     t.string   "ga_profile_id"
+    t.string   "landmark_1_type"
+    t.string   "landmark_1_name"
+    t.string   "landmark_2_type"
+    t.string   "landmark_2_name"
   end
 
 end
