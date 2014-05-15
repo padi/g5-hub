@@ -61,7 +61,7 @@
     <div class="col-sm-6">
       <h5>What are two landmarks near your location?</h5>
       <div class="form-group">
-        <%= location.label :landmark_1_type, 'First landmark type' %>
+        <%= location.label :landmark_1_type, 'First landmark near your location' %>
         <%= location.select :landmark_1_type, ['Hospital', 'Lake', 'Recreation Area', 'Military Base', 'Employer', 'University'], {include_blank: true}, class: 'form-control' %>
       </div>
       <div class="form-group">
@@ -70,7 +70,7 @@
       </div>
 
       <div class="form-group">
-        <%= location.label :landmark_2_type, 'Second landmark type' %>
+        <%= location.label :landmark_2_type, 'Second landmark near your location' %>
         <%= location.select :landmark_2_type, ['Hospital', 'Lake', 'Recreation Area', 'Military Base', 'Employer', 'University'], {include_blank: true}, class: 'form-control' %>
       </div>
       <div class="form-group">
@@ -80,32 +80,19 @@
 
 
       <h5>Choose three terms that best describe your property</h5>
-      <div class="max-checkboxes" data-max-checks="3">
-        <div class="form-group checkbox">
-          <%= location.label :luxury_property do %>
-            <%= location.check_box :luxury_property %>
-            Luxury
-          <% end %>
-        </div>
-        <div class="form-group checkbox">
-          <%= location.label :affordable_property do %>
-            <%= location.check_box :affordable_property %>
-            Affordable
-          <% end %>
-        </div>
-        <div class="form-group checkbox">
-          <%= location.label :gated_property do %>
-            <%= location.check_box :gated_property %>
-            Gated
-          <% end %>
-        </div>
-        <div class="form-group checkbox">
-          <%= location.label :furnished_property do %>
-            <%= location.check_box :furnished_property %>
-            Furnished
-          <% end %>
-        </div>
+      <div class="form-group">
+        <%= location.label :property_feature_1, 'First property feature' %>
+        <%= location.select :property_feature_1, ['Luxury', 'Affordable', 'Gated', 'Furnished'], {include_blank: true}, class: 'form-control' %>
       </div>
+      <div class="form-group">
+        <%= location.label :property_feature_2, 'Second property feature' %>
+        <%= location.select :property_feature_2, ['Luxury', 'Affordable', 'Gated', 'Furnished'], {include_blank: true}, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= location.label :property_feature_3, 'Third property feature' %>
+        <%= location.select :property_feature_3, ['Luxury', 'Affordable', 'Gated', 'Furnished'], {include_blank: true}, class: 'form-control' %>
+      </div>
+
 
       <h5>What is the architectural style of the building, if any?</h5>
       <div class="form-group checkbox">
@@ -226,6 +213,11 @@
               Private Patio
             <% end %>
           </div>
+
+        </div> <!-- end .col-sm-6 -->
+
+        <div class="col-sm-6">
+
           <div class="form-group checkbox">
             <%= location.label :refrigerator do %>
               <%= location.check_box :refrigerator %>
@@ -238,10 +230,6 @@
               Stainless Steel Appliances
             <% end %>
           </div>
-
-        </div> <!-- end .col-sm-6 -->
-
-        <div class="col-sm-6">
 
           <div class="form-group checkbox">
             <%= location.label :smoke_free do %>

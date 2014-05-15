@@ -47,3 +47,11 @@ label .note {
   bottom: 0;
   right: 0;
 }
+
+form h5 {
+  margin-top: 2em;
+  text-transform: uppercase;
+  &:first-child {
+    margin-top: 0;
+  }
+}

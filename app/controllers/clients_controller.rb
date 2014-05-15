@@ -71,8 +71,7 @@ private
   :packing_moving_supplies, :boxes_locks, :tenant_insurance, :truck_rentals,
   :wide_driveways, :wine_storage, :other_features, :specific_demographic,
   :primary_offering, :secondary_other, :secondary_condo, :secondary_townhomes,
-  :secondary_apartments, :floor_plans, :furnished_property, :gated_property,
-  :affordable_property, :luxury_property, :nearby_schools, :highrise_structure,
+  :secondary_apartments, :floor_plans, :nearby_schools, :highrise_structure,
   :garden_structure, :townhome_structure, :modern_structure, :nearby_employers,
   :dogs_allowed, :cats_allowed, :accessibility, :air_conditioned, :cable_included,
   :ceiling_fans, :custom_cabinetry, :dishwasher, :energy_efficient, :fireplace,
@@ -85,5 +84,5 @@ private
   :playground, :recycling_center, :swimming_pool, :hot_tub, :storage_available,
   :tennis_court, :wifi_available, :other_community_amenities, :ga_tracking_id,
   :ga_profile_id, :landmark_1_type, :landmark_1_name, :landmark_2_type,
-  :landmark_2_name
+  :landmark_2_name, :property_feature_1, :property_feature_2, :property_feature_3
 end
