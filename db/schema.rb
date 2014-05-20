@@ -110,7 +110,6 @@ ActiveRecord::Schema.define(version: 20140520180406) do
     t.boolean  "secondary_townhomes",       default: false
     t.boolean  "secondary_apartments",      default: false
     t.string   "floor_plans"
-    t.boolean  "furnished_property",        default: false
     t.string   "nearby_schools"
     t.boolean  "highrise_structure",        default: false
     t.boolean  "garden_structure",          default: false
