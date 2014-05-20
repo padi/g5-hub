@@ -83,12 +83,12 @@ describe "Locations" do
         visit clients_path
         click_link "New Client"
         select "Apartments", from: "client_vertical"
-        expect(page).to have_content('Amenities')
-        expect(page).to_not have_content('Services and Features')
+        expect(page).to have_selector('#apartments-fields', visible: true)
+        expect(page).to_not have_selector('#self-storage-fields', visible: true)
 
         select "Self-Storage", from: "client_vertical"
-        expect(page).to_not have_content('Amenities')
-        expect(page).to have_content('Services and Features')
+        expect(page).to have_selector('#self-storage-fields', visible: true)
+        expect(page).to_not have_selector('#apartments-fields', visible: true)
       end
     end
   end
