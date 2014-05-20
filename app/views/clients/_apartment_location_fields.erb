@@ -135,6 +135,14 @@
       <div class="row">
         <div class="col-sm-6">
 
+          <div class="form-group">
+            <%= location.label :apartment_amenity_1, 'Primary Apartment Amenity' %>
+            <%= location.text_field :apartment_amenity_1, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= location.label :apartment_amenity_2, 'Secondary Apartment Amenity' %>
+            <%= location.text_field :apartment_amenity_2, class: 'form-control' %>
+          </div>
           <div class="form-group checkbox">
             <%= location.label :accessibility do %>
               <%= location.check_box :accessibility %>
@@ -201,6 +209,11 @@
               High/Vaulted/Cathedral Ceilings
             <% end %>
           </div>
+
+        </div> <!-- end .col-sm-6 -->
+
+        <div class="col-sm-6">
+
           <div class="form-group checkbox">
             <%= location.label :private_balcony do %>
               <%= location.check_box :private_balcony %>
@@ -213,11 +226,6 @@
               Private Patio
             <% end %>
           </div>
-
-        </div> <!-- end .col-sm-6 -->
-
-        <div class="col-sm-6">
-
           <div class="form-group checkbox">
             <%= location.label :refrigerator do %>
               <%= location.check_box :refrigerator %>
@@ -277,6 +285,14 @@
       <div class="row">
         <div class="col-sm-6">
 
+          <div class="form-group">
+            <%= location.label :community_amenity_1, 'Primary Community Amenity' %>
+            <%= location.text_field :community_amenity_1, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= location.label :community_amenity_2, 'Secondary Community Amenity' %>
+            <%= location.text_field :community_amenity_2, class: 'form-control' %>
+          </div>
           <div class="form-group checkbox">
             <%= location.label :carport_parking do %>
               <%= location.check_box :carport_parking %>
@@ -343,6 +359,11 @@
               Online Rental Payments
             <% end %>
           </div>
+
+        </div> <!-- end .col-sm-6 -->
+
+        <div class="col-sm-6">
+
           <div class="form-group checkbox">
             <%= location.label :onsite_management do %>
               <%= location.check_box :onsite_management %>
@@ -355,11 +376,6 @@
               Close to Park
             <% end %>
           </div>
-
-
-        </div> <!-- end .col-sm-6 -->
-
-        <div class="col-sm-6">
           <div class="form-group checkbox">
             <%= location.label :pet_friendly do %>
               <%= location.check_box :pet_friendly %>
