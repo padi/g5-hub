@@ -8,11 +8,11 @@
     <div class="col-sm-6">
       <div class="form-group">
         <%= location.label :specific_demographic, 'Is your location speciafically designed for a certain demographic?' %>
-        <%= location.select :specific_demographic, Client::DEMOGRAPHIC_OPTIONS, {include_blank: true}, class: 'form-control' %>
+        <%= location.select :specific_demographic, Location::DEMOGRAPHIC_OPTIONS, {include_blank: true}, class: 'form-control' %>
       </div>
       <div class="form-group">
         <%= location.label :primary_offering, 'What the main offering of this location?' %>
-        <%= location.select :primary_offering, ['Apartments', 'Townhomes', 'Condos', 'Other'], {include_blank: true}, class: 'form-control' %>
+        <%= location.select :primary_offering, Location::PRIMARY_OFFERINGS, {include_blank: true}, class: 'form-control' %>
       </div>
       <div class="form-group">
         <%= location.label :primary_offering_other, 'If Other, what is the primary offering?' %>
@@ -62,7 +62,7 @@
       <h5>What are two landmarks near your location?</h5>
       <div class="form-group">
         <%= location.label :landmark_1_type, 'First landmark near your location' %>
-        <%= location.select :landmark_1_type, ['Hospital', 'Lake', 'Recreation Area', 'Military Base', 'Employer', 'University'], {include_blank: true}, class: 'form-control' %>
+        <%= location.select :landmark_1_type, Location::LANDMARK_TYPES, {include_blank: true}, class: 'form-control' %>
       </div>
       <div class="form-group">
         <%= location.label :landmark_1_name, 'Name of first landmark' %>
@@ -71,7 +71,7 @@
 
       <div class="form-group">
         <%= location.label :landmark_2_type, 'Second landmark near your location' %>
-        <%= location.select :landmark_2_type, ['Hospital', 'Lake', 'Recreation Area', 'Military Base', 'Employer', 'University'], {include_blank: true}, class: 'form-control' %>
+        <%= location.select :landmark_2_type, Location::LANDMARK_TYPES, {include_blank: true}, class: 'form-control' %>
       </div>
       <div class="form-group">
         <%= location.label :landmark_2_name, 'Name of second landmark' %>
@@ -82,15 +82,15 @@
       <h5>Choose three terms that best describe your property</h5>
       <div class="form-group">
         <%= location.label :property_feature_1, 'First property feature' %>
-        <%= location.select :property_feature_1, ['Luxury', 'Affordable', 'Gated', 'Furnished'], {include_blank: true}, class: 'form-control' %>
+        <%= location.select :property_feature_1, Location::PROPERTY_FEATURES, {include_blank: true}, class: 'form-control' %>
       </div>
       <div class="form-group">
         <%= location.label :property_feature_2, 'Second property feature' %>
-        <%= location.select :property_feature_2, ['Luxury', 'Affordable', 'Gated', 'Furnished'], {include_blank: true}, class: 'form-control' %>
+        <%= location.select :property_feature_2, Location::PROPERTY_FEATURES, {include_blank: true}, class: 'form-control' %>
       </div>
       <div class="form-group">
         <%= location.label :property_feature_3, 'Third property feature' %>
-        <%= location.select :property_feature_3, ['Luxury', 'Affordable', 'Gated', 'Furnished'], {include_blank: true}, class: 'form-control' %>
+        <%= location.select :property_feature_3, Location::PROPERTY_FEATURES, {include_blank: true}, class: 'form-control' %>
       </div>
 
 
@@ -265,11 +265,11 @@
           </div>
           <div class="form-group">
             <%= location.label :style_design, 'What is the style/design of the building?' %>
-            <%= location.select :style_design, ['High Rise', 'Modern', 'Victorian', 'Contemporary', 'Ranch', 'Garden', 'Resort'], {include_blank: true}, class: 'form-control' %>
+            <%= location.select :style_design, Location::STYLE_DESIGNS, {include_blank: true}, class: 'form-control' %>
           </div>
           <div class="form-group">
             <%= location.label :style_cost, 'How would you describe the cost of living here?' %>
-            <%= location.select :style_cost, ['Luxury', 'Affordable', 'Low Income'], {include_blank: true}, class: 'form-control' %>
+            <%= location.select :style_cost, Location::STYLE_COSTS, {include_blank: true}, class: 'form-control' %>
           </div>
           <div class="form-group">
             <%= location.label :other_amenities %>
