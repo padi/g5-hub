@@ -27,10 +27,44 @@
     <span class="u-email"><%= @location.email %></span>
   </p>
 
-  <% if @location.hours.present? %>
-    <h4>Hours:</h4>
-    <pre class="p-hours"><%= @location.hours %></pre>
-  <% end %>
+  <p>
+    <strong>Corporate:</strong>
+    <br />
+    <span class="p-g5-corporate"><%= @location.corporate %></span>
+  </p>
+  <p>
+    <strong>Hours:</strong>
+    <br />
+    <pre class="p-g5-hour"><%= @location.hours %></pre>
+  </p>
+  <p>
+    <strong>Floor Plans:</strong>
+    <br />
+    <span class="p-g5-floorplan"><%= @location.floor_plans %> Apartments</span>
+  </p>
+  <p>
+    <strong>Landmarks:</strong>
+    <br />
+    <span class="p-g5-landmark-1"><%= @location.landmark_1_name %></span>
+    <br />
+    <span class="p-g5-landmark-2"><%= @location.landmark_2_name %></span>
+  </p>
+  <p>
+    <strong>Property Features or Qualifiers:</strong>
+    <br />
+    <span class="p-g5-aparment-feature-1"><%= @location.property_feature_1 %></span>
+    <br />
+    <span class="p-g5-aparment-feature-2"><%= @location.property_feature_2 %></span>
+    <br />
+    <span class="p-g5-aparment-feature-3"><%= @location.property_feature_3 %></span>
+  </p>
+  <p>
+    <strong>Primary Amenities:</strong>
+    <br />
+    <span class="p-g5-aparment-amenity-1"><%= @location.apartment_amenity_1 %></span>
+    <br />
+    <span class="p-g5-community-amenity-1"><%= @location.community_amenity_1 %></span>
+  </p>
 
   <h4>Google Analytics</h4>
   <dl class="dl-horizontal">

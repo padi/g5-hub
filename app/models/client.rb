@@ -1,7 +1,6 @@
 class Client < ActiveRecord::Base
   VERTICALS = %w(Self-Storage Apartments Assisted-Living)
   DOMAIN_TYPES = %w(SingleDomainClient MultiDomainClient)
-  DEMOGRAPHIC_OPTIONS = ['Senior Apartments', 'Student Housing']
 
   has_many :locations
 
