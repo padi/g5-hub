@@ -13,9 +13,10 @@ describe "Entries" do
     fill_in "client_locations_attributes_0_domain", with: Faker::Internet.domain_name
     fill_in "client_locations_attributes_0_street_address_1", with: Faker::Address.street_address
     fill_in "client_locations_attributes_0_city", with: Faker::Address.city
-    fill_in "client_locations_attributes_0_state", with: Faker::Address.state
     fill_in "client_locations_attributes_0_postal_code", with: Faker::Address.zip_code
     fill_in "client_locations_attributes_0_phone_number", with: Faker::PhoneNumber.phone_number
+
+    select "California", from: "client_locations_attributes_0_state"
 
     click_button "Create Client"
   end
