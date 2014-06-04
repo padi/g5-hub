@@ -67,6 +67,14 @@ describe "Clients" do
       expect(page).to have_content "bigbird@gmail.com"
       expect(page).to have_content "http://farmhouseapartments.com"
     end
+
+    describe "microformats2 parsing" do
+      let(:document) { Microformats2.parse(page.source) }
+
+      it "generates a valid Microformats2 document" do
+        expect(document.cards.length).to eq(1)
+      end
+    end
   end
 
   describe "#new" do
