@@ -1,4 +1,6 @@
 class Client < ActiveRecord::Base
+  RECORD_TYPE = "g5-c"
+  CMS_RECORD_TYPE = "g5-cms"
   VERTICALS = %w(Self-Storage Apartments Assisted-Living)
   DOMAIN_TYPES = %w(SingleDomainClient MultiDomainClient)
 
@@ -20,10 +22,6 @@ class Client < ActiveRecord::Base
   after_save :post_configurator_webhook, :post_cms_webhook
   after_create :set_urn
 
-  def record_type
-    "g5-c"
-  end
-
   def hashed_id
     "#{self.created_at.to_i}#{self.id}".to_i.to_s(36)
   end
@@ -35,7 +33,7 @@ class Client < ActiveRecord::Base
   private
 
   def set_urn
-    update_attributes(urn: "#{record_type}-#{hashed_id}-#{name.parameterize}")
+    update_attributes(urn: "#{RECORD_TYPE}-#{hashed_id}-#{name.parameterize}")
   end
 
   def post_configurator_webhook
@@ -61,6 +59,6 @@ class Client < ActiveRecord::Base
   end
 
   def client_cms_domain
-    "https://#{urn.gsub(record_type, 'g5-cms')}.herokuapp.com"
+    "https://#{urn.gsub(RECORD_TYPE, CMS_RECORD_TYPE)}.herokuapp.com"
   end
 end
