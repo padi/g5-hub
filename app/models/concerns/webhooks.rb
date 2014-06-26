@@ -1,6 +1,10 @@
 module Webhooks
   extend ActiveSupport::Concern
 
+  CMS_RECORD_TYPE  = "g5-cms"
+  CPAS_RECORD_TYPE = "g5-cpas"
+  CPNS_RECORD_TYPE = "g5-cpns"
+
   included do
     after_save :post_configurator_webhook
     after_save :post_client_update_webhooks
@@ -14,22 +18,10 @@ private
 
   def post_client_update_webhooks
     if id_changed?
-      post(cms_path)
-      post(cpns_path)
-      post(cpas_path)
+      post("#{client_domain_for(CMS_RECORD_TYPE)}#{ENV["CMS_UPDATE_PATH"]}")
+      post("#{client_domain_for(CPAS_RECORD_TYPE)}#{ENV["CPAS_UPDATE_PATH"]}")
+      post("#{client_domain_for(CPNS_RECORD_TYPE)}#{ENV["CPNS_UPDATE_PATH"]}")
     end
-  end
-
-  def cms_path
-    "#{client_domain_for(Client::CMS_RECORD_TYPE)}#{ENV["CMS_UPDATE_PATH"]}"
-  end
-
-  def cpas_path
-    "#{client_domain_for(Client::CPAS_RECORD_TYPE)}#{ENV["CPAS_UPDATE_PATH"]}"
-  end
-
-  def cpns_path
-    "#{client_domain_for(Client::CPNS_RECORD_TYPE)}#{ENV["CPNS_UPDATE_PATH"]}"
   end
 
   def client_domain_for(type)
