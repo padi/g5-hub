@@ -17,8 +17,6 @@ class Client < ActiveRecord::Base
     allow_destroy: true,
     reject_if: lambda { |attrs| attrs[:name].blank? }
 
-  after_save   :post_configurator_webhook
-  after_update :post_client_update_webhooks
   after_create :set_urn
 
   def record_type
@@ -37,13 +35,5 @@ class Client < ActiveRecord::Base
 
   def set_urn
     update_attributes(urn: "#{RECORD_TYPE}-#{hashed_id}-#{name.parameterize}")
-  end
-
-  def post_configurator_webhook
-    WebhookPoster.new(self).post_configurator_webhook
-  end
-
-  def post_client_update_webhooks
-    WebhookPoster.new(self).post_client_update_webhooks
   end
 end

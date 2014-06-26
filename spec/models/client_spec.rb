@@ -62,36 +62,4 @@ describe Client do
       expect { client.update_attributes(attributes) }.to change(Location, :count).by(0)
     end
   end
-
-  describe "callbacks" do
-    let(:webhook_poster) do
-      double(post_configurator_webhook: nil, post_client_update_webhooks: nil)
-    end
-
-    before { WebhookPoster.stub(new: webhook_poster) }
-
-    describe "#post_configurator_webhook" do
-      after { client.send(:post_configurator_webhook) }
-
-      it "istantiates WebhookPoster" do
-        WebhookPoster.should_receive(:new).with(client)
-      end
-
-      it "calls post_configurator_webhook on WebhookPoster" do
-        webhook_poster.should_receive(:post_configurator_webhook)
-      end
-    end
-
-    describe "#post_client_update_webhooks" do
-      after { client.send(:post_client_update_webhooks) }
-
-      it "istantiates WebhookPoster" do
-        WebhookPoster.should_receive(:new).with(client)
-      end
-
-      it "calls post_configurator_webhook on WebhookPoster" do
-        webhook_poster.should_receive(:post_client_update_webhooks)
-      end
-    end
-  end
 end
