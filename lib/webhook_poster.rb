@@ -35,6 +35,6 @@ private
   end
 
   def converted_urn(type)
-    @client.urn[0...HEROKU_APP_NAME_MAX_LENGTH].gsub(Client::RECORD_TYPE, type)
+    @client.urn.gsub(Client::RECORD_TYPE, type)[0...HEROKU_APP_NAME_MAX_LENGTH]
   end
 end
