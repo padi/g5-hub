@@ -11,7 +11,6 @@ describe Client do
     end
 
     it { client.hashed_id.should eq "gwvrsozf" }
-    it { client.record_type.should eq "g5-c"}
     it { client.urn.should eq "g5-c-gwvrsozf-#{client.name.parameterize}"}
     it { client.to_param.should eq client.urn }
   end

@@ -6,6 +6,7 @@ class Location < ActiveRecord::Base
   PROPERTY_FEATURES = ['Luxury', 'Affordable', 'Gated', 'Furnished']
   STYLE_DESIGNS = ['High Rise', 'Modern', 'Victorian', 'Contemporary', 'Ranch', 'Garden', 'Resort']
   STYLE_COSTS = ['Luxury', 'Affordable', 'Low Income']
+  RECORD_TYPE = "g5-cl"
 
   belongs_to :client
 
@@ -32,10 +33,6 @@ class Location < ActiveRecord::Base
   scope :corporate, -> { where(corporate: true) }
   scope :not_corporate, -> { where(corporate: false) }
 
-  def record_type
-    "g5-cl"
-  end
-
   def hashed_id
     "#{self.created_at.to_i}#{self.id}".to_i.to_s(36)
   end
@@ -47,7 +44,7 @@ class Location < ActiveRecord::Base
   private
 
   def set_urn
-    update_attributes(urn: "#{record_type}-#{hashed_id}-#{name.parameterize}")
+    update_attributes(urn: "#{RECORD_TYPE}-#{hashed_id}-#{name.parameterize}")
   end
 
   def not_corporate_by_default
