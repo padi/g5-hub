@@ -1,4 +1,5 @@
 class Client < ActiveRecord::Base
+
   RECORD_TYPE = "g5-c"
   CMS_RECORD_TYPE = "g5-cms"
   VERTICALS = %w(Self-Storage Apartments Assisted-Living)

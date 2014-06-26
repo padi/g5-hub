@@ -3,6 +3,5 @@ class ClientDecorator < Draper::Decorator
 
   delegate_all  
   decorates_association :locations, with: LocationDecorator
-
 end
 
