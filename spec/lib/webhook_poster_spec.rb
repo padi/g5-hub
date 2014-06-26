@@ -45,15 +45,16 @@ describe WebhookPoster do
 
   describe "#post_client_update_webhooks" do
     let(:client) { Fabricate(:client)}
+    let(:client_urn) { client.urn[0...WebhookPoster::HEROKU_APP_NAME_MAX_LENGTH] }
 
     let(:cms_domain) do
-      client.urn.gsub(Client::RECORD_TYPE, WebhookPoster::CMS_RECORD_TYPE)
+      client_urn.gsub(Client::RECORD_TYPE, WebhookPoster::CMS_RECORD_TYPE)
     end
     let(:cpas_domain) do
-      client.urn.gsub(Client::RECORD_TYPE, WebhookPoster::CPNS_RECORD_TYPE)
+      client_urn.gsub(Client::RECORD_TYPE, WebhookPoster::CPNS_RECORD_TYPE)
     end
     let(:cpns_domain) do
-      client.urn.gsub(Client::RECORD_TYPE, WebhookPoster::CPAS_RECORD_TYPE)
+      client_urn.gsub(Client::RECORD_TYPE, WebhookPoster::CPAS_RECORD_TYPE)
     end
 
     subject { webhook_poster.post_client_update_webhooks }

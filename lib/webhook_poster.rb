@@ -1,4 +1,5 @@
 class WebhookPoster
+  HEROKU_APP_NAME_MAX_LENGTH = 30
   CMS_RECORD_TYPE  = "g5-cms"
   CPAS_RECORD_TYPE = "g5-cpas"
   CPNS_RECORD_TYPE = "g5-cpns"
@@ -22,7 +23,7 @@ class WebhookPoster
 private
 
   def domain_for(type)
-    "https://#{@client.urn.gsub(Client::RECORD_TYPE, type)}.herokuapp.com"
+    "https://#{converted_urn(type)}.herokuapp.com"
   end
 
   def post(url, params={})
@@ -31,5 +32,9 @@ private
     rescue RuntimeError, ArgumentError => e
       @client.logger.error e
     end
+  end
+
+  def converted_urn(type)
+    @client.urn[0...HEROKU_APP_NAME_MAX_LENGTH].gsub(Client::RECORD_TYPE, type)
   end
 end
