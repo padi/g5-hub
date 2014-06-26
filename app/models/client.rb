@@ -3,6 +3,8 @@ class Client < ActiveRecord::Base
 
   RECORD_TYPE = "g5-c"
   CMS_RECORD_TYPE = "g5-cms"
+  CPAS_RECORD_TYPE = "g5-cpas"
+  CPNS_RECORD_TYPE = "g5-cpns"
   VERTICALS = %w(Self-Storage Apartments Assisted-Living)
   DOMAIN_TYPES = %w(SingleDomainClient MultiDomainClient)
 

@@ -2,21 +2,38 @@ module Webhooks
   extend ActiveSupport::Concern
 
   included do
-    after_save :post_configurator_webhook, :post_cms_webhook
+    after_save :post_configurator_webhook
+    after_save :post_client_update_webhooks
   end
+
+private
 
   def post_configurator_webhook
-    url = ENV["G5_CONFIGURATOR_WEBHOOK_URL"]
-    post(url) if url
+    post(url) if url = ENV["G5_CONFIGURATOR_WEBHOOK_URL"]
   end
 
-  def post_cms_webhook
-    return if id_changed? #do nothing if this is a new record
-    post("#{client_cms_domain}#{ENV["CMS_UPDATE_PATH"]}")
+  def post_client_update_webhooks
+    if id_changed?
+      post(cms_path)
+      post(cpns_path)
+      post(cpas_path)
+    end
   end
 
-  def client_cms_domain
-    "https://#{urn.gsub(Client::RECORD_TYPE, Client::CMS_RECORD_TYPE)}.herokuapp.com"
+  def cms_path
+    "#{client_domain_for(Client::CMS_RECORD_TYPE)}#{ENV["CMS_UPDATE_PATH"]}"
+  end
+
+  def cpas_path
+    "#{client_domain_for(Client::CPAS_RECORD_TYPE)}#{ENV["CPAS_UPDATE_PATH"]}"
+  end
+
+  def cpns_path
+    "#{client_domain_for(Client::CPNS_RECORD_TYPE)}#{ENV["CPNS_UPDATE_PATH"]}"
+  end
+
+  def client_domain_for(type)
+    "https://#{urn.gsub(Client::RECORD_TYPE, type)}.herokuapp.com"
   end
 
   def post(url)
