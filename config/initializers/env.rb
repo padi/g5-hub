@@ -9,3 +9,15 @@ ENV["CMS_UPDATE_PATH"] ||= case Rails.env
   when "development" then  "/api/v1/foo"
   when "test"        then  "/api/v1/foo"
 end
+
+ENV["CPNS_UPDATE_PATH"] ||= case Rails.env
+  when "production"  then  "/update"
+  when "development" then  "/foo"
+  when "test"        then  "/foo"
+end
+
+ENV["CPAS_UPDATE_PATH"] ||= case Rails.env
+  when "production"  then  "/update"
+  when "development" then  "/foo"
+  when "test"        then  "/foo"
+end
