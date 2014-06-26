@@ -1,6 +1,4 @@
 class Client < ActiveRecord::Base
-  include Webhooks
-
   RECORD_TYPE = "g5-c"
   VERTICALS = %w(Self-Storage Apartments Assisted-Living)
   DOMAIN_TYPES = %w(SingleDomainClient MultiDomainClient)
@@ -19,7 +17,8 @@ class Client < ActiveRecord::Base
     allow_destroy: true,
     reject_if: lambda { |attrs| attrs[:name].blank? }
 
-  after_create :set_urn
+  after_update :post_client_update_webhooks
+  after_create :set_urn, :post_configurator_webhook
 
   def record_type
     RECORD_TYPE
@@ -37,5 +36,13 @@ class Client < ActiveRecord::Base
 
   def set_urn
     update_attributes(urn: "#{RECORD_TYPE}-#{hashed_id}-#{name.parameterize}")
+  end
+
+  def post_configurator_webhook
+    WebhookPoster.new(self).post_configurator_webhook
+  end
+
+  def post_client_update_webhooks
+    WebhookPoster.new(self).post_client_update_webhooks
   end
 end

@@ -62,48 +62,35 @@ describe Client do
       expect { client.update_attributes(attributes) }.to change(Location, :count).by(0)
     end
   end
-  describe "#post_configurator_webhook" do
-    it "returns nil if no url" do
-      ENV["G5_CONFIGURATOR_WEBHOOK_URL"] = nil
-      client.send(:post_configurator_webhook).should eq nil
-    end
-    it "posts webhook if url" do
-      ENV["G5_CONFIGURATOR_WEBHOOK_URL"] = "http://foo.bar"
-      Webhook.stub(:post).and_return("OK")
-      client.send(:post_configurator_webhook).should eq "OK"
-    end
-    it "swallows argument errors" do
-      ENV["G5_CONFIGURATOR_WEBHOOK_URL"] = "http://foo.bar"
-      Webhook.stub(:post).and_raise(ArgumentError.new)
-      client.send(:post_configurator_webhook).should eq true
-    end
-    it "swallows runtime errors" do
-      ENV["G5_CONFIGURATOR_WEBHOOK_URL"] = "http://foo.bar"
-      Webhook.stub(:post).and_raise(RuntimeError.new)
-      client.send(:post_configurator_webhook).should eq true
-    end
-  end
 
-  describe "#post_client_update_webhooks" do
-    before {  Webhook.stub(:post).and_return("OK") }
-
-    it "posts client update webhooks" do
-      client.send(:post_client_update_webhooks).should eq "OK"
+  describe "callbacks" do
+    let(:webhook_poster) do
+      double(post_configurator_webhook: nil, post_client_update_webhooks: nil)
     end
 
-    context "argument errors" do
-      before { Webhook.stub(:post).and_raise(ArgumentError.new) }
+    before { WebhookPoster.stub(new: webhook_poster) }
 
-      it "swallows them" do
-        client.send(:post_client_update_webhooks).should eq true
+    describe "#post_configurator_webhook" do
+      after { client.send(:post_configurator_webhook) }
+
+      it "istantiates WebhookPoster" do
+        WebhookPoster.should_receive(:new).with(client)
+      end
+
+      it "calls post_configurator_webhook on WebhookPoster" do
+        webhook_poster.should_receive(:post_configurator_webhook)
       end
     end
 
-    context "runtime errors" do
-      before { Webhook.stub(:post).and_raise(RuntimeError.new) }
+    describe "#post_client_update_webhooks" do
+      after { client.send(:post_client_update_webhooks) }
 
-      it "swallows them" do
-        client.send(:post_client_update_webhooks).should eq true
+      it "istantiates WebhookPoster" do
+        WebhookPoster.should_receive(:new).with(client)
+      end
+
+      it "calls post_configurator_webhook on WebhookPoster" do
+        webhook_poster.should_receive(:post_client_update_webhooks)
       end
     end
   end
