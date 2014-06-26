@@ -11,7 +11,6 @@ describe Location do
     end
 
     it { location.hashed_id.should eq "gwvrsozf" }
-    it { location.record_type.should eq "g5-cl"}
     it { location.urn.should eq "g5-cl-gwvrsozf-#{location.name.parameterize}"}
     it { location.to_param.should eq location.urn }
   end

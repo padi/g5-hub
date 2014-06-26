@@ -14,12 +14,5 @@ module HentryableDates
   def updated_at_human_readable
     model.updated_at.to_s(:human)
   end
-
-  def urn
-    "#{record_type}-#{model.id}-#{model.name.parameterize}"
-  end
-
-  def to_param
-    urn
-  end
 end
+
