@@ -21,8 +21,8 @@ private
   def post_client_update_webhooks
     unless id_changed?
       post("#{client_domain_for(CMS_RECORD_TYPE)}#{ENV["CMS_UPDATE_PATH"]}")
-      post("#{client_domain_for(CPAS_RECORD_TYPE)}#{ENV["CPAS_UPDATE_PATH"]}")
-      post("#{client_domain_for(CPNS_RECORD_TYPE)}#{ENV["CPNS_UPDATE_PATH"]}")
+      post("#{client_domain_for(CPAS_RECORD_TYPE)}#{ENV["CPAS_UPDATE_PATH"]}", urn: urn)
+      post("#{client_domain_for(CPNS_RECORD_TYPE)}#{ENV["CPNS_UPDATE_PATH"]}", urn: urn)
     end
   end
 
