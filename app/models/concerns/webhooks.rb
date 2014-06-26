@@ -30,9 +30,9 @@ private
     "https://#{urn.gsub(Client::RECORD_TYPE, type)}.herokuapp.com"
   end
 
-  def post(url)
+  def post(url, params={})
     begin
-      Webhook.post(url)
+      Webhook.post(url, params)
     rescue RuntimeError, ArgumentError => e
       logger.error e
     end
