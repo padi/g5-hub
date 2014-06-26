@@ -63,25 +63,42 @@ describe Client do
       expect { client.update_attributes(attributes) }.to change(Location, :count).by(0)
     end
   end
-  describe "#post_webhook" do
+  describe "#post_configurator_webhook" do
     it "returns nil if no url" do
       ENV["G5_CONFIGURATOR_WEBHOOK_URL"] = nil
-      client.send(:post_webhook).should eq nil
+      client.send(:post_configurator_webhook).should eq nil
     end
     it "posts webhook if url" do
       ENV["G5_CONFIGURATOR_WEBHOOK_URL"] = "http://foo.bar"
       Webhook.stub(:post).and_return("OK")
-      client.send(:post_webhook).should eq "OK"
+      client.send(:post_configurator_webhook).should eq "OK"
     end
     it "swallows argument errors" do
       ENV["G5_CONFIGURATOR_WEBHOOK_URL"] = "http://foo.bar"
       Webhook.stub(:post).and_raise(ArgumentError.new)
-      client.send(:post_webhook).should eq true
+      client.send(:post_configurator_webhook).should eq true
     end
     it "swallows runtime errors" do
       ENV["G5_CONFIGURATOR_WEBHOOK_URL"] = "http://foo.bar"
       Webhook.stub(:post).and_raise(RuntimeError.new)
-      client.send(:post_webhook).should eq true
+      client.send(:post_configurator_webhook).should eq true
+    end
+  end
+
+  describe "#post_cms_webhook" do
+    it "posts cms webhook" do
+      Webhook.stub(:post).and_return("OK")
+      client.send(:post_cms_webhook).should eq "OK"
+    end
+    it "swallows argument errors" do
+      ENV["CMS_UPDATE_PATH"] = "/api/v1/foo"
+      Webhook.stub(:post).and_raise(ArgumentError.new)
+      client.send(:post_cms_webhook).should eq true
+    end
+    it "swallows runtime errors" do
+      ENV["CMS_UPDATE_PATH"] = "/api/v1/foo"
+      Webhook.stub(:post).and_raise(RuntimeError.new)
+      client.send(:post_cms_webhook).should eq true
     end
   end
 end

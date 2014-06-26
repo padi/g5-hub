@@ -17,7 +17,7 @@ class Client < ActiveRecord::Base
     allow_destroy: true,
     reject_if: lambda { |attrs| attrs[:name].blank? }
 
-  after_save :post_webhook
+  after_save :post_configurator_webhook, :post_cms_webhook
   after_create :set_urn
 
   def record_type
@@ -38,7 +38,7 @@ class Client < ActiveRecord::Base
     update_attributes(urn: "#{record_type}-#{hashed_id}-#{name.parameterize}")
   end
 
-  def post_webhook
+  def post_configurator_webhook
     url = ENV["G5_CONFIGURATOR_WEBHOOK_URL"]
     if url
       begin
@@ -47,5 +47,20 @@ class Client < ActiveRecord::Base
         logger.error e
       end
     end
+  end
+
+  def post_cms_webhook
+    return if id_changed? #do nothing if this is a new record
+    url = "#{client_cms_domain}#{ENV["CMS_UPDATE_PATH"]}"
+
+    begin
+      Webhook.post(url)
+    rescue RuntimeError, ArgumentError => e
+      logger.error e
+    end
+  end
+
+  def client_cms_domain
+    "https://#{urn.gsub(record_type, 'g5-cms')}.herokuapp.com"
   end
 end

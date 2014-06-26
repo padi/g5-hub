@@ -29,6 +29,7 @@ Spork.prefork do
     end
 
     config.before(:each) do
+      Webhook.stub(:post)
       DatabaseCleaner.strategy = :transaction
     end
 
