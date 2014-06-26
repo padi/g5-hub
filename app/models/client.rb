@@ -17,8 +17,9 @@ class Client < ActiveRecord::Base
     allow_destroy: true,
     reject_if: lambda { |attrs| attrs[:name].blank? }
 
+  after_save   :post_configurator_webhook
   after_update :post_client_update_webhooks
-  after_create :set_urn, :post_configurator_webhook
+  after_create :set_urn
 
   def record_type
     RECORD_TYPE
