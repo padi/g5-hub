@@ -11,7 +11,6 @@ describe Client do
     end
 
     it { client.hashed_id.should eq "gwvrsozf" }
-    it { client.record_type.should eq "g5-c"}
     it { client.urn.should eq "g5-c-gwvrsozf-#{client.name.parameterize}"}
     it { client.to_param.should eq client.urn }
   end
@@ -61,27 +60,6 @@ describe Client do
     it "does not create location if location does not have a name" do
       attributes = { locations_attributes: [ { } ] }
       expect { client.update_attributes(attributes) }.to change(Location, :count).by(0)
-    end
-  end
-  describe "#post_webhook" do
-    it "returns nil if no url" do
-      ENV["G5_CONFIGURATOR_WEBHOOK_URL"] = nil
-      client.send(:post_webhook).should eq nil
-    end
-    it "posts webhook if url" do
-      ENV["G5_CONFIGURATOR_WEBHOOK_URL"] = "http://foo.bar"
-      Webhook.stub(:post).and_return("OK")
-      client.send(:post_webhook).should eq "OK"
-    end
-    it "swallows argument errors" do
-      ENV["G5_CONFIGURATOR_WEBHOOK_URL"] = "http://foo.bar"
-      Webhook.stub(:post).and_raise(ArgumentError.new)
-      client.send(:post_webhook).should eq true
-    end
-    it "swallows runtime errors" do
-      ENV["G5_CONFIGURATOR_WEBHOOK_URL"] = "http://foo.bar"
-      Webhook.stub(:post).and_raise(RuntimeError.new)
-      client.send(:post_webhook).should eq true
     end
   end
 end

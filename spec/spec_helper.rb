@@ -47,7 +47,6 @@ Spork.prefork do
 
   Spork.trap_method(Rails::Application, :eager_load!)
   require File.expand_path("../../config/environment", __FILE__)
-  
 end
 
 Spork.each_run do

@@ -1,27 +1,26 @@
 class Client < ActiveRecord::Base
+  RECORD_TYPE = "g5-c"
   VERTICALS = %w(Self-Storage Apartments Assisted-Living)
   DOMAIN_TYPES = %w(SingleDomainClient MultiDomainClient)
 
   has_many :locations
 
   validates :name, uniqueness: true, presence: true
-
   validates :vertical, presence: true,
                        inclusion: { in: VERTICALS, message: "%{value} is not a valid vertical" }
-
   validates :domain_type, presence: true,
                           inclusion: { in: DOMAIN_TYPES, message: "%{value} is not a valid domain type" }
   validates :city, presence: true
   validates :state, presence: true
+
   accepts_nested_attributes_for :locations,
     allow_destroy: true,
     reject_if: lambda { |attrs| attrs[:name].blank? }
 
-  after_save :post_webhook
   after_create :set_urn
 
   def record_type
-    "g5-c"
+    RECORD_TYPE
   end
 
   def hashed_id
@@ -35,17 +34,6 @@ class Client < ActiveRecord::Base
   private
 
   def set_urn
-    update_attributes(urn: "#{record_type}-#{hashed_id}-#{name.parameterize}")
-  end
-
-  def post_webhook
-    url = ENV["G5_CONFIGURATOR_WEBHOOK_URL"]
-    if url
-      begin
-        Webhook.post(url)
-      rescue RuntimeError, ArgumentError => e
-        logger.error e
-      end
-    end
+    update_attributes(urn: "#{RECORD_TYPE}-#{hashed_id}-#{name.parameterize}")
   end
 end
