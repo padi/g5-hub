@@ -85,20 +85,27 @@ describe Client do
     end
   end
 
-  describe "#post_cms_webhook" do
-    it "posts cms webhook" do
-      Webhook.stub(:post).and_return("OK")
-      client.send(:post_cms_webhook).should eq "OK"
+  describe "#post_client_update_webhooks" do
+    before {  Webhook.stub(:post).and_return("OK") }
+
+    it "posts client update webhooks" do
+      client.send(:post_client_update_webhooks).should eq "OK"
     end
-    it "swallows argument errors" do
-      ENV["CMS_UPDATE_PATH"] = "/api/v1/foo"
-      Webhook.stub(:post).and_raise(ArgumentError.new)
-      client.send(:post_cms_webhook).should eq true
+
+    context "argument errors" do
+      before { Webhook.stub(:post).and_raise(ArgumentError.new) }
+
+      it "swallows them" do
+        client.send(:post_client_update_webhooks).should eq true
+      end
     end
-    it "swallows runtime errors" do
-      ENV["CMS_UPDATE_PATH"] = "/api/v1/foo"
-      Webhook.stub(:post).and_raise(RuntimeError.new)
-      client.send(:post_cms_webhook).should eq true
+
+    context "runtime errors" do
+      before { Webhook.stub(:post).and_raise(RuntimeError.new) }
+
+      it "swallows them" do
+        client.send(:post_client_update_webhooks).should eq true
+      end
     end
   end
 end
