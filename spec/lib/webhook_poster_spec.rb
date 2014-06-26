@@ -56,27 +56,24 @@ describe WebhookPoster do
       client.urn.gsub(Client::RECORD_TYPE, WebhookPoster::CPAS_RECORD_TYPE)
     end
 
-    before do
-      stub_const("ENV", { "CMS_UPDATE_PATH" => "/foo" })
-      stub_const("ENV", { "CPAS_UPDATE_PATH" => "/foo" })
-      stub_const("ENV", { "CPNS_UPDATE_PATH" => "/foo" })
-    end
-
     subject { webhook_poster.post_client_update_webhooks }
 
     context "a valid request" do
       after { subject }
 
       it "posts via Webhook" do
-        Webhook.should_receive(:post).with("https://#{cms_domain}.herokuapp.com/foo")
+        Webhook.should_receive(:post).with(
+          "https://#{cms_domain}.herokuapp.com/api/v1/foo", {})
       end
 
       it "posts to the cpas" do
-        Webhook.should_receive(:post).with("https://#{cpas_domain}.herokuapp.com/foo")
+        Webhook.should_receive(:post).with(
+          "https://#{cpas_domain}.herokuapp.com/foo", urn: client.urn)
       end
 
       it "posts to the cpns" do
-        Webhook.should_receive(:post).with("https://#{cpns_domain}.herokuapp.com/foo")
+        Webhook.should_receive(:post).with(
+          "https://#{cpns_domain}.herokuapp.com/foo", urn: client.urn)
       end
     end
 
