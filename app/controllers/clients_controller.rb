@@ -18,7 +18,7 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     if @client.save
-      WebhookPoster.new(self).post_configurator_webhook
+      WebhookPoster.new(@client).post_configurator_webhook
       redirect_to client_url(@client), :notice => "Successfully created client."
     else
       @client.locations.build if @client.locations.blank?
@@ -34,7 +34,7 @@ class ClientsController < ApplicationController
   def update
     @client = Client.find_by_urn(params[:id])
     if @client.update_attributes(client_params)
-      WebhookPoster.new(self).post_client_update_webhooks
+      WebhookPoster.new(@client).post_client_update_webhooks
       redirect_to client_url, :notice  => "Successfully updated client."
     else
       @client.locations.build if @client.locations.blank?
