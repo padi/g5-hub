@@ -5,9 +5,9 @@ ENV["G5_CONFIGURATOR_WEBHOOK_URL"] ||= case Rails.env
 end
 
 ENV["CMS_UPDATE_PATH"] ||= case Rails.env
-  when "production"  then  "/api/v1/clients/1/update"
-  when "development" then  "/api/v1/foo"
-  when "test"        then  "/api/v1/foo"
+  when "production"  then  "/update"
+  when "development" then  "/foo"
+  when "test"        then  "/foo"
 end
 
 ENV["CPNS_UPDATE_PATH"] ||= case Rails.env
