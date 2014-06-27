@@ -65,7 +65,7 @@ describe WebhookPoster do
 
       it "posts via Webhook" do
         Webhook.should_receive(:post).with(
-          "https://#{cms_domain}.herokuapp.com/api/v1/foo", {})
+          "https://#{cms_domain}.herokuapp.com/foo", {})
       end
 
       it "posts to the cpas" do
