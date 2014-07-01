@@ -16,8 +16,8 @@ class WebhookPoster
 
   def post_client_update_webhooks
     post("#{domain_for(CMS_RECORD_TYPE)}#{ENV["CMS_UPDATE_PATH"]}")
-    post("#{domain_for(CPAS_RECORD_TYPE)}#{ENV["CPAS_UPDATE_PATH"]}", urn: @client.urn)
-    post("#{domain_for(CPNS_RECORD_TYPE)}#{ENV["CPNS_UPDATE_PATH"]}", urn: @client.urn)
+    post("#{domain_for(CPAS_RECORD_TYPE)}#{ENV["G5_UPDATABLE_PATH"]}", urn: @client.urn)
+    post("#{domain_for(CPNS_RECORD_TYPE)}#{ENV["G5_UPDATABLE_PATH"]}", urn: @client.urn)
   end
 
 private
