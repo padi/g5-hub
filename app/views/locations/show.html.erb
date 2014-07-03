@@ -1,91 +1,10 @@
 <% title "Location" %>
 
 <section class="h-card">
-  <h2>
-    <%= link_to @location.name, client_location_url(@client, @location), class: "p-name u-uid u-url" %>
-  </h2>
-
-  <% if @location.domain %>
-    <h4>Domain</h4>
-    <%= link_to @location.domain, @location.domain, class: "u-url u-g5-domain" %>
-  <% end %>
-
-  <h4>Address</h4>
-  <p class="p-adr h-adr">
-    <span class="p-street-address">
-      <%= @location.street_address_1 %>
-      <%= @location.street_address_2 if @location.street_address_2 %>
-    </span>
-    <span class="p-g5-neighborhood"><%= @location.neighborhood %></span>
-    <span>
-      <span class="p-locality"><%= @location.city %></span>
-      <span class="p-region"><%= @location.state %></span>
-      <span class="p-postal-code"><%= @location.postal_code %></span>
-    </span>
-    <span class="p-tel"><%= @location.phone_number %></span>
-    <span class="p-tel p-fax"><%= @location.fax %></span>
-    <span class="u-email"><%= @location.email %></span>
-  </p>
-
-  <p>
-    <strong>Corporate:</strong>
-    <br />
-    <span class="p-g5-corporate"><%= @location.corporate %></span>
-  </p>
-  <p>
-    <strong>Hours:</strong>
-    <br />
-    <pre class="p-g5-hour"><%= @location.hours %></pre>
-  </p>
-  <p>
-    <strong>Floor Plans:</strong>
-    <br />
-    <span class="p-g5-floorplan"><%= @location.floor_plans %> Apartments</span>
-  </p>
-  <p>
-    <strong>Landmarks:</strong>
-    <br />
-    <span class="p-g5-landmark-1"><%= @location.landmark_1_name %></span>
-    <br />
-    <span class="p-g5-landmark-2"><%= @location.landmark_2_name %></span>
-  </p>
-  <p>
-    <strong>Property Features or Qualifiers:</strong>
-    <br />
-    <span class="p-g5-aparment-feature-1"><%= @location.property_feature_1 %></span>
-    <br />
-    <span class="p-g5-aparment-feature-2"><%= @location.property_feature_2 %></span>
-    <br />
-    <span class="p-g5-aparment-feature-3"><%= @location.property_feature_3 %></span>
-  </p>
-  <p>
-    <strong>Primary Amenities:</strong>
-    <br />
-    <span class="p-g5-aparment-amenity-1"><%= @location.apartment_amenity_1 %></span>
-    <br />
-    <span class="p-g5-community-amenity-1"><%= @location.community_amenity_1 %></span>
-  </p>
-
-  <h4>Google Analytics</h4>
-  <dl class="dl-horizontal">
-    <dt>Tracking ID</dt>
-    <dd class="p-ga-tracking-id"><%= @location.ga_tracking_id %></dd>
-
-    <dt>View Profile ID</dt>
-    <dd class="p-ga-profile-id"><%= @location.ga_profile_id %></dd>
-  </dl>
-
-  <dl>
-    <% Location::SOCIAL_NETWORKS.each do |network_name| %>
-      <% if (username = @location.send("#{network_name.to_s.downcase}_username")).present? %>
-        <%= content_tag :dt, network_name %>
-        <%= content_tag :dd, username, class: "p-nickname p-g5-nickname-#{network_name.to_s.downcase}" %>
-      <% end %>
-    <% end %>
-  </dl>
-
   <h4>Client</h4>
   <p class="p-org h-card">
     <%= link_to @client.name, client_url(@client), class: "p-name u-uid u-url" %>
   </p>
+
+  <%= render @location, client: @client %>
 </section>
