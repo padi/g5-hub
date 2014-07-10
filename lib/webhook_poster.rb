@@ -16,11 +16,18 @@ class WebhookPoster
 
   def post_client_update_webhooks
     post("#{domain_for(CMS_RECORD_TYPE)}#{ENV["CMS_UPDATE_PATH"]}")
-    post("#{domain_for(CPAS_RECORD_TYPE)}#{ENV["G5_UPDATABLE_PATH"]}", urn: @client.urn)
-    post("#{domain_for(CPNS_RECORD_TYPE)}#{ENV["G5_UPDATABLE_PATH"]}", urn: @client.urn)
+    post("#{domain_for(CPAS_RECORD_TYPE)}#{ENV["G5_UPDATABLE_PATH"]}", client_uid: client_uid)
+    post("#{domain_for(CPNS_RECORD_TYPE)}#{ENV["G5_UPDATABLE_PATH"]}", client_uid: client_uid)
   end
 
 private
+
+  def client_uid
+    "https://" +
+      (ENV["HEROKU_APP_NAME"] || "g5-hub") +
+      ".herokuapp.com" +
+      Rails.application.routes.url_helpers.client_path(@client)
+  end
 
   def domain_for(type)
     "https://#{converted_urn(type)}.herokuapp.com"
