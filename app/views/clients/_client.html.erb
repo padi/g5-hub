@@ -4,6 +4,7 @@
     <small class="p-g5-vertical"><%= client.vertical %></small> |
     <small class="u-g5-domain"><%= client.domain %></small> |
     <small class="p-g5-domain-type"><%= client.domain_type %></small>
+    <small class="p-g5-urn"><%= client.urn %></small>
   </h2>
   <p class="p-adr h-adr">
     <span class="p-street-address">
@@ -23,56 +24,7 @@
     <ul class="list-unstyled">
       <% client.locations.each do |location| %>
         <li class="p-org h-card">
-          <%= link_to location.name, client_location_url(client, location), class: "p-name u-uid u-url" %>
-          <%= link_to location.domain, location.domain, class: "u-url u-g5-domain" %>
-          <p class="p-adr h-adr">
-            <span class="p-street-address">
-              <%= location.street_address_1 %>
-              <% if location.street_address_2 %><%= location.street_address_2 %><% end %>
-            </span>
-            <span class="p-g5-neighborhood"><%= location.neighborhood %></span>
-            <span>
-              <span class="p-locality"><%= location.city %></span>
-              <span class="p-region"><%= location.state %></span>
-              <span class="p-postal-code"><%= location.postal_code %></span>
-            </span>
-            <span class="p-tel"><%= location.phone_number %></span>
-            <span class="p-tel p-fax"><%= location.fax %></span>
-            <span class="u-email"><%= location.email %></span>
-          </p>
-          <p>
-            <strong>Corporate:</strong>
-            <br />
-            <span class="p-g5-corporate"><%= location.corporate %></span>
-          </p>
-          <p>
-            <strong>Floor Plans:</strong>
-            <br />
-            <span class="p-g5-floorplan"><%= location.floor_plans %> Apartments</span>
-          </p>
-          <p>
-            <strong>Landmarks:</strong>
-            <br />
-            <span class="p-g5-landmark-1"><%= location.landmark_1_name %></span>
-            <br />
-            <span class="p-g5-landmark-2"><%= location.landmark_2_name %></span>
-          </p>
-          <p>
-            <strong>Property Features or Qualifiers:</strong>
-            <br />
-            <span class="p-g5-aparment-feature-1"><%= location.property_feature_1 %></span>
-            <br />
-            <span class="p-g5-aparment-feature-2"><%= location.property_feature_2 %></span>
-            <br />
-            <span class="p-g5-aparment-feature-3"><%= location.property_feature_3 %></span>
-          </p>
-          <p>
-            <strong>Primary Amenities:</strong>
-            <br />
-            <span class="p-g5-aparment-amenity-1"><%= location.apartment_amenity_1 %></span>
-            <br />
-            <span class="p-g5-community-amenity-1"><%= location.community_amenity_1 %></span>
-          </p>
+          <%= render location, client: client %>
         </li>
       <% end %>
     </ul>

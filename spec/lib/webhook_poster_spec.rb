@@ -70,12 +70,12 @@ describe WebhookPoster do
 
       it "posts to the cpas" do
         Webhook.should_receive(:post).with(
-          "https://#{cpas_domain}.herokuapp.com/foo", urn: client.urn)
+          "https://#{cpas_domain}.herokuapp.com/foo", client_uid: "https://g5-hub.herokuapp.com/clients/#{client.urn}")
       end
 
       it "posts to the cpns" do
         Webhook.should_receive(:post).with(
-          "https://#{cpns_domain}.herokuapp.com/foo", urn: client.urn)
+          "https://#{cpns_domain}.herokuapp.com/foo", client_uid: "https://g5-hub.herokuapp.com/clients/#{client.urn}")
       end
     end
 

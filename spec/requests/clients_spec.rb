@@ -52,7 +52,7 @@ describe "Clients" do
       visit clients_path
       click_link "New Client"
       create_client
-      click_link "Housing Corp"
+      first(:link, "Housing Corp").click
     end
 
     it "has client heading" do
