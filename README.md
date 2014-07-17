@@ -38,6 +38,7 @@ Defaults are set in `config/initializers/env.rb`.
 * Michael Mitchell / [@variousred](https://github.com/variousred)
 * Jessica Dillon / [@jessicard](https://github.com/jessicard)
 * Chad Crissman / [@crissmancd](https://github.com/crissmancd)
+* Brian Bauer / [@bbauer](https://github.com/bbauer)
 
 
 ## Contributing
