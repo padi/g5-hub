@@ -2,8 +2,12 @@ require "spec_helper"
 
 describe ClientsController do
   render_views
-  let(:client) { Fabricate(:client) }
-  before { Client.stub(:find_by_urn) { client } }
+  let!(:client) { Fabricate(:client) }
+
+  before do
+    Resque.stub(:enqueue)
+    Client.stub(:find_by_urn) { client }
+  end
 
   describe "#index" do
     context "when a client exists" do
@@ -56,10 +60,15 @@ describe ClientsController do
       post :create
       response.should render_template(:new)
     end
-    it "redirects when model is valid" do
+
+    it "enques webhooks and redirects when model is valid" do
       Client.any_instance.stub(:valid?).and_return(true)
       Client.any_instance.stub(:name).and_return("name")
       post :create
+
+      expect(Resque).to have_received(:enqueue).
+        with(WebhookPosterJob, Client.last.id, :post_configurator_webhook)
+
       expect(response.status).to eq 302
       expect(response).to redirect_to(client_path(Client.last))
     end
@@ -78,12 +87,18 @@ describe ClientsController do
       put :update, id: 1
       response.should render_template(:edit)
     end
-    it "redirects when model is valid" do
+
+    it "enques webhooks and redirects when model is valid" do
       client.stub(:valid?).and_return(true)
       client.stub(:name).and_return("name")
       put :update, id: 1
-      response.should redirect_to(client_path)
+
+      expect(Resque).to have_received(:enqueue).
+        with(WebhookPosterJob, client.id, :post_client_update_webhooks)
+
+      expect(response).to redirect_to(client_path)
     end
+
     context "allowed attributes" do
       it "accepts city param" do
         put :update, id: 1, client: { name: "Springfield" }
