@@ -9,6 +9,7 @@ gem "bootstrap-sass", "~> 3.1.1.0"
 gem "draper"
 
 gem "webhook"
+gem "g5_authenticatable"
 
 gem "sass-rails", "~> 4.0.1"
 gem "coffee-rails", "~> 4.0.1"
