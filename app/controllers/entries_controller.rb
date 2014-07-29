@@ -1,4 +1,6 @@
 class EntriesController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
     client_scope = Client.order("updated_at DESC")
     @clients = ClientDecorator.decorate_collection(client_scope)
