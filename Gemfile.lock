@@ -81,6 +81,11 @@ GEM
     excon (0.37.0)
     execjs (2.0.2)
     fabrication (2.9.8)
+    factory_girl (4.4.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.4.1)
+      factory_girl (~> 4.4.0)
+      railties (>= 3.0.0)
     faker (1.2.0)
       i18n (~> 0.5)
     faraday (0.9.0)
@@ -315,6 +320,7 @@ DEPENDENCIES
   dotenv-rails (~> 0.10.0)
   draper
   fabrication (~> 2.9.8)
+  factory_girl_rails
   faker (~> 1.2.0)
   foreman
   g5_authenticatable

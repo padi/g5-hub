@@ -42,6 +42,7 @@ group :development, :test do
   gem "database_cleaner", "~> 1.2.0"
   gem "microformats2"
   gem "foreman"
+  gem "factory_girl_rails"
 end
 
 gem "codeclimate-test-reporter", group: :test, require: nil

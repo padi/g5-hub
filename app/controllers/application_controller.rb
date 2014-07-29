@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  prepend_before_filter :authenticate_user!
+
   protect_from_forgery
 
   protected

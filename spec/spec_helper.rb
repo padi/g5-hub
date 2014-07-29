@@ -15,6 +15,7 @@ Spork.prefork do
   require "capybara/rails"
   require "capybara/rspec"
   require "database_cleaner"
+  require 'g5_authenticatable/rspec'
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
