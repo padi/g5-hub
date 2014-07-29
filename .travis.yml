@@ -19,3 +19,6 @@ notifications:
       - "%{repository}#%{build_number} %{message} (%{branch} - %{commit} : %{author}) Change view : %{compare_url} Build details : %{build_url}"
     on_success: change
     on_failure: always
+env:
+  global:
+    - secure: "913aff490e3c998317afa2f5229d35aeaa35c76dea599ddb97d55c9c37e3569950bfa6c1113ae09ef2eb17429c90087255a4a36662d08d42be4973c2314fb5fb"
