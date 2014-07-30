@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe LocationsController do
+describe LocationsController, auth_controller: true do
   render_views
 
   describe "#show" do

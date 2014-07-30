@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe ClientsController do
+describe ClientsController, auth_controller: true do
   render_views
   let!(:client) { Fabricate(:client) }
 

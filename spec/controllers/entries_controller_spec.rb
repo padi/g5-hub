@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe EntriesController do
+describe EntriesController, auth_controller: true do
   render_views
   let(:client) { Fabricate(:client) }
   before { Client.stub(:find_by_urn) { client } }
