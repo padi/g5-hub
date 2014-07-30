@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "Integration '/'" do
+describe "Integration '/'", auth_request: true do
   before do
     visit root_path
   end
