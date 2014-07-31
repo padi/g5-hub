@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe TagsController do
+describe TagsController, auth_controller: true do
   render_views
 
   describe "#show" do

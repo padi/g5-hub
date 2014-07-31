@@ -19,3 +19,5 @@ notifications:
       - "%{repository}#%{build_number} %{message} (%{branch} - %{commit} : %{author}) Change view : %{compare_url} Build details : %{build_url}"
     on_success: change
     on_failure: always
+env:
+  - DEVISE_SECRET_KEY=foo

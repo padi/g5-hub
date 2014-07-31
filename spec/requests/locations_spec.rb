@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Locations" do
+describe "Locations", auth_request: true do
 
   def new_client
     visit clients_path

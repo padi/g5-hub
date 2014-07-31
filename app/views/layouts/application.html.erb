@@ -4,6 +4,8 @@
     <title>G5 Hub - <%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
     <meta charset="utf8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow">
+
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
@@ -23,7 +25,7 @@
             </button>
             <%= link_to "G5 Hub", root_path, class: "navbar-brand" %>
           </div>
-        
+
           <!-- Everything you want hidden at 940px or less, place within here -->
           <nav id="main-nav-collapse" class="collapse navbar-collapse" role="navigation">
             <ul class="nav navbar-nav">
@@ -34,7 +36,7 @@
         </div>
       </div>
     </header>
-    
+
     <div class="container">
 
       <% flash.each do |name, msg| %>

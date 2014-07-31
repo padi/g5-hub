@@ -1,7 +1,6 @@
 require 'spec_helper'
 
-describe "Clients" do
-
+describe "Clients", auth_request: true do
   def create_client
     fill_in "client_name", with: "Housing Corp"
     fill_in "client_city", with: "Los Angeles"

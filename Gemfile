@@ -9,6 +9,7 @@ gem "bootstrap-sass", "~> 3.1.1.0"
 gem "draper"
 
 gem "webhook"
+gem "g5_authenticatable"
 
 gem "sass-rails", "~> 4.0.1"
 gem "coffee-rails", "~> 4.0.1"
@@ -41,6 +42,7 @@ group :development, :test do
   gem "database_cleaner", "~> 1.2.0"
   gem "microformats2"
   gem "foreman"
+  gem "factory_girl_rails"
 end
 
 gem "codeclimate-test-reporter", group: :test, require: nil
