@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-  before_filter :authenticate_user!, except: :show
+  before_filter :authenticate_user!
 
   def index
     client_scope = Client.order("updated_at DESC")
