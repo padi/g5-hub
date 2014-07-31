@@ -1,4 +1,6 @@
 class ClientsController < ApplicationController
+  before_filter :authenticate_user!, except: :show
+
   DEMOGRAPHIC_OPTIONS = ['Senior Apartments', 'Student Housing']
 
   def index

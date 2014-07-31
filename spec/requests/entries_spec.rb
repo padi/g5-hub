@@ -27,7 +27,7 @@ describe "Entries", auth_request: true do
       expect(page).to have_content "Entries"
     end
 
-    it "shows new client" do
+    it "allows creation of a new client" do
       visit clients_path
       click_link "New Client"
       create_client
@@ -39,4 +39,16 @@ describe "Entries", auth_request: true do
     end
   end
 
+  describe "#show" do
+    let!(:client) { Fabricate(:client) }
+
+    it "shows a specific client" do
+      visit entry_path(client)
+
+      expect(page).to have_content client.name
+      expect(page).to have_content client.vertical
+      expect(page).to have_content client.city
+      expect(page).to have_content client.state
+    end
+  end
 end

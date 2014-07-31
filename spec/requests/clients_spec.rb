@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Clients", auth_request: true do
+describe "Clients" do
   def create_client
     fill_in "client_name", with: "Housing Corp"
     fill_in "client_city", with: "Los Angeles"
@@ -24,47 +24,44 @@ describe "Clients", auth_request: true do
     click_button "Create Client"
   end
 
-
   describe "#index" do
-    before do
-      visit clients_path
-    end
+    context "an authorized user", auth_request: true do
+      before do
+        visit clients_path
+      end
 
-    it "has clients heading" do
-      expect(page).to have_content "Clients"
-    end
+      it "has clients heading" do
+        expect(page).to have_content "Clients"
+      end
 
-    it "shows all clients" do
-      click_link "New Client"
-      create_client
-      expect(page).to have_content "Housing Corp"
-      expect(page).to have_content "Apartments"
-      expect(page).to have_content "MultiDomainClient"
-      expect(page).to have_content "123 Sesame St"
-      expect(page).to have_content "bigbird@gmail.com"
-      expect(page).to have_content "http://farmhouseapartments.com"
+      it "shows all clients" do
+        click_link "New Client"
+        create_client
+        expect(page).to have_content "Housing Corp"
+        expect(page).to have_content "Apartments"
+        expect(page).to have_content "MultiDomainClient"
+        expect(page).to have_content "123 Sesame St"
+        expect(page).to have_content "bigbird@gmail.com"
+        expect(page).to have_content "http://farmhouseapartments.com"
+      end
     end
   end
 
   describe "#show" do
-    before do
-      visit clients_path
-      click_link "New Client"
-      create_client
-      first(:link, "Housing Corp").click
-    end
+    let!(:client) { Fabricate(:client) }
+    let!(:location) { Fabricate(:location, client: client) }
+
+    before { visit client_path(client) }
 
     it "has client heading" do
       expect(page).to have_content "Client"
     end
 
-    it "shows client information" do
-      expect(page).to have_content "Housing Corp"
-      expect(page).to have_content "Apartments"
-      expect(page).to have_content "MultiDomainClient"
-      expect(page).to have_content "123 Sesame St"
-      expect(page).to have_content "bigbird@gmail.com"
-      expect(page).to have_content "http://farmhouseapartments.com"
+    it "shows specific client information" do
+      expect(page).to have_content client.name
+      expect(page).to have_content client.vertical
+      expect(page).to have_content client.city
+      expect(page).to have_content client.state
     end
 
     describe "microformats2 parsing" do
@@ -76,7 +73,7 @@ describe "Clients", auth_request: true do
     end
   end
 
-  describe "#new" do
+  describe "#new", auth_request: true do
     before do
       visit clients_path
       click_link "New Client"
