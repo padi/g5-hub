@@ -21,22 +21,23 @@ describe "Entries", auth_request: true do
     click_button "Create Client"
   end
 
-  describe "#index" do
+  describe "#index", auth_request: true do
     it "has Entry title" do
       visit entries_path
       expect(page).to have_content "Entries"
     end
-
-    it "shows new client" do
-      visit clients_path
-      click_link "New Client"
-      create_client
-      click_link "Entries"
-      expect(page).to have_content "Housing Corp"
-      expect(page).to have_content "Apartments"
-      expect(page).to have_content "MultiDomainClient"
-      expect(page).to have_content "Oscar's Trash Can"
-    end
   end
 
+  describe "#show" do
+    let!(:client) { Fabricate(:client) }
+
+    it "shows a client with no authorization  client" do
+      visit client_path(client)
+
+      expect(page).to have_content client.name
+      expect(page).to have_content client.vertical
+      expect(page).to have_content client.city
+      expect(page).to have_content client.state
+    end
+  end
 end
