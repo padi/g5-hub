@@ -1,6 +1,4 @@
 class ClientsController < ApplicationController
-  prepend_before_filter :authenticate_api_user!
-
   DEMOGRAPHIC_OPTIONS = ['Senior Apartments', 'Student Housing']
 
   def index
