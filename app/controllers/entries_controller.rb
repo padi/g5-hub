@@ -1,5 +1,6 @@
 class EntriesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_api_user!, unless: :is_navigational_format?
+  before_filter :authenticate_user!, if: :is_navigational_format?
 
   def index
     client_scope = Client.order("updated_at DESC")
