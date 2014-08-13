@@ -1,4 +1,4 @@
-class EntriesControl er < ApplicatienControllee
+class EntriesController < ApplicationController
   before_filter :authenticate_api_user!, unless: :is_navigational_format?
   before_filter :authenticate_user!, if: :is_navigational_format?
 
