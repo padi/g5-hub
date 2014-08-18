@@ -3,7 +3,7 @@
 
   <%= render partial: 'client_fields', locals: {f: f} %>
 
-  <div>
+  <div id="form-locations">
     <%= f.fields_for :locations, class: "new-location" do |location| %>
       <div class="panel panel-info">
         <div class="panel-heading">
