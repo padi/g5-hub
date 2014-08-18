@@ -31,6 +31,10 @@ class Client < ActiveRecord::Base
     self.urn
   end
 
+  def cms_url
+    "https://#{urn.gsub("-c-","-cms-")}.herokuapp.com"
+  end
+
   private
 
   def set_urn

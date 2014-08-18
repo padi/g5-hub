@@ -6,6 +6,7 @@
     <small class="p-g5-domain-type"><%= client.domain_type %></small>
     <small class="p-g5-urn"><%= client.urn %></small>
   </h2>
+
   <p class="p-adr h-adr">
     <span class="p-street-address">
       <%= client.street_address_1 %>
@@ -19,6 +20,10 @@
     <span class="p-tel p-fax"><%= client.fax %></span>
     <span class="u-email"><%= client.email %></span>
   </p>
+
+  <h4>CMS</h4>
+  <p><%= link_to client.cms_url, client.cms_url, class: "u-url" %></p>
+
   <div>
     <h4>Locations</h4>
     <ul class="list-unstyled">

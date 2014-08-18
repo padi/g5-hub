@@ -62,4 +62,12 @@ describe Client do
       expect { client.update_attributes(attributes) }.to change(Location, :count).by(0)
     end
   end
+
+  describe "#cms_url" do
+    let(:client) { Fabricate.build(:client, urn: "g5-c-foo") }
+
+    subject { client.cms_url }
+
+    it { should eq("https://g5-cms-foo.herokuapp.com") }
+  end
 end
