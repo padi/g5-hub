@@ -1,6 +1,7 @@
 <div class="h-card">
   <h2>
     <%= link_to client.name, client_url(client), class: "p-name u-uid u-url" %>
+    <small class="p-g5-organization"><%= client.organization %></small> |
     <small class="p-g5-vertical"><%= client.vertical %></small> |
     <small class="u-g5-domain"><%= client.domain %></small> |
     <small class="p-g5-domain-type"><%= client.domain_type %></small>
