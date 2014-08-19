@@ -9,8 +9,6 @@ class WebhookPoster
   end
 
   def post_configurator_webhook
-    console.log("posting to " + ENV["G5_CONFIGURATOR_WEBHOOK_URL"])
-
     if url = ENV["G5_CONFIGURATOR_WEBHOOK_URL"]
       post(url)
     end
