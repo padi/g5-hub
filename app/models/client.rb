@@ -1,5 +1,5 @@
 class Client < ActiveRecord::Base
-  RECORD_TYPE = "g5-c"
+  RECORD_TYPE = ENV['APP_NAMESPACE'] + "-c"
   VERTICALS = %w(Self-Storage Apartments Assisted-Living)
   DOMAIN_TYPES = %w(SingleDomainClient MultiDomainClient)
 

@@ -1,8 +1,8 @@
 class WebhookPoster
   HEROKU_APP_NAME_MAX_LENGTH = 30
-  CMS_RECORD_TYPE  = "g5-cms"
-  CPAS_RECORD_TYPE = "g5-cpas"
-  CPNS_RECORD_TYPE = "g5-cpns"
+  CMS_RECORD_TYPE  = ENV["APP_NAMESPACE"] + "-cms"
+  CPAS_RECORD_TYPE = ENV["APP_NAMESPACE"] + "-cpas"
+  CPNS_RECORD_TYPE = ENV["APP_NAMESPACE"] + "-cpns"
 
   def initialize(client)
     @client = client

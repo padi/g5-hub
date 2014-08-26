@@ -15,3 +15,5 @@ ENV["G5_UPDATABLE_PATH"] ||= case Rails.env
   when "development" then  "/foo"
   when "test"        then  "/foo"
 end
+
+ENV["APP_NAMESPACE"] ||= "g5"
