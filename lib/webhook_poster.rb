@@ -15,8 +15,13 @@ class WebhookPoster
   end
 
   def post_client_update_webhooks
+    Rails.logger.info("posting to #{domain_for(CMS_RECORD_TYPE)}#{ENV['CMS_UPDATE_PATH']}")
     post("#{domain_for(CMS_RECORD_TYPE)}#{ENV["CMS_UPDATE_PATH"]}")
+
+    Rails.logger.info("posting to #{domain_for(CPAS_RECORD_TYPE)}#{ENV['G5_UPDATABLE_PATH']}")
     post("#{domain_for(CPAS_RECORD_TYPE)}#{ENV["G5_UPDATABLE_PATH"]}", client_uid: client_uid)
+
+    Rails.logger.info("posting to #{domain_for(CPNS_RECORD_TYPE)}#{ENV['G5_UPDATABLE_PATH']}")
     post("#{domain_for(CPNS_RECORD_TYPE)}#{ENV["G5_UPDATABLE_PATH"]}", client_uid: client_uid)
   end
 
