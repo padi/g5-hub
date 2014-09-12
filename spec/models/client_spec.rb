@@ -64,10 +64,17 @@ describe Client do
   end
 
   describe "#cms_url" do
-    let(:client) { Fabricate.build(:client, urn: "g5-c-foo") }
+    let(:client) { Fabricate.build(:client, urn: urn) }
+    let(:urn) { "g5-c-foo" }
 
     subject { client.cms_url }
 
     it { should eq("https://g5-cms-foo.herokuapp.com") }
+
+    context "a super long urn" do
+      let(:urn) { "g5-c-1slhp2tc-compass-rock-real-estate" }
+
+      it { should eq("https://g5-cms-1slhp2tc-compass-rock-r.herokuapp.com") }
+    end
   end
 end
