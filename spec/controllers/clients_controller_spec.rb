@@ -9,6 +9,45 @@ describe ClientsController do
     Client.stub(:find_by_urn) { client }
   end
 
+  let(:token) { double('token') }
+  let(:valid) { false }
+
+  context "api requests are protected by authenticatable api" do
+    before do
+      G5AuthenticatableApi::TokenValidator.any_instance.stub(
+        access_token: token,
+        valid?: valid
+      )
+    end
+
+    subject(:index) { get :index }
+
+    context "without auth_token" do
+      let(:token) {}
+
+      it "should be redirected" do
+        index
+        expect(response.code).to eq('302')
+      end
+    end
+
+    context "with invalid auth_token" do
+      it "should return 401" do
+        index
+        expect(response.code).to eq('401')
+      end
+    end
+
+    context "with valid auth_token" do
+      let(:valid) { true }
+
+      it "should be authenticated" do
+        index
+        expect(response.code).to eq('200')
+      end
+    end
+  end
+
   describe "#index" do
     context "an authorized user", auth_controller: true do
       context "when a client exists" do
