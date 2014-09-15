@@ -6,9 +6,7 @@ class HerokuAppNameFormatter
   end
 
   def formatted_cms_app_name
-    return cms_app_name unless has_trailing_dash?
-
-    cms_app_name.gsub(/.$/, "")
+    cms_app_name.gsub(/\A[-\.]+|[-\.]+\z/, "")
   end
 
   def formatted_cms_url
@@ -23,9 +21,5 @@ class HerokuAppNameFormatter
 
   def cms_urn
     @client.urn.gsub("-c-","-cms-")
-  end
-
-  def has_trailing_dash?
-    cms_app_name[/.$/] == "-"
   end
 end
