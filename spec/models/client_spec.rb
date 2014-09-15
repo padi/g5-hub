@@ -64,7 +64,8 @@ describe Client do
   end
 
   describe "#cms_url" do
-    let(:client) { Fabricate.build(:client, urn: "g5-c-foo") }
+    let(:client) { Fabricate.build(:client, urn: urn) }
+    let(:urn) { "g5-c-foo" }
 
     subject { client.cms_url }
 

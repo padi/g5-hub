@@ -32,7 +32,7 @@ class Client < ActiveRecord::Base
   end
 
   def cms_url
-    "https://#{urn.gsub("-c-","-cms-")}.herokuapp.com"
+    HerokuAppNameFormatter.new(self).formatted_cms_url
   end
 
   private
