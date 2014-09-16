@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
-  before_filter :authenticate_api_user!, unless: :is_navigational_format?
-  before_filter :authenticate_user!, if: :is_navigational_format?
+  before_filter :authenticate_api_user!, if: :is_api_request?
+  before_filter :authenticate_user!, unless: :is_api_request?
 
   def index
     client_scope = Client.order("updated_at DESC")
@@ -11,4 +11,5 @@ class EntriesController < ApplicationController
   def show
     @client = Client.find_by_urn(params[:id]).decorate
   end
+
 end
