@@ -3,18 +3,16 @@ ruby "2.1.2"
 
 gem "rails", "4.1.5"
 gem "jquery-rails"
-
 gem "quiet_assets", "~> 1.0.1"
 gem "bootstrap-sass", "~> 3.1.1.0"
 gem "draper"
-
 gem "webhook"
 gem "g5_authenticatable"
-
 gem "sass-rails", "~> 4.0.1"
 gem "coffee-rails", "~> 4.0.1"
 gem "uglifier", ">= 2.4.0"
 gem "heroku_resque_autoscaler"
+gem "g5_heroku_app_name_formatter"
 
 group :production do
   gem "unicorn"
