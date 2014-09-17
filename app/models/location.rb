@@ -9,6 +9,7 @@ class Location < ActiveRecord::Base
   RECORD_TYPE = "g5-cl"
 
   belongs_to :client
+  has_one :integration_setting, dependent: :destroy
 
   validates :name, presence: true
   validates :domain, presence: true

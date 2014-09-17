@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.1.1"
+ruby "2.1.2"
 
 gem "rails", "4.1.5"
 gem "jquery-rails"
@@ -43,6 +43,7 @@ group :development, :test do
   gem "microformats2"
   gem "foreman"
   gem "factory_girl_rails"
+  gem "shoulda-matchers"
 end
 
 gem "codeclimate-test-reporter", group: :test, require: nil

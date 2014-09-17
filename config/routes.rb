@@ -9,5 +9,9 @@ G5Hub::Application.routes.draw do
   resources :clients do
     resources :locations, only: [ :index, :show ]
   end
+
+  resources :locations, only: [] do
+    resources :integration_settings, only: [ :new, :create, :edit, :update ]
+  end
   root to: "entries#index"
 end

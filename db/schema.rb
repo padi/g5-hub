@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140728232100) do
+ActiveRecord::Schema.define(version: 20140911152304) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 20140728232100) do
     t.string   "domain"
   end
 
+  create_table "custom_integration_settings", force: true do |t|
+    t.integer  "integration_setting_id"
+    t.string   "name"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "custom_integration_settings", ["integration_setting_id"], name: "index_custom_integration_settings_on_integration_setting_id"
+
   create_table "g5_authenticatable_users", force: true do |t|
     t.string   "email",              default: "",   null: false
     t.string   "provider",           default: "g5", null: false
@@ -47,6 +57,19 @@ ActiveRecord::Schema.define(version: 20140728232100) do
 
   add_index "g5_authenticatable_users", ["email"], name: "index_g5_authenticatable_users_on_email", unique: true
   add_index "g5_authenticatable_users", ["provider", "uid"], name: "index_g5_authenticatable_users_on_provider_and_uid", unique: true
+
+  create_table "integration_settings", force: true do |t|
+    t.integer  "location_id"
+    t.string   "inventory_service_url"
+    t.string   "etl_strategy_name"
+    t.string   "vendor_user_name"
+    t.string   "vendor_password"
+    t.string   "vendor_endpoint"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "integration_settings", ["location_id"], name: "index_integration_settings_on_location_id"
 
   create_table "locations", force: true do |t|
     t.integer  "client_id"
