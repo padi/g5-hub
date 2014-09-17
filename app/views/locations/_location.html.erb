@@ -83,12 +83,15 @@
 </dl>
 
 <div>
-  <h4>Integration Settings</h4>
   <% if location.integration_setting %>
-      <%= link_to 'Edit', edit_location_integration_setting_url(location, location.integration_setting) %>
+      <h4>
+        <%= link_to 'Integration Settings', edit_location_integration_setting_url(location, location.integration_setting) %>
+      </h4>
       <%= render location.integration_setting %>
   <% else %>
-      <%= link_to 'New', new_location_integration_setting_url(location) %>
+      <h4>
+        <%= link_to 'Integration Settings', new_location_integration_setting_url(location) %>
+      </h4>
   <% end %>
 </div>
 
