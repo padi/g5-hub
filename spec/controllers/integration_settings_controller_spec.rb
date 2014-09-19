@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe IntegrationSettingsController do
+describe IntegrationSettingsController, :auth_controller do
   let!(:location) { Fabricate(:location, client: Fabricate(:client)) }
   let(:integration_setting) { Fabricate(:integration_setting, location: location) }
 
-  describe 'GET new' do
+  describe 'GET new', auth_controller: true do
     describe :success do
       before do
         get :new, location_id: location.id
@@ -21,7 +21,7 @@ describe IntegrationSettingsController do
     end
   end
 
-  describe 'GET edit' do
+  describe 'GET edit', auth_controller: true do
     describe :success do
       before do
         get :edit, location_id: location.id, id: integration_setting.id
@@ -38,7 +38,7 @@ describe IntegrationSettingsController do
     end
   end
 
-  describe 'POST create' do
+  describe 'POST create', auth_controller: true do
     describe :success do
       before do
         post :create, location_id: location.urn, integration_setting: Fabricate.attributes_for(:integration_setting)
@@ -55,7 +55,7 @@ describe IntegrationSettingsController do
     end
   end
 
-  describe 'PUT update' do
+  describe 'PUT update', auth_controller: true do
     describe :success do
       before do
         put :update, location_id: location, id: integration_setting, integration_setting: {etl_strategy_name: 'offense'}

@@ -75,7 +75,7 @@ describe ClientsController do
     end
   end
 
-  describe "#show" do
+  describe "#show", auth_controller: true do
     context "when the client exists" do
       before { get :show, id: client.urn }
 

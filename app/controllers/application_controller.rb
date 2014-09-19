@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :authenticate_api_user!, if: :is_api_request?
+  before_filter :authenticate_user!, unless: :is_api_request?
 
   protected
 

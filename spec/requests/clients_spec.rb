@@ -47,7 +47,7 @@ describe "Clients" do
     end
   end
 
-  describe "#show" do
+  describe "#show", auth_request: true do
     let!(:client) { Fabricate(:client) }
     let!(:location) { Fabricate(:location, client: client) }
 

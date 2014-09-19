@@ -1,7 +1,5 @@
 class EntriesController < ApplicationController
-  before_filter :authenticate_api_user!, if: :is_api_request?
-  before_filter :authenticate_user!, unless: :is_api_request?
-
+  
   def index
     client_scope = Client.order("updated_at DESC")
     @clients = ClientDecorator.decorate_collection(client_scope)
