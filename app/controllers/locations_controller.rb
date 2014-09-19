@@ -1,4 +1,4 @@
-  class LocationsController < ApplicationController
+class LocationsController < ApplicationController
   before_filter :load_client, :load_location
 
   def show
