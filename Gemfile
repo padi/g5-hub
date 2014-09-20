@@ -15,6 +15,7 @@ gem "sass-rails", "~> 4.0.1"
 gem "coffee-rails", "~> 4.0.1"
 gem "uglifier", ">= 2.4.0"
 gem "heroku_resque_autoscaler"
+gem 'rack-cors'
 
 group :production do
   gem "unicorn"
