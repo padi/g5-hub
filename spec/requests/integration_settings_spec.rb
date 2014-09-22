@@ -8,29 +8,44 @@ describe 'integration settings', auth_request: true do
 
   describe :new do
     let(:inventory_service_url) { 'http://inventory-service.example.com' }
+    let(:inventory_service_auth_token) { 'inventory-auth-token' }
     let(:etl_strategy_name) { 'Centershift' }
+    let(:lead_strategy_name) { 'LeadStrategies::SiteLink' }
     let(:inventory_vendor_endpoint) { 'http://centershift.example.com' }
     let(:inventory_vendor_user_name) { 'uname' }
     let(:inventory_vendor_password) { 'pw' }
+    let(:lead_vendor_endpoint) { 'http://sl.example.com' }
+    let(:lead_vendor_user_name) { 'leaduname' }
+    let(:lead_vendor_password) { 'leadpw' }
     let(:custom_name) { 'custom name' }
     let(:custom_value) { 'custom value' }
 
     it 'creates integration settings' do
       visit new_location_integration_setting_path(location_id: location)
       fill_in 'integration_setting_inventory_service_url', with: inventory_service_url
+      fill_in 'integration_setting_inventory_service_auth_token', with: inventory_service_auth_token
       fill_in 'integration_setting_etl_strategy_name', with: etl_strategy_name
       fill_in 'integration_setting_inventory_vendor_endpoint', with: inventory_vendor_endpoint
       fill_in 'integration_setting_inventory_vendor_user_name', with: inventory_vendor_user_name
       fill_in 'integration_setting_inventory_vendor_password', with: inventory_vendor_password
+      fill_in 'integration_setting_lead_strategy_name', with: lead_strategy_name
+      fill_in 'integration_setting_lead_vendor_endpoint', with: lead_vendor_endpoint
+      fill_in 'integration_setting_lead_vendor_user_name', with: lead_vendor_user_name
+      fill_in 'integration_setting_lead_vendor_password', with: lead_vendor_password
       fill_in 'integration_setting_custom_integration_settings_attributes_0_name', with: custom_name
       fill_in 'integration_setting_custom_integration_settings_attributes_0_value', with: custom_value
       click_button 'Create Integration setting'
 
       expect(page).to have_content inventory_service_url
+      expect(page).to have_content inventory_service_auth_token
       expect(page).to have_content etl_strategy_name
       expect(page).to have_content inventory_vendor_endpoint
       expect(page).to have_content inventory_vendor_user_name
       expect(page).to have_content inventory_vendor_password
+      expect(page).to have_content lead_strategy_name
+      expect(page).to have_content lead_vendor_endpoint
+      expect(page).to have_content lead_vendor_user_name
+      expect(page).to have_content lead_vendor_password
       expect(page).to have_content custom_name
       expect(page).to have_content custom_value
     end
@@ -43,10 +58,15 @@ describe 'integration settings', auth_request: true do
       visit client_location_path(client, location)
       expect(document.cards.length).to eq(1)
       expect(document.card.g5_inventory_service_url.to_s).to eq(integration_setting.inventory_service_url)
+      expect(document.card.g5_inventory_service_auth_token.to_s).to eq(integration_setting.inventory_service_auth_token)
       expect(document.card.g5_etl_strategy_name.to_s).to eq(integration_setting.etl_strategy_name)
       expect(document.card.g5_inventory_vendor_endpoint.to_s).to eq(integration_setting.inventory_vendor_endpoint)
       expect(document.card.g5_inventory_vendor_user_name.to_s).to eq(integration_setting.inventory_vendor_user_name)
       expect(document.card.g5_inventory_vendor_password.to_s).to eq(integration_setting.inventory_vendor_password)
+      expect(document.card.g5_lead_strategy_name.to_s).to eq(integration_setting.lead_strategy_name)
+      expect(document.card.g5_lead_vendor_endpoint.to_s).to eq(integration_setting.lead_vendor_endpoint)
+      expect(document.card.g5_lead_vendor_user_name.to_s).to eq(integration_setting.lead_vendor_user_name)
+      expect(document.card.g5_lead_vendor_password.to_s).to eq(integration_setting.lead_vendor_password)
       expect(document.card.g5_custom_integration_setting_name_0.to_s).to eq('channel')
       expect(document.card.g5_custom_integration_setting_value_0.to_s).to eq(custom_integration_setting.value.to_s)
     end

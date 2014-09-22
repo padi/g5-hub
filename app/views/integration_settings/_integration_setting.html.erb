@@ -2,17 +2,32 @@
   <dt>Inventory Service URL</dt>
   <dd class="p-g5-inventory-service-url"><%= integration_setting.inventory_service_url %></dd>
 
+  <dt>Inventory Service Auth Token</dt>
+  <dd class="p-g5-inventory-service-auth-token"><%= integration_setting.inventory_service_auth_token %></dd>
+
   <dt>ETL Strategy Name</dt>
   <dd class="p-g5-etl-strategy-name"><%= integration_setting.etl_strategy_name %></dd>
 
-  <dt>Vendor Endpoint</dt>
-  <dd class="p-g5-vendor-endpoint"><%= integration_setting.inventory_vendor_endpoint %></dd>
+  <dt>Inventory Vendor Endpoint</dt>
+  <dd class="p-g5-inventory-vendor-endpoint"><%= integration_setting.inventory_vendor_endpoint %></dd>
 
-  <dt>Vendor User Name</dt>
-  <dd class="p-g5-vendor-user-name"><%= integration_setting.inventory_vendor_user_name %></dd>
+  <dt>Inventory Vendor User Name</dt>
+  <dd class="p-g5-inventory-vendor-user-name"><%= integration_setting.inventory_vendor_user_name %></dd>
 
-  <dt>Vendor Password</dt>
-  <dd class="p-g5-vendor-password"><%= integration_setting.inventory_vendor_password %></dd>
+  <dt>Inventory Vendor Password</dt>
+  <dd class="p-g5-inventory-vendor-password"><%= integration_setting.inventory_vendor_password %></dd>
+
+  <dt>Lead Strategy Name</dt>
+  <dd class="p-g5-lead-strategy-name"><%= integration_setting.lead_strategy_name %></dd>
+
+  <dt>Lead Vendor Endpoint</dt>
+  <dd class="p-g5-lead-vendor-endpoint"><%= integration_setting.lead_vendor_endpoint %></dd>
+
+  <dt>Lead Vendor User Name</dt>
+  <dd class="p-g5-lead-vendor-user-name"><%= integration_setting.lead_vendor_user_name %></dd>
+
+  <dt>Lead Vendor Password</dt>
+  <dd class="p-g5-lead-vendor-password"><%= integration_setting.lead_vendor_password %></dd>
 
   <% integration_setting.custom_integration_settings.each_with_index do |custom_integration_setting, index| %>
       <dt class=<%= "p-g5-custom-integration-setting-name-#{index}" %>><%= custom_integration_setting.name %></dt>
