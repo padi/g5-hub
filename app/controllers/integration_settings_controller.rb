@@ -34,6 +34,6 @@ class IntegrationSettingsController < ApplicationController
   end
 
   def integration_setting_params
-    params.require(:integration_setting).permit(:etl_strategy_name, :inventory_service_url, :vendor_user_name, :vendor_password, :vendor_endpoint, custom_integration_settings_attributes: [:id, :name, :_destroy, :value])
+    params.require(:integration_setting).permit(:etl_strategy_name, :inventory_service_url, :inventory_service_auth_token, :inventory_vendor_user_name, :inventory_vendor_password, :inventory_vendor_endpoint, custom_integration_settings_attributes: [:id, :name, :_destroy, :value])
   end
 end
