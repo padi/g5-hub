@@ -9,6 +9,7 @@ Client information is managed by G5.
 * Creates Locations
 * Publishes Client Entries/Feed
 * Webhooks Client Feed Subscribers
+* Webhooks registered services using G5 Updatable
 
 ## Setup
 
