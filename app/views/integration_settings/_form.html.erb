@@ -14,28 +14,58 @@
               <%= f.text_field :inventory_service_url, class: "form-control", required: true %>
             </div>
             <div class="form-group">
+              <%= f.label :inventory_service_auth_token do %>
+                  Inventory Service Auth Token <span class="note">(Required)</span>
+              <% end %>
+              <%= f.text_field :inventory_service_auth_token, class: "form-control", required: true %>
+            </div>
+            <div class="form-group">
               <%= f.label :etl_strategy_name do %>
                   ETL Strategy Name <span class="note">(Required)</span>
               <% end %>
               <%= f.text_field :etl_strategy_name, class: "form-control", required: true %>
             </div>
             <div class="form-group">
-              <%= f.label :vendor_endpoint do %>
-                  Vendor Endpoint <span class="note">(Required)</span>
+              <%= f.label :inventory_vendor_endpoint do %>
+                  Inventory Vendor Endpoint <span class="note">(Required)</span>
               <% end %>
-              <%= f.text_field :vendor_endpoint, class: "form-control", required: true %>
+              <%= f.text_field :inventory_vendor_endpoint, class: "form-control", required: true %>
             </div>
             <div class="form-group">
-              <%= f.label :vendor_user_name do %>
-                  Vendor User Name <span class="note">(Required)</span>
+              <%= f.label :inventory_vendor_user_name do %>
+                  Inventory Vendor User Name <span class="note">(Required)</span>
               <% end %>
-              <%= f.text_field :vendor_user_name, class: "form-control", required: true %>
+              <%= f.text_field :inventory_vendor_user_name, class: "form-control", required: true %>
             </div>
             <div class="form-group">
-              <%= f.label :vendor_password do %>
-                  Vendor Password <span class="note">(Required)</span>
+              <%= f.label :inventory_vendor_password do %>
+                  Inventory Vendor Password <span class="note">(Required)</span>
               <% end %>
-              <%= f.text_field :vendor_password, class: "form-control", required: true %>
+              <%= f.text_field :inventory_vendor_password, class: "form-control", required: true %>
+            </div>
+            <div class="form-group">
+              <%= f.label :lead_strategy_name do %>
+                  Lead Strategy Name <span class="note">(Required)</span>
+              <% end %>
+              <%= f.text_field :lead_strategy_name, class: "form-control", required: true %>
+            </div>
+            <div class="form-group">
+              <%= f.label :lead_vendor_endpoint do %>
+                  Lead Vendor Endpoint <span class="note">(Required)</span>
+              <% end %>
+              <%= f.text_field :lead_vendor_endpoint, class: "form-control", required: true %>
+            </div>
+            <div class="form-group">
+              <%= f.label :lead_vendor_user_name do %>
+                  Lead Vendor User Name <span class="note">(Required)</span>
+              <% end %>
+              <%= f.text_field :lead_vendor_user_name, class: "form-control", required: true %>
+            </div>
+            <div class="form-group">
+              <%= f.label :lead_vendor_password do %>
+                  Lead Vendor Password <span class="note">(Required)</span>
+              <% end %>
+              <%= f.text_field :lead_vendor_password, class: "form-control", required: true %>
             </div>
           </div>
         </div>

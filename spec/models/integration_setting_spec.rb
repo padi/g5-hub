@@ -4,7 +4,11 @@ describe IntegrationSetting do
   it { should belong_to :location }
   it { should have_many :custom_integration_settings }
   it { should validate_presence_of :inventory_service_url }
+  it { should validate_presence_of :inventory_service_auth_token }
   it { should validate_presence_of :etl_strategy_name }
+  it { should validate_presence_of :inventory_vendor_endpoint }
+  it { should validate_presence_of :lead_vendor_endpoint }
+  it { should validate_presence_of :lead_strategy_name }
   it { should accept_nested_attributes_for(:custom_integration_settings).allow_destroy(true) }
 
   describe 'custom_settings_as_hash' do

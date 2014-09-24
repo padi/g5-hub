@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140911152304) do
+ActiveRecord::Schema.define(version: 20140922160821) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -62,11 +62,16 @@ ActiveRecord::Schema.define(version: 20140911152304) do
     t.integer  "location_id"
     t.string   "inventory_service_url"
     t.string   "etl_strategy_name"
-    t.string   "vendor_user_name"
-    t.string   "vendor_password"
-    t.string   "vendor_endpoint"
+    t.string   "inventory_vendor_user_name"
+    t.string   "inventory_vendor_password"
+    t.string   "inventory_vendor_endpoint"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "inventory_service_auth_token"
+    t.string   "lead_vendor_endpoint"
+    t.string   "lead_vendor_user_name"
+    t.string   "lead_vendor_password"
+    t.string   "lead_strategy_name"
   end
 
   add_index "integration_settings", ["location_id"], name: "index_integration_settings_on_location_id"
