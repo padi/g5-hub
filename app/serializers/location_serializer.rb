@@ -1,5 +1,4 @@
 class LocationSerializer < ActiveModel::Serializer
-  embed :ids, include: true
   has_many :locations_integration_settings
   attributes :id, :client_id, :name, :corporate, :created_at, :updated_at, :urn,
              :street_address_1, :street_address_2, :city, :state, :postal_code,

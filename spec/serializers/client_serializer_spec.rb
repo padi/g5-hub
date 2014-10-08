@@ -20,5 +20,5 @@ describe ClientSerializer do
   its([:tel]) { should eq(client.tel) }
   its([:domain_type]) { should eq(client.domain_type) }
   its([:domain]) { should eq(client.domain) }
-  its([:location_ids]) { should eq([location.id]) }
+  its([:locations]) { should_not be_empty }
 end

@@ -32,7 +32,7 @@ describe LocationSerializer do
    :community_amenity_1, :community_amenity_2].each do |field|
 
     its([field]) { should eq(location.send(field)) }
-
-    its([:locations_integration_setting_ids]) { should eq([locations_integration_setting.id]) }
   end
+
+  its([:locations_integration_settings]) { should_not be_empty }
 end
