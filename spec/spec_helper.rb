@@ -58,3 +58,7 @@ Spork.each_run do
     CodeClimate::TestReporter.start
   end
 end
+
+def indifferent_hash(json)
+  ActiveSupport::HashWithIndifferentAccess.new(JSON.parse(json))
+end

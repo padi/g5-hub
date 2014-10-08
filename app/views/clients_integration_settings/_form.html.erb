@@ -1,0 +1,43 @@
+<%= form_for @clients_integration_setting, html: {role: 'form'} do |f| %>
+    <%= f.error_messages %>
+    <fieldset class="panel panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">Integration</h2>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <%= f.label :client_id do %>
+                  Client <span class="note">(Required)</span>
+              <% end %>
+              <% if @clients_integration_setting.new_record? %>
+                  <%= f.collection_select :client_id, Client.order(:name), :id, :name, {blank: true, required: true}, class: "form-control", required: true %>
+              <% else %>
+                  <div><%= @clients_integration_setting.client.name %></div>
+              <% end %>
+            </div>
+            <div class="form-group">
+              <%= f.label :vendor_id do %>
+                  Vendor <span class="note">(Required)</span>
+              <% end %>
+              <%= f.collection_select :vendor_id, Vendor.order(:name), :id, :name, {blank: true, required: true}, class: "form-control", required: true %>
+            </div>
+            <div class="form-group">
+              <%= f.label :vendor_action do %>
+                  Action <span class="note">(Required)</span>
+              <% end %>
+              <%= f.select :vendor_action, ClientsIntegrationSetting::VENDOR_ACTIONS, {blank: true, required: true}, class: "form-control", required: true %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </fieldset>
+    <%= render partial: 'integration_settings/form', locals: {f: f} %>
+
+    <div class="clearfix">
+      <a href="#" id="add_another" class="btn btn-primary pull-left">+ Add Another Custom Integration Setting</a>
+      <%= f.submit 'Save', class: "btn btn-success pull-right" %>
+    </div>
+<% end %>

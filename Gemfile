@@ -16,6 +16,7 @@ gem "coffee-rails", "~> 4.0.1"
 gem "uglifier", ">= 2.4.0"
 gem "heroku_resque_autoscaler"
 gem 'rack-cors'
+gem 'active_model_serializers'
 
 group :production do
   gem "unicorn"

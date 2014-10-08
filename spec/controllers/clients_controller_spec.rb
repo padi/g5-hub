@@ -15,8 +15,8 @@ describe ClientsController do
   context "api requests are protected by authenticatable api" do
     before do
       G5AuthenticatableApi::TokenValidator.any_instance.stub(
-        access_token: token,
-        valid?: valid
+          access_token: token,
+          valid?:       valid
       )
     end
 
@@ -50,6 +50,15 @@ describe ClientsController do
 
   describe "#index" do
     context "an authorized user", auth_controller: true do
+      context "json format" do
+        before do
+          get :index, format: :json
+          @result = indifferent_hash response.body
+        end
+
+        specify { @result['clients'].first['id'].should eq(client.id) }
+      end
+
       context "when a client exists" do
         before { get :index }
 
@@ -76,6 +85,15 @@ describe ClientsController do
   end
 
   describe "#show" do
+    context "json format" do
+      before do
+        get :show, id: client.urn, format: :json
+        @result = indifferent_hash response.body
+      end
+
+      specify { @result['client']['id'].should eq(client.id) }
+    end
+
     context "when the client exists" do
       before { get :show, id: client.urn }
 
@@ -125,7 +143,7 @@ describe ClientsController do
         post :create
 
         expect(Resque).to have_received(:enqueue).
-          with(WebhookPosterJob, Client.last.id, :post_configurator_webhook)
+                              with(WebhookPosterJob, Client.last.id, :post_configurator_webhook)
 
         expect(response.status).to eq 302
         expect(response).to redirect_to(client_path(Client.last))
@@ -170,21 +188,21 @@ describe ClientsController do
         put :update, id: 1
 
         expect(Resque).to have_received(:enqueue).
-          with(WebhookPosterJob, client.id, :post_client_update_webhooks)
+                              with(WebhookPosterJob, client.id, :post_client_update_webhooks)
 
         expect(response).to redirect_to(client_path)
       end
 
       context "allowed attributes" do
         it "accepts city param" do
-          put :update, id: 1, client: { name: "Springfield" }
+          put :update, id: 1, client: {name: "Springfield"}
           expect(response.status).to eq 302
           expect(client.reload.name).to eq "Springfield"
         end
 
         it "rejects id param" do
           original_id = client.id
-          put :update, id: 1, client: { id: original_id+1 }
+          put :update, id: 1, client: {id: original_id+1}
           expect(response.status).to eq 302
           expect(client.reload.id).to eq original_id
         end

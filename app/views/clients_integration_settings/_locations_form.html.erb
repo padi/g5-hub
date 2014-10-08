@@ -1,0 +1,21 @@
+<%= form_for @clients_integration_setting, html: {role: 'form'} do |f| %>
+    <%= f.error_messages %>
+    <fieldset class="panel panel-primary">
+      <div class="panel-heading">
+        <h2 class="panel-title">Add / Remove Location Integrations to <%= @clients_integration_setting.summary %></h2>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <%= f.collection_select :location_ids, @clients_integration_setting.client.locations.order(:name), :id, :name, {blank: true}, { multiple: true, size: 5, class: "form-control multiselect"} %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="clearfix">
+      <%= f.submit 'Save', class: 'btn btn-success pull-right' %>
+    </div>
+<% end %>

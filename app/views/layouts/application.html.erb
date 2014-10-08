@@ -31,6 +31,7 @@
             <ul class="nav navbar-nav">
               <%= content_tag :li, link_to("Entries", entries_path), class: active_if(:root) + active_if(:entries) %>
               <%= content_tag :li, link_to("Clients", clients_path), class: active_if(:clients) %>
+              <%= content_tag :li, link_to("Integrations", clients_integration_settings_path), class: active_if(:clients) %>
             </ul>
           </nav>
         </div>

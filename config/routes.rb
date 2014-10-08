@@ -4,14 +4,14 @@ G5Hub::Application.routes.draw do
   mount G5Authenticatable::Engine => '/g5_auth'
   mount Resque::Server, :at => "/resque"
 
-  resources :entries, only: [ :index, :show]
+  resources :entries, only: [:index, :show]
   resources :tags, only: :show
   resources :clients do
-    resources :locations, only: [ :index, :show ]
+    resources :locations, only: [:index, :show]
   end
 
-  resources :locations, only: [] do
-    resources :integration_settings, only: [ :new, :create, :edit, :update ]
-  end
+  resources :locations
+  resources :clients_integration_settings
+  resources :locations_integration_settings
   root to: "entries#index"
 end

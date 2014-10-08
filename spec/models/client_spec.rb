@@ -5,13 +5,15 @@ describe Client do
 
   it { client.should be_valid }
 
+  it { should have_one :clients_integration_setting }
+
   describe "Identifiers" do
     before do
       Time.any_instance.stub(:to_i) { 1325404800 }
     end
 
     it { client.hashed_id.should eq "gwvrsozf" }
-    it { client.urn.should eq "g5-c-gwvrsozf-#{client.name.parameterize}"}
+    it { client.urn.should eq "g5-c-gwvrsozf-#{client.name.parameterize}" }
     it { client.to_param.should eq client.urn }
   end
 
@@ -54,11 +56,11 @@ describe Client do
 
   describe ".accepts_nested_attributes_for :locations" do
     it "creates location if location has a name" do
-      attributes = { locations_attributes: [ Fabricate.attributes_for(:location) ] }
+      attributes = {locations_attributes: [Fabricate.attributes_for(:location)]}
       expect { client.update_attributes(attributes) }.to change(Location, :count).by(1)
     end
     it "does not create location if location does not have a name" do
-      attributes = { locations_attributes: [ { } ] }
+      attributes = {locations_attributes: [{}]}
       expect { client.update_attributes(attributes) }.to change(Location, :count).by(0)
     end
   end

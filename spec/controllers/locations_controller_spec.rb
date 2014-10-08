@@ -11,6 +11,15 @@ describe LocationsController, auth_controller: true do
     let(:location_urn) { location.urn }
     let(:request) { get :show, client_id: client_urn, id: location_urn }
 
+    context "json format" do
+      before do
+        get :show, client_id: client_urn, id: location_urn, format: :json
+        @result = indifferent_hash response.body
+      end
+
+      specify { @result['location']['id'].should eq(location.id) }
+    end
+
     context "when the client and location exist" do
       before { request }
 

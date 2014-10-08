@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Location do
-  it { should have_one :integration_setting }
+  it { should have_many :locations_integration_settings }
 
   let(:location) { Fabricate(:location, id: 123) }
 

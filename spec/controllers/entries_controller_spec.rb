@@ -10,8 +10,8 @@ describe EntriesController do
   context "api requests are protected by authenticatable api" do
     before do
       G5AuthenticatableApi::TokenValidator.any_instance.stub(
-        access_token: token,
-        valid?: valid
+          access_token: token,
+          valid?:       valid
       )
     end
 
@@ -44,18 +44,30 @@ describe EntriesController do
   end
 
   context "with authenticated user", auth_controller: true do
-
     describe "#index" do
-      let(:request) { get :index }
+      context "json format" do
+        let!(:client) { Fabricate(:client) }
 
-      context "when a client exists" do
-        before { request }
-
-        it "renders index template" do
-          response.should render_template(:index)
+        before do
+          get :index, format: :json
+          @result = indifferent_hash response.body
         end
 
-        it_should_behave_like "a valid Microformats2 document"
+        specify { @result['clients'].first['id'].should eq(client.id) }
+      end
+
+      context 'html format' do
+        let(:request) { get :index }
+
+        context "when a client exists" do
+          before { request }
+
+          it "renders index template" do
+            response.should render_template(:index)
+          end
+
+          it_should_behave_like "a valid Microformats2 document"
+        end
       end
     end
 
