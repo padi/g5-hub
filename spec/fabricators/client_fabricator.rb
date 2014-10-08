@@ -5,5 +5,4 @@ Fabricator(:client) do
   state { "CA" }
   domain_type { Client::DOMAIN_TYPES.sample }
   domain { Faker::Internet.url }
-  inventory_service_uri 'http://localhost:5777/api/v1/storage_facilities'
 end
