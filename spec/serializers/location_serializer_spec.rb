@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe LocationSerializer do
-  let(:location) { Fabricate(:location, locations_integration_settings: [locations_integration_setting]) }
+  let(:location) { Fabricate(:location, client: Fabricate(:client), locations_integration_settings: [locations_integration_setting]) }
   let(:locations_integration_setting) { Fabricate(:locations_integration_setting) }
   let(:serializer) { LocationSerializer.new(location) }
   subject { indifferent_hash(serializer.to_json)[:location] }
@@ -35,4 +35,5 @@ describe LocationSerializer do
   end
 
   its([:locations_integration_settings]) { should_not be_empty }
+  its([:uid]) { eq("http://#{ENV['HOST']}/clients/#{location.client.urn}/locations#{location.urn}") }
 end

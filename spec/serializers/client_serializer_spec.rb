@@ -21,4 +21,5 @@ describe ClientSerializer do
   its([:domain_type]) { should eq(client.domain_type) }
   its([:domain]) { should eq(client.domain) }
   its([:locations]) { should_not be_empty }
+  its([:uid]) { should eq("http://#{ENV['HOST']}/clients/#{client.urn}")}
 end

@@ -1,6 +1,8 @@
 class LocationSerializer < ActiveModel::Serializer
+  include Rails.application.routes.url_helpers
+
   has_many :locations_integration_settings
-  attributes :id, :client_id, :name, :corporate, :created_at, :updated_at, :urn,
+  attributes :id, :uid, :client_id, :name, :corporate, :created_at, :updated_at, :urn,
              :street_address_1, :street_address_2, :city, :state, :postal_code,
              :fax, :email, :hours, :twitter_username, :facebook_username, :yelp_username,
              :pinterest_username, :foursquare_username, :tumblr_username, :instagram_username,
@@ -24,4 +26,8 @@ class LocationSerializer < ActiveModel::Serializer
              :primary_offering_other, :ga_tracking_id, :ga_profile_id, :landmark_1_type, :landmark_1_name, :landmark_2_type, :landmark_2_name,
              :property_feature_1, :property_feature_2, :property_feature_3, :apartment_amenity_1, :apartment_amenity_2,
              :community_amenity_1, :community_amenity_2
+
+  def uid
+    client_location_url(object.client, object)
+  end
 end
