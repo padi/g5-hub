@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe WebhookPoster do
   let(:webhook_poster) { described_class.new(client) }

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe ClientSerializer do
   let(:location) { Fabricate(:location) }
@@ -6,20 +6,20 @@ describe ClientSerializer do
   let(:serializer) { ClientSerializer.new(client) }
   subject { indifferent_hash(serializer.to_json)[:client] }
 
-  its([:id]) { should eq(client.id) }
-  its([:name]) { should eq(client.name) }
-  its([:urn]) { should eq(client.urn) }
-  its([:vertical]) { should eq(client.vertical) }
-  its([:street_address_1]) { should eq(client.street_address_1) }
-  its([:street_address_2]) { should eq(client.street_address_2) }
-  its([:city]) { should eq(client.city) }
-  its([:state]) { should eq(client.state) }
-  its([:postal_code]) { should eq(client.postal_code) }
-  its([:fax]) { should eq(client.fax) }
-  its([:email]) { should eq(client.email) }
-  its([:tel]) { should eq(client.tel) }
-  its([:domain_type]) { should eq(client.domain_type) }
-  its([:domain]) { should eq(client.domain) }
-  its([:locations]) { should_not be_empty }
-  its([:uid]) { should eq("http://#{ENV['HOST']}/clients/#{client.urn}")}
+  its([:id]) { is_expected.to eq(client.id) }
+  its([:name]) { is_expected.to eq(client.name) }
+  its([:urn]) { is_expected.to eq(client.urn) }
+  its([:vertical]) { is_expected.to eq(client.vertical) }
+  its([:street_address_1]) { is_expected.to eq(client.street_address_1) }
+  its([:street_address_2]) { is_expected.to eq(client.street_address_2) }
+  its([:city]) { is_expected.to eq(client.city) }
+  its([:state]) { is_expected.to eq(client.state) }
+  its([:postal_code]) { is_expected.to eq(client.postal_code) }
+  its([:fax]) { is_expected.to eq(client.fax) }
+  its([:email]) { is_expected.to eq(client.email) }
+  its([:tel]) { is_expected.to eq(client.tel) }
+  its([:domain_type]) { is_expected.to eq(client.domain_type) }
+  its([:domain]) { is_expected.to eq(client.domain) }
+  its([:locations]) { is_expected.to_not be_empty }
+  its([:uid]) { is_expected.to eq("http://#{ENV['HOST']}/clients/#{client.urn}")}
 end

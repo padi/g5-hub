@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe EntriesController do
   render_views
@@ -53,7 +53,7 @@ describe EntriesController do
           @result = indifferent_hash response.body
         end
 
-        specify { @result['clients'].first['id'].should eq(client.id) }
+        specify { expect(@result['clients'].first['id']).to eq(client.id) }
       end
 
       context 'html format' do
@@ -63,7 +63,7 @@ describe EntriesController do
           before { request }
 
           it "renders index template" do
-            response.should render_template(:index)
+            expect(response).to render_template(:index)
           end
 
           it_should_behave_like "a valid Microformats2 document"
@@ -75,7 +75,7 @@ describe EntriesController do
       before { get :show, id: 1 }
 
       it "renders show template" do
-        response.should render_template(:show)
+        expect(response).to render_template(:show)
       end
 
       it_should_behave_like "a valid Microformats2 document"

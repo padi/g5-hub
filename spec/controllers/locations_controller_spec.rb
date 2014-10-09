@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe LocationsController, auth_controller: true do
   render_views
@@ -24,15 +24,15 @@ describe LocationsController, auth_controller: true do
       before { request }
 
       it "renders show template" do
-        response.should render_template(:show)
+        expect(response).to render_template(:show)
       end
 
       it "decorates client" do
-        assigns(:client).should be_decorated
+        expect(assigns(:client)).to be_decorated
       end
 
       it "decorates location" do
-        assigns(:location).should be_decorated
+        expect(assigns(:location)).to be_decorated
       end
 
       it_should_behave_like "a valid Microformats2 document"

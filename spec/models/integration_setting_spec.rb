@@ -1,18 +1,18 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe IntegrationSetting do
-  it { should have_one :clients_integration_setting }
-  it { should have_one :locations_integration_setting }
-  it { should have_many :custom_integration_settings }
-  it { should validate_presence_of :strategy_name }
-  it { should validate_presence_of :vendor_endpoint }
-  it { should accept_nested_attributes_for(:custom_integration_settings).allow_destroy(true) }
+  it { is_expected.to have_one :clients_integration_setting }
+  it { is_expected.to have_one :locations_integration_setting }
+  it { is_expected.to have_many :custom_integration_settings }
+  it { is_expected.to validate_presence_of :strategy_name }
+  it { is_expected.to validate_presence_of :vendor_endpoint }
+  it { is_expected.to accept_nested_attributes_for(:custom_integration_settings).allow_destroy(true) }
 
   describe 'override' do
     subject { IntegrationSetting.new(override: true) }
 
     it 'skips validations when override set' do
-      subject.should be_valid
+      expect(subject).to be_valid
     end
   end
 
@@ -27,18 +27,18 @@ describe IntegrationSetting do
 
       describe 'custom_integration_settings_as_hash' do
         subject { integration_setting.custom_integration_settings_as_hash }
-        its([:foo]) { should eq('bar') }
-        its([:be]) { should eq('baz') }
+        its([:foo]) { is_expected.to eq('bar') }
+        its([:be]) { is_expected.to eq('baz') }
       end
 
       describe 'to_settings_hash' do
         subject { integration_setting.to_settings_hash }
-        its([:foo]) { should eq('bar') }
-        its([:be]) { should eq('baz') }
-        its(['vendor_endpoint']) { should eq(integration_setting.vendor_endpoint) }
-        its(['strategy_name']) { should eq(integration_setting.strategy_name) }
-        its(['vendor_user_name']) { should eq(integration_setting.vendor_user_name) }
-        its(['vendor_password']) { should eq(integration_setting.vendor_password) }
+        its([:foo]) { is_expected.to eq('bar') }
+        its([:be]) { is_expected.to eq('baz') }
+        its(['vendor_endpoint']) { is_expected.to eq(integration_setting.vendor_endpoint) }
+        its(['strategy_name']) { is_expected.to eq(integration_setting.strategy_name) }
+        its(['vendor_user_name']) { is_expected.to eq(integration_setting.vendor_user_name) }
+        its(['vendor_password']) { is_expected.to eq(integration_setting.vendor_password) }
       end
     end
 
@@ -50,10 +50,10 @@ describe IntegrationSetting do
 
       describe 'to_settings_hash' do
         subject { integration_setting.to_settings_hash }
-        its(['vendor_endpoint']) { should eq(integration_setting.vendor_endpoint) }
-        its(['strategy_name']) { should eq(integration_setting.strategy_name) }
-        its(['vendor_user_name']) { should eq(integration_setting.vendor_user_name) }
-        its(['vendor_password']) { should eq(integration_setting.vendor_password) }
+        its(['vendor_endpoint']) { is_expected.to eq(integration_setting.vendor_endpoint) }
+        its(['strategy_name']) { is_expected.to eq(integration_setting.strategy_name) }
+        its(['vendor_user_name']) { is_expected.to eq(integration_setting.vendor_user_name) }
+        its(['vendor_password']) { is_expected.to eq(integration_setting.vendor_password) }
       end
     end
   end

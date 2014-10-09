@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe ClientsController do
   render_views
@@ -56,14 +56,14 @@ describe ClientsController do
           @result = indifferent_hash response.body
         end
 
-        specify { @result['clients'].first['id'].should eq(client.id) }
+        specify { expect(@result['clients'].first['id']).to eq(client.id) }
       end
 
       context "when a client exists" do
         before { get :index }
 
         it "renders index template" do
-          response.should render_template(:index)
+          expect(response).to render_template(:index)
         end
 
         it_should_behave_like "a valid Microformats2 document"
@@ -91,14 +91,14 @@ describe ClientsController do
         @result = indifferent_hash response.body
       end
 
-      specify { @result['client']['id'].should eq(client.id) }
+      specify { expect(@result['client']['id']).to eq(client.id) }
     end
 
     context "when the client exists" do
       before { get :show, id: client.urn }
 
       it "renders show template" do
-        response.should render_template(:show)
+        expect(response).to render_template(:show)
       end
 
       it_should_behave_like "a valid Microformats2 document"
@@ -117,7 +117,7 @@ describe ClientsController do
     context "an authorized user", auth_controller: true do
       it "renders new template" do
         get :new
-        response.should render_template(:new)
+        expect(response).to render_template(:new)
       end
     end
 
@@ -134,7 +134,7 @@ describe ClientsController do
       it "renders new template when model is invalid" do
         Client.any_instance.stub(:valid?).and_return(false)
         post :create
-        response.should render_template(:new)
+        expect(response).to render_template(:new)
       end
 
       it "enques webhooks and redirects when model is valid" do
@@ -162,7 +162,7 @@ describe ClientsController do
     context "an authorized user", auth_controller: true do
       it "renders edit template" do
         get :edit, id: 1
-        response.should render_template(:edit)
+        expect(response).to render_template(:edit)
       end
     end
 
@@ -179,7 +179,7 @@ describe ClientsController do
       it "renders edit template when model is invalid" do
         client.stub(:valid?).and_return(false)
         put :update, id: 1
-        response.should render_template(:edit)
+        expect(response).to render_template(:edit)
       end
 
       it "enques webhooks and redirects when model is valid" do
@@ -226,7 +226,7 @@ describe ClientsController do
 
       it "redirects" do
         delete :destroy, id: 1
-        response.should redirect_to(clients_path)
+        expect(response).to redirect_to(clients_path)
       end
     end
 

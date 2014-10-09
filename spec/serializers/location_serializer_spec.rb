@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe LocationSerializer do
   let(:location) { Fabricate(:location, client: Fabricate(:client), locations_integration_settings: [locations_integration_setting]) }
@@ -31,10 +31,10 @@ describe LocationSerializer do
    :property_feature_1, :property_feature_2, :property_feature_3, :apartment_amenity_1, :apartment_amenity_2,
    :community_amenity_1, :community_amenity_2].each do |field|
 
-    its([field]) { should eq(location.send(field)) }
+    its([field]) { is_expected.to eq(location.send(field)) }
   end
 
-  its([:locations_integration_settings]) { should_not be_empty }
+  its([:locations_integration_settings]) { is_expected.to_not be_empty }
   its([:uid]) { eq("http://#{ENV['HOST']}/clients/#{location.client.urn}/locations#{location.urn}") }
   its([:client_uid]) { eq("http://#{ENV['HOST']}/clients/#{location.client.urn}") }
 end

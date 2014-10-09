@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe HerokuAppNameFormatter do
   let(:client) { Fabricate.build(:client, urn: urn) }

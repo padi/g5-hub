@@ -1,56 +1,56 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Client do
   let(:client) { Fabricate(:client, id: 123) }
 
-  it { client.should be_valid }
+  it { expect(client).to be_valid }
 
-  it { should have_one :clients_integration_setting }
+  it { is_expected.to have_one :clients_integration_setting }
 
   describe "Identifiers" do
     before do
       Time.any_instance.stub(:to_i) { 1325404800 }
     end
 
-    it { client.hashed_id.should eq "gwvrsozf" }
-    it { client.urn.should eq "g5-c-gwvrsozf-#{client.name.parameterize}" }
-    it { client.to_param.should eq client.urn }
+    it { expect(client.hashed_id).to eq "gwvrsozf" }
+    it { expect(client.urn).to eq "g5-c-gwvrsozf-#{client.name.parameterize}" }
+    it { expect(client.to_param).to eq client.urn }
   end
 
   describe "Validates Required Fields" do
     it "is not valid without name" do
       client.name = ""
-      client.should_not be_valid
+      expect(client).to_not be_valid
     end
 
     it "needs a vertical" do
       client.vertical = ""
-      client.should_not be_valid
+      expect(client).to_not be_valid
     end
 
     it "needs a vertical from the preset list" do
       client.vertical = "lol not a real vertical"
-      client.should_not be_valid
+      expect(client).to_not be_valid
     end
 
     it "must have a city" do
       client.city = ""
-      client.should_not be_valid
+      expect(client).to_not be_valid
     end
 
     it "must have a state" do
       client.state = ""
-      client.should_not be_valid
+      expect(client).to_not be_valid
     end
 
     it "validates presence of domain type" do
       client.domain_type = ""
-      client.should_not be_valid
+      expect(client).to_not be_valid
     end
 
     it "validates domain type is included in DOMAIN_TYPES" do
       client.domain_type = "SomeOtherClient"
-      client.should_not be_valid
+      expect(client).to_not be_valid
     end
   end
 
@@ -71,6 +71,6 @@ describe Client do
 
     subject { client.cms_url }
 
-    it { should eq("https://g5-cms-foo.herokuapp.com") }
+    it { is_expected.to eq("https://g5-cms-foo.herokuapp.com") }
   end
 end

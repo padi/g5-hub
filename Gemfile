@@ -31,8 +31,9 @@ group :development, :test do
   gem "dotenv-rails", "~> 0.10.0"
   gem "sqlite3"
   gem "simplecov", "~> 0.7.1", require: false
-  gem "rspec-rails", "~> 2.14.1"
-  gem "guard-rspec", "~> 4.2.8"
+  gem 'rspec-rails', '> 3'
+  gem 'rspec-its'
+  # gem "guard-rspec"
   gem "guard-spork"
   gem "rb-fsevent", "~> 0.9.2"
   gem "fabrication", "~> 2.9.8"
