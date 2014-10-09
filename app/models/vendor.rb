@@ -1,3 +1,3 @@
 class Vendor < ActiveRecord::Base
-  validates :name, uniqueness: true, allow_ni: false
+  validates :name, presence: true, uniqueness: true
 end
