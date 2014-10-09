@@ -36,4 +36,5 @@ describe LocationSerializer do
 
   its([:locations_integration_settings]) { should_not be_empty }
   its([:uid]) { eq("http://#{ENV['HOST']}/clients/#{location.client.urn}/locations#{location.urn}") }
+  its([:client_uid]) { eq("http://#{ENV['HOST']}/clients/#{location.client.urn}") }
 end
