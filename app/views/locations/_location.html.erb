@@ -82,19 +82,6 @@
   <% end %>
 </dl>
 
-<div>
-  <% if location.integration_setting %>
-      <h4>
-        <%= link_to 'Integration Settings', edit_location_integration_setting_url(location, location.integration_setting) %>
-      </h4>
-      <%= render location.integration_setting %>
-  <% else %>
-      <h4>
-        <%= link_to 'Integration Settings', new_location_integration_setting_url(location) %>
-      </h4>
-  <% end %>
-</div>
-
 <h4>Client</h4>
 
 <p class="p-org h-card">

@@ -1,7 +1,7 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe CustomIntegrationSetting do
-  it { should belong_to :integration_setting }
-  it { should validate_presence_of :name }
-  it { should validate_presence_of :value }
+  it { is_expected.to belong_to :integration_setting }
+  it { is_expected.to validate_presence_of :name }
+  it { is_expected.to validate_presence_of :value }
 end

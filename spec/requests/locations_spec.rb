@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Locations", auth_request: true do
 
@@ -109,7 +109,7 @@ describe "Locations", auth_request: true do
     it "generates a valid Microformats2 document with attributes" do
       visit client_location_path(client, location)
       expect(document.cards.length).to eq(1)
-      expect(document.card.uid.to_s).to eq(client_location_url(client, location))
+      expect(document.card.uid.to_s).to match(client_location_path(client, location))
       expect(document.card.name.to_s).to eq(location.name)
       expect(document.card.adr.format.tel.to_s).to eq(location.phone_number)
       expect(document.card.ga_tracking_id.to_s).to eq(location.ga_tracking_id)

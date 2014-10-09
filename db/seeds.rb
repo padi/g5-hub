@@ -1,0 +1,1 @@
+Vendor.where(name: 'SiteLink').first_or_create

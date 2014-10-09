@@ -1,17 +1,22 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe IntegrationSetting do
-  it { should belong_to :location }
-  it { should have_many :custom_integration_settings }
-  it { should validate_presence_of :inventory_service_url }
-  it { should validate_presence_of :inventory_service_auth_token }
-  it { should validate_presence_of :etl_strategy_name }
-  it { should validate_presence_of :inventory_vendor_endpoint }
-  it { should validate_presence_of :lead_vendor_endpoint }
-  it { should validate_presence_of :lead_strategy_name }
-  it { should accept_nested_attributes_for(:custom_integration_settings).allow_destroy(true) }
+  it { is_expected.to have_one :clients_integration_setting }
+  it { is_expected.to have_one :locations_integration_setting }
+  it { is_expected.to have_many :custom_integration_settings }
+  it { is_expected.to validate_presence_of :strategy_name }
+  it { is_expected.to validate_presence_of :vendor_endpoint }
+  it { is_expected.to accept_nested_attributes_for(:custom_integration_settings).allow_destroy(true) }
 
-  describe 'custom_settings_as_hash' do
+  describe 'override' do
+    subject { IntegrationSetting.new(override: true) }
+
+    it 'skips validations when override set' do
+      expect(subject).to be_valid
+    end
+  end
+
+  describe 'hashes' do
     context 'with custom_settings' do
       let(:integration_setting) do
         setting = Fabricate(:integration_setting)
@@ -20,15 +25,35 @@ describe IntegrationSetting do
         setting
       end
 
-      subject { integration_setting.custom_integration_settings_as_hash }
-      its([:foo]) { should eq('bar') }
-      its([:be]) { should eq('baz') }
+      describe 'custom_integration_settings_as_hash' do
+        subject { integration_setting.custom_integration_settings_as_hash }
+        its([:foo]) { is_expected.to eq('bar') }
+        its([:be]) { is_expected.to eq('baz') }
+      end
+
+      describe 'to_settings_hash' do
+        subject { integration_setting.to_settings_hash }
+        its([:foo]) { is_expected.to eq('bar') }
+        its([:be]) { is_expected.to eq('baz') }
+        its(['vendor_endpoint']) { is_expected.to eq(integration_setting.vendor_endpoint) }
+        its(['strategy_name']) { is_expected.to eq(integration_setting.strategy_name) }
+        its(['vendor_user_name']) { is_expected.to eq(integration_setting.vendor_user_name) }
+        its(['vendor_password']) { is_expected.to eq(integration_setting.vendor_password) }
+      end
     end
 
     context 'withOUT custom settings' do
       let(:integration_setting) { Fabricate(:integration_setting) }
       it 'returns empty hash' do
         expect(integration_setting.custom_integration_settings_as_hash).to eq({})
+      end
+
+      describe 'to_settings_hash' do
+        subject { integration_setting.to_settings_hash }
+        its(['vendor_endpoint']) { is_expected.to eq(integration_setting.vendor_endpoint) }
+        its(['strategy_name']) { is_expected.to eq(integration_setting.strategy_name) }
+        its(['vendor_user_name']) { is_expected.to eq(integration_setting.vendor_user_name) }
+        its(['vendor_password']) { is_expected.to eq(integration_setting.vendor_password) }
       end
     end
   end

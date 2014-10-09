@@ -1,0 +1,25 @@
+<% title 'Integrations' %>
+<% header_right link_to('New Integration', new_clients_integration_setting_url, class: 'btn btn-success pull-right') %>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th></th>
+    <th>Client Name</th>
+    <th>Integration</th>
+    <th>Action</th>
+    <th>Number of Locations</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @clients_integration_settings.each do |client_integration_setting| %>
+      <tr>
+        <td><%= link_to('Edit', clients_integration_setting_url(client_integration_setting)) %></td>
+        <td><%= client_integration_setting.client.name %></td>
+        <td><%= client_integration_setting.vendor.name %></td>
+        <td><%= client_integration_setting.vendor_action %></td>
+        <td><%= client_integration_setting.locations.count %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

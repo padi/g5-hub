@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe EntriesController do
   render_views
@@ -10,8 +10,8 @@ describe EntriesController do
   context "api requests are protected by authenticatable api" do
     before do
       G5AuthenticatableApi::TokenValidator.any_instance.stub(
-        access_token: token,
-        valid?: valid
+          access_token: token,
+          valid?:       valid
       )
     end
 
@@ -44,18 +44,30 @@ describe EntriesController do
   end
 
   context "with authenticated user", auth_controller: true do
-
     describe "#index" do
-      let(:request) { get :index }
+      context "json format" do
+        let!(:client) { Fabricate(:client) }
 
-      context "when a client exists" do
-        before { request }
-
-        it "renders index template" do
-          response.should render_template(:index)
+        before do
+          get :index, format: :json
+          @result = indifferent_hash response.body
         end
 
-        it_should_behave_like "a valid Microformats2 document"
+        specify { expect(@result['clients'].first['id']).to eq(client.id) }
+      end
+
+      context 'html format' do
+        let(:request) { get :index }
+
+        context "when a client exists" do
+          before { request }
+
+          it "renders index template" do
+            expect(response).to render_template(:index)
+          end
+
+          it_should_behave_like "a valid Microformats2 document"
+        end
       end
     end
 
@@ -63,7 +75,7 @@ describe EntriesController do
       before { get :show, id: 1 }
 
       it "renders show template" do
-        response.should render_template(:show)
+        expect(response).to render_template(:show)
       end
 
       it_should_behave_like "a valid Microformats2 document"

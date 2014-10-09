@@ -1,0 +1,13 @@
+<% title "#{@locations_integration_setting.location.name} Override Integration" %>
+<% header_right link_to("Cancel", clients_integration_setting_url(@locations_integration_setting.clients_integration_setting), class: "btn btn-default pull-right") %>
+
+<%= form_for @locations_integration_setting, html: {role: 'form'} do |f| %>
+    <%= f.error_messages %>
+
+    <%= render partial: 'integration_settings/overrides_form', locals: {f: f, overridee: @locations_integration_setting.clients_integration_setting.integration_setting} %>
+
+    <div class="clearfix">
+      <a href="#" id="add_another" class="btn btn-primary pull-left">+ Add Another Custom Integration Setting</a>
+      <%= f.submit 'Save', class: "btn btn-success pull-right" %>
+    </div>
+<% end %>

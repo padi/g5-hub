@@ -1,110 +1,70 @@
-<%= form_for [@location, @integration_setting], html: {role: "form"} do |f| %>
-    <%= f.error_messages %>
-    <fieldset class="panel panel-primary">
-      <div class="panel-heading">
-        <h2 class="panel-title">Integration Setting</h2>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-sm-6">
-            <div class="form-group">
-              <%= f.label :inventory_service_url do %>
-                  Inventory Service URL <span class="note">(Required)</span>
-              <% end %>
-              <%= f.text_field :inventory_service_url, class: "form-control", required: true %>
-            </div>
-            <div class="form-group">
-              <%= f.label :inventory_service_auth_token do %>
-                  Inventory Service Auth Token <span class="note">(Required)</span>
-              <% end %>
-              <%= f.text_field :inventory_service_auth_token, class: "form-control", required: true %>
-            </div>
-            <div class="form-group">
-              <%= f.label :etl_strategy_name do %>
-                  ETL Strategy Name <span class="note">(Required)</span>
-              <% end %>
-              <%= f.text_field :etl_strategy_name, class: "form-control", required: true %>
-            </div>
-            <div class="form-group">
-              <%= f.label :inventory_vendor_endpoint do %>
-                  Inventory Vendor Endpoint <span class="note">(Required)</span>
-              <% end %>
-              <%= f.text_field :inventory_vendor_endpoint, class: "form-control", required: true %>
-            </div>
-            <div class="form-group">
-              <%= f.label :inventory_vendor_user_name do %>
-                  Inventory Vendor User Name <span class="note">(Required)</span>
-              <% end %>
-              <%= f.text_field :inventory_vendor_user_name, class: "form-control", required: true %>
-            </div>
-            <div class="form-group">
-              <%= f.label :inventory_vendor_password do %>
-                  Inventory Vendor Password <span class="note">(Required)</span>
-              <% end %>
-              <%= f.text_field :inventory_vendor_password, class: "form-control", required: true %>
-            </div>
-            <div class="form-group">
-              <%= f.label :lead_strategy_name do %>
-                  Lead Strategy Name <span class="note">(Required)</span>
-              <% end %>
-              <%= f.text_field :lead_strategy_name, class: "form-control", required: true %>
-            </div>
-            <div class="form-group">
-              <%= f.label :lead_vendor_endpoint do %>
-                  Lead Vendor Endpoint <span class="note">(Required)</span>
-              <% end %>
-              <%= f.text_field :lead_vendor_endpoint, class: "form-control", required: true %>
-            </div>
-            <div class="form-group">
-              <%= f.label :lead_vendor_user_name do %>
-                  Lead Vendor User Name <span class="note">(Required)</span>
-              <% end %>
-              <%= f.text_field :lead_vendor_user_name, class: "form-control", required: true %>
-            </div>
-            <div class="form-group">
-              <%= f.label :lead_vendor_password do %>
-                  Lead Vendor Password <span class="note">(Required)</span>
-              <% end %>
-              <%= f.text_field :lead_vendor_password, class: "form-control", required: true %>
-            </div>
+<div id="form-integration-settings">
+  <%= f.fields_for :integration_setting, class: "new-integration-setting" do |integration_setting| %>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h2 class="panel-title">Integration Setting</h2>
+        </div>
+        <div class="panel-body">
+          <div id="integration_settings_container">
+            <fieldset>
+              <div class="form-group">
+                <%= integration_setting.label :vendor_endpoint do %>
+                    Vendor Endpoint <span class="note">(Required)</span>
+                <% end %>
+                <%= integration_setting.text_field :vendor_endpoint, class: "form-control", required: true %>
+              </div>
+              <div class="form-group">
+                <%= integration_setting.label :vendor_user_name do %>
+                    Vendor User Name
+                <% end %>
+                <%= integration_setting.text_field :vendor_user_name, class: "form-control", required: true %>
+              </div>
+              <div class="form-group">
+                <%= integration_setting.label :vendor_password do %>
+                    Vendor Password
+                <% end %>
+                <%= integration_setting.text_field :vendor_password, class: "form-control", required: true %>
+              </div>
+              <div class="form-group">
+                <%= integration_setting.label :strategy_name do %>
+                    Strategy Name <span class="note">(Required)</span>
+                <% end %>
+                <%= integration_setting.text_field :strategy_name, class: "form-control", required: true %>
+              </div>
+            </fieldset>
           </div>
         </div>
       </div>
-    </fieldset>
-    <div id="form-custom-integration-settings">
-      <%= f.fields_for :custom_integration_settings, class: "new-custom-integration-setting" do |custom_integration_setting| %>
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h2 class="panel-title">Custom Integration Setting</h2>
-            </div>
-            <div class="panel-body">
-              <div id="custom_integration_settings_container">
-                <fieldset>
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <%= custom_integration_setting.label :name do %>
-                            Name <span class="note">(Required)</span>
-                        <% end %>
-                        <%= custom_integration_setting.text_field :name, class: "form-control", required: true %>
-                      </div>
-                      <div class="form-group">
-                        <%= custom_integration_setting.label :value do %>
-                            Value <span class="note">(Required)</span>
-                        <% end %>
-                        <%= custom_integration_setting.text_field :value, class: "form-control", required: true %>
+      <div id="form-custom-integration-settings">
+        <%= integration_setting.fields_for :custom_integration_settings, class: "new-custom-integration-setting" do |custom_integration_setting| %>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h2 class="panel-title">Custom Integration Setting</h2>
+              </div>
+              <div class="panel-body">
+                <div id="custom_integration_settings_container">
+                  <fieldset>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <%= custom_integration_setting.label :name do %>
+                              Name <span class="note">(Required)</span>
+                          <% end %>
+                          <%= custom_integration_setting.text_field :name, class: "form-control", required: true %>
+                        </div>
+                        <div class="form-group">
+                          <%= custom_integration_setting.label :value do %>
+                              Value <span class="note">(Required)</span>
+                          <% end %>
+                          <%= custom_integration_setting.text_field :value, class: "form-control", required: true %>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </fieldset>
+                  </fieldset>
+                </div>
               </div>
             </div>
-          </div>
-      <% end %>
-    </div>
-
-    <div class="clearfix">
-      <a href="#" id="add_another" class="btn btn-primary pull-left">+ Add Another Custom Integration Setting</a>
-      <%= f.submit class: "btn btn-success pull-right" %>
-    </div>
-<% end %>
+        <% end %>
+      </div>
+  <% end %>
+</div>

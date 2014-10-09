@@ -1,5 +1,6 @@
 @import "bootstrap";
 @import "bootstrap/theme";
+@import "multi-select";
 
 body {
   padding-bottom: 2em;
@@ -53,5 +54,22 @@ form h5 {
   text-transform: uppercase;
   &:first-child {
     margin-top: 0;
+  }
+}
+
+ul.show-list {
+  list-style-type: none;
+  padding-left: 0;
+  li {
+    margin: 10px;
+  }
+  .field-name {
+    display: inline-block;
+    width: 120px;
+    margin-right: 10px;
+    text-align: right;
+  }
+  .field-value {
+    font-weight: bold;
   }
 }
