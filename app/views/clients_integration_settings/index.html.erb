@@ -1,5 +1,5 @@
 <% title 'Integrations' %>
-<% header_right link_to("New Integration", new_clients_integration_setting_url, class: "btn btn-success pull-right") %>
+<% header_right link_to('New Integration', new_clients_integration_setting_url, class: 'btn btn-success pull-right') %>
 
 <table class="table table-striped">
   <thead>
@@ -7,12 +7,8 @@
     <th></th>
     <th>Client Name</th>
     <th>Integration</th>
-    <th>Number of Stores</th>
-    <th>Frequency</th>
-    <th>Last Run</th>
-    <th>Last Status</th>
-    <th>Next Scheduled Run</th>
-    <th>Location / Error Message(s)</th>
+    <th>Action</th>
+    <th>Number of Locations</th>
   </tr>
   </thead>
   <tbody>
@@ -21,12 +17,8 @@
         <td><%= link_to('Edit', clients_integration_setting_url(client_integration_setting)) %></td>
         <td><%= client_integration_setting.client.name %></td>
         <td><%= client_integration_setting.vendor.name %></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><%= client_integration_setting.vendor_action %></td>
+        <td><%= client_integration_setting.locations.count %></td>
       </tr>
   <% end %>
   </tbody>
