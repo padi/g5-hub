@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141002181112) do
+ActiveRecord::Schema.define(version: 20141010155505) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -221,6 +221,7 @@ ActiveRecord::Schema.define(version: 20141002181112) do
     t.string   "apartment_amenity_2"
     t.string   "community_amenity_1"
     t.string   "community_amenity_2"
+    t.string   "status"
   end
 
   create_table "locations_integration_settings", force: true do |t|
