@@ -7,6 +7,7 @@ class Location < ActiveRecord::Base
   STYLE_DESIGNS = ['High Rise', 'Modern', 'Victorian', 'Contemporary', 'Ranch', 'Garden', 'Resort']
   STYLE_COSTS = ['Luxury', 'Affordable', 'Low Income']
   RECORD_TYPE = "g5-cl"
+  STATUS_TYPES = ["New", "Live", "Suspended"]
 
   belongs_to :client
   has_many :locations_integration_settings, dependent: :destroy
@@ -27,6 +28,7 @@ class Location < ActiveRecord::Base
   validates :property_feature_3, inclusion: { in: PROPERTY_FEATURES, message: "%{value} is not a valid property feature" }, if: :property_feature_3?
   validates :style_design, inclusion: { in: STYLE_DESIGNS, message: "%{value} is not a valid style design" }, if: :style_design?
   validates :style_cost, inclusion: { in: STYLE_COSTS, message: "%{value} is not a valid style_cost" }, if: :style_cost?
+  validates :status, inclusion: { in: STATUS_TYPES, message: "%{value} is not a valid status" }
 
   after_initialize :not_corporate_by_default
   after_create :set_urn
