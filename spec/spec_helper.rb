@@ -78,7 +78,7 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     # Temporary fix for default_url_host not being properly set in Rails 4.1.0
-    Rails.application.routes.default_url_options = { host: "localhost:3000", port: nil }
+    Rails.application.default_url_options[:host] = "localhost"
   end
 end
 

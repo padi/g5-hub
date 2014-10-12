@@ -21,5 +21,5 @@ describe ClientSerializer do
   its([:domain_type]) { is_expected.to eq(client.domain_type) }
   its([:domain]) { is_expected.to eq(client.domain) }
   its([:locations]) { is_expected.to_not be_empty }
-  its([:uid]) { is_expected.to eq("http://#{ENV['HOST']}/clients/#{client.urn}")}
+  its([:uid]) { is_expected.to eq("http://localhost/clients/#{client.urn}")}
 end
