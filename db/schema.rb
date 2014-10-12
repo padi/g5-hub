@@ -221,7 +221,7 @@ ActiveRecord::Schema.define(version: 20141010155505) do
     t.string   "apartment_amenity_2"
     t.string   "community_amenity_1"
     t.string   "community_amenity_2"
-    t.string   "status"
+    t.string   "status",                    default: "New"
   end
 
   create_table "locations_integration_settings", force: true do |t|
