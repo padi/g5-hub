@@ -4,7 +4,7 @@ class LocationSerializer < ActiveModel::Serializer
   has_many :locations_integration_settings
 
   attributes :uid, :client_uid, :created_at, :updated_at
-  LOCATION_SERIALIZED_ATTRIBUTES = [:id, :client_id, :name, :corporate, :urn,
+  LOCATION_SERIALIZED_ATTRIBUTES = [:id, :client_id, :name, :corporate, :urn, :status,
                                     :street_address_1, :street_address_2, :city, :state, :postal_code,
                                     :fax, :email, :hours, :twitter_username, :facebook_username, :yelp_username,
                                     :pinterest_username, :foursquare_username, :tumblr_username, :instagram_username,
