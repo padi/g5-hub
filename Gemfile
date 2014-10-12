@@ -41,7 +41,7 @@ group :development, :test do
   # ruby request specs
   gem "capybara", "~> 2.2.0"
   gem "launchy"
-  gem "selenium-webdriver", "~> 2.40.0"
+  gem "selenium-webdriver"
   gem "database_cleaner", "~> 1.2.0"
   gem "microformats2"
   gem "foreman"
