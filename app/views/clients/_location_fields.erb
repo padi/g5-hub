@@ -8,6 +8,18 @@
         <fieldset>
           <hr />
           <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <div class="alert alert-warning">
+                  <%= location.label :vertical do %>
+                    Status <span class="note">(Required)</span>
+                  <% end %>
+
+                  <%= location.select :status, Location::STATUS_TYPES, { prompt: "Select Status" }, class: "form-control", required: true %>
+                </div>
+              </div>
+            </div>
+
             <div class="col-sm-6">
               <div class="form-group">
                 <%= location.label :name do %>
@@ -74,12 +86,6 @@
                   <%= location.check_box :corporate %>
                   Corporate
                 <% end %>
-              </div>
-              <div class="form-group">
-                <%= f.label :vertical do %>
-                  Status <span class="note">(Required)</span>
-                <% end %>
-                <%= f.select :vertical, Location::STATUS_TYPES, {prompt: "Select Status"}, class: "form-control", required: true %>
               </div>
             </div>
             <div class="col-sm-6">
