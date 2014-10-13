@@ -75,5 +75,10 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 =end
+
+  config.before(:suite) do
+    # Temporary fix for default_url_host not being properly set in Rails 4.1.0
+    Rails.application.default_url_options[:host] = "localhost"
+  end
 end
 
