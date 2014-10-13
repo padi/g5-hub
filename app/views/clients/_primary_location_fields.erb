@@ -7,7 +7,7 @@
             Status <span class="note">(Required)</span>
           <% end %>
 
-          <%= location.select :status, Location::STATUS_TYPES, { selected: "New" }, class: "form-control", required: true %>
+          <%= location.select :status, Location::STATUS_TYPES, { prompt: "Select Status" }, class: "form-control", required: true %>
         </div>
       </div>
     </div>
