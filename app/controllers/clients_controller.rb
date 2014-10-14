@@ -38,7 +38,9 @@ class ClientsController < ApplicationController
   def update
     @client = Client.find_by_urn(params[:id])
     if @client.update_attributes(client_params)
+      Rails.logger.info("enqueuing webhookposterjob")
       Resque.enqueue(WebhookPosterJob, @client.id, :post_client_update_webhooks)
+      Rails.logger.info("done enqueuing, redirecting to client_url")
 
       redirect_to client_url, :notice  => "Successfully updated client."
     else
