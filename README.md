@@ -27,7 +27,7 @@ $ rake db:setup
 
 ### Optional: To Webhook G5 Configurator
 
-1. Set environment variable `G5_CONFIGURATOR_WEBHOOK_URL`.
+1. Set environment variable `CONFIGURATOR_WEBHOOK_URL`.
 Defaults are set in `config/initializers/env.rb`.
 
 

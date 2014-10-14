@@ -11,7 +11,7 @@ describe WebhookPoster do
     subject { webhook_poster.post_configurator_webhook }
 
     context "a configurator webhook url" do
-      before { stub_const("ENV", { "G5_CONFIGURATOR_WEBHOOK_URL" => "Foo" }) }
+      before { stub_const("ENV", { "CONFIGURATOR_WEBHOOK_URL" => "Foo" }) }
 
       context "a valid url" do
         it "posts via Webhook" do
@@ -34,7 +34,7 @@ describe WebhookPoster do
     end
 
     context "no configurator webhook url" do
-      before { stub_const("ENV", { "G5_CONFIGURATOR_WEBHOOK_URL" => nil }) }
+      before { stub_const("ENV", { "CONFIGURATOR_WEBHOOK_URL" => nil }) }
 
       it "does not post via Webhook" do
         Webhook.should_not_receive(:post)

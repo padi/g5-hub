@@ -9,7 +9,7 @@ class WebhookPoster
   end
 
   def post_configurator_webhook
-    if url = ENV["G5_CONFIGURATOR_WEBHOOK_URL"]
+    if url = ENV["CONFIGURATOR_WEBHOOK_URL"]
       post(url)
     end
   end
