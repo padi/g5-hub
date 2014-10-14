@@ -7,7 +7,7 @@ class Location < ActiveRecord::Base
   STYLE_DESIGNS = ['High Rise', 'Modern', 'Victorian', 'Contemporary', 'Ranch', 'Garden', 'Resort']
   STYLE_COSTS = ['Luxury', 'Affordable', 'Low Income']
   RECORD_TYPE = "g5-cl"
-  STATUS_TYPES = ["New", "Live", "Suspended"]
+  STATUS_TYPES = ["Pending", "Live", "Suspended"]
 
   belongs_to :client
   has_many :locations_integration_settings, dependent: :destroy
