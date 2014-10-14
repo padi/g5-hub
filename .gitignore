@@ -22,3 +22,5 @@
 
 # Ignore environment specific env
 .env.*
+
+/.idea/

@@ -5,7 +5,7 @@ describe LocationsController, auth_controller: true do
 
   describe "#show" do
     let!(:client) { Fabricate(:client) }
-    let!(:location) { Fabricate(:location) }
+    let!(:location) { Fabricate(:location, client: client) }
 
     let(:client_urn) { client.urn }
     let(:location_urn) { location.urn }
@@ -16,6 +16,14 @@ describe LocationsController, auth_controller: true do
 
       it "renders show template" do
         response.should render_template(:show)
+      end
+
+      it "decorates client" do
+        assigns(:client).should be_decorated
+      end
+
+      it "decorates location" do
+        assigns(:location).should be_decorated
       end
 
       it_should_behave_like "a valid Microformats2 document"

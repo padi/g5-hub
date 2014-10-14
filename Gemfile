@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.1.1"
+ruby "2.1.2"
 
 gem "rails", "4.1.5"
 gem "jquery-rails"
@@ -15,6 +15,7 @@ gem "sass-rails", "~> 4.0.1"
 gem "coffee-rails", "~> 4.0.1"
 gem "uglifier", ">= 2.4.0"
 gem "heroku_resque_autoscaler"
+gem 'rack-cors'
 
 group :production do
   gem "unicorn"
@@ -43,6 +44,7 @@ group :development, :test do
   gem "microformats2"
   gem "foreman"
   gem "factory_girl_rails"
+  gem "shoulda-matchers"
 end
 
 gem "codeclimate-test-reporter", group: :test, require: nil
