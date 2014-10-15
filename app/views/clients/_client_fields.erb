@@ -6,6 +6,12 @@
     <div class="row">
       <div class="col-sm-6">
         <div class="form-group">
+          <%= f.label :organization do %>
+          Heroku Organization 
+          <% end %>
+          <%= f.text_field :organization, class: "form-control" %>
+        </div>
+        <div class="form-group">
           <%= f.label :name do %>
           Name <span class="note">(Required)</span>
           <% end %>

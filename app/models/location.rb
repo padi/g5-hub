@@ -6,7 +6,7 @@ class Location < ActiveRecord::Base
   PROPERTY_FEATURES = ['Luxury', 'Affordable', 'Gated', 'Furnished']
   STYLE_DESIGNS = ['High Rise', 'Modern', 'Victorian', 'Contemporary', 'Ranch', 'Garden', 'Resort']
   STYLE_COSTS = ['Luxury', 'Affordable', 'Low Income']
-  RECORD_TYPE = "g5-cl"
+  RECORD_TYPE = ENV['APP_NAMESPACE'] + "-cl"
   STATUS_TYPES = ["Pending", "Live", "Suspended"]
 
   belongs_to :client

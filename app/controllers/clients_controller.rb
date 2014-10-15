@@ -6,7 +6,7 @@ class ClientsController < ApplicationController
 
   def index
     client_scope = Client.order("updated_at DESC")
-    @clients     = ClientDecorator.decorate_collection(client_scope)
+    @clients = ClientDecorator.decorate_collection(client_scope)
 
     respond_to do |format|
       format.html
@@ -48,7 +48,9 @@ class ClientsController < ApplicationController
   def update
     @client = Client.find_by_urn(params[:id])
     if @client.update_attributes(client_params)
+      Rails.logger.info("enqueuing webhookposterjob")
       Resque.enqueue(WebhookPosterJob, @client.id, :post_client_update_webhooks)
+      Rails.logger.info("done enqueuing, redirecting to client_url")
 
       redirect_to client_url, :notice => "Successfully updated client."
     else
@@ -66,9 +68,9 @@ class ClientsController < ApplicationController
   private
 
   def client_params
-    params.fetch(:client, {}).permit(:name, :street_address_1, :street_address_2,
-                                     :city, :state, :postal_code, :tel, :fax, :email, :vertical, :urn, :domain_type,
-                                     :domain, locations_attributes: [LOCATION_PARAMS])
+    params.fetch(:client, {}).permit(:name, :organization, :street_address_1, :street_address_2,
+    :city, :state, :postal_code, :tel, :fax, :email, :vertical, :urn, :domain_type,
+    :domain, locations_attributes: [LOCATION_PARAMS])
   end
 
   LOCATION_PARAMS = :id, :name, :street_address_1, :street_address_2,

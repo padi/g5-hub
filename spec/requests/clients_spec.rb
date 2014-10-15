@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe "Clients" do
   def create_client
+    fill_in "client_organization", with: "Heroku Test Organization"
     fill_in "client_name", with: "Housing Corp"
     fill_in "client_city", with: "Los Angeles"
     select "California", from: "client_state"
@@ -43,6 +44,7 @@ describe "Clients" do
         expect(page).to have_content "123 Sesame St"
         expect(page).to have_content "bigbird@gmail.com"
         expect(page).to have_content "http://farmhouseapartments.com"
+        expect(page).to have_content "Heroku Test Organization"
       end
     end
   end
@@ -62,6 +64,7 @@ describe "Clients" do
       expect(page).to have_content client.vertical
       expect(page).to have_content client.city
       expect(page).to have_content client.state
+      expect(page).to have_content client.organization
     end
 
     describe "microformats2 parsing" do
@@ -84,6 +87,7 @@ describe "Clients" do
     end
 
     it "can add a location" do
+      fill_in "client_organization", with: "Heroku Test Organization"
       fill_in "client_name", with: "Housing Corp"
       fill_in "client_city", with: "Los Angeles"
       select "California", from: "client_state"

@@ -1,22 +1,27 @@
 class WebhookPoster
   HEROKU_APP_NAME_MAX_LENGTH = 30
-  CMS_RECORD_TYPE  = "g5-cms"
-  CPAS_RECORD_TYPE = "g5-cpas"
-  CPNS_RECORD_TYPE = "g5-cpns"
+  CMS_RECORD_TYPE  = ENV["APP_NAMESPACE"] + "-cms"
+  CPAS_RECORD_TYPE = ENV["APP_NAMESPACE"] + "-cpas"
+  CPNS_RECORD_TYPE = ENV["APP_NAMESPACE"] + "-cpns"
 
   def initialize(client)
     @client = client
   end
 
   def post_configurator_webhook
-    if url = ENV["G5_CONFIGURATOR_WEBHOOK_URL"]
+    if url = ENV["CONFIGURATOR_WEBHOOK_URL"]
       post(url)
     end
   end
 
   def post_client_update_webhooks
+    Rails.logger.info("posting to #{domain_for(CMS_RECORD_TYPE)}#{ENV['CMS_UPDATE_PATH']}")
     post("#{domain_for(CMS_RECORD_TYPE)}#{ENV["CMS_UPDATE_PATH"]}")
+
+    Rails.logger.info("posting to #{domain_for(CPAS_RECORD_TYPE)}#{ENV['G5_UPDATABLE_PATH']}")
     post("#{domain_for(CPAS_RECORD_TYPE)}#{ENV["G5_UPDATABLE_PATH"]}", client_uid: client_uid)
+
+    Rails.logger.info("posting to #{domain_for(CPNS_RECORD_TYPE)}#{ENV['G5_UPDATABLE_PATH']}")
     post("#{domain_for(CPNS_RECORD_TYPE)}#{ENV["G5_UPDATABLE_PATH"]}", client_uid: client_uid)
   end
 

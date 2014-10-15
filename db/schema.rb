@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20141014164117) do
     t.string   "tel"
     t.string   "domain_type"
     t.string   "domain"
+    t.string   "organization"
   end
 
   create_table "clients_integration_settings", force: true do |t|
