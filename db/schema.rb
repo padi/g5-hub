@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140922160821) do
+ActiveRecord::Schema.define(version: 20141014164117) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 20140922160821) do
     t.string   "domain"
     t.string   "organization"
   end
+
+  create_table "clients_integration_settings", force: true do |t|
+    t.integer "vendor_id"
+    t.string  "vendor_action"
+    t.integer "client_id"
+    t.integer "integration_setting_id"
+  end
+
+  add_index "clients_integration_settings", ["client_id"], name: "index_cis_on_client"
+  add_index "clients_integration_settings", ["vendor_id", "client_id", "vendor_action"], name: "index_cis_on_vendor_and_client_and_action"
 
   create_table "custom_integration_settings", force: true do |t|
     t.integer  "integration_setting_id"
@@ -60,22 +70,13 @@ ActiveRecord::Schema.define(version: 20140922160821) do
   add_index "g5_authenticatable_users", ["provider", "uid"], name: "index_g5_authenticatable_users_on_provider_and_uid", unique: true
 
   create_table "integration_settings", force: true do |t|
-    t.integer  "location_id"
-    t.string   "inventory_service_url"
-    t.string   "etl_strategy_name"
-    t.string   "inventory_vendor_user_name"
-    t.string   "inventory_vendor_password"
-    t.string   "inventory_vendor_endpoint"
+    t.string   "strategy_name"
+    t.string   "vendor_user_name"
+    t.string   "vendor_password"
+    t.string   "vendor_endpoint"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "inventory_service_auth_token"
-    t.string   "lead_vendor_endpoint"
-    t.string   "lead_vendor_user_name"
-    t.string   "lead_vendor_password"
-    t.string   "lead_strategy_name"
   end
-
-  add_index "integration_settings", ["location_id"], name: "index_integration_settings_on_location_id"
 
   create_table "locations", force: true do |t|
     t.integer  "client_id"
@@ -221,6 +222,20 @@ ActiveRecord::Schema.define(version: 20140922160821) do
     t.string   "apartment_amenity_2"
     t.string   "community_amenity_1"
     t.string   "community_amenity_2"
+    t.string   "status",                    default: "Pending"
+  end
+
+  create_table "locations_integration_settings", force: true do |t|
+    t.integer "clients_integration_setting_id"
+    t.integer "location_id"
+    t.integer "integration_setting_id"
+  end
+
+  add_index "locations_integration_settings", ["location_id", "clients_integration_setting_id"], name: "index_lis_on_location_and_client_int", unique: true
+  add_index "locations_integration_settings", ["location_id"], name: "index_lis_on_location"
+
+  create_table "vendors", force: true do |t|
+    t.string "name"
   end
 
 end

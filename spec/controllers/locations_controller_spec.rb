@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe LocationsController, auth_controller: true do
   render_views
@@ -11,19 +11,28 @@ describe LocationsController, auth_controller: true do
     let(:location_urn) { location.urn }
     let(:request) { get :show, client_id: client_urn, id: location_urn }
 
+    context "json format" do
+      before do
+        get :show, client_id: client_urn, id: location_urn, format: :json
+        @result = indifferent_hash response.body
+      end
+
+      specify { @result['location']['id'].should eq(location.id) }
+    end
+
     context "when the client and location exist" do
       before { request }
 
       it "renders show template" do
-        response.should render_template(:show)
+        expect(response).to render_template(:show)
       end
 
       it "decorates client" do
-        assigns(:client).should be_decorated
+        expect(assigns(:client)).to be_decorated
       end
 
       it "decorates location" do
-        assigns(:location).should be_decorated
+        expect(assigns(:location)).to be_decorated
       end
 
       it_should_behave_like "a valid Microformats2 document"

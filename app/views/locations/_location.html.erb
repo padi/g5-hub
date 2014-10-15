@@ -3,6 +3,9 @@
   <small class="p-g5-urn"><%= location.urn %></small>
 </h2>
 
+<h4>Status</h4>
+<p class="p-g5-status"><%= location.status %></p>
+
 <% if location.domain %>
     <h4>Domain</h4>
     <%= link_to location.domain, location.domain, class: "u-url u-g5-domain" %>
@@ -81,19 +84,6 @@
       <% end %>
   <% end %>
 </dl>
-
-<div>
-  <% if location.integration_setting %>
-      <h4>
-        <%= link_to 'Integration Settings', edit_location_integration_setting_url(location, location.integration_setting) %>
-      </h4>
-      <%= render location.integration_setting %>
-  <% else %>
-      <h4>
-        <%= link_to 'Integration Settings', new_location_integration_setting_url(location) %>
-      </h4>
-  <% end %>
-</div>
 
 <h4>Client</h4>
 

@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "Integration '/'", auth_request: true do
   before do

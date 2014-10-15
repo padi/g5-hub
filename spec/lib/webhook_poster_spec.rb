@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe WebhookPoster do
   let(:webhook_poster) { described_class.new(client) }
@@ -23,13 +23,13 @@ describe WebhookPoster do
       context "an argument error" do
         before { Webhook.stub(:post).and_raise(ArgumentError.new) }
 
-        it { should be_true }
+        it { should be_truthy }
       end
 
       context "a runtime error" do
         before { Webhook.stub(:post).and_raise(RuntimeError.new) }
 
-        it { should be_true }
+        it { should be_truthy }
       end
     end
 
@@ -82,13 +82,13 @@ describe WebhookPoster do
     context "an argument error" do
       before { Webhook.stub(:post).and_raise(ArgumentError.new) }
 
-      it { should be_true }
+      it { should be_truthy }
     end
 
     context "a runtime error" do
       before { Webhook.stub(:post).and_raise(RuntimeError.new) }
 
-      it { should be_true }
+      it { should be_truthy }
     end
   end
 end

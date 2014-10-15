@@ -4,6 +4,11 @@ class LocationsController < ApplicationController
   def show
     @client   = @client.decorate
     @location = @location.decorate
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @location, serializer: LocationSerializer }
+    end
   end
 
   private

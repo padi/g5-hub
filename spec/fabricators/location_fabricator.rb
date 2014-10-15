@@ -6,4 +6,5 @@ Fabricator(:location) do
   state { Faker::Address.state }
   postal_code { Faker::Address.zip_code }
   phone_number { Faker::PhoneNumber.phone_number }
+  status { "Pending" }
 end

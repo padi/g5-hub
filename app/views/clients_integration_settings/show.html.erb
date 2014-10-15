@@ -1,0 +1,59 @@
+<% title "#{@clients_integration_setting.summary}" %>
+<% header_right link_to('Edit Integration', edit_clients_integration_setting_path(@clients_integration_setting), class: 'btn btn-success pull-right') %>
+
+<section class="h-card">
+  <h4>Integration</h4>
+  <ul class="show-list">
+    <li>
+      <span class="field-name">Client</span>
+      <span class="field-value"><%= @clients_integration_setting.client.name %></span>
+    </li>
+    <li>
+      <span class="field-name">Vendor</span>
+      <span class="field-value"><%= @clients_integration_setting.vendor.name %></span>
+    </li>
+    <li>
+      <span class="field-name">Action</span>
+      <span class="field-value"><%= @clients_integration_setting.vendor_action %></span>
+    </li>
+  </ul>
+  <h4>Integration Settings</h4>
+  <ul class="show-list">
+    <li>
+      <span class="field-name">Vendor Endpoint</span>
+      <span class="field-value"><%= @clients_integration_setting.integration_setting.vendor_endpoint %></span>
+    </li>
+    <li>
+      <span class="field-name">Vendor Username</span>
+      <span class="field-value"><%= @clients_integration_setting.integration_setting.vendor_user_name %></span>
+    </li>
+    <li>
+      <span class="field-name">Vendor Password</span>
+      <span class="field-value"><%= @clients_integration_setting.integration_setting.vendor_password %></span>
+    </li>
+    <li>
+      <span class="field-name">Strategy</span>
+      <span class="field-value"><%= @clients_integration_setting.integration_setting.strategy_name %></span>
+    </li>
+  </ul>
+  <h4>Custom Integration Settings</h4>
+  <ul class="show-list">
+    <% @clients_integration_setting.integration_setting.custom_integration_settings.each do |custom_integration_setting| %>
+        <li>
+          <span class="field-name"><%= custom_integration_setting.name %></span>
+          <span class="field-value"><%= custom_integration_setting.value %></span>
+        </li>
+    <% end %>
+  </ul>
+
+  <h4>Locations</h4>
+  <ul class="show-list">
+    <% @clients_integration_setting.locations_integration_settings.each do |locations_integration_settings| %>
+        <li>
+          <span class="field-name"><%= link_to(locations_integration_settings.location.name, edit_locations_integration_setting_path(locations_integration_settings.id)) %></span>
+          <%= client_location_url(locations_integration_settings.location.client, locations_integration_settings.location) %>
+        </li>
+    <% end %>
+  </ul>
+  <%= link_to('Add/Remove Locations', edit_clients_integration_setting_path(@clients_integration_setting, locations: true), class: 'btn btn-default') %>
+</section>
