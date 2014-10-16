@@ -14,4 +14,13 @@ class ApplicationController < ActionController::Base
   def is_api_request?
     !G5AuthenticatableApi::TokenValidator.new(params,headers).access_token.nil?
   end
+
+  def default_url_options
+    if Rails.env.production?
+      {host: "#{ENV['HEROKU_APP_NAME']}.herokuapp.com"}
+    else  
+      {host: "localhost:3005"}
+    end
+  end
 end
+
