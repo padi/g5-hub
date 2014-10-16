@@ -24,6 +24,7 @@ Copy the example database to database.yml and run setup
 $ cp config/database.yml.example config/database.yml
 $ rake db:setup
 ```
+1. run on port 3005, or with a HOST environment variable like ENV['HOST']=localhost:3000
 
 ### Optional: To Webhook G5 Configurator
 

@@ -7,6 +7,6 @@ class ClientSerializer < ActiveModel::Serializer
   has_many :locations
 
   def uid
-    client_url(object)
+    client_url(object, host: ENV['HOST'])
   end
 end

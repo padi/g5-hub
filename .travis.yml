@@ -20,4 +20,4 @@ notifications:
     on_success: change
     on_failure: always
 env:
-  - DEVISE_SECRET_KEY=foo
+  - DEVISE_SECRET_KEY=foo HOST=localhost:3005
