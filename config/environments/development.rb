@@ -26,3 +26,4 @@ G5Hub::Application.configure do
 
   Rails.application.default_url_options[:host] = "localhost:3000"
 end
+
