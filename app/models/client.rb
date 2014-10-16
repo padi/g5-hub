@@ -26,7 +26,7 @@ class Client < ActiveRecord::Base
   end
 
   def url
-    url_for(self)
+    url_for(self, :host => Rails.application.default_url_options[:host])
   end
 
   def hashed_id
