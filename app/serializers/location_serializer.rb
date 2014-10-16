@@ -38,10 +38,10 @@ class LocationSerializer < ActiveModel::Serializer
   end
 
   def uid
-    client_location_url(object.client, object, host: "#{ENV['HEROKU_APP_NAME']}.herokuapp.com" )
+    client_location_url(object.client, object, host: ENV['HOST'])
   end
 
   def client_uid
-    client_url(id: object.client.id, host: "#{ENV['HEROKU_APP_NAME']}.herokuapp.com")
+    client_url(object.client, host: ENV['HOST'])
   end
 end

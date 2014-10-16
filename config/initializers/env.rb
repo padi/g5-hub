@@ -17,3 +17,10 @@ ENV["G5_UPDATABLE_PATH"] ||= case Rails.env
 end
 
 ENV["APP_NAMESPACE"] ||= "g5"
+
+ENV["HOST"] ||= case Rails.env
+  when "production"  then "#{ENV['APP_NAMESPACE']}-hub.herokuapp.com"
+  when "development" then "localhost:3005"
+  when "test"        then "localhost:3005"
+end
+
