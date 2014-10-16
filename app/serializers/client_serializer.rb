@@ -7,6 +7,6 @@ class ClientSerializer < ActiveModel::Serializer
   has_many :locations
 
   def uid
-    client_url(id: object.id, host: "#{ENV['HEROKU_APP_NAME'].herokuapp.com")
+    client_url(id: object.id, host: "#{ENV['HEROKU_APP_NAME']}.herokuapp.com")
   end
 end
