@@ -1,5 +1,4 @@
 class Client < ActiveRecord::Base
-  include Rails.application.routes.url_helpers
   RECORD_TYPE = ENV['APP_NAMESPACE'] + "-c"
   VERTICALS = %w(Self-Storage Apartments Assisted-Living)
   DOMAIN_TYPES = %w(SingleDomainClient MultiDomainClient)
@@ -23,10 +22,6 @@ class Client < ActiveRecord::Base
 
   def record_type
     RECORD_TYPE
-  end
-
-  def url
-    url_for(self, :host => Rails.application.default_url_options[:host])
   end
 
   def hashed_id
