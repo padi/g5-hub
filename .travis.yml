@@ -21,3 +21,4 @@ notifications:
     on_failure: always
 env:
   - DEVISE_SECRET_KEY=foo
+  - HOST=localhost:3005
