@@ -7,10 +7,7 @@ class ClientSerializer < ActiveModel::Serializer
   has_many :locations
 
   def uid
-    client_url(object)
-
-   def default_url_options
-      ActionMailer::Base.default_url_options
-   end
+    object.url
+  end
 end
 
