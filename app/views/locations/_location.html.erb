@@ -1,6 +1,8 @@
 <h2>
   <%= link_to location.name, client_location_url(client, location), class: "p-name u-uid u-url" %>
-  <%= image_tag location.thumbnail.url(:thumb) if location.thumbnail? %>
+  <span class="p-g5-thumbnail">
+    <%= image_tag location.thumbnail.url(:thumb) if location.thumbnail? %>
+  </span>
   <small class="p-g5-urn"><%= location.urn %></small>
 </h2>
 
