@@ -12,7 +12,7 @@ class Location < ActiveRecord::Base
   belongs_to :client
   has_many :locations_integration_settings, dependent: :destroy
   has_attached_file :thumbnail,
-                    :styles => { :medium => "300x300>", :thumb => "100x100>" },
+                    :styles => { :medium => "80x80>" },
                     :default_url => "/images/:style/missing.png",
                     :storage => s3,
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials}
