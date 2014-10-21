@@ -11,10 +11,18 @@ class Location < ActiveRecord::Base
 
   belongs_to :client
   has_many :locations_integration_settings, dependent: :destroy
+
+  Paperclip.interpolates :bucket_prefix  do |attachment, style|
+    "#{attachment.instance.client.urn}/#{attachment.instance.urn}"
+  end
+
   has_attached_file :thumbnail,
-                    :styles => { :medium => "80x80>" },
+                    :styles => { :thumb => "80x80>",
+                                 :original => "300x300"},
                     :default_url => "/images/:style/missing.png",
-                    :storage => s3,
+                    :storage => :s3,
+                    :url => ":s3_domain_url",
+                    :path => ":bucket_prefix/:attachment/:style/:filename",
                     :s3_credentials => Proc.new{|a| a.instance.s3_credentials}
 
   validates_attachment_content_type :thumbnail, :content_type => /\Aimage\/.*\Z/
@@ -51,6 +59,16 @@ class Location < ActiveRecord::Base
     self.urn
   end
 
+  def s3_credentials
+    {:bucket =>            ENV['AWS_S3_BUCKET'],
+     :access_key_id =>     ENV['AWS_ACCESS_KEY_ID'],
+     :secret_access_key => ENV['AWS_SECRET_ACCES_KEY']}
+  end
+
+  def bucket_prefix
+    "#{client.urn}/#{urn}"
+  end
+
   private
 
   def set_urn
@@ -61,10 +79,5 @@ class Location < ActiveRecord::Base
     self.corporate = false if corporate.blank?
   end
 
-  def s3_credentials
-    {:bucket =>            ENV['AWS_S3_BUCKET'],
-     :access_key_id =>     ENV['AWS_ACCESS_KEY_ID'],
-     :secret_access_key => ENV['AWS_SECRET_ACCES_KEY']}
-  end
 end
 
