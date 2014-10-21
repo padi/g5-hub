@@ -17,6 +17,8 @@ gem "uglifier", ">= 2.4.0"
 gem "heroku_resque_autoscaler"
 gem 'rack-cors'
 gem 'active_model_serializers'
+gem "paperclip", "~> 4.2"
+gem 'aws-sdk', '~> 1.5.7'
 
 group :production do
   gem "unicorn"

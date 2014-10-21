@@ -20,6 +20,12 @@
         <%= location.text_field :name, class: "form-control", required: true %>
       </div>
       <div class="form-group">
+        <%= location.label :thumbnail do %>
+          Thumbnail
+        <% end %>
+        <%= location.file_field :thumbnail %>
+      </div>
+      <div class="form-group">
         <%= location.label :domain do %>
           Domain <span class="note">(Required)</span>
         <% end %>
@@ -131,4 +137,6 @@
       </div>
     </div>
   </div>
+
 </fieldset>
+

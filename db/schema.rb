@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014164117) do
+ActiveRecord::Schema.define(version: 20141020233010) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -223,6 +223,10 @@ ActiveRecord::Schema.define(version: 20141014164117) do
     t.string   "community_amenity_1"
     t.string   "community_amenity_2"
     t.string   "status",                    default: "Pending"
+    t.string   "thumbnail_file_name"
+    t.string   "thumbnail_content_type"
+    t.integer  "thumbnail_file_size"
+    t.datetime "thumbnail_updated_at"
   end
 
   create_table "locations_integration_settings", force: true do |t|
