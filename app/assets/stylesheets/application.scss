@@ -73,3 +73,13 @@ ul.show-list {
     font-weight: bold;
   }
 }
+
+#job-setting-container {
+  .form-control {
+    width: 100px;
+  }
+
+  select, input {
+    display: inline;
+  }
+}

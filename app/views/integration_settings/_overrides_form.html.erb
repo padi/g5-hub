@@ -1,5 +1,36 @@
 <div id="form-integration-settings">
   <%= f.fields_for :integration_setting, class: "new-integration-setting" do |integration_setting| %>
+      <div id="form-job-setting">
+        <%= integration_setting.fields_for :job_setting, class: "edit-job-setting" do |job_setting| %>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h2 class="panel-title">Job</h2>
+              </div>
+              <div class="panel-body">
+                <div id="job-setting-container">
+                  <div>Leave blank if no override needed. The client's existing values are in parenthesis.</div>
+                  <fieldset>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <%= job_setting.label :frequency do %>
+                              Frequency
+                                  <span class="note">(<%= pluralize(overridee.job_setting.frequency, overridee.job_setting.frequency_unit.name) %>
+                                    )</span>
+                          <% end %>
+                          <div>
+                            <%= job_setting.text_field :frequency, class: "form-control" %>
+                            <%= job_setting.collection_select :frequency_unit_id, FrequencyUnit.all, :id, :name, {prompt: ''}, {class: 'form-control'} %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
       <div class="panel panel-info">
         <div class="panel-heading">
           <h2 class="panel-title">Integration Setting</h2>
