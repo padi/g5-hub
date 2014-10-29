@@ -3,7 +3,7 @@ require "rails_helper"
 describe EntriesController do
   render_views
   let(:client) { Fabricate(:client) }
-  before { Client.stub(:find_by_urn) { client } }
+  before { allow(Client).to receive(:find_by_urn) { client } }
   let(:token) { double('token') }
   let(:valid) { false }
 

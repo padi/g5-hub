@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 describe LocationsIntegrationSettingsController, auth_controller: true do
-  let(:locations_integration_setting) { Fabricate(:locations_integration_setting) }
+  let(:clients_integration_setting) { Fabricate(:clients_integration_setting).tap { |cis| cis.integration_setting.create_job_setting(Fabricate.to_params(:job_setting)) } }
+  let(:locations_integration_setting) { Fabricate(:locations_integration_setting, clients_integration_setting: clients_integration_setting) }
 
   describe 'GET edit' do
     before do
@@ -14,6 +15,7 @@ describe LocationsIntegrationSettingsController, auth_controller: true do
 
     it 'builds an integration setting' do
       expect(assigns(:locations_integration_setting).integration_setting).to_not be_nil
+      expect(assigns(:locations_integration_setting).integration_setting.job_setting).to_not be_nil
     end
   end
 

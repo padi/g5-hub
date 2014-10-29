@@ -5,8 +5,8 @@ describe ClientsController do
   let!(:client) { Fabricate(:client) }
 
   before do
-    Resque.stub(:enqueue)
-    Client.stub(:find_by_urn) { client }
+    allow(Resque).to receive(:enqueue)
+    allow(Client).to receive(:find_by_urn) { client }
   end
 
   let(:token) { double('token') }
@@ -177,14 +177,14 @@ describe ClientsController do
   describe "#update" do
     context "an authorized user", auth_controller: true do
       it "renders edit template when model is invalid" do
-        client.stub(:valid?).and_return(false)
+        allow(client).to receive(:valid?).and_return(false)
         put :update, id: 1
         expect(response).to render_template(:edit)
       end
 
       it "enques webhooks and redirects when model is valid" do
-        client.stub(:valid?).and_return(true)
-        client.stub(:name).and_return("name")
+        allow(client).to receive(:valid?).and_return(true)
+        allow(client).to receive(:name).and_return("name")
         put :update, id: 1
 
         expect(Resque).to have_received(:enqueue).

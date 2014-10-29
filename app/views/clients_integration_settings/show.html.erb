@@ -17,6 +17,16 @@
       <span class="field-value"><%= @clients_integration_setting.vendor_action %></span>
     </li>
   </ul>
+  <% job_setting = @clients_integration_setting.integration_setting.job_setting %>
+  <% if job_setting.try(:frequency_unit) %>
+      <h4>Job Settings</h4>
+      <ul class="show-list">
+        <li>
+          <span class="field-name">Frequency</span>
+          <span class="field-value"><%= pluralize(job_setting.frequency, job_setting.frequency_unit.name) %></span>
+        </li>
+      </ul>
+  <% end %>
   <h4>Integration Settings</h4>
   <ul class="show-list">
     <li>
@@ -36,6 +46,7 @@
       <span class="field-value"><%= @clients_integration_setting.integration_setting.strategy_name %></span>
     </li>
   </ul>
+
   <h4>Custom Integration Settings</h4>
   <ul class="show-list">
     <% @clients_integration_setting.integration_setting.custom_integration_settings.each do |custom_integration_setting| %>
