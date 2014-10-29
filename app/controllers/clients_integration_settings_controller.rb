@@ -49,6 +49,7 @@ class ClientsIntegrationSettingsController < ApplicationController
   end
 
   def destroy_location_job_settings_if_needed
+    @clients_integration_setting.integration_setting.reload
     @clients_integration_setting.locations_integration_settings.each { |lis| lis.integration_setting.try(:job_setting).try(:destroy) } if @clients_integration_setting.integration_setting.job_setting.nil?
   end
 

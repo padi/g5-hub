@@ -100,10 +100,13 @@ describe ClientsIntegrationSettingsController, auth_controller: true do
     describe 'success' do
       before do
         clients_integration_setting.locations_integration_settings.create(location: Fabricate(:location), integration_setting: Fabricate(:integration_setting, job_setting: Fabricate(:job_setting)))
+        clients_integration_setting.integration_setting.create_job_setting(Fabricate.to_params(:job_setting))
       end
 
       context 'without job setting' do
-        subject(:put_update) { put :update, id: clients_integration_setting.id, clients_integration_setting: {vendor_action: ClientsIntegrationSetting::LEAD_VENDOR_ACTION} }
+        subject(:put_update) { put :update, id: clients_integration_setting.id, clients_integration_setting:
+                                                {vendor_action:                  ClientsIntegrationSetting::LEAD_VENDOR_ACTION,
+                                                 integration_setting_attributes: Fabricate.to_params(:integration_setting).merge(job_setting_attributes: {frequency: ''})} }
         it { is_expected.to redirect_to(clients_integration_setting_url(clients_integration_setting)) }
         it 'updates the clients_integration_setting' do
           subject
@@ -118,11 +121,8 @@ describe ClientsIntegrationSettingsController, auth_controller: true do
       end
 
       context 'with job setting' do
-        before do
-          clients_integration_setting.integration_setting.create_job_setting(Fabricate.to_params(:job_setting))
-        end
         subject(:put_update) { put :update, id: clients_integration_setting.id, clients_integration_setting: {vendor_action: ClientsIntegrationSetting::LEAD_VENDOR_ACTION} }
-
+        it { is_expected.to redirect_to(clients_integration_setting_url(clients_integration_setting)) }
         it 'destroys location job settings if it does not have a job setting' do
           subject
           integration_setting = ClientsIntegrationSetting.find(clients_integration_setting.id).locations_integration_settings.first.integration_setting
