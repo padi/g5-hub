@@ -17,7 +17,7 @@ describe LocationsController, auth_controller: true do
         @result = indifferent_hash response.body
       end
 
-      specify { @result['location']['id'].should eq(location.id) }
+      specify { expect(@result['location']['id']).to eq(location.id) }
     end
 
     context "when the client and location exist" do
