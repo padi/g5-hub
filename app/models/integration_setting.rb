@@ -2,7 +2,7 @@ class IntegrationSetting < ActiveRecord::Base
   attr_accessor :override
   has_one :job_setting, dependent: :destroy
   has_many :custom_integration_settings, dependent: :destroy
-  accepts_nested_attributes_for :custom_integration_settings, allow_destroy: true, reject_if: lambda { |attrs| attrs[:frequency].blank? }
+  accepts_nested_attributes_for :custom_integration_settings, allow_destroy: true, reject_if: lambda { |attrs| attrs[:name].blank? }
   accepts_nested_attributes_for :job_setting, allow_destroy: true, reject_if: lambda { |attrs| attrs[:frequency].blank? }
 
   # either has one client_integration_setting or one location_integration_setting, but not both
