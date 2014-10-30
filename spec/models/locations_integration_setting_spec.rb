@@ -25,8 +25,8 @@ describe LocationsIntegrationSetting do
       Time.any_instance.stub(:to_i) { 1325404800 }
     end
 
-    it { expect(locations_integration_setting.hashed_id).to eq '63748w1' }
-    it { expect(locations_integration_setting.urn).to eq 'g5-lis-63748w1' }
+    it { expect(locations_integration_setting.hashed_id).to eq "#{locations_integration_setting.created_at.to_i}#{locations_integration_setting.id}".to_i.to_s(36) }
+    it { expect(locations_integration_setting.urn).to eq "g5-lis-#{locations_integration_setting.hashed_id}" }
     it { expect(locations_integration_setting.to_param).to eq locations_integration_setting.urn }
   end
 end
