@@ -71,7 +71,7 @@ class ClientsController < ApplicationController
     @locations = @client.locations
 
     render json: @locations.as_json(only: [:id, :name, :street_address_1, :street_address_2,
-      :city, :state, :postal_code, :email])
+      :city, :state, :postal_code, :email, :latitude, :longitude])
   end
 
   private

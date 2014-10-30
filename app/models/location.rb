@@ -48,6 +48,9 @@ class Location < ActiveRecord::Base
   after_initialize :not_corporate_by_default
   after_create :set_urn
 
+  geocoded_by :full_street_address
+  after_validation :geocode          # auto-fetch coordinates
+
   scope :corporate, -> { where(corporate: true) }
   scope :not_corporate, -> { where(corporate: false) }
 
@@ -67,6 +70,10 @@ class Location < ActiveRecord::Base
 
   def bucket_prefix
     "#{client.urn}/#{urn}"
+  end
+
+  def full_street_address
+    [street_address_1, city, state].compact.join(', ')
   end
 
   private
