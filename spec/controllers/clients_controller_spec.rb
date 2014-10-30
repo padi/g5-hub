@@ -237,4 +237,26 @@ describe ClientsController do
       end
     end
   end
+  describe "#location_search" do
+    context "successful search" do
+      it "passes on radius search results with success paramater" do
+        RadiusSearch.any_instance.stub(:locations).and_return([{id:1},{id:2},{id:3}])
+        get :location_search, client_id: client.urn
+        expected_response = {  success: true,
+                               locations: [{id:1},{id:2},{id:3}] }
+        response.body.should == expected_response.to_json
+      end
+    end
+
+    context "unsuccessful search" do
+      it "returns all locations and false success" do
+        RadiusSearch.any_instance.stub(:locations).and_return([])
+        Client.any_instance.stub(:locations).and_return([{id:4},{id:5},{id:6}])
+        get :location_search, client_id: client.urn
+        expected_response = { success: false,
+                              locations: [{id:4},{id:5},{id:6}] }
+        response.body.should == expected_response.to_json
+      end
+    end
+  end
 end

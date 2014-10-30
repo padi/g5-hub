@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
   before_filter :authenticate_api_user!, if: :is_api_request?, except: :show
-  before_filter :authenticate_user!, unless: :is_api_request?, except: :show
+  before_filter :authenticate_user!, unless: :is_api_request?, except: [:show, :location_search]
 
   DEMOGRAPHIC_OPTIONS = ['Senior Apartments', 'Student Housing']
 
@@ -65,14 +65,18 @@ class ClientsController < ApplicationController
     redirect_to clients_url, :notice => "Successfully destroyed client."
   end
 
-  # Find all locations within a certain radius
-  def nearby_locations
-    @client = Client.find(params[:client_id])
+  def location_search
+    client = Client.find_by_urn!(params[:client_id])
 
-    radius_search = RadiusSearch.new(@client, params)
-    @locations = radius_search.locations
+    radius_search = RadiusSearch.new(client, params)
+    locations = radius_search.locations
 
-    response = { locations: @locations.as_json(only: [:id, :name, :street_address_1, :street_address_2, :city, :state, :postal_code, :email, :latitude, :longitude]) }
+    # empty result displays all locations, so flag success/failure
+    success = locations.empty? ? false : true
+    locations = client.locations if locations.empty?
+    
+    response = {  success: success,
+                  locations: locations.as_json(only: [:id, :name, :street_address_1, :street_address_2, :city, :state, :postal_code, :email, :latitude, :longitude]) }
 
     render json: response
   end
