@@ -9,6 +9,7 @@ class EntriesController < ApplicationController
     if stale? last_modified: client_scope.maximum(:updated_at)
       respond_to do |format|
         format.html
+        format.js
         format.json { render json: client_scope, root: :clients }
       end
     end

@@ -56,6 +56,14 @@ describe EntriesController do
         specify { expect(@result['clients'].first['id']).to eq(client.id) }
       end
 
+      context "js format" do
+        let!(:client) { Fabricate(:client) }
+
+        before { xhr :get, :index, format: :js }
+
+        specify { expect(response).to render_template(:index) }
+      end
+
       context 'html format' do
         let(:request) { get :index }
 
