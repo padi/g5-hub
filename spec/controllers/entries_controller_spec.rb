@@ -59,7 +59,7 @@ describe EntriesController do
       context "js format" do
         let!(:client) { Fabricate(:client) }
 
-        before { xhr :get, :index, format: :js }
+        before { get :index, format: :js }
 
         specify { expect(response).to render_template(:index) }
       end

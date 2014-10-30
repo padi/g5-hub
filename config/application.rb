@@ -31,12 +31,10 @@ module G5Hub
     # Heroku requires this to be false
     config.assets.initialize_on_precompile = false
 
-    config.middleware.use Rack::Cors do
+    config.middleware.insert_before "Warden::Manager", "Rack::Cors" do
       allow do
         origins '*'
-        resource '*',
-        headers: :any,
-        methods: [ :get ]
+        resource '*', headers: :any, methods: [:get, :options, :head]
       end
     end
 
