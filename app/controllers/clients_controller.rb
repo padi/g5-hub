@@ -72,8 +72,9 @@ class ClientsController < ApplicationController
     radius_search = RadiusSearch.new(@client, params)
     @locations = radius_search.locations
 
-    render json: @locations.as_json(only: [:id, :name, :street_address_1, :street_address_2,
-      :city, :state, :postal_code, :email, :latitude, :longitude])
+    response = { locations: @locations.as_json(only: [:id, :name, :street_address_1, :street_address_2, :city, :state, :postal_code, :email, :latitude, :longitude]) }
+
+    render json: response
   end
 
   private
