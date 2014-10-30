@@ -9,17 +9,50 @@ describe RadiusSearch do
   let!(:location4) { Fabricate(:location, client: client, latitude: 45.707492, longitude: -121.521939) } # Hood River
   let!(:location5) { Fabricate(:location, client: client, latitude: 44.057465, longitude: -121.313513) } # Bend
 
-  let(:radius_search) { RadiusSearch.new(client, []) }
-
   describe "#locations" do
-    subject { radius_search.locations }
+    context "reasonable searches" do
+      context "by city, state" do
+        let(:params) { {search: "Kahului, HI"} }
+        let(:radius_search) { RadiusSearch.new(client, params) }
 
-    context "googus" do
-      it { should include(location1) }
+        subject { radius_search.locations }
+        it { should include(location1, location2, location3) }
+        it { should_not include(location4, location5) }
+      end
+
+      context "by zip" do
+        let(:params) { {search: "96779"} }
+        let(:radius_search) { RadiusSearch.new(client, params) }
+
+        subject { radius_search.locations }
+        it { should include(location1, location2, location3) }
+        it { should_not include(location4, location5) }
+      end
+
+      context "with custom radius" do
+        let(:params) { {search: "Paia, HI", radius: 10} }
+        let(:radius_search) { RadiusSearch.new(client, params) }
+
+        subject { radius_search.locations }
+        it { should include(location1, location2) }
+        it { should_not include(location3, location4, location5) }
+      end
+
+      context "empty results" do
+        let(:params) { {search: "Talkeetna, AK", radius: 10} }
+        let(:radius_search) { RadiusSearch.new(client, params) }
+
+        subject { radius_search.locations }
+        it { should be_empty }
+      end
     end
 
-    context "gigity" do
-      it { should include(location5) }
+    context "unreasonable searches" do
+      let(:params) { {search: "something strange #/.e3@%$", radius: "dfkslj"} }
+      let(:radius_search) { RadiusSearch.new(client, params) }
+
+      subject { radius_search.locations }
+      it { should be_empty }
     end
   end
 end

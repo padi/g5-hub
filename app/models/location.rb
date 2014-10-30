@@ -49,7 +49,7 @@ class Location < ActiveRecord::Base
   after_create :set_urn
 
   geocoded_by :full_street_address
-  after_validation :geocode          # auto-fetch coordinates
+  after_validation :geocode, if: ->(loc){ loc.latitude.blank? or loc.longitude.blank? }
 
   scope :corporate, -> { where(corporate: true) }
   scope :not_corporate, -> { where(corporate: false) }

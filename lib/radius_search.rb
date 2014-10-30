@@ -1,10 +1,18 @@
 class RadiusSearch
   def initialize(client, params)
     @client = client
-    @params = params
+    @params = scrub_params(params)
   end
 
   def locations
-    @client.locations.first(3)
+    search_results = @client.locations.near(@params[:search], @params[:radius])
+  end
+
+  private
+
+  def scrub_params(params)
+    params[:search] ||= ""
+    params[:radius] = (params[:radius].is_a? Numeric) ? params[:radius] : 20
+    params
   end
 end
