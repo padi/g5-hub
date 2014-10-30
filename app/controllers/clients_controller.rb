@@ -66,7 +66,7 @@ class ClientsController < ApplicationController
   end
 
   # Find all locations within a certain radius
-  def nearby
+  def nearby_locations
     @client = Client.find(params[:client_id])
     @locations = @client.locations
 
