@@ -1,7 +1,7 @@
 class LocationsIntegrationSettingsController < ApplicationController
   respond_to :html
   before_filter :authenticate_user!
-  before_filter :load_locations_integration_setting, only: [:edit, :update, :destroy, :show]
+  before_filter :load_locations_integration_setting, only: [:edit, :update, :show]
 
   def show
     render json: @locations_integration_setting, serializer: LocationsIntegrationSettingSerializer
