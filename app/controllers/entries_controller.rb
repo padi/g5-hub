@@ -1,6 +1,7 @@
 class EntriesController < ApplicationController
   before_filter :authenticate_api_user!, if: :is_api_request?
   before_filter :authenticate_user!, unless: :is_api_request?
+  protect_from_forgery except: :index
 
   def index
     client_scope = Client.order("updated_at DESC")
