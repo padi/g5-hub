@@ -65,6 +65,15 @@ class ClientsController < ApplicationController
     redirect_to clients_url, :notice => "Successfully destroyed client."
   end
 
+  # Find all locations within a certain radius
+  def nearby
+    @client = Client.find(params[:client_id])
+    @locations = @client.locations
+
+    render json: @locations.as_json(only: [:id, :name, :street_address_1, :street_address_2,
+      :city, :state, :postal_code, :email])
+  end
+
   private
 
   def client_params

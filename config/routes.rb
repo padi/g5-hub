@@ -8,6 +8,7 @@ G5Hub::Application.routes.draw do
   resources :tags, only: :show
   resources :clients do
     resources :locations, only: [:index, :show]
+    get '/nearby', to: 'clients#nearby'
   end
 
   resources :locations
