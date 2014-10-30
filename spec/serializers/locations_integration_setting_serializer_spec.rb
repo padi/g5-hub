@@ -8,8 +8,12 @@ describe LocationsIntegrationSettingSerializer do
   context 'no location integration settings so we use client integration settings as is' do
     let!(:custom_integration_setting) { integration_setting.custom_integration_settings.create(name: 'foo', value: 'bar') }
     let(:integration_setting) { clients_integration_setting.integration_setting }
-    let(:locations_integration_setting) { Fabricate(:locations_integration_setting, clients_integration_setting: clients_integration_setting, integration_setting: nil) }
+    let(:locations_integration_setting) { Fabricate(:locations_integration_setting, clients_integration_setting: clients_integration_setting, location: Fabricate(:location), integration_setting: nil) }
+    let(:client) { locations_integration_setting.clients_integration_setting.client }
+    let(:location) { locations_integration_setting.location }
 
+    its([:urn]) { is_expected.to eq(locations_integration_setting.urn) }
+    its([:uid]) { is_expected.to match(/\/clients\/#{client.urn}\/locations\/#{location.urn}\/locations_integration_settings\/#{locations_integration_setting.urn}/) }
     its([:strategy_name]) { is_expected.to eq(integration_setting.strategy_name) }
     its([:vendor_endpoint]) { is_expected.to eq(integration_setting.vendor_endpoint) }
     its([:vendor_user_name]) { is_expected.to eq(integration_setting.vendor_user_name) }
@@ -22,7 +26,7 @@ describe LocationsIntegrationSettingSerializer do
   context 'has location integration settings so we merge into client integration settings' do
     let(:custom_integration_setting) { integration_setting.custom_integration_settings.create(name: 'foo', value: 'bar') }
     let(:client_integration_setting) { clients_integration_setting.integration_setting }
-    let(:locations_integration_setting) { Fabricate(:locations_integration_setting, clients_integration_setting: clients_integration_setting, integration_setting: IntegrationSetting.new(override: true, strategy_name: 'overridden strategy name')) }
+    let(:locations_integration_setting) { Fabricate(:locations_integration_setting, clients_integration_setting: clients_integration_setting, location: Fabricate(:location), integration_setting: IntegrationSetting.new(override: true, strategy_name: 'overridden strategy name')) }
     let!(:custom_integration_setting_1) { locations_integration_setting.integration_setting.custom_integration_settings.create(name: 'foo', value: 'baz') }
     let!(:custom_integration_setting_2) { locations_integration_setting.integration_setting.custom_integration_settings.create(name: 'joe', value: 'bob') }
 
