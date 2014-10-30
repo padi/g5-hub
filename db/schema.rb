@@ -11,12 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141020233010) do
+ActiveRecord::Schema.define(version: 20141030151944) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "clients", force: true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.string   "urn"
     t.string   "vertical"
     t.string   "street_address_1"
@@ -39,8 +42,8 @@ ActiveRecord::Schema.define(version: 20141020233010) do
     t.integer "integration_setting_id"
   end
 
-  add_index "clients_integration_settings", ["client_id"], name: "index_cis_on_client"
-  add_index "clients_integration_settings", ["vendor_id", "client_id", "vendor_action"], name: "index_cis_on_vendor_and_client_and_action"
+  add_index "clients_integration_settings", ["client_id"], name: "index_cis_on_client", using: :btree
+  add_index "clients_integration_settings", ["vendor_id", "client_id", "vendor_action"], name: "index_cis_on_vendor_and_client_and_action", using: :btree
 
   create_table "custom_integration_settings", force: true do |t|
     t.integer  "integration_setting_id"
@@ -50,7 +53,7 @@ ActiveRecord::Schema.define(version: 20141020233010) do
     t.datetime "updated_at"
   end
 
-  add_index "custom_integration_settings", ["integration_setting_id"], name: "index_custom_integration_settings_on_integration_setting_id"
+  add_index "custom_integration_settings", ["integration_setting_id"], name: "index_custom_integration_settings_on_integration_setting_id", using: :btree
 
   create_table "g5_authenticatable_users", force: true do |t|
     t.string   "email",              default: "",   null: false
@@ -66,8 +69,8 @@ ActiveRecord::Schema.define(version: 20141020233010) do
     t.datetime "updated_at"
   end
 
-  add_index "g5_authenticatable_users", ["email"], name: "index_g5_authenticatable_users_on_email", unique: true
-  add_index "g5_authenticatable_users", ["provider", "uid"], name: "index_g5_authenticatable_users_on_provider_and_uid", unique: true
+  add_index "g5_authenticatable_users", ["email"], name: "index_g5_authenticatable_users_on_email", unique: true, using: :btree
+  add_index "g5_authenticatable_users", ["provider", "uid"], name: "index_g5_authenticatable_users_on_provider_and_uid", unique: true, using: :btree
 
   create_table "integration_settings", force: true do |t|
     t.string   "strategy_name"
@@ -82,8 +85,8 @@ ActiveRecord::Schema.define(version: 20141020233010) do
     t.integer  "client_id"
     t.string   "name"
     t.boolean  "corporate"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.string   "urn"
     t.string   "street_address_1"
     t.string   "street_address_2"
@@ -104,6 +107,8 @@ ActiveRecord::Schema.define(version: 20141020233010) do
     t.string   "youtube_username"
     t.string   "domain"
     t.string   "phone_number"
+    t.string   "ga_tracking_id"
+    t.string   "ga_profile_id"
     t.string   "neighborhood"
     t.boolean  "boat_storage",              default: false
     t.boolean  "business_storage",          default: false
@@ -209,8 +214,6 @@ ActiveRecord::Schema.define(version: 20141020233010) do
     t.boolean  "wifi_available",            default: false
     t.string   "other_community_amenities"
     t.string   "primary_offering_other"
-    t.string   "ga_tracking_id"
-    t.string   "ga_profile_id"
     t.string   "landmark_1_type"
     t.string   "landmark_1_name"
     t.string   "landmark_2_type"
@@ -227,6 +230,8 @@ ActiveRecord::Schema.define(version: 20141020233010) do
     t.string   "thumbnail_content_type"
     t.integer  "thumbnail_file_size"
     t.datetime "thumbnail_updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "locations_integration_settings", force: true do |t|
@@ -235,8 +240,8 @@ ActiveRecord::Schema.define(version: 20141020233010) do
     t.integer "integration_setting_id"
   end
 
-  add_index "locations_integration_settings", ["location_id", "clients_integration_setting_id"], name: "index_lis_on_location_and_client_int", unique: true
-  add_index "locations_integration_settings", ["location_id"], name: "index_lis_on_location"
+  add_index "locations_integration_settings", ["location_id", "clients_integration_setting_id"], name: "index_lis_on_location_and_client_int", unique: true, using: :btree
+  add_index "locations_integration_settings", ["location_id"], name: "index_lis_on_location", using: :btree
 
   create_table "vendors", force: true do |t|
     t.string "name"
