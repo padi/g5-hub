@@ -43,6 +43,20 @@ describe WebhookPoster do
     end
   end
 
+  describe 'JOBS_URL not set' do
+    let(:client) { Fabricate(:client)}
+
+    before do
+      allow(webhook_poster).to receive(:jobs_url).and_return(nil)
+    end
+
+    it 'does not post to jobs' do
+      Webhook.should_not_receive(:post).with(
+          "/foo", client_uid: "https://g5-hub.herokuapp.com/clients/#{client.urn}")
+      webhook_poster.post_client_update_webhooks
+    end
+  end
+
   describe "#post_client_update_webhooks" do
     let(:client) { Fabricate(:client)}
     let(:app_length) { WebhookPoster::HEROKU_APP_NAME_MAX_LENGTH }
@@ -56,6 +70,13 @@ describe WebhookPoster do
     end
     let(:cpns_domain) do
       client.urn.gsub(record_type, WebhookPoster::CPAS_RECORD_TYPE)[0...app_length]
+    end
+    let(:jobs_url) do
+      'https://get-a-job.com'
+    end
+
+    before do
+      allow(webhook_poster).to receive(:jobs_url).and_return(jobs_url)
     end
 
     subject { webhook_poster.post_client_update_webhooks }
@@ -76,6 +97,11 @@ describe WebhookPoster do
       it "posts to the cpns" do
         Webhook.should_receive(:post).with(
           "https://#{cpns_domain}.herokuapp.com/foo", client_uid: "https://g5-hub.herokuapp.com/clients/#{client.urn}")
+      end
+
+      it "posts to jobs" do
+        Webhook.should_receive(:post).with(
+            "#{jobs_url}/foo", client_uid: "https://g5-hub.herokuapp.com/clients/#{client.urn}")
       end
     end
 

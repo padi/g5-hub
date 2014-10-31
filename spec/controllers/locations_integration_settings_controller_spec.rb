@@ -31,11 +31,20 @@ describe LocationsIntegrationSettingsController, auth_controller: true do
   describe 'PUT update' do
     describe 'success' do
       let(:strategy_name) { 'foo' }
+      let(:client) { locations_integration_setting.clients_integration_setting.client }
+
       before do
+        allow(Resque).to receive(:enqueue)
         put :update, id: locations_integration_setting.id, locations_integration_setting: {integration_setting_attributes: {strategy_name: strategy_name, vendor_endpoint: nil, override: true}}
       end
 
-      it 'redirect' do
+      it 'enques webhooks' do
+        subject
+        expect(Resque).to have_received(:enqueue).
+                              with(WebhookPosterJob, client.id, :post_client_update_webhooks)
+      end
+
+      it 'redirects' do
         expect(response).to redirect_to(clients_integration_setting_url(locations_integration_setting.clients_integration_setting))
       end
 

@@ -2,13 +2,16 @@ class LocationsIntegrationSettingsController < ApplicationController
   respond_to :html
   before_filter :authenticate_user!
   before_filter :load_locations_integration_setting, only: [:edit, :update, :show]
+  before_filter :load_client, only: [:update]
 
   def show
     render json: @locations_integration_setting, serializer: LocationsIntegrationSettingSerializer
   end
 
   def update
-    @locations_integration_setting.update_attributes locations_integration_setting_params
+    if @locations_integration_setting.update_attributes locations_integration_setting_params
+      Resque.enqueue(WebhookPosterJob, @client.id, :post_client_update_webhooks)
+    end
 
     respond_with @locations_integration_setting, location: clients_integration_setting_url(@locations_integration_setting.clients_integration_setting.id)
   end
@@ -26,5 +29,9 @@ class LocationsIntegrationSettingsController < ApplicationController
 
   def locations_integration_setting_params
     params.require(:locations_integration_setting).permit(integration_setting_attributes: [:override, :strategy_name, :vendor_user_name, :vendor_password, :vendor_endpoint, :id, :_destroy, job_setting_attributes: [:frequency_unit_id, :frequency, :id], custom_integration_settings_attributes: [:name, :value, :id, :_destroy]])
+  end
+
+  def load_client
+    @client = @locations_integration_setting.clients_integration_setting.client
   end
 end

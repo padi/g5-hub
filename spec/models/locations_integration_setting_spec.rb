@@ -15,6 +15,15 @@ describe LocationsIntegrationSetting do
       expect(second).to_not be_valid
       expect(second.errors[:location_id]).to eq(['has already been taken'])
     end
+
+    it 'sets URN when blank' do
+      expect(first.urn).to_not be_nil
+    end
+
+    it 'does not set URN if already set' do
+      urn = 'myurn'
+      expect(Fabricate(:locations_integration_setting, urn: urn).urn).to eq(urn)
+    end
   end
 
   describe 'Identifiers' do
