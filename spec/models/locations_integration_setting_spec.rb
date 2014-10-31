@@ -16,4 +16,17 @@ describe LocationsIntegrationSetting do
       expect(second.errors[:location_id]).to eq(['has already been taken'])
     end
   end
+
+  describe 'Identifiers' do
+    let(:location) { Fabricate(:location) }
+    let(:locations_integration_setting) { Fabricate(:locations_integration_setting, location: location) }
+
+    before do
+      Time.any_instance.stub(:to_i) { 1325404800 }
+    end
+
+    it { expect(locations_integration_setting.hashed_id).to eq "#{locations_integration_setting.created_at.to_i}#{locations_integration_setting.id}".to_i.to_s(36) }
+    it { expect(locations_integration_setting.urn).to eq "g5-lis-#{locations_integration_setting.hashed_id}" }
+    it { expect(locations_integration_setting.to_param).to eq locations_integration_setting.urn }
+  end
 end

@@ -1,7 +1,11 @@
 class LocationsIntegrationSettingsController < ApplicationController
   respond_to :html
   before_filter :authenticate_user!
-  before_filter :load_locations_integration_setting, only: [:show, :edit, :update, :destroy]
+  before_filter :load_locations_integration_setting, only: [:edit, :update, :show]
+
+  def show
+    render json: @locations_integration_setting, serializer: LocationsIntegrationSettingSerializer
+  end
 
   def update
     @locations_integration_setting.update_attributes locations_integration_setting_params
@@ -17,7 +21,7 @@ class LocationsIntegrationSettingsController < ApplicationController
 
   private
   def load_locations_integration_setting
-    @locations_integration_setting = LocationsIntegrationSetting.find(params[:id])
+    @locations_integration_setting = LocationsIntegrationSetting.find_by_urn(params[:id]) || LocationsIntegrationSetting.find(params[:id])
   end
 
   def locations_integration_setting_params

@@ -1,5 +1,6 @@
 class LocationsIntegrationSettingSerializer < ActiveModel::Serializer
-  attributes :location_id
+  include Rails.application.routes.url_helpers
+  attributes :location_id, :urn, :uid
 
   def attributes
     data                 = super
@@ -15,5 +16,9 @@ class LocationsIntegrationSettingSerializer < ActiveModel::Serializer
       merged_hash[key] = value unless value.blank?
     end
     merged_hash
+  end
+
+  def uid
+    client_location_locations_integration_setting_url(object.clients_integration_setting.client, object.location, object, format: :json)
   end
 end
