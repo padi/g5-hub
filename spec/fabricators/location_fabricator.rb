@@ -7,4 +7,6 @@ Fabricator(:location) do
   postal_code { Faker::Address.zip_code }
   phone_number { Faker::PhoneNumber.phone_number }
   status { "Pending" }
+  latitude { 45 }
+  longitude { -121 }
 end
