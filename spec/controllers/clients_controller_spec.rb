@@ -237,6 +237,7 @@ describe ClientsController do
       end
     end
   end
+  
   describe "#location_search" do
     context "successful search" do
       it "passes on radius search results with success paramater" do
