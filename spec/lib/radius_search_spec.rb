@@ -21,12 +21,12 @@ describe RadiusSearch do
       end
 
       context "by zip" do
-        let(:params) { {search: "96779"} }
+        let(:params) { {search: "97701"} }
         let(:radius_search) { RadiusSearch.new(client, params) }
 
         subject { radius_search.locations }
-        it { should include(location1, location2, location3) }
-        it { should_not include(location4, location5) }
+        it { should include(location5) }
+        it { should_not include(location1, location2, location3, location4) }
       end
 
       context "with custom radius" do
