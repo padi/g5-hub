@@ -58,13 +58,13 @@ describe RadiusSearch do
 
   describe "#results" do
     context "successful search" do
-      let(:params) { {search: "Paia, HI"} }
+      let(:params) { {search: "Bend, OR"} }
       let(:radius_search) { RadiusSearch.new(client, params) }
 
       subject { radius_search.results }
       it { should include(success: true) }
       it { should include(:locations) }
-      it { expect(subject[:locations].size).to eq(3) }
+      it { expect(subject[:locations].size).to eq(1) }
     end
 
     context "unsuccessful search" do
