@@ -22,18 +22,29 @@ class ClientsIntegrationSettingsController < ApplicationController
 
   def create
     @clients_integration_setting = ClientsIntegrationSetting.new(clients_integration_setting_params)
-    build_required unless @clients_integration_setting.save
+    if @clients_integration_setting.save
+      Resque.enqueue(WebhookPosterJob, @clients_integration_setting.client.id, :post_client_update_webhooks)
+    else
+      build_required
+    end
     respond_with @clients_integration_setting, notice: 'Successfully created Integration!'
   end
 
   def update
-    destroy_location_job_settings_if_needed if @clients_integration_setting.update_attributes(clients_integration_setting_params)
+    if @clients_integration_setting.update_attributes(clients_integration_setting_params)
+      destroy_location_job_settings_if_needed
+      Resque.enqueue(WebhookPosterJob, @clients_integration_setting.client.id, :post_client_update_webhooks)
+    end
 
     respond_with @clients_integration_setting, notice: 'Successfully updated Integration!'
   end
 
   def destroy
-    @clients_integration_setting.destroy
+    client = @clients_integration_setting.client
+
+    if @clients_integration_setting.destroy
+      Resque.enqueue(WebhookPosterJob, client.id, :post_client_update_webhooks)
+    end
     respond_with @clients_integration_setting
   end
 

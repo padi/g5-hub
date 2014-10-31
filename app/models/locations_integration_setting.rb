@@ -4,7 +4,7 @@ class LocationsIntegrationSetting < ActiveRecord::Base
   belongs_to :integration_setting
 
   RECORD_TYPE = ENV['APP_NAMESPACE'] + "-lis"
-  after_save :set_urn
+  after_create :set_urn
 
   accepts_nested_attributes_for :integration_setting, allow_destroy: true
 
