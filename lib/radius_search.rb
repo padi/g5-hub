@@ -8,6 +8,14 @@ class RadiusSearch
     search_results = @client.locations.near(@params[:search], @params[:radius])
   end
 
+  def results
+    success = self.locations.empty? ? false : true
+    locations = success ? self.locations : @client.locations
+    
+    response = {  success: success,
+                  locations: locations.as_json(only: [:id, :name, :street_address_1, :street_address_2, :city, :state, :postal_code, :email, :latitude, :longitude]) }
+  end
+
   private
 
   def scrub_params(params)

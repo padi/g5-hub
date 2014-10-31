@@ -55,4 +55,26 @@ describe RadiusSearch do
       it { should be_empty }
     end
   end
+
+  describe "#results" do
+    context "successful search" do
+      let(:params) { {search: "Paia, HI"} }
+      let(:radius_search) { RadiusSearch.new(client, params) }
+
+      subject { radius_search.results }
+      it { should include(success: true) }
+      it { should include(:locations) }
+      it { expect(subject[:locations].size).to eq(3) }
+    end
+
+    context "unsuccessful search" do
+      let(:params) { {search: "Talkeetna, AK"} }
+      let(:radius_search) { RadiusSearch.new(client, params) }
+
+      subject { radius_search.results }
+      it { should include(success: false) }
+      it { should include(:locations) }
+      it { expect(subject[:locations].size).to eq(5) }
+    end
+  end
 end
