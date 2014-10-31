@@ -239,10 +239,13 @@ describe ClientsController do
   end
   
   describe "#location_search" do
-    it "renders json" do
-      exepected_response = {success: true, locations: [{id:1},{id:2},{id:3}]}
-      RadiusSearch.any_instance.stub(:results).and_return(exepected_response)
+    let(:exepected_response) { {success: true, locations: [{id:1},{id:2},{id:3}]} }
+    let(:search_object) { instance_double("RadiusSearch", :results => exepected_response) }
+    let(:params) { {client_id: client.urn, controller: "clients", action: "location_search"} }
 
+    it "renders search results as json" do
+      RadiusSearch.stub(:new).with(client, params).and_return search_object
+      
       get :location_search, client_id: client.urn
       expect(response.body).to eq(exepected_response.to_json)
     end
