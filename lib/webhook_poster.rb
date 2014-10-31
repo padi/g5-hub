@@ -3,6 +3,7 @@ class WebhookPoster
   CMS_RECORD_TYPE  = ENV["APP_NAMESPACE"] + "-cms"
   CPAS_RECORD_TYPE = ENV["APP_NAMESPACE"] + "-cpas"
   CPNS_RECORD_TYPE = ENV["APP_NAMESPACE"] + "-cpns"
+  JOBS_RECORD_TYPE = ENV["APP_NAMESPACE"] + "-jobs"
 
   def initialize(client)
     @client = client
@@ -23,6 +24,9 @@ class WebhookPoster
 
     Rails.logger.info("posting to #{domain_for(CPNS_RECORD_TYPE)}#{ENV['G5_UPDATABLE_PATH']}")
     post("#{domain_for(CPNS_RECORD_TYPE)}#{ENV["G5_UPDATABLE_PATH"]}", client_uid: client_uid)
+
+    Rails.logger.info("posting to #{domain_for(JOBS_RECORD_TYPE)}#{ENV['G5_UPDATABLE_PATH']}")
+    post("#{domain_for(JOBS_RECORD_TYPE)}#{ENV['G5_UPDATABLE_PATH']}", client_uid: client_uid)
   end
 
 private

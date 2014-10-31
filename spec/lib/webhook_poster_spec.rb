@@ -57,6 +57,9 @@ describe WebhookPoster do
     let(:cpns_domain) do
       client.urn.gsub(record_type, WebhookPoster::CPAS_RECORD_TYPE)[0...app_length]
     end
+    let(:jobs_domain) do
+      client.urn.gsub(record_type, WebhookPoster::JOBS_RECORD_TYPE)[0...app_length]
+    end
 
     subject { webhook_poster.post_client_update_webhooks }
 
@@ -76,6 +79,11 @@ describe WebhookPoster do
       it "posts to the cpns" do
         Webhook.should_receive(:post).with(
           "https://#{cpns_domain}.herokuapp.com/foo", client_uid: "https://g5-hub.herokuapp.com/clients/#{client.urn}")
+      end
+
+      it "posts to jobs" do
+        Webhook.should_receive(:post).with(
+            "https://#{jobs_domain}.herokuapp.com/foo", client_uid: "https://g5-hub.herokuapp.com/clients/#{client.urn}")
       end
     end
 
