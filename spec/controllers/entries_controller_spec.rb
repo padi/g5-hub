@@ -3,7 +3,7 @@ require "rails_helper"
 describe EntriesController do
   render_views
   let(:client) { Fabricate(:client) }
-  before { Client.stub(:find_by_urn) { client } }
+  before { allow(Client).to receive(:find_by_urn) { client } }
   let(:token) { double('token') }
   let(:valid) { false }
 
@@ -54,6 +54,14 @@ describe EntriesController do
         end
 
         specify { expect(@result['clients'].first['id']).to eq(client.id) }
+      end
+
+      context "js format" do
+        let!(:client) { Fabricate(:client) }
+
+        before { get :index, format: :js }
+
+        specify { expect(response).to render_template(:index) }
       end
 
       context 'html format' do

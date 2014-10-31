@@ -19,6 +19,10 @@ describe ClientsIntegrationSettingsController, auth_controller: true do
       subject
       expect(assigns(:clients_integration_setting)).to_not be_nil
     end
+    it 'assigns job_setting' do
+      subject
+      expect(assigns(:clients_integration_setting).integration_setting.job_setting).to_not be_nil
+    end
   end
 
   let(:clients_integration_setting) { Fabricate(:clients_integration_setting) }
@@ -31,6 +35,11 @@ describe ClientsIntegrationSettingsController, auth_controller: true do
       it 'assigns client_integration_setting' do
         subject
         expect(assigns(:clients_integration_setting)).to eq(clients_integration_setting)
+      end
+
+      it 'assigns job_setting' do
+        subject
+        expect(assigns(:clients_integration_setting).integration_setting.job_setting).to_not be_nil
       end
     end
 
@@ -89,11 +98,36 @@ describe ClientsIntegrationSettingsController, auth_controller: true do
 
   describe 'PUT update' do
     describe 'success' do
-      subject(:put_update) { put :update, id: clients_integration_setting.id, clients_integration_setting: {vendor_action: ClientsIntegrationSetting::LEAD_VENDOR_ACTION} }
-      it { is_expected.to redirect_to(clients_integration_setting_url(clients_integration_setting)) }
-      it 'updates the clients_integration_setting' do
-        subject
-        expect(ClientsIntegrationSetting.find(clients_integration_setting.id).vendor_action).to eq(ClientsIntegrationSetting::LEAD_VENDOR_ACTION)
+      before do
+        clients_integration_setting.locations_integration_settings.create(location: Fabricate(:location), integration_setting: Fabricate(:integration_setting, job_setting: Fabricate(:job_setting)))
+        clients_integration_setting.integration_setting.create_job_setting(Fabricate.to_params(:job_setting))
+      end
+
+      context 'without job setting' do
+        subject(:put_update) { put :update, id: clients_integration_setting.id, clients_integration_setting:
+                                                {vendor_action:                  ClientsIntegrationSetting::LEAD_VENDOR_ACTION,
+                                                 integration_setting_attributes: Fabricate.to_params(:integration_setting).merge(job_setting_attributes: {frequency: ''})} }
+        it { is_expected.to redirect_to(clients_integration_setting_url(clients_integration_setting)) }
+        it 'updates the clients_integration_setting' do
+          subject
+          expect(ClientsIntegrationSetting.find(clients_integration_setting.id).vendor_action).to eq(ClientsIntegrationSetting::LEAD_VENDOR_ACTION)
+        end
+
+        it 'destroys location job settings if it does not have a job setting' do
+          subject
+          integration_setting = ClientsIntegrationSetting.find(clients_integration_setting.id).locations_integration_settings.first.integration_setting
+          expect(integration_setting.job_setting).to be_nil
+        end
+      end
+
+      context 'with job setting' do
+        subject(:put_update) { put :update, id: clients_integration_setting.id, clients_integration_setting: {vendor_action: ClientsIntegrationSetting::LEAD_VENDOR_ACTION} }
+        it { is_expected.to redirect_to(clients_integration_setting_url(clients_integration_setting)) }
+        it 'destroys location job settings if it does not have a job setting' do
+          subject
+          integration_setting = ClientsIntegrationSetting.find(clients_integration_setting.id).locations_integration_settings.first.integration_setting
+          expect(integration_setting.job_setting).to_not be_nil
+        end
       end
     end
 

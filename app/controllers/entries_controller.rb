@@ -1,6 +1,7 @@
 class EntriesController < ApplicationController
   before_filter :authenticate_api_user!, if: :is_api_request?
   before_filter :authenticate_user!, unless: :is_api_request?
+  protect_from_forgery except: :index
 
   def index
     client_scope = Client.order("updated_at DESC")
@@ -9,6 +10,7 @@ class EntriesController < ApplicationController
     if stale? last_modified: client_scope.maximum(:updated_at)
       respond_to do |format|
         format.html
+        format.js
         format.json { render json: client_scope, root: :clients }
       end
     end

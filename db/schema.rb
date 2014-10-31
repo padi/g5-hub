@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141030151944) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20141030222429) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -55,6 +52,13 @@ ActiveRecord::Schema.define(version: 20141030151944) do
 
   add_index "custom_integration_settings", ["integration_setting_id"], name: "index_custom_integration_settings_on_integration_setting_id", using: :btree
 
+  create_table "frequency_units", force: true do |t|
+    t.string   "name"
+    t.integer  "minutes_multiplier"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "g5_authenticatable_users", force: true do |t|
     t.string   "email",              default: "",   null: false
     t.string   "provider",           default: "g5", null: false
@@ -80,6 +84,16 @@ ActiveRecord::Schema.define(version: 20141030151944) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "job_settings", force: true do |t|
+    t.integer  "integration_setting_id"
+    t.integer  "frequency_unit_id"
+    t.integer  "frequency"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "job_settings", ["integration_setting_id"], name: "index_job_settings_on_integration_setting_id"
 
   create_table "locations", force: true do |t|
     t.integer  "client_id"
@@ -235,9 +249,12 @@ ActiveRecord::Schema.define(version: 20141030151944) do
   end
 
   create_table "locations_integration_settings", force: true do |t|
-    t.integer "clients_integration_setting_id"
-    t.integer "location_id"
-    t.integer "integration_setting_id"
+    t.integer  "clients_integration_setting_id"
+    t.integer  "location_id"
+    t.integer  "integration_setting_id"
+    t.string   "urn"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "locations_integration_settings", ["location_id", "clients_integration_setting_id"], name: "index_lis_on_location_and_client_int", unique: true, using: :btree
