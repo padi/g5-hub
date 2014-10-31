@@ -25,11 +25,13 @@ class WebhookPoster
     Rails.logger.info("posting to #{domain_for(CPNS_RECORD_TYPE)}#{ENV['G5_UPDATABLE_PATH']}")
     post("#{domain_for(CPNS_RECORD_TYPE)}#{ENV["G5_UPDATABLE_PATH"]}", client_uid: client_uid)
 
-    Rails.logger.info("posting to #{domain_for(JOBS_RECORD_TYPE)}#{ENV['G5_UPDATABLE_PATH']}")
-    post("#{domain_for(JOBS_RECORD_TYPE)}#{ENV['G5_UPDATABLE_PATH']}", client_uid: client_uid)
+    unless jobs_url.blank?
+      Rails.logger.info("posting to #{jobs_url}/#{ENV['G5_UPDATABLE_PATH']}")
+      post("#{jobs_url}#{ENV['G5_UPDATABLE_PATH']}", client_uid: client_uid)
+    end
   end
 
-private
+  private
 
   def client_uid
     "https://" +
@@ -40,6 +42,10 @@ private
 
   def domain_for(type)
     "https://#{converted_urn(type)}.herokuapp.com"
+  end
+
+  def jobs_url
+    ENV['JOBS_URL']
   end
 
   def post(url, params={})
