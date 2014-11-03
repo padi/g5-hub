@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby "2.1.3"
 
-gem "rails", "4.1.5"
+gem "rails", "4.1.7"
 gem "jquery-rails"
 gem "quiet_assets", "~> 1.0.1"
 gem "bootstrap-sass", "~> 3.1.1.0"
