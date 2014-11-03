@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe ClientsIntegrationSettingsController, auth_controller: true do
+  before do
+    allow(Resque).to receive(:enqueue)
+  end
+
   describe 'GET index' do
     subject(:get_index) { get :index }
     its(:status) { is_expected.to eq(200) }
@@ -52,11 +56,20 @@ describe ClientsIntegrationSettingsController, auth_controller: true do
 
   describe 'DELETE destroy' do
     describe 'success' do
+      let(:client) { clients_integration_setting.client }
       subject(:delete_destroy) { delete :destroy, id: clients_integration_setting.id }
+
       it { is_expected.to redirect_to(clients_integration_settings_url) }
+
       it 'is destroyed' do
         subject
         expect(ClientsIntegrationSetting.exists?(clients_integration_setting.id)).to be_falsey
+      end
+
+      it 'enques webhooks' do
+        subject
+        expect(Resque).to have_received(:enqueue).
+                              with(WebhookPosterJob, client.id, :post_client_update_webhooks)
       end
     end
 
@@ -69,11 +82,18 @@ describe ClientsIntegrationSettingsController, auth_controller: true do
 
   describe 'POST create' do
     let(:attrs) { Fabricate.attributes_for(:clients_integration_setting) }
+    let(:client) { Client.find(attrs[:client_id]) }
+
     describe 'success' do
       before do
         post :create, clients_integration_setting: attrs
       end
       it { is_expected.to redirect_to(clients_integration_setting_url(assigns(:clients_integration_setting).id)) }
+
+      it 'enques webhooks' do
+        expect(Resque).to have_received(:enqueue).
+                              with(WebhookPosterJob, client.id, :post_client_update_webhooks)
+      end
     end
 
     describe 'failure - invalid' do
@@ -111,6 +131,12 @@ describe ClientsIntegrationSettingsController, auth_controller: true do
         it 'updates the clients_integration_setting' do
           subject
           expect(ClientsIntegrationSetting.find(clients_integration_setting.id).vendor_action).to eq(ClientsIntegrationSetting::LEAD_VENDOR_ACTION)
+        end
+
+        it 'enques webhooks' do
+          subject
+          expect(Resque).to have_received(:enqueue).
+                                with(WebhookPosterJob, clients_integration_setting.client.id, :post_client_update_webhooks)
         end
 
         it 'destroys location job settings if it does not have a job setting' do

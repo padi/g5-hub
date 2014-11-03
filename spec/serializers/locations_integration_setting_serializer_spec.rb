@@ -14,6 +14,7 @@ describe LocationsIntegrationSettingSerializer do
 
     its([:urn]) { is_expected.to eq(locations_integration_setting.urn) }
     its([:uid]) { is_expected.to match(/\/clients\/#{client.urn}\/locations\/#{location.urn}\/locations_integration_settings\/#{locations_integration_setting.urn}/) }
+    its([:location_uid]) { is_expected.to match(/\/clients\/#{client.urn}\/locations\/#{location.urn}/) }
     its([:strategy_name]) { is_expected.to eq(integration_setting.strategy_name) }
     its([:vendor_endpoint]) { is_expected.to eq(integration_setting.vendor_endpoint) }
     its([:vendor_user_name]) { is_expected.to eq(integration_setting.vendor_user_name) }
