@@ -21,6 +21,12 @@ describe "Locations", auth_request: true do
     select "California", from: "client_locations_attributes_0_state"
   end
 
+  def show_fields
+    all(".toggle-location-fields").each do |toggle_button|
+      toggle_button.click
+    end
+  end
+
   describe "new" do
     it "can create a location with hours" do
       new_client
@@ -51,6 +57,7 @@ describe "Locations", auth_request: true do
       select "Senior Apartments", from: "client_locations_attributes_0_specific_demographic"
       click_button "Create Client"
       click_link "Edit Client"
+      show_fields
       expect(find(:css, '#client_locations_attributes_0_specific_demographic').value).to eq("Senior Apartments")
     end
     it "can create a Self-Storage location with a specific service" do
@@ -59,6 +66,7 @@ describe "Locations", auth_request: true do
       check('client_locations_attributes_0_rv_storage')
       click_button "Create Client"
       click_link "Edit Client"
+      show_fields
       expect(find(:css, '#client_vertical').value).to eq("Self-Storage")
       expect(find(:css, '#client_locations_attributes_0_rv_storage')).to be_checked
     end
@@ -75,6 +83,7 @@ describe "Locations", auth_request: true do
       it "cannot see extra fields on first page load" do
         visit clients_path
         click_link "New Client"
+        show_fields
         within('#locations_container') do
           expect(page).to_not have_content('Services and Features')
           expect(page).to_not have_content('Amenities')
@@ -83,6 +92,7 @@ describe "Locations", auth_request: true do
       it "can see apartments fields when apartment vertical is chosen" do
         visit clients_path
         click_link "New Client"
+        show_fields
         select "Apartments", from: "client_vertical"
         expect(page).to have_selector('#apartments-fields', visible: true)
         expect(page).to_not have_selector('#self-storage-fields', visible: true)
