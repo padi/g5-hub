@@ -19,13 +19,15 @@ label .note {
   font-weight: normal;
 }
 
-#locations_container {
-  padding-bottom: 2em;
+.locations-container {
+  clear:both;
+  display:none;
+  padding:15px 0 2em;
   position: relative;
-}
 
-#locations_container fieldset:first-child hr {
-  display: none;
+  fieldset:first-child hr {
+    display: none;
+  }
 }
 
 .well h2 {

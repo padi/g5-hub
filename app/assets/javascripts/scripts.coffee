@@ -24,3 +24,14 @@ $ ->
       if (count > maxAllowed)
         $(this).prop('checked', '')
         alert('Please only select up to ' + maxAllowed)
+
+  $(".toggle-location-fields").click ->
+    if $(this).text() == "+ Edit All Fields"
+      $(this).text("- Hide All Fields")
+    else
+      $(this).text("+ Edit All Fields")
+
+    $(this).toggleClass("btn-danger")
+    $(this).parent().parent().parent().find('.locations-container').slideToggle()
+
+    return false
