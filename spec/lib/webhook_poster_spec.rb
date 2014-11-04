@@ -71,12 +71,14 @@ describe WebhookPoster do
     let(:cpns_domain) do
       client.urn.gsub(record_type, WebhookPoster::CPAS_RECORD_TYPE)[0...app_length]
     end
-    let(:jobs_url) do
-      'https://get-a-job.com'
-    end
+    let(:jobs_url) {'https://get-a-job.com'}
+    let(:inventory_etl_url) {'https://get-an-inventory-etl.com'}
+    let(:vendor_leads_url) {'https://get-a-vendor-lead.com'}
 
     before do
       allow(webhook_poster).to receive(:jobs_url).and_return(jobs_url)
+      allow(webhook_poster).to receive(:inventory_etl_url).and_return(inventory_etl_url)
+      allow(webhook_poster).to receive(:vendor_leads_url).and_return(vendor_leads_url)
     end
 
     subject { webhook_poster.post_client_update_webhooks }
@@ -102,6 +104,16 @@ describe WebhookPoster do
       it "posts to jobs" do
         Webhook.should_receive(:post).with(
             "#{jobs_url}/foo", client_uid: "https://g5-hub.herokuapp.com/clients/#{client.urn}")
+      end
+
+      it "posts to inventory-etl" do
+        Webhook.should_receive(:post).with(
+            "#{inventory_etl_url}/foo", client_uid: "https://g5-hub.herokuapp.com/clients/#{client.urn}")
+      end
+
+      it "posts to inventory-etl" do
+        Webhook.should_receive(:post).with(
+            "#{vendor_leads_url}/foo", client_uid: "https://g5-hub.herokuapp.com/clients/#{client.urn}")
       end
     end
 
