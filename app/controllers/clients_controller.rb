@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
   before_filter :authenticate_api_user!, if: :is_api_request?, except: :show
-  before_filter :authenticate_user!, unless: :is_api_request?, except: :show
+  before_filter :authenticate_user!, unless: :is_api_request?, except: [:show, :location_search]
 
   DEMOGRAPHIC_OPTIONS = ['Senior Apartments', 'Student Housing']
 
@@ -63,6 +63,15 @@ class ClientsController < ApplicationController
     @client = Client.find_by_urn(params[:id])
     @client.destroy
     redirect_to clients_url, :notice => "Successfully destroyed client."
+  end
+
+  def location_search
+    client = Client.find_by_urn!(params[:client_id])
+
+    radius_search = RadiusSearch.new(client, params)
+    locations = radius_search.results
+  
+    render json: locations
   end
 
   private

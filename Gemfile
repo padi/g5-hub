@@ -15,7 +15,8 @@ gem "heroku_resque_autoscaler"
 gem "rack-cors", require: "rack/cors"
 gem 'active_model_serializers'
 gem "paperclip", "~> 4.2"
-gem "aws-sdk", "~> 1.5.7"
+gem 'aws-sdk', '~> 1.5.7'
+gem "geocoder"
 
 group :production do
   gem "unicorn"
@@ -46,6 +47,8 @@ group :development, :test do
   gem "foreman"
   gem "factory_girl_rails"
   gem "shoulda-matchers"
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 gem "codeclimate-test-reporter", group: :test, require: nil

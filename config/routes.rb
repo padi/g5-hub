@@ -10,6 +10,8 @@ G5Hub::Application.routes.draw do
     resources :locations, only: [:index, :show] do
       resources :locations_integration_settings, only: [:show], defaults: {format: :json}
     end
+
+    get '/location_search', to: 'clients#location_search'
   end
 
   resources :locations
