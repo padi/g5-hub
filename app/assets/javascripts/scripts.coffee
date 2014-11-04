@@ -32,6 +32,6 @@ $ ->
       $(this).text("+ Edit All Fields")
 
     $(this).toggleClass("btn-danger")
-    $(this).parent().parent().parent().find('#locations_container').slideToggle()
+    $(this).parent().parent().parent().find('.locations-container').slideToggle()
 
     return false
