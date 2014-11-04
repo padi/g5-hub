@@ -84,7 +84,7 @@ describe "Locations", auth_request: true do
         visit clients_path
         click_link "New Client"
         show_fields
-        within('#locations_container') do
+        within('.locations-container') do
           expect(page).to_not have_content('Services and Features')
           expect(page).to_not have_content('Amenities')
         end
