@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "2.1.3"
+ruby "2.1.4"
 
 gem "rails", "4.1.7"
 gem "jquery-rails"
@@ -16,6 +16,7 @@ gem "rack-cors", require: "rack/cors"
 gem 'active_model_serializers'
 gem "paperclip", "~> 4.2"
 gem 'aws-sdk', '~> 1.5.7'
+gem 'httparty'
 gem "geocoder"
 
 group :production do

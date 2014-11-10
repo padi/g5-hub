@@ -356,6 +356,7 @@ DEPENDENCIES
   guard-spork
   heroku_resque_autoscaler
   honeybadger
+  httparty
   jquery-rails
   launchy
   lograge
