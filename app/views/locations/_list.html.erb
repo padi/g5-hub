@@ -1,0 +1,29 @@
+<h4>Locations</h4>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th></th>
+    <th>Location</th>
+    <th>Last Job Status</th>
+    <th>Last Job Time</th>
+    <th>Last Job Logs</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @clients_integration_setting.locations_integration_settings.each do |locations_integration_settings| %>
+      <tr>
+        <td>
+          <%= link_to('Override', edit_locations_integration_setting_path(locations_integration_settings.id)) %>
+        </td>
+        <td>
+          <%= locations_integration_settings.location.name %>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to('Add/Remove Locations', edit_clients_integration_setting_path(@clients_integration_setting, locations: true), class: 'btn btn-default') %>

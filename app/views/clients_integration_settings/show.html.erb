@@ -57,14 +57,5 @@
     <% end %>
   </ul>
 
-  <h4>Locations</h4>
-  <ul class="show-list">
-    <% @clients_integration_setting.locations_integration_settings.each do |locations_integration_settings| %>
-        <li>
-          <span class="field-name"><%= link_to(locations_integration_settings.location.name, edit_locations_integration_setting_path(locations_integration_settings.id)) %></span>
-          <%= client_location_url(locations_integration_settings.location.client, locations_integration_settings.location) %>
-        </li>
-    <% end %>
-  </ul>
-  <%= link_to('Add/Remove Locations', edit_clients_integration_setting_path(@clients_integration_setting, locations: true), class: 'btn btn-default') %>
+  <%= render partial: 'locations/list' %>
 </section>
