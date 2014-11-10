@@ -17,7 +17,7 @@ class ClientsIntegrationSettingsController < ApplicationController
   end
 
   def show
-
+    @clients_integration_setting.load_current_jobs_by_location
   end
 
   def create

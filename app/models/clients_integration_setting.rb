@@ -1,4 +1,6 @@
 class ClientsIntegrationSetting < ActiveRecord::Base
+  include ClientIntegrationSettingJobLoader
+
   INVENTORY_VENDOR_ACTION = 'inventory'
   LEAD_VENDOR_ACTION      = 'lead'
   VENDOR_ACTIONS          = [INVENTORY_VENDOR_ACTION, LEAD_VENDOR_ACTION]
