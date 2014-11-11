@@ -7,15 +7,15 @@ describe ClientIntegrationSettingJobLoader do
   let!(:locations_integration_setting_3) { Fabricate(:locations_integration_setting, location: Fabricate(:location), clients_integration_setting: clients_integration_setting) }
 
   describe :load_current_jobs_by_location do
-    let(:job_1) { Job.new(integration_setting_uid: locations_integration_setting_1.uid) }
-    let(:job_2) { Job.new(integration_setting_uid: locations_integration_setting_2.uid) }
-    let(:job_madeup) { Job.new(integration_setting_uid: 'madeup') }
+    let(:job_1) { Jobs::Job.new(integration_setting_uid: locations_integration_setting_1.uid) }
+    let(:job_2) { Jobs::Job.new(integration_setting_uid: locations_integration_setting_2.uid) }
+    let(:job_madeup) { Jobs::Job.new(integration_setting_uid: 'madeup') }
     let(:retrieved_jobs) do
       [job_1, job_2, job_madeup]
     end
 
     before do
-      expect(JobRetriever).to receive(:new).with(locations_integration_settings: clients_integration_setting.reload.locations_integration_settings).
+      expect(Jobs::JobRetriever).to receive(:new).with(locations_integration_settings: clients_integration_setting.reload.locations_integration_settings).
                                   and_return(double(:result, perform: retrieved_jobs))
       clients_integration_setting.load_current_jobs_by_location
     end

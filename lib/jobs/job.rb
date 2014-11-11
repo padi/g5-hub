@@ -1,4 +1,4 @@
-class Job
+class Jobs::Job
   include Virtus.model
 
   attribute :uid, String

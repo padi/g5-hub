@@ -41,16 +41,17 @@ describe LocationsIntegrationSetting do
 
   describe 'current job' do
     context 'with job' do
-      let(:job) { Job.new(uid: 'uid', urn: 'urn', state: 'state', created_at: '12', updated_at: '14', message: 'my msg') }
+      let(:job) { Jobs::Job.new(uid: 'uid', urn: 'urn', state: 'state', created_at: '12', updated_at: '14', message: 'my msg') }
       before do
         subject.current_job = job
       end
-      its(:current_job_uid) { is_expected.to eq 'uid' }
-      its(:current_job_urn) { is_expected.to eq 'urn' }
-      its(:current_job_state) { is_expected.to eq 'state' }
-      its(:current_job_created_at) { is_expected.to eq '12' }
-      its(:current_job_updated_at) { is_expected.to eq '14' }
-      its(:current_job_message) { is_expected.to eq 'my msg' }
+      its(:current_job_uid) { is_expected.to eq('uid') }
+      its(:current_job_urn) { is_expected.to eq('urn') }
+      its(:current_job_state) { is_expected.to eq('state') }
+      its(:current_job_created_at) { is_expected.to eq('12') }
+      its(:current_job_updated_at) { is_expected.to eq('14') }
+      its(:current_job_message) { is_expected.to eq('my msg') }
+      its(:current_job_logs_url) { is_expected.to eq('ENV[LOGS_BY_JOB_URL] not set!') }
     end
     context 'without job' do
       its(:current_job_uid) { is_expected.to be_nil }

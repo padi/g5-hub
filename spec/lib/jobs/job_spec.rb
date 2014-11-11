@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Job do
+describe Jobs::Job do
   let(:uid) { 'uid' }
   let(:urn) { 'urn' }
   let(:state) { 'state' }
@@ -9,9 +9,9 @@ describe Job do
   let(:created_at) { '2014-11-10T14:57:19.546-08:00' }
   let(:updated_at) { '2014-11-10T15:57:19.546-08:00' }
 
-  subject { Job.new(uid:                     uid, urn: urn, state: state,
-                    integration_setting_uid: integration_setting_uid,
-                    message:                 message, created_at: created_at, updated_at: updated_at) }
+  subject { Jobs::Job.new(uid:                     uid, urn: urn, state: state,
+                          integration_setting_uid: integration_setting_uid,
+                          message:                 message, created_at: created_at, updated_at: updated_at) }
 
   its(:uid) { is_expected.to eq(uid) }
   its(:urn) { is_expected.to eq(urn) }
@@ -22,7 +22,7 @@ describe Job do
   its(:updated_at) { is_expected.to eq(updated_at) }
 
   describe 'logs_url' do
-    subject { Job.new(urn: 3) }
+    subject { Jobs::Job.new(urn: 3) }
 
     context 'LOGS_BY_JOB_URL set' do
       it 'generates proper url' do

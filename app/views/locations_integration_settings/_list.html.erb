@@ -14,7 +14,9 @@
   <% @clients_integration_setting.locations_integration_settings.each do |locations_integration_settings| %>
       <tr>
         <td>
-          <%= link_to('Override Settings', edit_locations_integration_setting_path(locations_integration_settings.id)) %>
+          <a href="<%= edit_locations_integration_setting_path(locations_integration_settings.id) %>">
+            <span class="glyphicon glyphicon-edit"></span>
+          </a>
         </td>
         <td>
           <%= locations_integration_settings.location.name %>

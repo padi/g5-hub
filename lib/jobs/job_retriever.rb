@@ -1,4 +1,4 @@
-class JobRetriever
+class Jobs::JobRetriever
   attr_accessor :locations_integration_settings
 
   def initialize(params={})
@@ -10,7 +10,7 @@ class JobRetriever
                             {query:   {access_token: get_access_token},
                              headers: {'Content-Type' => 'application/json', 'Accept' => 'application/json'}}
     )
-    JSON.parse(response.body)['jobs'].collect { |job_hash| Job.new(job_hash) }
+    JSON.parse(response.body)['jobs'].collect { |job_hash| Jobs::Job.new(job_hash) }
   end
 
   def jobs_url_for_locations

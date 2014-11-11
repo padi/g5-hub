@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe JobRetriever do
+describe Jobs::JobRetriever do
   let(:clients_integration_setting) { Fabricate(:clients_integration_setting).tap { |cis| cis.integration_setting.create_job_setting(Fabricate.to_params(:job_setting)) } }
   let!(:locations_integration_setting) { Fabricate(:locations_integration_setting, location: Fabricate(:location), clients_integration_setting: clients_integration_setting) }
   let!(:locations_integration_setting_2) { Fabricate(:locations_integration_setting, location: Fabricate(:location), clients_integration_setting: clients_integration_setting) }
 
-  subject { JobRetriever.new(locations_integration_settings: clients_integration_setting.reload.locations_integration_settings) }
+  subject { Jobs::JobRetriever.new(locations_integration_settings: clients_integration_setting.reload.locations_integration_settings) }
 
   describe :perform do
     let(:body) { fixture('jobs.json') }
@@ -21,7 +21,7 @@ describe JobRetriever do
     it 'returns array of jobs' do
       result = subject.perform
       expect(result.length).to eq(2)
-      expect(result.all? { |job| Job == job.class }).to be_truthy
+      expect(result.all? { |job| Jobs::Job == job.class }).to be_truthy
       expect(result.collect(&:integration_setting_uid)).to eq(%w(http://localhost/clients/g5-c-6i4h3un-ethan-bode/locations/g5-cl-6i4h3uo-zoe-krajcik/locations_integration_settings/g5-lis-6i4h3uo http://localhost/clients/g5-c-6i4h3un-ethan-bode/locations/g5-cl-6i4h3un-retha-hane/locations_integration_settings/g5-lis-6i4h3un))
     end
   end
