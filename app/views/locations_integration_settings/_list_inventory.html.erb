@@ -26,7 +26,9 @@
           <%= locations_integration_settings.current_job_state %>
         </td>
         <td>
-          <%= locations_integration_settings.current_job_message %>
+          <span title="<%= locations_integration_settings.current_job_message %>">
+            <%= truncate(locations_integration_settings.current_job_message) %>
+          </span>
         </td>
         <td>
           <%= locations_integration_settings.current_job_updated_at %>
