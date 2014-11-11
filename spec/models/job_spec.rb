@@ -20,4 +20,22 @@ describe Job do
   its(:message) { is_expected.to eq(message) }
   its(:created_at) { is_expected.to eq(created_at) }
   its(:updated_at) { is_expected.to eq(updated_at) }
+
+  describe 'logs_url' do
+    subject { Job.new(urn: 3) }
+
+    context 'LOGS_BY_JOB_URL set' do
+      it 'generates proper url' do
+        expect(subject).to receive(:logs_by_job_url).at_least(:once).and_return('http://splunk.com?external_id={{JOB_ID}}')
+        expect(subject.logs_url).to eq('http://splunk.com?external_id=3')
+      end
+    end
+
+    context 'LOGS_BY_JOB_URL NOT set' do
+      it 'generates proper url' do
+        expect(subject).to receive(:logs_by_job_url).and_return(nil)
+        expect(subject.logs_url).to eq('ENV[LOGS_BY_JOB_URL] not set!')
+      end
+    end
+  end
 end
