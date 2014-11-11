@@ -15,7 +15,7 @@ class RadiusSearch
     response = {  success: success,
                   locations: locations.as_json( only:    [:id, :name, :street_address_1, :street_address_2, 
                                                           :city, :state, :postal_code, :phone_number,
-                                                          :email, :domain, :latitude, :longitude ],
+                                                          :email, :domain, :latitude, :longitude, :urn ],
                                                 methods: [:thumbnail] )                         
                 }
   end
