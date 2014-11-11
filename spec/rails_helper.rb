@@ -3,6 +3,12 @@ require 'spec_helper'
 require 'rubygems'
 require 'spork'
 
+module FixturesHelper
+  def fixture(fixture_path)
+    open(File.join("spec", "fixtures", fixture_path)).read
+  end
+end
+
 Spork.prefork do
   unless ENV['DRB']
     require 'simplecov'
@@ -14,6 +20,7 @@ Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
+  require 'rspec/its'
   require "capybara/rails"
   require "capybara/rspec"
   require "database_cleaner"
@@ -22,6 +29,7 @@ Spork.prefork do
   Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
   RSpec.configure do |config|
+    config.include FixturesHelper
     config.infer_spec_type_from_file_location!
     config.infer_base_class_for_anonymous_controllers = false
     config.order = "random"

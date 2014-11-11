@@ -105,6 +105,10 @@ describe ClientsIntegrationSettingsController, auth_controller: true do
 
   describe 'GET show' do
     describe 'success' do
+      before do
+        expect(ClientsIntegrationSetting).to receive(:find).and_return(clients_integration_setting)
+        expect(clients_integration_setting).to receive(:load_current_jobs_by_location)
+      end
       subject(:get_show) { get :show, id: clients_integration_setting.id }
       it { is_expected.to render_template(:show) }
     end

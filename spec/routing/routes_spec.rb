@@ -17,4 +17,8 @@ describe 'Routes' do
     specify { expect({delete: '/locations_integration_settings/3'}).to route_to(controller: 'locations_integration_settings', action: 'destroy', id: '3') }
     specify { expect({post: '/locations_integration_settings/'}).to route_to(controller: 'locations_integration_settings', action: 'create') }
   end
+
+  describe :job_starts do
+    specify { expect({post: '/job_starts/'}).to route_to(controller: 'job_starts', action: 'create') }
+  end
 end

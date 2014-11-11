@@ -18,10 +18,6 @@ class LocationsIntegrationSettingSerializer < ActiveModel::Serializer
     merged_hash
   end
 
-  def uid
-    client_location_locations_integration_setting_url(object.clients_integration_setting.client, object.location, object, format: :json)
-  end
-
   def location_uid
     client_location_url(object.clients_integration_setting.client, object.location)
   end
