@@ -45,3 +45,4 @@
 </table>
 
 <%= link_to('Add/Remove Locations', edit_clients_integration_setting_path(@clients_integration_setting, locations: true), class: 'btn btn-default') %>
+<%= link_to('Kickoff new job(s) for all locations', job_starts_path(clients_integration_setting_id: @clients_integration_setting.id), data: {confirm: "Are you sure you want to start a job for all locations of #{@clients_integration_setting.client.name}?"}, method: :post, class: 'btn btn-default') %>
