@@ -1,4 +1,5 @@
 class Jobs::JobRetriever
+  include Jobs::AccessToken
   attr_accessor :locations_integration_settings
 
   def initialize(params={})
@@ -19,9 +20,5 @@ class Jobs::JobRetriever
 
   def locations_as_parameter
     "[#{self.locations_integration_settings.collect(&:uid).join(',')}]"
-  end
-
-  def get_access_token
-    @access_token ||= G5AuthenticationClient::Client.new.get_access_token
   end
 end

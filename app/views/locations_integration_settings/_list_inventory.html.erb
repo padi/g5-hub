@@ -7,15 +7,16 @@
     <th>Job Status</th>
     <th>Job Message</th>
     <th>Job Updated</th>
-    <th>Job Logs</th>
+    <th></th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
   <% @clients_integration_setting.locations_integration_settings.each do |locations_integration_settings| %>
       <tr>
         <td>
-          <a href="<%= edit_locations_integration_setting_path(locations_integration_settings.id) %>">
-            <span class="glyphicon glyphicon-edit"></span>
+          <a title="Override Settings by Location" href="<%= edit_locations_integration_setting_path(locations_integration_settings.id) %>">
+            Edit Settings
           </a>
         </td>
         <td>
@@ -32,6 +33,9 @@
         </td>
         <td>
           <%= link_to('Logs', locations_integration_settings.current_job_logs_url) %>
+        </td>
+        <td>
+          <%= link_to('Kickoff new job', job_starts_path(locations_integration_setting_id: locations_integration_settings.id), data: {confirm: "Are you sure you want to start a job for #{locations_integration_settings.location.name}?"}, method: :post, class: 'btn btn-primary') %>
         </td>
       </tr>
   <% end %>

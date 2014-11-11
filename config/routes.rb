@@ -17,6 +17,7 @@ G5Hub::Application.routes.draw do
   resources :locations
   resources :clients_integration_settings
   resources :locations_integration_settings
+  resources :job_starts, only: :create
 
   root to: "entries#index"
 end
