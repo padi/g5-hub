@@ -17,6 +17,7 @@ gem 'active_model_serializers'
 gem "paperclip", "~> 4.2"
 gem 'aws-sdk', '~> 1.5.7'
 gem 'httparty'
+gem 'virtus'
 gem "geocoder"
 
 group :production do

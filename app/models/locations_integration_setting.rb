@@ -11,6 +11,8 @@ class LocationsIntegrationSetting < ActiveRecord::Base
 
   validates :location_id, uniqueness: {scope: :clients_integration_setting_id}
 
+  attr_accessor :current_job
+
   def uid
     client_location_locations_integration_setting_url(self.clients_integration_setting.client, self.location, self)
   end

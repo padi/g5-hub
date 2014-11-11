@@ -10,7 +10,7 @@ class JobRetriever
                             {query:   {access_token: get_access_token},
                              headers: {'Content-Type' => 'application/json', 'Accept' => 'application/json'}}
     )
-    ActiveSupport::HashWithIndifferentAccess.new(JSON.parse(response.body))
+    JSON.parse(response.body)['jobs'].collect { |job_hash| Job.new(job_hash) }
   end
 
   def jobs_url_for_locations
