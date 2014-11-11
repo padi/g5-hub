@@ -38,4 +38,23 @@ describe LocationsIntegrationSetting do
     it { expect(locations_integration_setting.urn).to eq "g5-lis-#{locations_integration_setting.hashed_id}" }
     it { expect(locations_integration_setting.to_param).to eq locations_integration_setting.urn }
   end
+
+  describe 'current job' do
+    context 'with job' do
+      let(:job) { Job.new(uid: 'uid', urn: 'urn', state: 'state', created_at: '12', updated_at: '14', message: 'my msg') }
+      before do
+        subject.current_job = job
+      end
+      its(:current_job_uid) { is_expected.to eq 'uid' }
+      its(:current_job_urn) { is_expected.to eq 'urn' }
+      its(:current_job_state) { is_expected.to eq 'state' }
+      its(:current_job_created_at) { is_expected.to eq '12' }
+      its(:current_job_updated_at) { is_expected.to eq '14' }
+      its(:current_job_message) { is_expected.to eq 'my msg' }
+    end
+    context 'without job' do
+      its(:current_job_uid) { is_expected.to be_nil }
+      its(:current_job_state) { is_expected.to be_nil }
+    end
+  end
 end
