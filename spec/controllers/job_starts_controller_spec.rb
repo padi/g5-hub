@@ -8,7 +8,7 @@ describe JobStartsController, auth_controller: true do
     context 'by locations_integration_setting_id' do
       describe 'success' do
         before do
-          expect(Jobs::JobStarter).to receive(:new).and_return(double(:perform, perform: true))
+          expect(G5::Jobbing::JobStarter).to receive(:new).and_return(double(:perform, perform: true))
           post :create, locations_integration_setting_id: locations_integration_setting.id
         end
 
@@ -27,7 +27,7 @@ describe JobStartsController, auth_controller: true do
       let!(:locations_integration_setting_2) { Fabricate(:locations_integration_setting, location: Fabricate(:location), clients_integration_setting: clients_integration_setting) }
       describe 'success' do
         before do
-          allow(Jobs::JobStarter).to receive(:new).and_return(double(:perform, perform: true))
+          allow(G5::Jobbing::JobStarter).to receive(:new).and_return(double(:perform, perform: true))
           post :create, clients_integration_setting_id: clients_integration_setting.id
         end
 

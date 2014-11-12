@@ -16,9 +16,8 @@ gem "rack-cors", require: "rack/cors"
 gem 'active_model_serializers'
 gem "paperclip", "~> 4.2"
 gem 'aws-sdk', '~> 1.5.7'
-gem 'httparty'
-gem 'virtus'
 gem "geocoder"
+gem 'g5-jobbing', '~> 0.0.1'
 
 group :production do
   gem "unicorn"
