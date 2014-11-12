@@ -41,7 +41,7 @@ describe LocationsIntegrationSetting do
 
   describe 'current job' do
     context 'with job' do
-      let(:job) { Jobs::Job.new(uid: 'uid', urn: 'urn', state: 'state', created_at: '12', updated_at: '14', message: 'my msg') }
+      let(:job) { G5::Jobbing::Job.new(uid: 'uid', urn: 'urn', state: 'state', created_at: '12', updated_at: '14', message: 'my msg') }
       before do
         subject.current_job = job
       end

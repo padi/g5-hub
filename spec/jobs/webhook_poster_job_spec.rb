@@ -4,7 +4,7 @@ describe WebhookPosterJob do
   let!(:client) { Fabricate(:client) }
   let(:webhook_poster) { double(post_configurator_webhook: nil) }
 
-  before { WebhookPoster.stub(new: webhook_poster) }
+  before { allow(WebhookPoster).to receive(:new).and_return(webhook_poster) }
 
   describe '#perform' do
     after { WebhookPosterJob.perform(client.id, :post_configurator_webhook) }

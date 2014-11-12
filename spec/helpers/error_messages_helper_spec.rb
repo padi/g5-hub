@@ -3,29 +3,29 @@ require "rails_helper"
 describe ErrorMessagesHelper do
   describe "#error_messages_for" do
     it "returns nil when no messages" do
-      helper.error_messages_for(nil).should eq nil
+      expect(helper.error_messages_for(nil)).to be_nil
     end
     it "returns messages when messages" do
       client = Client.create
-      helper.error_messages_for(client).should include "Invalid Fields"
+      expect(helper.error_messages_for(client)).to include "Invalid Fields"
     end
   end
   describe ErrorMessagesHelper::FormBuilderAdditions do
     describe "#error_messages" do
       it "calls ErrorMessagesHelper#error_messages_for" do
-        class Foo 
+        class Foo
           include ErrorMessagesHelper::FormBuilderAdditions
+
           def initialize(template)
             @template = template
           end
         end
-        helper.should_receive(:error_messages_for).once
+        expect(helper).to receive(:error_messages_for).once
         Foo.new(helper).error_messages
       end
     end
   end
   it "is included in FormBuilder" do
-    ActionView::Helpers::FormBuilder.included_modules.should 
-      include ErrorMessagesHelper::FormBuilderAdditions
+    expect(ActionView::Helpers::FormBuilder.included_modules).to include ErrorMessagesHelper::FormBuilderAdditions
   end
 end
