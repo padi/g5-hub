@@ -30,7 +30,8 @@ group :production do
 end
 
 group :development, :test do
-  gem "dotenv-rails", "~> 0.10.0"
+  gem "dotenv-rails"
+  gem "dotenv-deployment"
   gem "sqlite3"
   gem "simplecov", "~> 0.7.1", require: false
   gem 'rspec-rails', '> 3'

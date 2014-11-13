@@ -93,9 +93,11 @@ GEM
       g5_authentication_client (~> 0.2)
       omniauth-g5 (~> 0.1)
     diff-lcs (1.2.5)
-    dotenv (0.10.0)
-    dotenv-rails (0.10.0)
-      dotenv (= 0.10.0)
+    dotenv (1.0.2)
+    dotenv-deployment (0.2.0)
+      dotenv (~> 1.0)
+    dotenv-rails (1.0.2)
+      dotenv (= 1.0.2)
     draper (1.4.0)
       actionpack (>= 3.0)
       activemodel (>= 3.0)
@@ -361,7 +363,8 @@ DEPENDENCIES
   codeclimate-test-reporter
   coffee-rails (~> 4.0.1)
   database_cleaner (~> 1.2.0)
-  dotenv-rails (~> 0.10.0)
+  dotenv-deployment
+  dotenv-rails
   draper
   fabrication (~> 2.9.8)
   factory_girl_rails
