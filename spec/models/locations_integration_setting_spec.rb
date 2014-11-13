@@ -39,6 +39,30 @@ describe LocationsIntegrationSetting do
     it { expect(locations_integration_setting.to_param).to eq locations_integration_setting.urn }
   end
 
+  describe :effective_job_setting do
+    let(:client_job_setting) { Fabricate(:job_setting) }
+    let(:clients_integration_setting) { Fabricate(:clients_integration_setting, integration_setting: Fabricate(:integration_setting, job_setting: client_job_setting)) }
+    let(:locations_integration_setting) { Fabricate(:locations_integration_setting, clients_integration_setting: clients_integration_setting, location: Fabricate(:location), integration_setting: integration_setting) }
+    let(:integration_setting) { Fabricate(:integration_setting) }
+
+    subject { locations_integration_setting }
+
+    context 'no job setting' do
+      its(:effective_job_setting) { is_expected.to eq(client_job_setting) }
+    end
+
+    context 'with job setting' do
+      let(:job_setting) { Fabricate(:job_setting) }
+      let(:integration_setting) { Fabricate(:integration_setting, job_setting: job_setting) }
+      its(:effective_job_setting) { is_expected.to eq(job_setting) }
+    end
+
+    context 'both client and location have no job_setting' do
+      subject { Fabricate(:locations_integration_setting) }
+      its(:effective_job_setting) { is_expected.to be_nil }
+    end
+  end
+
   describe 'current job' do
     context 'with job' do
       let(:job) { G5::Jobbing::Job.new(uid: 'uid', urn: 'urn', state: 'state', created_at: '12', updated_at: '14', message: 'my msg') }
@@ -56,6 +80,30 @@ describe LocationsIntegrationSetting do
     context 'without job' do
       its(:current_job_uid) { is_expected.to be_nil }
       its(:current_job_state) { is_expected.to be_nil }
+    end
+  end
+
+  describe :custom_value do
+    let(:clients_integration_setting) { Fabricate(:clients_integration_setting, integration_setting: Fabricate(:integration_setting)) }
+    let(:locations_integration_setting) { Fabricate(:locations_integration_setting, clients_integration_setting: clients_integration_setting, location: Fabricate(:location), integration_setting: integration_setting) }
+    let(:integration_setting) { Fabricate(:integration_setting) }
+
+    before do
+      integration_setting.custom_integration_settings.create(name: 'foo', value: 'bar')
+      clients_integration_setting.integration_setting.custom_integration_settings.create(name: 'foo', value: 'overridden')
+      clients_integration_setting.integration_setting.custom_integration_settings.create(name: 'tofu', value: 'baz')
+    end
+
+    it 'uses own custom value if it exists' do
+      expect(locations_integration_setting.custom_value('foo')).to eq('bar')
+    end
+
+    it "uses clients custom value if it doesn't have one" do
+      expect(locations_integration_setting.custom_value('tofu')).to eq('baz')
+    end
+
+    it 'return nil if both client and location do not have custom value' do
+      expect(locations_integration_setting.custom_value('madeup')).to be_nil
     end
   end
 end
