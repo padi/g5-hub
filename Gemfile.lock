@@ -119,6 +119,11 @@ GEM
       dotenv (>= 0.7)
       thor (>= 0.13.6)
     formatador (0.2.5)
+    g5-jobbing (0.0.2)
+      activesupport
+      g5_authentication_client (>= 0.2)
+      httparty
+      virtus
     g5_authenticatable (0.3.0)
       devise_g5_authenticatable (~> 0.1)
       g5_authenticatable_api (~> 0.2)
@@ -366,12 +371,12 @@ DEPENDENCIES
   factory_girl_rails
   faker (~> 1.2.0)
   foreman
+  g5-jobbing (~> 0.0.2)
   g5_authenticatable
   geocoder
   guard-spork
   heroku_resque_autoscaler
   honeybadger
-  httparty
   jquery-rails
   launchy
   lograge
@@ -393,5 +398,4 @@ DEPENDENCIES
   sqlite3
   uglifier (>= 2.4.0)
   unicorn
-  virtus
   webhook

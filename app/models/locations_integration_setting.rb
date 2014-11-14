@@ -31,4 +31,15 @@ class LocationsIntegrationSetting < ActiveRecord::Base
   def to_param
     self.urn
   end
+
+  def effective_job_setting
+    self.integration_setting.try(:job_setting) || self.clients_integration_setting.try(:integration_setting).try(:job_setting)
+  end
+
+  def custom_value(name)
+    loc_value = self.integration_setting.custom_integration_settings.find_by_name(name).try(:value)
+    return loc_value if loc_value
+
+    self.clients_integration_setting.integration_setting.custom_integration_settings.find_by_name(name).try(:value)
+  end
 end

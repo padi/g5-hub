@@ -4,9 +4,12 @@
   <tr>
     <th></th>
     <th>Location</th>
-    <th>Job Status</th>
+    <th>Frequency</th>
+    <th>Last Run</th>
+    <th>Last Status</th>
+    <th>Next Scheduled Run</th>
     <th>Job Message</th>
-    <th>Job Updated</th>
+    <th></th>
     <th></th>
     <th></th>
   </tr>
@@ -23,7 +26,18 @@
           <%= locations_integration_settings.location.name %>
         </td>
         <td>
+          <% if job_setting = locations_integration_settings.effective_job_setting %>
+              <%= pluralize(job_setting.frequency, job_setting.frequency_unit.singular_name) %>
+          <% end %>
+        </td>
+        <td>
+          <%= locations_integration_settings.current_job_created_at.try(:to_s, :human) %>
+        </td>
+        <td>
           <%= locations_integration_settings.current_job_state %>
+        </td>
+        <td>
+          <%= next_scheduled_run(locations_integration_settings).try(:to_s, :human) %>
         </td>
         <td>
           <span title="<%= locations_integration_settings.current_job_message %>">
@@ -31,18 +45,18 @@
           </span>
         </td>
         <td>
-          <%= locations_integration_settings.current_job_updated_at %>
-        </td>
-        <td>
           <%= link_to('Logs', locations_integration_settings.current_job_logs_url) %>
         </td>
         <td>
-          <%= link_to('Kickoff new job', job_starts_path(locations_integration_setting_id: locations_integration_settings.id), data: {confirm: "Are you sure you want to start a job for #{locations_integration_settings.location.name}?"}, method: :post, class: 'btn btn-primary') %>
+          <%= link_to('Kickoff new job', job_starts_path(locations_integration_setting_id: locations_integration_settings.id), data: {confirm: "Are you sure you want to start a job for #{locations_integration_settings.location.name}?"}, method: :post, class: 'btn btn-default') %>
+        </td>
+        <td>
+          <%= link_to('Current Inventory', current_inventory_url(locations_integration_settings)) %>
         </td>
       </tr>
   <% end %>
   </tbody>
 </table>
 
-<%= link_to('Add/Remove Locations', edit_clients_integration_setting_path(@clients_integration_setting, locations: true), class: 'btn btn-default') %>
+<%= link_to('Add/Remove Locations', edit_clients_integration_setting_path(@clients_integration_setting, locations: true), class: 'btn btn-primary') %>
 <%= link_to('Kickoff new job(s) for all locations', job_starts_path(clients_integration_setting_id: @clients_integration_setting.id), data: {confirm: "Are you sure you want to start a job for all locations of #{@clients_integration_setting.client.name}?"}, method: :post, class: 'btn btn-default') %>

@@ -20,8 +20,8 @@ describe Location do
   describe "Geocoding" do
     context "automatic lat long lookup" do
       let(:location) { Fabricate(:location, street_address_1: "49 Baldwin Ave", city: "Paia", state: "HI", latitude: nil, longitude: nil) }
-      it { expect(location.latitude).should_not be_nil}
-      it { expect(location.longitude).should_not be_nil}
+      it { expect(location.latitude).to_not be_nil}
+      it { expect(location.longitude).to_not be_nil}
     end
 
     context "manual lat long override" do
