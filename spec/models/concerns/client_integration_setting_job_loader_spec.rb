@@ -15,7 +15,7 @@ describe ClientIntegrationSettingJobLoader do
     end
 
     before do
-      expect(G5::Jobbing::JobRetriever).to receive(:new).with(locations_integration_setting_uids: clients_integration_setting.reload.locations_integration_settings.collect(&:uid)).
+      expect(G5::Jobbing::JobRetriever).to receive(:new).with(location_setting_urns: clients_integration_setting.reload.locations_integration_settings.collect(&:urn)).
                                                and_return(double(:result, perform: retrieved_jobs))
       clients_integration_setting.load_current_jobs_by_location
     end

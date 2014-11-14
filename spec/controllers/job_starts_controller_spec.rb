@@ -8,7 +8,7 @@ describe JobStartsController, auth_controller: true do
     context 'by locations_integration_setting_id' do
       describe 'success' do
         before do
-          expect(G5::Jobbing::JobStarter).to receive(:new).and_return(double(:perform, perform: true))
+          expect(G5::Jobbing::JobStarter).to receive(:new).with(location_setting_urn: locations_integration_setting.urn).and_return(double(:perform, perform: true))
           post :create, locations_integration_setting_id: locations_integration_setting.id
         end
 

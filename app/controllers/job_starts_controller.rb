@@ -4,7 +4,7 @@ class JobStartsController < ApplicationController
 
   def create
     @locations_integration_settings.each do |locations_integration_setting|
-      G5::Jobbing::JobStarter.new(locations_integration_setting_uid: locations_integration_setting.uid).perform
+      G5::Jobbing::JobStarter.new(location_setting_urn: locations_integration_setting.urn).perform
     end
 
     flash.notice = "Job(s) started for #{@locations_integration_settings.collect { |lis| lis.location.name }.join(', ')}"

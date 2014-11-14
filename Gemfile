@@ -17,7 +17,7 @@ gem 'active_model_serializers'
 gem "paperclip", "~> 4.2"
 gem 'aws-sdk', '~> 1.5.7'
 gem "geocoder"
-gem 'g5-jobbing', '~> 0.0.1'
+gem 'g5-jobbing', '~> 0.0.2'
 
 group :production do
   gem "unicorn"
