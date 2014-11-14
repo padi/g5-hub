@@ -20,8 +20,7 @@ ENV["APP_NAMESPACE"] ||= "g5"
 
 ENV["HOST"] ||= case Rails.env
   when "production"  then "#{ENV['APP_NAMESPACE']}-hub.herokuapp.com"
-  when "development"  then "hub.g5dxm.com"
-  # when "development" then "localhost:3005"
+  when "development" then "localhost:3005"
   when "test"        then "localhost:3005"
 end
 
