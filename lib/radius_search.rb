@@ -10,7 +10,7 @@ class RadiusSearch
 
   def results
     success = self.locations.empty? ? false : true
-    locations = success ? self.locations : @client.locations
+    locations = success ? self.locations : @client.locations.order('state')
     
     response = {  success: success,
                   locations: locations.as_json( only:    [:id, :name, :street_address_1, :street_address_2, 
