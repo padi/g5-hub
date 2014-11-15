@@ -8,7 +8,7 @@
     <th>Client Name</th>
     <th>Integration</th>
     <th>Action</th>
-    <th>Number of Locations</th>
+    <th>Locations with Errors</th>
   </tr>
   </thead>
   <tbody>
@@ -18,7 +18,16 @@
         <td><%= client_integration_setting.client.name %></td>
         <td><%= client_integration_setting.vendor.name %></td>
         <td><%= client_integration_setting.vendor_action %></td>
-        <td><%= client_integration_setting.locations.count %></td>
+        <td class="job-errors">
+          <% if client_integration_setting.inventory? %>
+              <% error_count = client_integration_setting.job_stat_error_count || 0 %>
+              <span title="<%= client_integration_setting.job_stat_error_messages %>" class="<%= error_count > 0 ? 'jobs-error' : 'jobs-success' %>">
+            <%= error_count %>
+                of
+                <%= client_integration_setting.locations.count %>
+          </span>
+          <% end %>
+        </td>
       </tr>
   <% end %>
   </tbody>
