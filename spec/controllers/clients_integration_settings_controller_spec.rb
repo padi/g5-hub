@@ -6,6 +6,7 @@ describe ClientsIntegrationSettingsController, auth_controller: true do
   end
 
   describe 'GET index' do
+    before { expect(ClientsIntegrationSetting).to receive(:add_job_stats) }
     subject(:get_index) { get :index }
     its(:status) { is_expected.to eq(200) }
     it { is_expected.to render_template(:index) }
