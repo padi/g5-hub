@@ -112,6 +112,10 @@ describe ClientsIntegrationSettingsController, auth_controller: true do
       end
       subject(:get_show) { get :show, id: clients_integration_setting.id }
       it { is_expected.to render_template(:show) }
+      it 'decorates locations_integration_settings' do
+        subject
+        expect(assigns(:locations_integration_settings)).to be_decorated
+      end
     end
 
     describe 'not found' do
