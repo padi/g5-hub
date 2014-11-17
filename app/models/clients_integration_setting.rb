@@ -11,6 +11,9 @@ class ClientsIntegrationSetting < ActiveRecord::Base
   has_many :locations, through: :locations_integration_settings
   validates :vendor_action, inclusion: {in: VENDOR_ACTIONS}, allow_nil: false
 
+  attr_accessor :job_stat
+  delegate :error_count, :error_messages, to: :job_stat, prefix: :job_stat, allow_nil: true
+
   accepts_nested_attributes_for :integration_setting, allow_destroy: true
 
   def inventory?

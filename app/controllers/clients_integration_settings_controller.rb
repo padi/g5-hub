@@ -4,7 +4,9 @@ class ClientsIntegrationSettingsController < ApplicationController
   before_filter :load_clients_integration_setting, only: [:show, :edit, :update, :destroy]
 
   def index
-    @clients_integration_settings = ClientsIntegrationSetting.includes(:client).order('clients.name').decorate
+    @clients_integration_settings = ClientsIntegrationSetting.includes(:client).order('clients.name')
+    @clients_integration_settings = @clients_integration_settings.decorate
+    ClientsIntegrationSetting.add_job_stats(@clients_integration_settings)
   end
 
   def new
@@ -18,6 +20,7 @@ class ClientsIntegrationSettingsController < ApplicationController
 
   def show
     @clients_integration_setting.load_current_jobs_by_location
+    @locations_integration_settings = LocationsIntegrationSettingDecorator.decorate_collection(@clients_integration_setting.locations_integration_settings)
   end
 
   def create

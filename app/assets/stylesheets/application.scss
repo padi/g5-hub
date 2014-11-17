@@ -20,9 +20,9 @@ label .note {
 }
 
 .locations-container {
-  clear:both;
-  display:none;
-  padding:15px 0 2em;
+  clear: both;
+  display: none;
+  padding: 15px 0 2em;
   position: relative;
 
   fieldset:first-child hr {
@@ -84,4 +84,19 @@ ul.show-list {
   select, input {
     display: inline;
   }
+}
+
+.job-error {
+  background: red;
+}
+
+.job-success {
+  background: green;
+}
+
+
+.job-success, .job-error {
+  padding: 5px;
+  font-weight: bold;
+  color: white;
 }

@@ -65,7 +65,8 @@ describe LocationsIntegrationSetting do
 
   describe 'current job' do
     context 'with job' do
-      let(:job) { G5::Jobbing::Job.new(uid: 'uid', urn: 'urn', state: 'state', created_at: '12', updated_at: '14', message: 'my msg') }
+      let(:job) { G5::Jobbing::Job.new(uid:        'uid', urn: 'urn', state: 'state', error_state: false, success_state: true,
+                                       created_at: '12', updated_at: '14', message: 'my msg') }
       before do
         subject.current_job = job
       end
@@ -75,6 +76,8 @@ describe LocationsIntegrationSetting do
       its(:current_job_created_at) { is_expected.to eq('12') }
       its(:current_job_updated_at) { is_expected.to eq('14') }
       its(:current_job_message) { is_expected.to eq('my msg') }
+      its(:current_job_error_state) { is_expected.to be_falsey }
+      its(:current_job_success_state) { is_expected.to be_truthy }
       its(:current_job_logs_url) { is_expected.to eq('ENV[LOGS_BY_JOB_URL] not set!') }
     end
     context 'without job' do

@@ -32,4 +32,35 @@ describe ClientIntegrationSettingJobLoader do
       expect(clients_integration_setting.locations_integration_settings.detect { |lis| lis.uid == locations_integration_setting_3.uid }.current_job).to be_nil
     end
   end
+
+  describe :add_job_stats do
+    let(:clients_integration_setting_2) { Fabricate(:clients_integration_setting) }
+    let(:clients_integration_setting_3) { Fabricate(:clients_integration_setting) }
+
+    let(:client_settings) { [clients_integration_setting, clients_integration_setting_2, clients_integration_setting_3] }
+    let(:job_stat) { G5::Jobbing::JobStat.new(rolled_up_by: clients_integration_setting.id) }
+    let(:job_stats) { {clients_integration_setting.id => job_stat} }
+
+    before do
+      expect(G5::Jobbing::JobStatRetriever).to receive(:new).with(rollup_by: ClientsIntegrationSetting.job_rollup_by(client_settings)).and_return(double(:perform, perform: job_stats))
+      ClientsIntegrationSetting.add_job_stats(client_settings)
+    end
+
+    it 'adds job_stats to client settings' do
+      expect(clients_integration_setting.job_stat).to eq(job_stat)
+      expect(clients_integration_setting_2.job_stat).to be_nil
+      expect(clients_integration_setting_3.job_stat).to be_nil
+    end
+  end
+
+  describe :job_rollup_by do
+    subject { ClientsIntegrationSetting.job_rollup_by([clients_integration_setting]) }
+    let(:expected) do
+      {clients_integration_setting.id => clients_integration_setting.locations_integration_settings.collect(&:urn)}
+    end
+
+    it 'rolls up by client settings' do
+      expect(subject).to eq(expected)
+    end
+  end
 end

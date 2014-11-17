@@ -6,6 +6,7 @@ describe ClientsIntegrationSettingsController, auth_controller: true do
   end
 
   describe 'GET index' do
+    before { expect(ClientsIntegrationSetting).to receive(:add_job_stats) }
     subject(:get_index) { get :index }
     its(:status) { is_expected.to eq(200) }
     it { is_expected.to render_template(:index) }
@@ -111,6 +112,10 @@ describe ClientsIntegrationSettingsController, auth_controller: true do
       end
       subject(:get_show) { get :show, id: clients_integration_setting.id }
       it { is_expected.to render_template(:show) }
+      it 'decorates locations_integration_settings' do
+        subject
+        expect(assigns(:locations_integration_settings)).to be_decorated
+      end
     end
 
     describe 'not found' do
