@@ -15,7 +15,7 @@
   </tr>
   </thead>
   <tbody>
-  <% @clients_integration_setting.locations_integration_settings.each do |locations_integration_settings| %>
+  <% @locations_integration_settings.each do |locations_integration_settings| %>
       <tr>
         <td>
           <a title="Override Settings by Location" href="<%= edit_locations_integration_setting_path(locations_integration_settings.id) %>">
@@ -26,18 +26,16 @@
           <%= locations_integration_settings.location.name %>
         </td>
         <td>
-          <% if job_setting = locations_integration_settings.effective_job_setting %>
-              <%= pluralize(job_setting.frequency, job_setting.frequency_unit.singular_name) %>
-          <% end %>
+          <%= locations_integration_settings.frequency %>
         </td>
         <td>
           <%= locations_integration_settings.current_job_created_at.try(:to_s, :human) %>
         </td>
         <td>
-          <%= locations_integration_settings.current_job_state %>
+          <%= locations_integration_settings.current_job_state_span %>
         </td>
         <td>
-          <%= next_scheduled_run(locations_integration_settings).try(:to_s, :human) %>
+          <%= locations_integration_settings.next_scheduled_run %>
         </td>
         <td>
           <span title="<%= locations_integration_settings.current_job_message %>">
@@ -51,7 +49,7 @@
           <%= link_to('Kickoff new job', job_starts_path(locations_integration_setting_id: locations_integration_settings.id), data: {confirm: "Are you sure you want to start a job for #{locations_integration_settings.location.name}?"}, method: :post, class: 'btn btn-default') %>
         </td>
         <td>
-          <%= link_to('Current Inventory', current_inventory_url(locations_integration_settings)) %>
+          <%= link_to('Current Inventory', locations_integration_settings.current_inventory_url) %>
         </td>
       </tr>
   <% end %>

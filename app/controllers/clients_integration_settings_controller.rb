@@ -20,6 +20,7 @@ class ClientsIntegrationSettingsController < ApplicationController
 
   def show
     @clients_integration_setting.load_current_jobs_by_location
+    @locations_integration_settings = LocationsIntegrationSettingDecorator.decorate_collection(@clients_integration_setting.locations_integration_settings)
   end
 
   def create

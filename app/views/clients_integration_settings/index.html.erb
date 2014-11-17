@@ -18,16 +18,7 @@
         <td><%= client_integration_setting.client.name %></td>
         <td><%= client_integration_setting.vendor.name %></td>
         <td><%= client_integration_setting.vendor_action %></td>
-        <td class="job-errors">
-          <% if client_integration_setting.inventory? %>
-              <% error_count = client_integration_setting.job_stat_error_count || 0 %>
-              <span title="<%= client_integration_setting.job_stat_error_messages %>" class="<%= error_count > 0 ? 'jobs-error' : 'jobs-success' %>">
-            <%= error_count %>
-                of
-                <%= client_integration_setting.locations.count %>
-          </span>
-          <% end %>
-        </td>
+        <td><%= client_integration_setting.job_errors %></td>
       </tr>
   <% end %>
   </tbody>

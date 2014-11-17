@@ -13,7 +13,7 @@ class LocationsIntegrationSetting < ActiveRecord::Base
 
   attr_accessor :current_job
 
-  delegate :uid, :urn, :state, :created_at, :updated_at, :message, :logs_url, to: :current_job, prefix: :current_job, allow_nil: true
+  delegate :uid, :error_state, :success_state, :urn, :state, :created_at, :updated_at, :message, :logs_url, to: :current_job, prefix: :current_job, allow_nil: true
 
   def uid
     client_location_locations_integration_setting_url(self.clients_integration_setting.client, self.location, self)

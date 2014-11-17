@@ -86,13 +86,17 @@ ul.show-list {
   }
 }
 
-td.job-errors {
-  font-weight: bold;
-  .jobs-error {
-    color: #990000;
-  }
+.job-error {
+  background: red;
+}
 
-  .jobs-success {
-    color: #006600;
-  }
+.job-success {
+  background: green;
+}
+
+
+.job-success, .job-error {
+  padding: 5px;
+  font-weight: bold;
+  color: white;
 }
