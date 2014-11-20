@@ -120,7 +120,9 @@ describe "Locations", auth_request: true do
         :location,
         client: client,
         ga_profile_id: "profile",
-        ga_tracking_id: "tracking"
+        ga_tracking_id: "tracking",
+        go_squared_client_id: "gs-clientID",
+        go_squared_site_token: "gs-SiteToken"
       )
     end
     let(:document) { Microformats2.parse(page.source) }
