@@ -102,6 +102,15 @@ describe "Locations", auth_request: true do
         expect(page).to_not have_selector('#apartments-fields', visible: true)
       end
     end
+    it "can create a location with GoSquared Client ID and Site Token" do
+      new_client
+      fill_in "client_locations_attributes_0_go_squared_client_id", with: "gs:1234"
+      fill_in "client_locations_attributes_0_go_squared_site_token", with: "gs:SITETOKEN"
+      click_button "Create Client"
+      click_link "Oscar's Trash Can"
+      expect(page).to have_content "gs:1234"
+      expect(page).to have_content "gs:SITETOKEN"
+    end
   end
 
   describe "show" do
@@ -124,6 +133,8 @@ describe "Locations", auth_request: true do
       expect(document.card.adr.format.tel.to_s).to eq(location.phone_number)
       expect(document.card.ga_tracking_id.to_s).to eq(location.ga_tracking_id)
       expect(document.card.ga_profile_id.to_s).to eq(location.ga_profile_id)
+      expect(document.card.go_squared_client_id.to_s).to eq(location.go_squared_client_id)
+      expect(document.card.go_squared_site_token.to_s).to eq(location.go_squared_site_token)
     end
 
     context "when the location has blank hours" do
