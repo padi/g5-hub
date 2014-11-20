@@ -384,6 +384,7 @@ DEPENDENCIES
   newrelic_rpm
   paperclip (~> 4.2)
   pg
+  pry
   quiet_assets (~> 1.0.1)
   rack-cors
   rails (= 4.1.7)
