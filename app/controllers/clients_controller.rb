@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
-  #before_filter :authenticate_api_user!, if: :is_api_request?, except: :show
-  #before_filter :authenticate_user!, unless: :is_api_request?, except: [:show, :location_search]
+  before_filter :authenticate_api_user!, if: :is_api_request?, except: :show
+  before_filter :authenticate_user!, unless: :is_api_request?, except: [:show, :location_search]
 
   DEMOGRAPHIC_OPTIONS = ['Senior Apartments', 'Student Housing']
 
