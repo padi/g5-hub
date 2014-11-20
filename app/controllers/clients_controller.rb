@@ -1,6 +1,6 @@
 class ClientsController < ApplicationController
-  before_filter :authenticate_api_user!, if: :is_api_request?, except: :show
-  before_filter :authenticate_user!, unless: :is_api_request?, except: [:show, :location_search]
+  #before_filter :authenticate_api_user!, if: :is_api_request?, except: :show
+  #before_filter :authenticate_user!, unless: :is_api_request?, except: [:show, :location_search]
 
   DEMOGRAPHIC_OPTIONS = ['Senior Apartments', 'Student Housing']
 
@@ -114,5 +114,5 @@ class ClientsController < ApplicationController
       :ga_profile_id, :landmark_1_type, :landmark_1_name, :landmark_2_type,
       :landmark_2_name, :property_feature_1, :property_feature_2, :property_feature_3,
       :apartment_amenity_1, :apartment_amenity_2, :community_amenity_1, :community_amenity_2,
-      :status, :thumbnail
+      :status, :thumbnail, :go_squared_client_id, :go_squared_site_token
 end
