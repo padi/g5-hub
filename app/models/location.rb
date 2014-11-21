@@ -10,7 +10,6 @@ class Location < ActiveRecord::Base
   STATUS_TYPES = ["Pending", "Live", "Suspended"]
 
   belongs_to :client
-  has_many :locations_integration_settings, dependent: :destroy
 
   Paperclip.interpolates :bucket_prefix  do |attachment, style|
     "#{attachment.instance.client.urn}/#{attachment.instance.urn}"

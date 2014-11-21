@@ -1,9 +1,0 @@
-<% if params[:locations] %>
-    <% title 'Add / Remove Integration Locations' %>
-    <% header_right link_to('Cancel', clients_integration_setting_url(@clients_integration_setting), class: 'btn btn-default pull-right') %>
-    <%= render 'locations_form' %>
-<% else %>
-    <% title 'Edit Integration' %>
-    <% header_right link_to('Cancel', clients_integration_setting_url(@clients_integration_setting), class: 'btn btn-default pull-right') %>
-    <%= render 'form' %>
-<% end %>

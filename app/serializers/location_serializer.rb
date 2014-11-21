@@ -1,8 +1,6 @@
 class LocationSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
-  has_many :locations_integration_settings
-
   attributes :uid, :client_uid, :created_at, :updated_at
   LOCATION_SERIALIZED_ATTRIBUTES = [:id, :client_id, :name, :corporate, :urn, :status,
                                     :street_address_1, :street_address_2, :city, :state, :postal_code,
