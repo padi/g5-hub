@@ -79,7 +79,7 @@ class ClientsController < ApplicationController
   def client_params
     params.fetch(:client, {}).permit(:name, :organization, :street_address_1, :street_address_2,
     :city, :state, :postal_code, :tel, :fax, :email, :vertical, :urn, :domain_type,
-    :domain, locations_attributes: [LOCATION_PARAMS])
+    :domain, :go_squared_client_id, :go_squared_tags, locations_attributes: [LOCATION_PARAMS])
   end
 
   LOCATION_PARAMS = :id, :name, :street_address_1, :street_address_2,
@@ -114,5 +114,5 @@ class ClientsController < ApplicationController
       :ga_profile_id, :landmark_1_type, :landmark_1_name, :landmark_2_type,
       :landmark_2_name, :property_feature_1, :property_feature_2, :property_feature_3,
       :apartment_amenity_1, :apartment_amenity_2, :community_amenity_1, :community_amenity_2,
-      :status, :thumbnail, :go_squared_client_id, :go_squared_site_token
+      :status, :thumbnail, :go_squared_site_token
 end

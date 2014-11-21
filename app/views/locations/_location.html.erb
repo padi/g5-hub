@@ -84,8 +84,9 @@
           <%= content_tag :dd, username, class: "p-nickname p-g5-nickname-#{network_name.to_s.downcase}" %>
       <% end %>
   <% end %>
-  <dt>Go Squared</dt>
-  <dd class="p-go-squared-client-id"><%= location.go_squared_client_id %></dd>
+  <dt>Go Squared Client ID</dt>
+  <dd class="p-go-squared-client-id"><%= client.go_squared_client_id %></dd>
+  <dt>Go Squared Site Token</dt>
   <dd class="p-go-squared-site-token"><%= location.go_squared_site_token %></dd>
 </dd>
 </dl>

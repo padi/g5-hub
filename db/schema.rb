@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141120165021) do
+ActiveRecord::Schema.define(version: 20141121195059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "clients", force: true do |t|
     t.string   "name"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.string   "urn"
     t.string   "vertical"
     t.string   "street_address_1"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20141120165021) do
     t.string   "domain_type"
     t.string   "domain"
     t.string   "organization"
+    t.string   "go_squared_client_id"
+    t.string   "go_squared_tags"
   end
 
   create_table "clients_integration_settings", force: true do |t|
@@ -249,7 +251,6 @@ ActiveRecord::Schema.define(version: 20141120165021) do
     t.datetime "thumbnail_updated_at"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "go_squared_client_id"
     t.text     "go_squared_site_token"
   end
 
