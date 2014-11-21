@@ -4,7 +4,6 @@ class Client < ActiveRecord::Base
   DOMAIN_TYPES = %w(SingleDomainClient MultiDomainClient)
 
   has_many :locations
-  has_one :clients_integration_setting, dependent: :destroy
 
   validates :name, uniqueness: true, presence: true
   validates :vertical, presence: true,

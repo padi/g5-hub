@@ -5,8 +5,6 @@ describe Client do
 
   it { expect(client).to be_valid }
 
-  it { is_expected.to have_one :clients_integration_setting }
-
   describe "Identifiers" do
     before do
       Time.any_instance.stub(:to_i) { 1325404800 }

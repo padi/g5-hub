@@ -3,7 +3,6 @@ require 'rails_helper'
 describe Location do
   let(:location) { Fabricate(:location, id: 123) }
 
-  it { should have_many :locations_integration_settings }
   it { expect(location).to be_valid }
   it { should validate_inclusion_of(:status).in_array(Location::STATUS_TYPES) }
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141030222429) do
+ActiveRecord::Schema.define(version: 20141121014853) do
 
   create_table "clients", force: true do |t|
     t.string   "name"
@@ -32,33 +32,6 @@ ActiveRecord::Schema.define(version: 20141030222429) do
     t.string   "organization"
   end
 
-  create_table "clients_integration_settings", force: true do |t|
-    t.integer "vendor_id"
-    t.string  "vendor_action"
-    t.integer "client_id"
-    t.integer "integration_setting_id"
-  end
-
-  add_index "clients_integration_settings", ["client_id"], name: "index_cis_on_client"
-  add_index "clients_integration_settings", ["vendor_id", "client_id", "vendor_action"], name: "index_cis_on_vendor_and_client_and_action"
-
-  create_table "custom_integration_settings", force: true do |t|
-    t.integer  "integration_setting_id"
-    t.string   "name"
-    t.string   "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "custom_integration_settings", ["integration_setting_id"], name: "index_custom_integration_settings_on_integration_setting_id"
-
-  create_table "frequency_units", force: true do |t|
-    t.string   "name"
-    t.integer  "minutes_multiplier"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "g5_authenticatable_users", force: true do |t|
     t.string   "email",              default: "",   null: false
     t.string   "provider",           default: "g5", null: false
@@ -75,25 +48,6 @@ ActiveRecord::Schema.define(version: 20141030222429) do
 
   add_index "g5_authenticatable_users", ["email"], name: "index_g5_authenticatable_users_on_email", unique: true
   add_index "g5_authenticatable_users", ["provider", "uid"], name: "index_g5_authenticatable_users_on_provider_and_uid", unique: true
-
-  create_table "integration_settings", force: true do |t|
-    t.string   "strategy_name"
-    t.string   "vendor_user_name"
-    t.string   "vendor_password"
-    t.string   "vendor_endpoint"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "job_settings", force: true do |t|
-    t.integer  "integration_setting_id"
-    t.integer  "frequency_unit_id"
-    t.integer  "frequency"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "job_settings", ["integration_setting_id"], name: "index_job_settings_on_integration_setting_id"
 
   create_table "locations", force: true do |t|
     t.integer  "client_id"
@@ -246,22 +200,6 @@ ActiveRecord::Schema.define(version: 20141030222429) do
     t.datetime "thumbnail_updated_at"
     t.float    "latitude"
     t.float    "longitude"
-  end
-
-  create_table "locations_integration_settings", force: true do |t|
-    t.integer  "clients_integration_setting_id"
-    t.integer  "location_id"
-    t.integer  "integration_setting_id"
-    t.string   "urn"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "locations_integration_settings", ["location_id", "clients_integration_setting_id"], name: "index_lis_on_location_and_client_int", unique: true
-  add_index "locations_integration_settings", ["location_id"], name: "index_lis_on_location"
-
-  create_table "vendors", force: true do |t|
-    t.string "name"
   end
 
 end
