@@ -24,9 +24,26 @@ class WebhookPoster
 
     Rails.logger.info("posting to #{domain_for(CPNS_RECORD_TYPE)}#{ENV['G5_UPDATABLE_PATH']}")
     post("#{domain_for(CPNS_RECORD_TYPE)}#{ENV["G5_UPDATABLE_PATH"]}", client_uid: client_uid)
+
+    post_client_updates_to_centralized
   end
 
   private
+
+  def post_client_updates_to_centralized
+    [:integrations_url].each do |url_method|
+      url = send(url_method)
+      unless url.blank?
+        Rails.logger.info("posting to #{url}/#{ENV['G5_UPDATABLE_PATH']}")
+        post("#{url}#{ENV['G5_UPDATABLE_PATH']}", client_uid: client_uid)
+      end
+    end
+  end
+
+  def integrations_url
+    ENV['INTEGRATIONS_URL']
+  end
+
 
   def client_uid
     "https://" +
