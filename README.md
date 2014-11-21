@@ -18,13 +18,26 @@ Client information is managed by G5.
 $ bundle
 ```
 
-1. Set up your database.
+2. Setup required env variables in `.env`
+  * `SECRET_TOKEN`
+  * `G5_AUTH_CLIENT_ID`
+  * `G5_AUTH_CLIENT_SECRET`
+  * `G5_AUTH_REDIRECT_URI`
+  * `G5_AUTH_ENDPOINT`
+  * `DEVISE_SECRET_KEY`
+  * `G5_AUTH_USERNAME`
+  * `G5_AUTH_PASSWORD`
+  * `G5_AUTH_ALLOW_PASSWORD_CREDENTIALS`
+  * `JOBS_URL`
+
+3. Set up your database.
 Copy the example database to database.yml and run setup
 ```bash
 $ cp config/database.yml.example config/database.yml
 $ rake db:setup
 ```
-1. run on port 3005, or with a HOST environment variable like ENV['HOST']=localhost:3000
+
+4. run on port 3005, or with a HOST environment variable like ENV['HOST']=localhost:3000
 
 ### Optional: To Webhook G5 Configurator
 
