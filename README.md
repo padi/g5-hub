@@ -14,21 +14,21 @@ Client information is managed by G5.
 ## Setup
 
 1. Install all gem dependencies.
-```bash
-$ bundle
-```
 
-1. Set up your database.
-Copy the example database to database.yml and run setup
-```bash
-$ cp config/database.yml.example config/database.yml
-$ rake db:setup
-```
-1. run on port 3005, or with a HOST environment variable like ENV['HOST']=localhost:3000
+  ```bash
+  $ bundle
+  ```
 
-### Optional: To Webhook G5 Configurator
+2. Set up your database.
+  Copy the example database to database.yml and run setup
+  ```bash
+  $ cp config/database.yml.example config/database.yml
+  $ rake db:setup
+  ```
+  
+3. run on port 3005, or with a `HOST` environment variable like `ENV['HOST']=localhost:3000`
 
-1. Set environment variable `CONFIGURATOR_WEBHOOK_URL`.
+4. (Optional: To Webhook G5 Configurator) Set environment variable `CONFIGURATOR_WEBHOOK_URL`.
 Defaults are set in `config/initializers/env.rb`.
 
 
